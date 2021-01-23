@@ -172,14 +172,14 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/xctf/</loc>
     <lastmod>2021-01-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/xctf/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
     <lastmod>2021-01-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
