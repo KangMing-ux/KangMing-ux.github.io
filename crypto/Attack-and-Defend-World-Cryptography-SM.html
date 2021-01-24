@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>攻防世界-密码学-sm - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="攻防世界-密码学-sm - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2020-08-22">2020-08-22</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">攻防世界-密码学-SM</h2>
+            <div class="post-meta">
+                本文共计2180个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h1><p>附件中包含一个Python脚本sm.py，3个文本文件。</p>
+<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h1><p>读完一遍sm.py后，可以确定解题的思路是先由ps与r解出bchoose，再由bchoose按照同样的过程计算出密钥key，最后进行AES解密求出flag。首先看生成r的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">512</span>):</span><br><span class="line">    <span class="keyword">if</span> bchoose[i]==<span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">        r=r^ps[i]</span><br></pre></td></tr></table></figure>
+<p>即$r=\sum_{i=1}^{512}\textrm{bchoose[i]}\cdot \textrm{ps[i]}$(此处的加法是异或)；虽然生成方式类似背包加密，但是由于ps具有很好的性质，我们不使用破解背包加密的方法来解此题；我们来分析生成ps的gen512num函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen512num</span>():</span></span><br><span class="line">    order=[]</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(order)!=<span class="number">512</span>:</span><br><span class="line">        tmp=randint(<span class="number">1</span>,<span class="number">512</span>)</span><br><span class="line">        <span class="keyword">if</span> tmp <span class="keyword">not</span> <span class="keyword">in</span> order:</span><br><span class="line">            order.append(tmp)</span><br><span class="line">    ps=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">512</span>):</span><br><span class="line">        p=getPrime(<span class="number">512</span>-order[i]+<span class="number">10</span>)</span><br><span class="line">        pre=<span class="built_in">bin</span>(p)[<span class="number">2</span>:][<span class="number">0</span>:(<span class="number">512</span>-order[i])]+<span class="string">&quot;1&quot;</span></span><br><span class="line">        ps.append(<span class="built_in">int</span>(pre+<span class="string">&quot;0&quot;</span>*(<span class="number">512</span>-<span class="built_in">len</span>(pre)),<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> ps</span><br></pre></td></tr></table></figure>
+<p>order是1,2,…,512的一个随机的排列，对ps[i]:首先生成一个长度为512-order[i]+10的素数，去掉此素数的最后10位，同时在尾部追加一个二进制位1，最后在后面填充0使得长度为512；我们首先考虑生成r的最后1个二进制位，ps中只有1个数最后1位为1，其余数最后1位均为0，那么最后1位为1的数如果没有“加入”异或运算，那么r的最后1位一定为0，否则，一定为1，这样我们通过r的最后1位就可以推断出bchoose的第j位(记order[j]=1)。接下来，$r\oplus (\textrm{bchoose[j]}\cdot \textrm{ps[j]})=\sum_{i\neq j}\textrm{bchoose[i]}\cdot \textrm{ps[i]}$，在{ps[i]| i$\neq$j}中，只有1个数倒数第2位为1，同理，可推断出bchoose的第k位(记order[k]=2)，直到推断出bchoose所有位。</p>
+<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h1><p>实现的Python脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_k</span>():</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ps&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        ps=[long(x) <span class="keyword">for</span> x <span class="keyword">in</span> f.read().split(<span class="string">&#x27;\n&#x27;</span>)[:-<span class="number">1</span>]]</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        r=long(f.read())</span><br><span class="line">    pbits=[<span class="built_in">bin</span>(x).rfind(<span class="string">&#x27;1&#x27;</span>)-<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> ps]</span><br><span class="line">    bc=[<span class="string">&#x27;0&#x27;</span>]*<span class="number">512</span></span><br><span class="line">    <span class="keyword">for</span> le <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">512</span>):</span><br><span class="line">        ind=pbits.index(<span class="number">511</span>-le)</span><br><span class="line">        tt=<span class="built_in">bin</span>(r)[<span class="number">2</span>:].rjust(<span class="number">512</span>,<span class="string">&#x27;0&#x27;</span>)[<span class="number">511</span>-le]</span><br><span class="line">        <span class="keyword">if</span> tt==<span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            bc[ind]=<span class="string">&#x27;1&#x27;</span></span><br><span class="line">            r^=ps[ind]</span><br><span class="line">    <span class="keyword">return</span> long(<span class="string">&#x27;&#x27;</span>.join(bc),<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ef&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        ef=b64decode(f.read())</span><br><span class="line">    key=long_to_bytes(<span class="built_in">int</span>(md5(long_to_bytes(cal_k())).hexdigest(),<span class="number">16</span>))</span><br><span class="line">    aes_obj = AES.new(key, AES.MODE_ECB)</span><br><span class="line">    <span class="keyword">return</span> aes_obj.decrypt(ef)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span> solve()</span><br></pre></td></tr></table></figure>
+<p>程序运行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">flag&#123;shemir_alotof_in_wctf_fun!&#125;</span><br></pre></td></tr></table></figure>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/xctf/">xctf</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

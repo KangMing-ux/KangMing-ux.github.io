@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>bytectf2020密码学部分详解 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="bytectf2020密码学部分详解 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2020-10-30">2020-10-30</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">ByteCTF2020密码学部分详解</h2>
+            <div class="post-meta">
+                本文共计960个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="一、noise"><a href="#一、noise" class="headerlink" title="一、noise"></a>一、noise</h1><h2 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/noise">Gitee备份在此</a></p>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>穷举通过proof_of_work之后，我们来看代码逻辑：</p>
+<ul>
+<li>secret=getrandbits(1024)，注意他自己实现的getrandbits(1024)实际上是生成长1017~1024位的随机数；</li>
+<li>对上述生成的secret，服务器最多只会与你交互64次；</li>
+<li>若op为’god’，服务器会返回num * getrandbits(992) % secret，这里num也由我指定；</li>
+<li>若op为’bless’，服务器会判断num与secret是否相等，若相等服务器返回FLAG。</li>
+</ul>
+<p>由于我至少要留一次交互机会发送我计算出的secret，因此我必须在63次交互内计算出secret！为下面叙述方便，声明如下记号：</p>
+<ul>
+<li>第 i 次发送的num记为$n_{i}$；</li>
+<li>第 i 次getrandbits(992)记为$g_{i}$；</li>
+<li>第 i 次接收的num * getrandbits(992) % secret记为$c_{i}$。</li>
+</ul>
+<p>记secret为$m$，则：</p>
+<p>$c_{i} \equiv n_{i}\cdot g_{i}\ \textrm{mod}\ m,i=1,\cdots ,63$</p>
+<p>即存在$k_{i}\in Z$，$n_{i}\cdot g_{i}=c_{i}+k_{i}\cdot m$</p>
+<p>对等式两边模$n_{i}$则有：</p>
+<p>$c_{i}+k_{i}\cdot m \equiv 0\ \textrm{mod}\ n_{i}$</p>
+<p>若我能够控制$k_{i}=1$，那么：</p>
+<p>$m \equiv (n_{i}-c_{i})\ \textrm{mod}\ n_{i}$</p>
+<p>同时得到多个如上形式的等式可考虑使用中国剩余定理解出$m$！</p>
+<h3 id="2-1-利用-n-i-控制-k-i"><a href="#2-1-利用-n-i-控制-k-i" class="headerlink" title="2.1 利用$n_{i}$控制$k_{i}$"></a>2.1 利用$n_{i}$控制$k_{i}$</h3><p>$m$有$1/2$的概率长1024比特，$g_{i}$有$1/2$的概率长992比特；此时，要控制$k_{i}=1$，即：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+n_{i}\cdot g_{i} &>m \\
+n_{i}\cdot g_{i} &<2m
+\end{aligned}
+\right.</script><p>对上式两边取对数：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+log(n_{i})+log(g_{i}) &>log(m) \\
+log(n_{i})+log(g_{i}) &<log(m)+1
+\end{aligned}
+\right.</script><p>记$log(g_{i})=991+\alpha,log(n_{i})=32+\beta,log(m)=1023+\gamma;\alpha,\beta,\gamma \in (0,1)$(其中$X=2^{\alpha},Y=2^{\gamma}$服从$[1,2]$上的均匀分布)。上式改写为：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+\alpha+\beta &>\gamma \\
+\alpha+\beta &<1+\gamma
+\end{aligned}
+\right.</script><p>综上，$P(k_{i}=1)=P(\alpha+\beta&gt;\gamma,\alpha+\beta<1+\gamma)=P(2^{\beta}\cdot X>Y,2^{\beta-1}\cdot X&lt;Y)$</p>
+<p>直观地看，$\beta$越大越有利于约束条件$\alpha+\beta&gt;\gamma$而不利于约束条件$\alpha+\beta<1+\gamma$，反之，$\beta$越小越有利于约束条件$\alpha+\beta<1+\gamma$而不利于约束条件$\alpha+\beta>\gamma$。</p>
+<p>注意到我可以判断是否满足约束条件$\alpha+\beta&gt;\gamma$—若$n_{i}\cdot g_{i}&lt;m$则$c_{i}=n_{i}\cdot g_{i}$从而$c_{i}\equiv 0 \textrm{mod}\ n_{i}$。</p>
+<p>由此，我选择$n_{i}$时应该尽量满足约束条件$\alpha+\beta&lt;1+\gamma$，即$\beta$应尽量小，为何不设置$\beta$为0，理由如下：</p>
+<p>当$\beta=0$时，$P(k_{i}=1)=P(\alpha&gt;\gamma,\alpha<1+\gamma)=P(\alpha>\gamma)=1/2$；</p>
+<p>由上述：$n_{i}$长$33$比特，而$m$长$1024$比特；由中国剩余定理可知：我们需要32个如下形式的同余式才能解出$m$！</p>
+<p>$m \equiv (n_{i}-c_{i})\ \textrm{mod}\ n_{i}$</p>
+<p>要得到如上形式的同余式，即需要$k_{i}=1$，而$P(k_{i}=1)=1/2$，那么我得到$32$个如上形式的同余式“平均”需要$64$次交互，从而我没有发送secret的交互机会。</p>
+<p>综上，$\beta$应在大于0的前提下尽量小！</p>
+<h3 id="2-2值得注意的地方"><a href="#2-2值得注意的地方" class="headerlink" title="2.2值得注意的地方"></a>2.2值得注意的地方</h3><p>通过2.1，我知道了$n_{i}$值多大时可以解出$m$，结合中国剩余定理，同余式的模数之间是互素的，即我选择的$n_{i}$需两两互素，因此$n_{i}$不是取确定的值而是在一定的取值范围内取素数！</p>
+<h2 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h2><p>上述链接中的solve.py为解题的Python脚本，程序运行(成功时)结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ python3 solve.py</span><br><span class="line">[+] Opening connection to 182.92.153.117 on port 30101: Done</span><br><span class="line">[+] MBruteforcing: Found key: <span class="string">&quot;l9a&quot;</span></span><br><span class="line">success!</span><br><span class="line">95613903744255213782277288259288084531700829576284706991256294359734535087821985034716432798049279163174069238632678362676474782669781482301447573436852554131343117198284150657465643396718720128642929008328391123641254705186541184339088382138616985634723733544083949806487213357784626124965521562172300016682</span><br><span class="line">b<span class="string">&#x27;CONGRATULATIONS ByteCTF&#123;Noise_i5_rea11y_ANN0YING&#125;\n&#x27;</span></span><br><span class="line">[*] Closed connection to 182.92.153.117 port 30101</span><br></pre></td></tr></table></figure>
+<p>注：此程序并非次次运行都能解出secret</p>
+<h1 id="二、threshold"><a href="#二、threshold" class="headerlink" title="二、threshold"></a>二、threshold</h1><h2 id="1-题目信息-1"><a href="#1-题目信息-1" class="headerlink" title="1.题目信息"></a>1.题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/threshold">Gitee备份在此</a></p>
+<h2 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2.分析"></a>2.分析</h2><p>程序又臭又长，但其实考点特别简单，稍微使用一下欧拉定理即可！我来分析一下程序的逻辑：</p>
+<p>在类TSM2初始化时：</p>
+<p>$pks \equiv [(sk+1)\cdot sks]^{n-2}\ \textrm{mod}\ n$</p>
+<p>接着在output_p1函数中：</p>
+<p>$s \equiv (d_{1}\cdot k_{1}\cdot s_{2}+d_{1}\cdot s_{3}-r)\ \textrm{mod}\ n$</p>
+<p>其中$d_{1}=sks$，而$r,s_{2},s_{3}$均由我指定，那么我令$r=s_{2}=0,s_{3}=1$，则得到的$s$即为$d_{1}$在模$n$下的值，即：</p>
+<p>$s \equiv sks\ \textrm{mod}\ n$</p>
+<p>注意到$n$是素数，欧拉函数$\phi(n)=n-1$，显然$(n-2,n-1)=1$，即存在$x\in Z,x\cdot (n-2)\equiv 1\ \textrm{mod}\ \phi(n)$</p>
+<p>由欧拉定理：$pks^{x}\equiv [(sk+1)\cdot sks]^{(n-2)x}\equiv (sk+1)\cdot sks\ \textrm{mod}\ n$</p>
+<p>因此$(sk+1)\equiv pks^{x}\cdot sks^{-1}\equiv pks^{x}\cdot s^{-1}\ \textrm{mod}\ n$，而密钥$sk$是小于阶$n$的，因此解出密钥$sk$，有了密钥干什么不行呢，按照程序的要求，对消息b’Hello, Welcome to ByteCTF2020!’签名即可！</p>
+<h2 id="3-解题-1"><a href="#3-解题-1" class="headerlink" title="3.解题"></a>3.解题</h2><p>略</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/ctf/">ctf</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>攻防世界-密码学-新手练习区 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="攻防世界-密码学-新手练习区 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2020-08-12">2020-08-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">攻防世界-密码学-新手练习区</h2>
+            <div class="post-meta">
+                本文共计12311个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="1-Caeser"><a href="#1-Caeser" class="headerlink" title="1. Caeser"></a>1. Caeser</h1><p>凯撒密码：替换加密——明文中的所有字母都在字母表上向后按照一个固定数目offset进行偏移后被替换成密文。由于不知道偏移量，因此将每个偏移量都试一下进行解密;事实上，解密过程既可以看作密文中的所有字母都在字母表上向前按照一个固定数目offset进行偏移，也可以看作密文中的所有字母都在字母表上向后按照一个固定数目(26-offset)进行偏移！</p>
+<p>如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> lowercase</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Caeser</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,dic=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> dic==<span class="literal">None</span>:</span><br><span class="line">            self.dic=lowercase</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.dic=dic</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enc</span>(<span class="params">self,msg,ofst</span>):</span></span><br><span class="line">        dic=self.dic</span><br><span class="line">        ld=<span class="built_in">len</span>(dic)</span><br><span class="line">        cip=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> msg:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> dic:</span><br><span class="line">                index=dic.find(c)</span><br><span class="line">                cip+=dic[(index+ofst)%ld]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cip+=c</span><br><span class="line">        <span class="keyword">return</span> cip</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    msg=<span class="string">&#x27;oknqdbqmoq&#123;kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz&#125;&#x27;</span></span><br><span class="line">    caeser=Caeser()</span><br><span class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(caeser.dic)):</span><br><span class="line">        <span class="built_in">print</span> caeser.enc(msg,ii)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ python wp1.py</span><br><span class="line">oknqdbqmoq&#123;kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz&#125;</span><br><span class="line">plorecrnpr&#123;lbh_unir_yrnearq_pnrfne_rapelcgvba&#125;</span><br><span class="line">qmpsfdsoqs&#123;mci_vojs_zsofbsr_qosgof_sbqfmdhwcb&#125;</span><br><span class="line">rnqtgetprt&#123;ndj_wpkt_atpgcts_rpthpg_tcrgneixdc&#125;</span><br><span class="line">soruhfuqsu&#123;oek_xqlu_buqhdut_squiqh_udshofjyed&#125;</span><br><span class="line">tpsvigvrtv&#123;pfl_yrmv_cvrievu_trvjri_vetipgkzfe&#125;</span><br><span class="line">uqtwjhwsuw&#123;qgm_zsnw_dwsjfwv_uswksj_wfujqhlagf&#125;</span><br><span class="line">vruxkixtvx&#123;rhn_atox_extkgxw_vtxltk_xgvkrimbhg&#125;</span><br><span class="line">wsvyljyuwy&#123;sio_bupy_fyulhyx_wuymul_yhwlsjncih&#125;</span><br><span class="line">xtwzmkzvxz&#123;tjp_cvqz_gzvmizy_xvznvm_zixmtkodji&#125;</span><br><span class="line">yuxanlawya&#123;ukq_dwra_hawnjaz_ywaown_ajynulpekj&#125;</span><br><span class="line">zvybombxzb&#123;vlr_exsb_ibxokba_zxbpxo_bkzovmqflk&#125;</span><br><span class="line">awzcpncyac&#123;wms_fytc_jcyplcb_aycqyp_clapwnrgml&#125;</span><br><span class="line">bxadqodzbd&#123;xnt_gzud_kdzqmdc_bzdrzq_dmbqxoshnm&#125;</span><br><span class="line">cyberpeace&#123;you_have_learned_caesar_encryption&#125;</span><br><span class="line">dzcfsqfbdf&#123;zpv_ibwf_mfbsofe_dbftbs_fodszqujpo&#125;</span><br><span class="line">eadgtrgceg&#123;aqw_jcxg_ngctpgf_ecguct_gpetarvkqp&#125;</span><br><span class="line">fbehushdfh&#123;brx_kdyh_ohduqhg_fdhvdu_hqfubswlrq&#125;</span><br><span class="line">gcfivtiegi&#123;csy_lezi_pievrih_geiwev_irgvctxmsr&#125;</span><br><span class="line">hdgjwujfhj&#123;dtz_mfaj_qjfwsji_hfjxfw_jshwduynts&#125;</span><br><span class="line">iehkxvkgik&#123;eua_ngbk_rkgxtkj_igkygx_ktixevzout&#125;</span><br><span class="line">jfilywlhjl&#123;fvb_ohcl_slhyulk_jhlzhy_lujyfwapvu&#125;</span><br><span class="line">kgjmzxmikm&#123;gwc_pidm_tmizvml_kimaiz_mvkzgxbqwv&#125;</span><br><span class="line">lhknaynjln&#123;hxd_qjen_unjawnm_ljnbja_nwlahycrxw&#125;</span><br><span class="line">milobzokmo&#123;iye_rkfo_vokbxon_mkockb_oxmbizdsyx&#125;</span><br><span class="line">njmpcaplnp&#123;jzf_slgp_wplcypo_nlpdlc_pyncjaetzy&#125;</span><br></pre></td></tr></table></figure>
+<p>看上去像句人话的就是cyberpeace{you_have_learned_caesar_encryption}，这就是flag。</p>
+<h1 id="2-Morse"><a href="#2-Morse" class="headerlink" title="2. Morse"></a>2. Morse</h1><p>摩尔斯密码：使用0,1两种状态的二进制代码组合表示字母与数字；解密就是一个查找操作。如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Morse Code</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Morse</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.dic = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="string">&#x27;01&#x27;</span>,     <span class="string">&#x27;b&#x27;</span>: <span class="string">&#x27;1000&#x27;</span>,   <span class="string">&#x27;c&#x27;</span>: <span class="string">&#x27;1010&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;d&#x27;</span>: <span class="string">&#x27;100&#x27;</span>,    <span class="string">&#x27;e&#x27;</span>: <span class="string">&#x27;0&#x27;</span>,      <span class="string">&#x27;f&#x27;</span>: <span class="string">&#x27;0010&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;g&#x27;</span>: <span class="string">&#x27;110&#x27;</span>,    <span class="string">&#x27;h&#x27;</span>: <span class="string">&#x27;0000&#x27;</span>,   <span class="string">&#x27;i&#x27;</span>: <span class="string">&#x27;00&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;j&#x27;</span>: <span class="string">&#x27;0111&#x27;</span>,   <span class="string">&#x27;k&#x27;</span>: <span class="string">&#x27;101&#x27;</span>,    <span class="string">&#x27;l&#x27;</span>: <span class="string">&#x27;0100&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;m&#x27;</span>: <span class="string">&#x27;11&#x27;</span>,     <span class="string">&#x27;n&#x27;</span>: <span class="string">&#x27;10&#x27;</span>,     <span class="string">&#x27;o&#x27;</span>: <span class="string">&#x27;111&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;p&#x27;</span>: <span class="string">&#x27;0110&#x27;</span>,   <span class="string">&#x27;q&#x27;</span>: <span class="string">&#x27;1101&#x27;</span>,   <span class="string">&#x27;r&#x27;</span>: <span class="string">&#x27;010&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;s&#x27;</span>: <span class="string">&#x27;000&#x27;</span>,    <span class="string">&#x27;t&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,      <span class="string">&#x27;u&#x27;</span>: <span class="string">&#x27;001&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;v&#x27;</span>: <span class="string">&#x27;0001&#x27;</span>,   <span class="string">&#x27;w&#x27;</span>: <span class="string">&#x27;011&#x27;</span>,    <span class="string">&#x27;x&#x27;</span>: <span class="string">&#x27;1001&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;y&#x27;</span>: <span class="string">&#x27;1011&#x27;</span>,   <span class="string">&#x27;z&#x27;</span>: <span class="string">&#x27;1100&#x27;</span>,   <span class="string">&#x27;_&#x27;</span>: <span class="string">&#x27;001101&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;0&#x27;</span>: <span class="string">&#x27;11111&#x27;</span>,  <span class="string">&#x27;1&#x27;</span>: <span class="string">&#x27;01111&#x27;</span>,  <span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;00111&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;3&#x27;</span>: <span class="string">&#x27;00011&#x27;</span>,  <span class="string">&#x27;4&#x27;</span>: <span class="string">&#x27;00001&#x27;</span>,  <span class="string">&#x27;5&#x27;</span>: <span class="string">&#x27;00000&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;6&#x27;</span>: <span class="string">&#x27;10000&#x27;</span>,  <span class="string">&#x27;7&#x27;</span>: <span class="string">&#x27;11000&#x27;</span>,  <span class="string">&#x27;8&#x27;</span>: <span class="string">&#x27;11100&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;9&#x27;</span>: <span class="string">&#x27;11110&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enc</span>(<span class="params">self,msg</span>):</span></span><br><span class="line">        cip=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        dic=self.dic</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> msg:</span><br><span class="line">            cip+=dic[c]</span><br><span class="line">            cip+=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> cip</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec</span>(<span class="params">self,cip</span>):</span></span><br><span class="line">        msg=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        dic=self.dic</span><br><span class="line">        key=<span class="built_in">list</span>(dic.keys())</span><br><span class="line">        val=<span class="built_in">list</span>(dic.values())</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> cip.split():</span><br><span class="line">            msg+=key[val.index(c)]</span><br><span class="line">        <span class="keyword">return</span> msg</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    cip=<span class="string">&#x27;11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110&#x27;</span></span><br><span class="line">    morse=Morse()</span><br><span class="line">    <span class="built_in">print</span> morse.dec(cip)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"><span class="comment">#   python wp2.py</span></span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python wp2.py</span><br><span class="line">morsecodeissointeresting</span><br></pre></td></tr></table></figure>
+<h1 id="3-不仅仅是Morse"><a href="#3-不仅仅是Morse" class="headerlink" title="3. 不仅仅是Morse"></a>3. 不仅仅是Morse</h1><p>由于得到的数据格式与上一个相同，因此仍然进行Morse解密，解密出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">may_be_have_another_decodehhhhaaaaabaabbbaabbaaaaaaaabaababaaaaaaabbabaaabbaaabbaabaaaababaabaaabbabaaabaaabaababbaabbbabaaabababbaaabbabaaabaabaabaaaabbabbaabbaabaabaaabaabaabaababaabbabaaaabbabaabba</span><br></pre></td></tr></table></figure><br>这还不是明文，提示你还需要一种解码；这种密码是培根密码：替换密码——根据所给表对应转换即可加密解密。</p>
+<p>如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Morse code + Bacon cipher</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wp2 <span class="keyword">import</span> Morse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bacon</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.dic=&#123;<span class="string">&#x27;a&#x27;</span>:<span class="string">&#x27;aaaaa&#x27;</span>,<span class="string">&#x27;b&#x27;</span>:<span class="string">&#x27;aaaab&#x27;</span>,<span class="string">&#x27;c&#x27;</span>:<span class="string">&#x27;aaaba&#x27;</span>,<span class="string">&#x27;d&#x27;</span>:<span class="string">&#x27;aaabb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;e&#x27;</span>:<span class="string">&#x27;aabaa&#x27;</span>,<span class="string">&#x27;f&#x27;</span>:<span class="string">&#x27;aabab&#x27;</span>,<span class="string">&#x27;g&#x27;</span>:<span class="string">&#x27;aabba&#x27;</span>,<span class="string">&#x27;h&#x27;</span>:<span class="string">&#x27;aabbb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;i&#x27;</span>:<span class="string">&#x27;abaaa&#x27;</span>,<span class="string">&#x27;j&#x27;</span>:<span class="string">&#x27;abaab&#x27;</span>,<span class="string">&#x27;k&#x27;</span>:<span class="string">&#x27;ababa&#x27;</span>,<span class="string">&#x27;l&#x27;</span>:<span class="string">&#x27;ababb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;m&#x27;</span>:<span class="string">&#x27;abbaa&#x27;</span>,<span class="string">&#x27;n&#x27;</span>:<span class="string">&#x27;abbab&#x27;</span>,<span class="string">&#x27;o&#x27;</span>:<span class="string">&#x27;abbba&#x27;</span>,<span class="string">&#x27;p&#x27;</span>:<span class="string">&#x27;abbbb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;q&#x27;</span>:<span class="string">&#x27;baaaa&#x27;</span>,<span class="string">&#x27;r&#x27;</span>:<span class="string">&#x27;baaab&#x27;</span>,<span class="string">&#x27;s&#x27;</span>:<span class="string">&#x27;baaba&#x27;</span>,<span class="string">&#x27;t&#x27;</span>:<span class="string">&#x27;baabb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;u&#x27;</span>:<span class="string">&#x27;babaa&#x27;</span>,<span class="string">&#x27;v&#x27;</span>:<span class="string">&#x27;babab&#x27;</span>,<span class="string">&#x27;w&#x27;</span>:<span class="string">&#x27;babba&#x27;</span>,<span class="string">&#x27;x&#x27;</span>:<span class="string">&#x27;babbb&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;y&#x27;</span>:<span class="string">&#x27;bbaaa&#x27;</span>,<span class="string">&#x27;z&#x27;</span>:<span class="string">&#x27;bbaab&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enc</span>(<span class="params">self,msg</span>):</span></span><br><span class="line">        cip=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        dic=self.dic</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> msg:</span><br><span class="line">            cip+=dic[c]</span><br><span class="line">        <span class="keyword">return</span> cip</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec</span>(<span class="params">self,cip</span>):</span></span><br><span class="line">        msg=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        dic=self.dic</span><br><span class="line">        key=<span class="built_in">list</span>(dic.keys())</span><br><span class="line">        val=<span class="built_in">list</span>(dic.values())</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> [cip[<span class="number">5</span>*ii:<span class="number">5</span>*(ii+<span class="number">1</span>)] <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cip)/<span class="number">5</span>)]:</span><br><span class="line">            msg+=key[val.index(c)]</span><br><span class="line">        <span class="keyword">return</span> msg</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    cip=<span class="string">&#x27;11 01 1011 001101 1000 0 001101 0000 01 0001 0 001101 01 10 111 1 0000 0 010 001101 100 0 1010 111 100 0 0000 0000 0000 0000 01 01 01 01 01 1000 01 01 1000 1000 1000 01 01 1000 1000 01 01 01 01 01 01 01 01 1000 01 01 1000 01 1000 01 01 01 01 01 01 01 1000 1000 01 1000 01 01 01 1000 1000 01 01 01 1000 1000 01 01 1000 01 01 01 01 1000 01 1000 01 01 1000 01 01 01 1000 1000 01 1000 01 01 01 1000 01 01 01 1000 01 01 1000 01 1000 1000 01 01 1000 1000 1000 01 1000 01 01 01 1000 01 1000 01 1000 1000 01 01 01 1000 1000 01 1000 01 01 01 1000 01 01 1000 01 01 1000 01 01 01 01 1000 1000 01 1000 1000 01 01 1000 1000 01 01 1000 01 01 1000 01 01 01 1000 01 01 1000 01 01 1000 01 01 1000 01 1000 01 01 1000 1000 01 1000 01 01 01 01 1000 1000 01 1000 01 01 1000 1000 01&#x27;</span></span><br><span class="line">    morse=Morse()</span><br><span class="line">    cip=morse.dec(cip)</span><br><span class="line">    <span class="built_in">print</span> cip</span><br><span class="line">    cip=cip[cip.find(<span class="string">&#x27;hhhh&#x27;</span>)+<span class="number">4</span>:]</span><br><span class="line">    bacon=Bacon()</span><br><span class="line">    <span class="built_in">print</span> bacon.dec(cip)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python wp3.py</span><br><span class="line">attackanddefenceworldisinteresting</span><br></pre></td></tr></table></figure>
+<h1 id="4-幂数加密"><a href="#4-幂数加密" class="headerlink" title="4. 幂数加密"></a>4. 幂数加密</h1><p>这题实际是云影密码：26个英文字母在字母表中的次序ord(x)&lt;$2^{5}$，因此5位二进制数可以表示一个英文字母，即1,2,4,8,16的组合(求和)可表示一个英文字母，例如L在字母表中的次序为12=4+8，因此组合48就可以表示字母L；同时0作为分隔符。</p>
+<p>如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&#x27;8842101220480224404014224202480122&#x27;</span></span><br><span class="line">ls=s.split(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">dic=<span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span></span><br><span class="line">m=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> ls:</span><br><span class="line">    t=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> cc <span class="keyword">in</span> c:</span><br><span class="line">        t+=<span class="built_in">int</span>(cc)</span><br><span class="line">    m+=dic[t-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span> m</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python wp4.py</span><br><span class="line">WELLDONE</span><br></pre></td></tr></table></figure>
+<h1 id="5-Railfence"><a href="#5-Railfence" class="headerlink" title="5. Railfence"></a>5. Railfence</h1><p>栅栏密码：将明文row个为一组，排列为col行(明文的长度可能小于为row$\cdot$col，即最后一行可能不会填满)，再将第一列的字母从上至下连接起来，接下来是第二列，直到第row列，生成密文。</p>
+<p>但是此题是栅栏密码的一个变种——W型栅栏密码；例如，如下是一个密钥为5的W型栅栏密码，明文为1-19的自然数，将其按照W的形状排列，再由上至下，从左至右连接数字，生成密文[1,9,17,2,8,10,16,18,3,7,11,15,19,4,6,12,14,5,13]。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1             9               17</span><br><span class="line">  2         8   10          16  18</span><br><span class="line">    3      7      11      15      19</span><br><span class="line">      4   6         12  14</span><br><span class="line">        5             13</span><br></pre></td></tr></table></figure>
+<p>如下是解题的Python代码(此题的密钥为5)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#W kind Railfence cipher</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Railfence_W</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,key=<span class="number">2</span></span>):</span></span><br><span class="line">        self.key=key</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enc</span>(<span class="params">self,msg,mode</span>):</span></span><br><span class="line">        <span class="comment">#mode = 0 means decrypt,mode = 1 means encrypt</span></span><br><span class="line">        ls=<span class="built_in">len</span>(msg)</span><br><span class="line">        key=self.key</span><br><span class="line">        rep=<span class="built_in">range</span>(<span class="number">0</span>,ls,<span class="number">2</span>*(key-<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> dd <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,key-<span class="number">1</span>):</span><br><span class="line">            ind=dd</span><br><span class="line">            de1=<span class="number">2</span>*(key-<span class="number">1</span>-dd)</span><br><span class="line">            de2=<span class="number">2</span>*dd</span><br><span class="line">            <span class="keyword">while</span> ind&lt;ls:</span><br><span class="line">                rep.append(ind)</span><br><span class="line">                ind+=de1</span><br><span class="line">                <span class="keyword">if</span> ind&gt;=ls:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                rep.append(ind)</span><br><span class="line">                ind+=de2</span><br><span class="line">        rep.extend(<span class="built_in">range</span>(key-<span class="number">1</span>,ls,<span class="number">2</span>*(key-<span class="number">1</span>)))</span><br><span class="line">        <span class="keyword">if</span> mode:</span><br><span class="line">            cips=<span class="string">&#x27;&#x27;</span>.join([msg[ii] <span class="keyword">for</span> ii <span class="keyword">in</span> rep])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cip=rep[:]</span><br><span class="line">            <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(ls):</span><br><span class="line">                cip[rep[ii]]=msg[ii]</span><br><span class="line">            cips=<span class="string">&#x27;&#x27;</span>.join(cip)</span><br><span class="line">        <span class="keyword">return</span> cips</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    cip=<span class="string">&#x27;ccehgyaefnpeoobe&#123;lcirg&#125;epriec_ora_g&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="number">8</span>):</span><br><span class="line">        railfence_w=Railfence_W(step)</span><br><span class="line">        <span class="built_in">print</span> railfence_w.enc(cip,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ python wp5.py</span><br><span class="line">cccierhgg&#125;yeaperfinepce_ooorbae_&#123;gl</span><br><span class="line">cnipceeoeocbhe_&#123;glocyirraga&#125;ee_pfrg</span><br><span class="line">cal_cecfiornepgr&#125;ehoeapogbr_iey&#123;egc</span><br><span class="line">cyberpeace&#123;railfence_cipher_gogogo&#125;</span><br><span class="line">cgecraiioycaore_cgbeefe&#125;_goe&#123;nhplpr</span><br><span class="line">chfbriaegengcyp&#123;&#125;c__eleaeeocpogrrio</span><br></pre></td></tr></table></figure>
+<h1 id="6-easychallenge"><a href="#6-easychallenge" class="headerlink" title="6. easychallenge"></a>6. easychallenge</h1><p>附件是一个pyc文件，使用uncompyle6进行反编译得到py脚本，脚本中定义了3个编码函数，这3个编码函数都是可逆的，从而可求解出与给定编码数据对应的明文。</p>
+<p>如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b32decode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode1</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x=<span class="built_in">ord</span>(i)-<span class="number">25</span></span><br><span class="line">        x^=<span class="number">36</span></span><br><span class="line">        s+=<span class="built_in">chr</span>(x)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode2</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x=<span class="built_in">ord</span>(i)^<span class="number">36</span></span><br><span class="line">        x-=<span class="number">36</span></span><br><span class="line">        s+=<span class="built_in">chr</span>(x)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode3</span>(<span class="params">ans</span>):</span></span><br><span class="line">    <span class="keyword">return</span> b32decode(ans)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    final = <span class="string">&#x27;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> decode1(decode2(decode3(final)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span> solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python wp6.py</span><br><span class="line">cyberpeace&#123;interestinghhhhh&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="7-转轮机加密"><a href="#7-转轮机加密" class="headerlink" title="7. 转轮机加密"></a>7. 转轮机加密</h1><p>题目提示托马斯·杰斐逊，搜索一下有一个关于此人的密码——杰斐逊密码：首先，转轮机每一圈有若干字母，共有若干圈；加密时，将转轮机调整至某一列为明文，然后任选其他的某一列，作为密文。因此解密时，转轮机调整至某一列为密文，然后分析其他列，找到语句通顺的就是明文。</p>
+<p>如下是解题的Python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Jefferson cipher</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jefferson</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,key</span>):</span></span><br><span class="line">        self.box=[</span><br><span class="line">                <span class="string">&#x27;ZWAXJGDLUBVIQHKYPNTCRMOSFE&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;KPBELNACZDTRXMJQOYHGVSFUWI&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;BDMAIZVRNSJUWFHTEQGYXPLOCK&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;RPLNDVHGFCUKTEBSXQYIZMJWAO&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;IHFRLABEUOTSGJVDKCPMNZQWXY&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;AMKGHIWPNYCJBFZDRUSLOQXVET&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;GWTHSPYBXIZULVKMRAFDCEONJQ&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;NOZUTWDCVRJLXKISEFAPMYGHBQ&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;XPLTDSRFHENYVUBMCQWAOIKZGJ&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;UDNAJFBOWTGVRSCZQKELMXYIHP&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;MNBVCXZQWERTPOIUYALSKDJFHG&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;LVNCMXZPQOWEIURYTASBKJDFHG&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;JZQAWSXCDERFVBGTYHNUMKILOP&#x27;</span></span><br><span class="line">                ]</span><br><span class="line">        self.key=key</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dec</span>(<span class="params">self,cip</span>):</span></span><br><span class="line">        box=self.box</span><br><span class="line">        key=self.key</span><br><span class="line">        lb=<span class="built_in">len</span>(box)</span><br><span class="line">        tbox=[box[x-<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> key]</span><br><span class="line">        <span class="keyword">assert</span> lb==<span class="built_in">len</span>(cip)</span><br><span class="line">        <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(lb):</span><br><span class="line">            ind=tbox[ii].find(cip[ii])</span><br><span class="line">            tbox[ii]=tbox[ii][ind:]+tbox[ii][:ind]</span><br><span class="line">        <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(box[<span class="number">0</span>])):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>.join([x[ii] <span class="keyword">for</span> x <span class="keyword">in</span> tbox])).lower()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    cip=<span class="string">&#x27;NFQKSEVOQOFNP&#x27;</span></span><br><span class="line">    key=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">13</span>,<span class="number">12</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">6</span>]</span><br><span class="line">    jefferson=Jefferson(key)</span><br><span class="line">    jefferson.dec(cip)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure>
+<p>运行上述程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python wp7.py</span><br><span class="line">...</span><br><span class="line">sambkvlqsiaav</span><br><span class="line">fireinthehole</span><br><span class="line">uzaulcdkfprst</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>唯一一句人话就是fireinthehole，这就是flag。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/xctf/">xctf</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

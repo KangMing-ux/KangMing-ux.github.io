@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>sagemath在ctf密码学中的使用 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="sagemath在ctf密码学中的使用 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2020-09-14">2020-09-14</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">Sagemath在ctf密码学中的使用</h2>
+            <div class="post-meta">
+                本文共计2695个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1 id="1-基本的环和域"><a href="#1-基本的环和域" class="headerlink" title="1. 基本的环和域"></a>1. 基本的环和域</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#整数域,有理数域和实数域</span></span><br><span class="line">ZZ(<span class="number">3</span>)</span><br><span class="line">QQ(<span class="number">0.25</span>)</span><br><span class="line">RR(<span class="number">2</span>^<span class="number">0.5</span>)</span><br><span class="line"><span class="comment">#复数域</span></span><br><span class="line">CC(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">#生成虚数单位i</span></span><br><span class="line">i=ComplexField().gen();(<span class="number">2</span>+i)*(<span class="number">4</span>+<span class="number">3</span>*i)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造多项式环,返回具有给定属性和变量名的全局唯一的单变量或多元多项式环</span></span><br><span class="line"><span class="comment">#定义在整数域上的多项式环R，变量为w;ZZ也可换成其他数域</span></span><br><span class="line">R.&lt;w&gt;=PolynomialRing(ZZ);R</span><br><span class="line">(<span class="number">1</span> + w)^<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#有限环</span></span><br><span class="line">RN=IntegerModRing(<span class="number">63</span>)</span><br><span class="line">FR=Integers(<span class="number">17</span>);FR</span><br><span class="line"><span class="comment">#自身的代数扩展;exR=FR[w]/(w^2+3)</span></span><br><span class="line">exR=FR.extension(w^<span class="number">2</span>+<span class="number">3</span>)；exR</span><br><span class="line"><span class="comment">#以python整数的形式返回所有可逆元素的列表</span></span><br><span class="line">FR.list_of_elements_of_multiplicative_group()</span><br><span class="line"><span class="comment">#假设环的乘法群是循环的，返回这个环的乘法群的生成元</span></span><br><span class="line">FR.multiplicative_generator()</span><br><span class="line"><span class="comment">#返回这个环的一个随机元素</span></span><br><span class="line">FR.random_element()</span><br><span class="line"><span class="comment">#上述几种方法对如下的域同样支持</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#有限域</span></span><br><span class="line"><span class="comment">#素数域</span></span><br><span class="line">G1=GF(<span class="number">37</span>);G1</span><br><span class="line"><span class="comment">#伽罗瓦域</span></span><br><span class="line">G2=GF(<span class="number">3</span>^<span class="number">5</span>);G2</span><br></pre></td></tr></table></figure>
+<h1 id="2-数论基本函数"><a href="#2-数论基本函数" class="headerlink" title="2. 数论基本函数"></a>2. 数论基本函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#同时求商与余数</span></span><br><span class="line">q,r=<span class="built_in">divmod</span>(<span class="number">12</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#求公约数</span></span><br><span class="line">d=gcd(<span class="number">12</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#扩展的欧几里得算法</span></span><br><span class="line">d,u,v=xgcd(<span class="number">12</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#12在模5下的逆</span></span><br><span class="line">u=inverse_mod(<span class="number">12</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成[lb,ub)之间的随机素数,注意ub在前,lb在后,lb可缺省为0</span></span><br><span class="line"><span class="comment">#可通过这种方式生成128位的随机素数</span></span><br><span class="line">p=random_prime(<span class="number">2L</span>**<span class="number">128</span>,<span class="number">2L</span>**<span class="number">127</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#判断是否为素数</span></span><br><span class="line">is_prime(<span class="number">65537</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#第20个素数</span></span><br><span class="line">nth_prime(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算x^y mod n</span></span><br><span class="line">z=power_mod(<span class="number">12</span>,<span class="number">5</span>,<span class="number">17</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#欧拉函数</span></span><br><span class="line">euler_phi(<span class="number">111</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#中国剩余定理,A=[a1,...,an],M=[m1,...,mn]</span></span><br><span class="line"><span class="comment">#ai=x mod mi,i=1,...,n</span></span><br><span class="line">crt([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">7</span>,<span class="number">5</span>,<span class="number">12</span>,<span class="number">23</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#求自身的n次根</span></span><br><span class="line">FR(<span class="number">12</span>).nth_root(<span class="number">7</span>,<span class="built_in">all</span>=<span class="string">&#x27;True&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#求多项式的根，roots方法必须作用在域上</span></span><br><span class="line">R.&lt;x&gt;=PolynomialRing(G1)</span><br><span class="line">xt=G1(<span class="number">12</span>)</span><br><span class="line">yt=xt^<span class="number">6</span></span><br><span class="line">f=x^<span class="number">6</span>-yt</span><br><span class="line">f.roots()</span><br></pre></td></tr></table></figure>
+<h1 id="3-线性代数"><a href="#3-线性代数" class="headerlink" title="3. 线性代数"></a>3. 线性代数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义矩阵，默认定义在实数域</span></span><br><span class="line">A = matrix([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>],[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]])</span><br><span class="line">A^-<span class="number">1</span></span><br><span class="line"><span class="comment">#定义在其他域上的矩阵，如有限域</span></span><br><span class="line">A = matrix(GF(<span class="number">13</span>),[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>],[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]])</span><br><span class="line">A^-<span class="number">1</span></span><br><span class="line"><span class="comment">#可以看到两个逆矩阵不一样</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义向量，定义在有限域，默认定义在实数域</span></span><br><span class="line">w = vector(GF(<span class="number">13</span>),[<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>])</span><br><span class="line">Y=A*w;Y</span><br><span class="line">Z=w*A;Z</span><br><span class="line"></span><br><span class="line"><span class="comment">#解线性方程组AX=Y</span></span><br><span class="line">X = A.solve_right(Y);X</span><br><span class="line"><span class="comment">#也可以使用符号\</span></span><br><span class="line">A\Y</span><br><span class="line"><span class="comment">#解线性方程组XA=Y</span></span><br><span class="line">X = A.solve_left(Z);X</span><br><span class="line"></span><br><span class="line"><span class="comment">#格基约减</span></span><br><span class="line">A = matrix([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>],[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]])</span><br><span class="line"><span class="comment">#LLL算法</span></span><br><span class="line">A.LLL()</span><br><span class="line"><span class="comment">#BKZ算法</span></span><br><span class="line">A.BKZ()</span><br></pre></td></tr></table></figure>
+<h1 id="4-离散椭圆曲线"><a href="#4-离散椭圆曲线" class="headerlink" title="4. 离散椭圆曲线"></a>4. 离散椭圆曲线</h1><p>以国密SM2算法使用的椭圆曲线为例；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">p=ZZ(<span class="string">&#x27;FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF&#x27;</span>,<span class="number">16</span>)</span><br><span class="line">a=ZZ(<span class="string">&#x27;FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC&#x27;</span>,<span class="number">16</span>)</span><br><span class="line">b=ZZ(<span class="string">&#x27;28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93&#x27;</span>,<span class="number">16</span>)</span><br><span class="line"><span class="comment">#有限域GF(p)上的椭圆曲线y^2 = x^3 + a*x + b mod p</span></span><br><span class="line">E=EllipticCurve(GF(p),[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,a,b])</span><br><span class="line"><span class="comment">#基点</span></span><br><span class="line">g=E([ZZ(<span class="string">&#x27;32c4ae2c1f1981195f9904466a39c9948fe30bbff2660be1715a4589334c74c7&#x27;</span>,<span class="number">16</span>),ZZ(<span class="string">&#x27;bc3736a2f4f6779c59bdcee36b692153d0a9877cc62a474002df32e52139f0a0&#x27;</span>,<span class="number">16</span>)])</span><br><span class="line"><span class="comment">#基点的阶</span></span><br><span class="line">n=ZZ(<span class="string">&#x27;FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123&#x27;</span>,<span class="number">16</span>)</span><br><span class="line"><span class="comment">#生成密钥</span></span><br><span class="line">sk=random_prime(<span class="number">2</span>*n//<span class="number">3</span>,n//<span class="number">3</span>)</span><br><span class="line"><span class="comment">#生成公钥</span></span><br><span class="line">G=sk*g</span><br></pre></td></tr></table></figure>
+<h1 id="5-离散对数"><a href="#5-离散对数" class="headerlink" title="5. 离散对数"></a>5. 离散对数</h1><p>前言：求解以base为底，a的对数；ord为base的阶，可以缺省，operation可以是’+’与’*‘，默认为’*‘；bounds是一个区间(ld,ud)，需要保证所计算的对数在此区间内。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通用的求离散对数的方法</span></span><br><span class="line">x=discrete_log(a,base,<span class="built_in">ord</span>,operation)</span><br><span class="line"></span><br><span class="line"><span class="comment">#求离散对数的Pollard-Rho算法</span></span><br><span class="line">x=discrete_log_rho(a,base,<span class="built_in">ord</span>,operation)</span><br><span class="line"></span><br><span class="line"><span class="comment">#求离散对数的Pollard-kangaroo算法(也称为lambda算法)</span></span><br><span class="line">x=discrete_log_lambda(a,base,bounds,operation)</span><br><span class="line"></span><br><span class="line"><span class="comment">#小步大步法</span></span><br><span class="line">x=bsgs(base,a,bounds,operation)</span><br></pre></td></tr></table></figure>
+<h1 id="6-coppersmith算法"><a href="#6-coppersmith算法" class="headerlink" title="6. coppersmith算法"></a>6. coppersmith算法</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/coming1890/p/13506057.html">coppersmith算法介绍链接</a></p>
+<p>使用sage实现coppersmith相关攻击，<a target="_blank" rel="noopener" href="https://github.com/mimoo/RSA-and-LLL-attacks">GitHub链接</a></p>
+<p>最后，sage的<a target="_blank" rel="noopener" href="https://doc.sagemath.org/html/en/reference/">官方文档链接</a></p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/ctf/">ctf</a>
+            
+            <a href="/tags/sagemath/">sagemath</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
