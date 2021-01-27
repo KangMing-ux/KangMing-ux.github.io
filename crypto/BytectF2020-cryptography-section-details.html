@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-10-30">2020-10-30</span>
                 </p>
@@ -169,13 +169,13 @@
             </div>
             <h2 class="post-title">ByteCTF2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计960个字 |
+                本文共计963个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="一、noise"><a href="#一、noise" class="headerlink" title="一、noise"></a>一、noise</h1><h2 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/noise">Gitee备份在此</a></p>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>穷举通过proof_of_work之后，我们来看代码逻辑：</p>
+            <h2><span id="一-noise">一、noise</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/noise">Gitee备份在此</a></p>
+<h3><span id="12-分析">1.2 分析</span></h3><p>穷举通过proof_of_work之后，我们来看代码逻辑：</p>
 <ul>
 <li>secret=getrandbits(1024)，注意他自己实现的getrandbits(1024)实际上是生成长1017~1024位的随机数；</li>
 <li>对上述生成的secret，服务器最多只会与你交互64次；</li>
@@ -196,7 +196,7 @@
 <p>若我能够控制$k_{i}=1$，那么：</p>
 <p>$m \equiv (n_{i}-c_{i})\ \textrm{mod}\ n_{i}$</p>
 <p>同时得到多个如上形式的等式可考虑使用中国剩余定理解出$m$！</p>
-<h3 id="2-1-利用-n-i-控制-k-i"><a href="#2-1-利用-n-i-控制-k-i" class="headerlink" title="2.1 利用$n_{i}$控制$k_{i}$"></a>2.1 利用$n_{i}$控制$k_{i}$</h3><p>$m$有$1/2$的概率长1024比特，$g_{i}$有$1/2$的概率长992比特；此时，要控制$k_{i}=1$，即：</p>
+<h3><span id="13-利用n_i控制k_i">1.3 利用$n_{i}$控制$k_{i}$</span></h3><p>$m$有$1/2$的概率长1024比特，$g_{i}$有$1/2$的概率长992比特；此时，要控制$k_{i}=1$，即：</p>
 <script type="math/tex; mode=display">
 \left\{
 \begin{aligned}
@@ -217,21 +217,21 @@ log(n_{i})+log(g_{i}) &<log(m)+1
 \alpha+\beta &>\gamma \\
 \alpha+\beta &<1+\gamma
 \end{aligned}
-\right.</script><p>综上，$P(k_{i}=1)=P(\alpha+\beta&gt;\gamma,\alpha+\beta<1+\gamma)=P(2^{\beta}\cdot X>Y,2^{\beta-1}\cdot X&lt;Y)$</p>
-<p>直观地看，$\beta$越大越有利于约束条件$\alpha+\beta&gt;\gamma$而不利于约束条件$\alpha+\beta<1+\gamma$，反之，$\beta$越小越有利于约束条件$\alpha+\beta<1+\gamma$而不利于约束条件$\alpha+\beta>\gamma$。</p>
-<p>注意到我可以判断是否满足约束条件$\alpha+\beta&gt;\gamma$—若$n_{i}\cdot g_{i}&lt;m$则$c_{i}=n_{i}\cdot g_{i}$从而$c_{i}\equiv 0 \textrm{mod}\ n_{i}$。</p>
+\right.</script><p>综上，$P(k_{i}=1)=P(\alpha+\beta&gt;\gamma,\alpha+\beta<1+\gamma)=p(2^{\beta}\cdot x>Y,2^{\beta-1}\cdot X&lt;Y)$</1+\gamma)=p(2^{\beta}\cdot></p>
+<p>直观地看，$\beta$越大越有利于约束条件$\alpha+\beta&gt;\gamma$而不利于约束条件$\alpha+\beta<1+\gamma$，反之，$\beta$越小越有利于约束条件$\alpha+\beta<1+\gamma$而不利于约束条件$\alpha+\beta>\gamma$。</1+\gamma$，反之，$\beta$越小越有利于约束条件$\alpha+\beta<1+\gamma$而不利于约束条件$\alpha+\beta></p>
+<p>注意到我可以判断是否满足约束条件$\alpha+\beta&gt;\gamma$—若$n_{i}\cdot g_{i}&lt;m$则$c_{i}=n_{i}\cdot g_{i}$从而$c_{i}\equiv 0\  \textrm{mod}\ n_{i}$。</p>
 <p>由此，我选择$n_{i}$时应该尽量满足约束条件$\alpha+\beta&lt;1+\gamma$，即$\beta$应尽量小，为何不设置$\beta$为0，理由如下：</p>
-<p>当$\beta=0$时，$P(k_{i}=1)=P(\alpha&gt;\gamma,\alpha<1+\gamma)=P(\alpha>\gamma)=1/2$；</p>
+<p>当$\beta=0$时，$P(k_{i}=1)=P(\alpha&gt;\gamma,\alpha<1+\gamma)=p(\alpha>\gamma)=1/2$；</1+\gamma)=p(\alpha></p>
 <p>由上述：$n_{i}$长$33$比特，而$m$长$1024$比特；由中国剩余定理可知：我们需要32个如下形式的同余式才能解出$m$！</p>
 <p>$m \equiv (n_{i}-c_{i})\ \textrm{mod}\ n_{i}$</p>
 <p>要得到如上形式的同余式，即需要$k_{i}=1$，而$P(k_{i}=1)=1/2$，那么我得到$32$个如上形式的同余式“平均”需要$64$次交互，从而我没有发送secret的交互机会。</p>
 <p>综上，$\beta$应在大于0的前提下尽量小！</p>
-<h3 id="2-2值得注意的地方"><a href="#2-2值得注意的地方" class="headerlink" title="2.2值得注意的地方"></a>2.2值得注意的地方</h3><p>通过2.1，我知道了$n_{i}$值多大时可以解出$m$，结合中国剩余定理，同余式的模数之间是互素的，即我选择的$n_{i}$需两两互素，因此$n_{i}$不是取确定的值而是在一定的取值范围内取素数！</p>
-<h2 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h2><p>上述链接中的solve.py为解题的Python脚本，程序运行(成功时)结果如下：</p>
+<h3><span id="14-值得注意的地方">1.4 值得注意的地方</span></h3><p>通过2.1，我知道了$n_{i}$值多大时可以解出$m$，结合中国剩余定理，同余式的模数之间是互素的，即我选择的$n_{i}$需两两互素，因此$n_{i}$不是取确定的值而是在一定的取值范围内取素数！</p>
+<h3><span id="15-解题">1.5 解题</span></h3><p>上述链接中的solve.py为解题的Python脚本，程序运行(成功时)结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ python3 solve.py</span><br><span class="line">[+] Opening connection to 182.92.153.117 on port 30101: Done</span><br><span class="line">[+] MBruteforcing: Found key: <span class="string">&quot;l9a&quot;</span></span><br><span class="line">success!</span><br><span class="line">95613903744255213782277288259288084531700829576284706991256294359734535087821985034716432798049279163174069238632678362676474782669781482301447573436852554131343117198284150657465643396718720128642929008328391123641254705186541184339088382138616985634723733544083949806487213357784626124965521562172300016682</span><br><span class="line">b<span class="string">&#x27;CONGRATULATIONS ByteCTF&#123;Noise_i5_rea11y_ANN0YING&#125;\n&#x27;</span></span><br><span class="line">[*] Closed connection to 182.92.153.117 port 30101</span><br></pre></td></tr></table></figure>
 <p>注：此程序并非次次运行都能解出secret</p>
-<h1 id="二、threshold"><a href="#二、threshold" class="headerlink" title="二、threshold"></a>二、threshold</h1><h2 id="1-题目信息-1"><a href="#1-题目信息-1" class="headerlink" title="1.题目信息"></a>1.题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/threshold">Gitee备份在此</a></p>
-<h2 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2.分析"></a>2.分析</h2><p>程序又臭又长，但其实考点特别简单，稍微使用一下欧拉定理即可！我来分析一下程序的逻辑：</p>
+<h2><span id="二-threshold">二、threshold</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF2020/threshold">Gitee备份在此</a></p>
+<h3><span id="22-分析">2.2 分析</span></h3><p>程序又臭又长，但其实考点特别简单，稍微使用一下欧拉定理即可！我来分析一下程序的逻辑：</p>
 <p>在类TSM2初始化时：</p>
 <p>$pks \equiv [(sk+1)\cdot sks]^{n-2}\ \textrm{mod}\ n$</p>
 <p>接着在output_p1函数中：</p>
@@ -241,7 +241,7 @@ log(n_{i})+log(g_{i}) &<log(m)+1
 <p>注意到$n$是素数，欧拉函数$\phi(n)=n-1$，显然$(n-2,n-1)=1$，即存在$x\in Z,x\cdot (n-2)\equiv 1\ \textrm{mod}\ \phi(n)$</p>
 <p>由欧拉定理：$pks^{x}\equiv [(sk+1)\cdot sks]^{(n-2)x}\equiv (sk+1)\cdot sks\ \textrm{mod}\ n$</p>
 <p>因此$(sk+1)\equiv pks^{x}\cdot sks^{-1}\equiv pks^{x}\cdot s^{-1}\ \textrm{mod}\ n$，而密钥$sk$是小于阶$n$的，因此解出密钥$sk$，有了密钥干什么不行呢，按照程序的要求，对消息b’Hello, Welcome to ByteCTF2020!’签名即可！</p>
-<h2 id="3-解题-1"><a href="#3-解题-1" class="headerlink" title="3.解题"></a>3.解题</h2><p>略</p>
+<h3><span id="23-解题">2.3 解题</span></h3><p>略</p>
 
             
                 
@@ -297,6 +297,7 @@ log(n_{i})+log(g_{i}) &<log(m)+1
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

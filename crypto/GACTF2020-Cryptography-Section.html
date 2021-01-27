@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-31">2020-08-31</span>
                 </p>
@@ -169,37 +169,37 @@
             </div>
             <h2 class="post-title">GACTF2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计4582个字 |
+                本文共计4567个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>比赛网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/match/contest_challenge?event=147&amp;hash=cf494a33-0f22-4e85-a48d-7a02efeedc90.event">GACTF2020</a><br><a target="_blank" rel="noopener" href="https://0xdktb.top/2020/08/30/WriteUp-GACTF2020-Crypto/">writeup参考链接</a></p>
-<h1 id="一、ezAES"><a href="#一、ezAES" class="headerlink" title="一、ezAES"></a>一、ezAES</h1><h2 id="1-1-题目信息"><a href="#1-1-题目信息" class="headerlink" title="1.1. 题目信息"></a>1.1. 题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/ezAES">Gitee备份</a>的challeng.py。</p>
-<h2 id="1-2-分析"><a href="#1-2-分析" class="headerlink" title="1.2. 分析"></a>1.2. 分析</h2><p>整体浏览Python脚本后，可得此题考察CBC分组加密工作模式；总结一下脚本给出的信息：</p>
+            <h3><span id="前言">前言</span></h3><p>比赛网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/match/contest_challenge?event=147&amp;hash=cf494a33-0f22-4e85-a48d-7a02efeedc90.event">GACTF2020</a><br><a target="_blank" rel="noopener" href="https://0xdktb.top/2020/08/30/WriteUp-GACTF2020-Crypto/">writeup参考链接</a></p>
+<h2><span id="一-ezaes">一、ezAES</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF/ezAES">Gitee备份</a>的challeng.py。</p>
+<h3><span id="12-分析">1.2 分析</span></h3><p>整体浏览Python脚本后，可得此题考察CBC分组加密工作模式；总结一下脚本给出的信息：</p>
 <ul>
 <li>key给出前14位(key长16位，即最后2位未知)</li>
 <li>message的长度为86字节，因此明文最后一组填充10个’\n’</li>
 <li>密文最后一组给出后10个字节</li>
 </ul>
 <p>因此，可穷举key的最后2位，每一位考虑所有可打印字符，有100种可能，因此穷举key的最后2位有$10^{4}$种可能，处于合理范围；对每一个key，解密最后一组密文，将解密出的明文后10位与上一组密文后10位异或，若异或后均为’\n’，则说明穷举出正确的key；<br>解出正确的key之后，可按照同样的方式计算出SECRET，从而获取整个明文；<br>已知所有明文之后，由CBC工作模式：$m_{i}=D(c_{i};key)\oplus c_{i-1},i=n,\cdots,1$，其中$c_{0}=IV$，那么已知最后一组密文，就可以递推出IV：$c_{i-1}=D(c_{i};key)\oplus m_{i},i=n,\cdots,1$</p>
-<h2 id="1-3-解题"><a href="#1-3-解题" class="headerlink" title="1.3. 解题"></a>1.3. 解题</h2><p>上述链接中的solve.py为解题的Python脚本；</p>
+<h3><span id="13-解题">1.3 解题</span></h3><p>上述链接中的solve.py为解题的Python脚本；</p>
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">[+] MBruteforcing: Found key: <span class="string">&quot;pd&quot;</span></span><br><span class="line">9j_for_aes_cbc!!</span><br></pre></td></tr></table></figure>
-<h1 id="二、what-r-the-noise"><a href="#二、what-r-the-noise" class="headerlink" title="二、what_r_the_noise"></a>二、what_r_the_noise</h1><h2 id="2-1-题目信息"><a href="#2-1-题目信息" class="headerlink" title="2.1. 题目信息"></a>2.1. 题目信息</h2><p>噪音太大，听不见，China:124.71.145.165:9999(现在应该已经失效了)。</p>
-<h2 id="2-2-分析"><a href="#2-2-分析" class="headerlink" title="2.2. 分析"></a>2.2. 分析</h2><p>大致意思是服务器返回的数据是加入了噪声的，让你去掉噪声，解出正确的明文；有点概率论知识应该想到获取多次数据取平均值。</p>
-<h2 id="2-3-解题"><a href="#2-3-解题" class="headerlink" title="2.3. 解题"></a>2.3. 解题</h2><p>解题的Python脚本在<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/what_r_the_noise">Gitee备份</a>中；</p>
+<h2><span id="二-what_r_the_noise">二、what_r_the_noise</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>噪音太大，听不见，China:124.71.145.165:9999(现在应该已经失效了)。</p>
+<h3><span id="22-分析">2.2 分析</span></h3><p>大致意思是服务器返回的数据是加入了噪声的，让你去掉噪声，解出正确的明文；有点概率论知识应该想到获取多次数据取平均值。</p>
+<h3><span id="23-解题">2.3 解题</span></h3><p>解题的Python脚本在<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/what_r_the_noise">Gitee备份</a>中；</p>
 <p>解出的flag可能不完全正确，但是你基本可以猜出是什么单词了！</p>
 <p>最后得到flag为gactf{you_know_much_about_differential_privacy}</p>
-<h1 id="三、da-Vinci-after-rsa"><a href="#三、da-Vinci-after-rsa" class="headerlink" title="三、da Vinci after rsa"></a>三、da Vinci after rsa</h1><h2 id="3-1-题目信息"><a href="#3-1-题目信息" class="headerlink" title="3.1. 题目信息"></a>3.1. 题目信息</h2><p>附件中包含两个文本文件encryption与output；encryption中是一列数，output给出“RSA公钥”与密文；<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/da_Vinci_after_rsa">Gitee备份</a></p>
-<h2 id="3-2-分析"><a href="#3-2-分析" class="headerlink" title="3.2. 分析"></a>3.2. 分析</h2><p>da Vinci翻译了一下(英语不好)是达芬奇，这既然是密码学题目，自然去查了一下达芬奇密码，发现这是一本书，在网上不停地查这本书，找到一个片段，“打乱的数字”一下引起我的注意，后面马上提到“斐波那契数列”，回去一看，encryption中的那一列数确实是打乱的斐波那契数列，到此encryption的作用弄明白了；</p>
+<h2><span id="三-da-vinci-after-rsa">三、da Vinci after rsa</span></h2><h3><span id="31-题目信息">3.1 题目信息</span></h3><p>附件中包含两个文本文件encryption与output；encryption中是一列数，output给出“RSA公钥”与密文；<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/da_Vinci_after_rsa">Gitee备份</a></p>
+<h3><span id="32-分析">3.2 分析</span></h3><p>da Vinci翻译了一下(英语不好)是达芬奇，这既然是密码学题目，自然去查了一下达芬奇密码，发现这是一本书，在网上不停地查这本书，找到一个片段，“打乱的数字”一下引起我的注意，后面马上提到“斐波那契数列”，回去一看，encryption中的那一列数确实是打乱的斐波那契数列，到此encryption的作用弄明白了；</p>
 <p>接下来将公钥的模数N放到yafu中分解，得到三个因子；但是我想，不怕，和RSA问题一样求解$d\equiv e^{-1}\ \textrm{mod}\ \phi(N)$即可解出$m\equiv c^{d}\ \textrm{mod}\ N$，编好程序运行时发现$e$在$\phi(N)$下没有逆，这一下子就不知道怎么办了，其实这样的方程也是有办法求解的，<a href="https://chu-kangming.gitee.io/crypto/Elgamal-RSA-summary.html">求解思路链接在此</a></p>
 <p>解出的$m$虽然有多个，但是flag每个字符都是可见字符，这样最后只剩下一个$m$，这还不是flag；花括号内正好25个字符，encryption中正好25个数，按照一样的规则打乱花括号内的25个字符即得到真正的flag；</p>
-<h2 id="3-3-解题"><a href="#3-3-解题" class="headerlink" title="3.3. 解题"></a>3.3. 解题</h2><p>上述GitHub备份链接中的solve.sage脚本为解题的sage脚本；</p>
+<h3><span id="33-解题">3.3 解题</span></h3><p>上述GitHub备份链接中的solve.sage脚本为解题的sage脚本；</p>
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sage solve.sage</span><br><span class="line">flag&#123;w5awd4fa994f87_dwad3123_2&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="四、elgamal-rsa"><a href="#四、elgamal-rsa" class="headerlink" title="四、elgamal_rsa"></a>四、elgamal_rsa</h1><h2 id="4-1-题目信息"><a href="#4-1-题目信息" class="headerlink" title="4.1. 题目信息"></a>4.1. 题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/elgamal_rsa">Gitee备份</a></p>
-<h2 id="4-2-分析"><a href="#4-2-分析" class="headerlink" title="4.2. 分析"></a>4.2. 分析</h2><p>$g^{q}\equiv 1\ \textrm{mod}\ p,h\equiv g^{d}\ \textrm{mod}\ p$</p>
+<h2><span id="四-elgamal_rsa">四、elgamal_rsa</span></h2><h3><span id="41-题目信息">4.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/elgamal_rsa">Gitee备份</a></p>
+<h3><span id="42-分析">4.2 分析</span></h3><p>$g^{q}\equiv 1\ \textrm{mod}\ p,h\equiv g^{d}\ \textrm{mod}\ p$</p>
 <p>$c_{1}\equiv g^{r_{1}}\ \textrm{mod}\ p,c_{2}\equiv m\cdot h^{r_{1}}\ \textrm{mod}\ p$</p>
 <p>$c_{11}\equiv g^{r_{2}}\ \textrm{mod}\ p,c_{22}\equiv m\cdot h^{r_{2}}\ \textrm{mod}\ p$</p>
 <p>其中，$r_{2}\equiv (B\cdot r_{1}+A)\ \textrm{mod}\ q$</p>
@@ -208,12 +208,12 @@
 <p>$m^{B-1}\equiv c_{2}^{B}\cdot h^{A}\cdot c_{22}^{-1}\ \textrm{mod}\ p$，计算$t\equiv (B-1)^{-1}\ \textrm{mod}\ (p-1)$</p>
 <p>那么$(c_{2}^{B}\cdot h^{A}\cdot c_{22}^{-1})^{t}\equiv m\ \textrm{mod}\ p$</p>
 <p>解出$secret$后，放到yafu里面分解(因子是真的多，一度怀疑自己解错了)，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/coming1890/p/13616763.html">求解flag的思路链接</a></p>
-<h2 id="4-3-解题"><a href="#4-3-解题" class="headerlink" title="4.3. 解题"></a>4.3. 解题</h2><p>上述GitHub备份链接中的solve文件夹中为解题的脚本，解题分两步；第一步，解出secret；第二步，求解方程$c\equiv m^{e}\ \textrm{mod}\ N$($m<N$，$N$已被分解，但是$(e,\phi(N))>1$)；</p>
+<h3><span id="43-解题">4.3 解题</span></h3><p>上述GitHub备份链接中的solve文件夹中为解题的脚本，解题分两步；第一步，解出secret；第二步，求解方程$c\equiv m^{e}\ \textrm{mod}\ N$($m<n$，$n$已被分解，但是$(e,\phi(n))>1$)；</n$，$n$已被分解，但是$(e,\phi(n))></p>
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python step1.py</span><br><span class="line">329380824451982777596468080979390700896875051159309053251427777390225223390054462862874890632092714850180031743329031313028975903871751004003831036860000454098274963081490031808010876171935539110201531253322208564941373067673598629247111527738724700328114569409692796434368030258427126193825227856160081569366870307559297674909108870298864572520476006338972072593434914773857347865349086098662711283463352902488164071184362082990162654586995346553108747183805073294471613391819978413596510467204977114038549473397779377039088475929677184284430986636686769839308217865627271293739711926018699557041530631349486791876338842184994986024157099233298972714917732995013317087756483</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sage step2.sage</span><br><span class="line">you_4re_good_at_b0th_el94mal_and_rs4</span><br></pre></td></tr></table></figure>
-<h1 id="五、babycrypto"><a href="#五、babycrypto" class="headerlink" title="五、babycrypto"></a>五、babycrypto</h1><h2 id="5-1-题目信息"><a href="#5-1-题目信息" class="headerlink" title="5.1. 题目信息"></a>5.1. 题目信息</h2><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/babycrypto">Gitee备份</a></p>
-<h2 id="5-2-分析"><a href="#5-2-分析" class="headerlink" title="5.2. 分析"></a>5.2. 分析</h2><p>在GF(p)上定义的点集$\{(x,y)|x,y\in GF(p)\}$上定义加法”+”：$(x_{1},y_{1})+(x_{2},y_{2})=(x_{1}x_{2}-y_{1}y_{2},x_{1}y_{2}+x_{2}y_{1})$，定义乘法”$\cdot$”：$k\cdot (x,y)=(x,y)+\cdots +(x,y)$</p>
+<h2><span id="五-babycrypto">五、babycrypto</span></h2><h3><span id="51-题目信息">5.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/babycrypto">Gitee备份</a></p>
+<h3><span id="52-分析">5.2 分析</span></h3><p>在GF(p)上定义的点集$\{(x,y)|x,y\in GF(p)\}$上定义加法”+”：$(x_{1},y_{1})+(x_{2},y_{2})=(x_{1}x_{2}-y_{1}y_{2},x_{1}y_{2}+x_{2}y_{1})$，定义乘法”$\cdot$”：$k\cdot (x,y)=(x,y)+\cdots +(x,y)$</p>
 <p>给出基点g，$A=a\cdot g,B=b\cdot g$，给出A,B；</p>
 <p>$shared=b\cdot A$，再利用shared生成AES密钥进行加密；</p>
 <p>p未知！！！先介绍Edwards曲线E：$x^{2}+y^{2}\equiv 1+dx^{2}y^{2}\ \textrm{mod}\ p$，曲线上的加法定义为$(x_{1},y_{1})+(x_{2},y_{2})=((x_{1}y_{2}+x_{2}y_{1})/(1+dx_{1}x_{2}y_{1}y_{2}),(x_{1}x_{2}-y_{1}y_{2})/(1-dx_{1}x_{2}y_{1}y_{2}))$</p>
@@ -222,7 +222,7 @@
 <p>下面考虑如何解出b，这是一个离散对数问题，难点是sage并未实现Edwards曲线及其运算；</p>
 <p>给出一个有用的结论：$\{(x,y)|x,y\in GF(p),x^{2}+y^{2}\equiv 1\ \textrm{mod}\ p\}$与$H=F_{p}(w)/(w^{2}+1)$(有限域$F_{p}$上的多项式在模$w^{2}+1$下的剩余环)同构，同构映射$\sigma :E\rightarrow H$，$\sigma((x,y))=x+yw$</p>
 <p>在sage中通过extend函数就可以生成H，从而可以求解此离散对数问题；</p>
-<h2 id="5-3-解题"><a href="#5-3-解题" class="headerlink" title="5.3. 解题"></a>5.3. 解题</h2><p>上述GitHub备份链接中的solve文件夹中为解题的脚本，解题分两步；第一步，解出p；第二步，解出b然后以同样的方式生成AES密钥再对消息进行解密；</p>
+<h3><span id="53-解题">5.3 解题</span></h3><p>上述GitHub备份链接中的solve文件夹中为解题的脚本，解题分两步；第一步，解出p；第二步，解出b然后以同样的方式生成AES密钥再对消息进行解密；</p>
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python step1.py</span><br><span class="line">435393448000740628395634230535241428961470055780764193459123534837759996</span><br></pre></td></tr></table></figure>
 <p>使用yafu分解，可得到p(在solve.sage中有给出)</p>
@@ -281,6 +281,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

@@ -156,28 +156,28 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;1970-01-01">1970-01-01</span>
+                    <span title="最后编辑于&nbsp;2020-08-14">2020-08-14</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
             <h2 class="post-title">攻防世界-密码学-说我作弊需要证据</h2>
             <div class="post-meta">
-                本文共计1882个字 |
+                本文共计1879个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h1><p>题目背景为在一次考试中两名学生作弊，给出他们的RSA公钥，附件两者通信的pcapng流量包。</p>
-<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h1><p>鉴于Alice与Bob的密钥位数如此地低，通过yafu或者去<a target="_blank" rel="noopener" href="http://factordb.com/">factordb</a>立马就分解出模数，进而计算出私钥。</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>题目背景为在一次考试中两名学生作弊，给出他们的RSA公钥，附件两者通信的pcapng流量包。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>鉴于Alice与Bob的密钥位数如此地低，通过yafu或者去<a target="_blank" rel="noopener" href="http://factordb.com/">factordb</a>立马就分解出模数，进而计算出私钥。</p>
 <p>用wireshark打开流量包，按下Ctrl+Alt+Shift+T快捷键来追踪TCP流(并保存下来，比如我保存为data.txt)；通过数据格式应该可以确定是base64编码后的数据格式，那么先解码前三个看看编码的数据；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SEQ = 13; DATA = 0x3b04b26a0adada2f67326bb0c5d6L; SIG = 0x2e5ab24f9dc21df406a87de0b3b4L;</span><br><span class="line">SEQ = 0; DATA = 0x7492f4ec9001202dcb569df468b4L; SIG = 0xc9107666b1cc040a4fc2e89e3e7L;</span><br><span class="line">SEQ = 5; DATA = 0x94d97e04f52c2d6f42f9aacbf0b5L; SIG = 0x1e3b6d4eaf11582e85ead4bf90a9L;</span><br></pre></td></tr></table></figure><br>DATA应该是密文，但是另外两个数据也很重要，SEQ是明文的顺序，SIG是对明文的签名；因此对保存的TCP流依次解码，使用Bob的私钥对密文DATA解密，再验证SIG是否为Alice对明文的签名，如果是则放到明文列表的第SEQ位置；</p>
-<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h1><p>实现的Python脚本如下：</p>
+<h2><span id="三-解题">三、解题</span></h2><p>实现的Python脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert,powmod</span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    N1=<span class="number">0x53a121a11e36d7a84dde3f5d73cfL</span></span><br><span class="line">    N2=<span class="number">0x99122e61dc7bede74711185598c7L</span></span><br><span class="line">    e=<span class="number">0x10001L</span></span><br><span class="line"><span class="comment">#   p1,q1=38456719616722997L,44106885765559411L</span></span><br><span class="line">    p2,q2=<span class="number">49662237675630289L</span>,<span class="number">62515288803124247L</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#   phi1=(p1-1)*(q1-1)</span></span><br><span class="line">    phi2=(p2-<span class="number">1</span>)*(q2-<span class="number">1</span>)</span><br><span class="line"><span class="comment">#   d1=invert(e,phi1)</span></span><br><span class="line">    d2=invert(e,phi2)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#   rsa_key1=RSA.construct((N1,e,long(d1),p1,q1))</span></span><br><span class="line">    rsa_key2=RSA.construct((N2,e,long(d2),p2,q2))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data=f.read()</span><br><span class="line"></span><br><span class="line">    cips=data.split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    res=[<span class="string">&#x27;&#x27;</span>]*<span class="built_in">len</span>(cips)</span><br><span class="line">    <span class="keyword">for</span> cip <span class="keyword">in</span> cips[:-<span class="number">1</span>]:</span><br><span class="line">        data=b64decode(cip)</span><br><span class="line">        seq=<span class="built_in">int</span>(data[(data.find(<span class="string">&#x27;= &#x27;</span>)+<span class="number">2</span>):data.find(<span class="string">&#x27;;&#x27;</span>)])</span><br><span class="line">        cipher=data[(data.find(<span class="string">&#x27;x&#x27;</span>)+<span class="number">1</span>):data.find(<span class="string">&#x27;L&#x27;</span>)]</span><br><span class="line">        sig=data[(data.rfind(<span class="string">&#x27;x&#x27;</span>)+<span class="number">1</span>):data.rfind(<span class="string">&#x27;L&#x27;</span>)]</span><br><span class="line">        msg=rsa_key2.decrypt(long(cipher,<span class="number">16</span>))</span><br><span class="line">        <span class="keyword">if</span> msg==powmod(long(sig,<span class="number">16</span>),e,N1):</span><br><span class="line">            res[seq]+=<span class="built_in">chr</span>(msg)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment">#python solve.py</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;&#x27;</span>.join(solve())</span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">flag&#123;n0th1ng_t0_533_h3r3_m0v3_0n&#125;</span><br></pre></td></tr></table></figure>
@@ -235,6 +235,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

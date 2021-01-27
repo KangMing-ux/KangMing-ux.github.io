@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-17">2020-08-17</span>
                 </p>
@@ -169,15 +169,15 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-Decrypt-the-Message</h2>
             <div class="post-meta">
-                本文共计1661个字 |
+                本文共计1065个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h1><p>题目要求我们解密附件中的信息；打开附件，里面是一首诗，最后给出需要解密的信息。</p>
-<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h1><p>此题考察<a target="_blank" rel="noopener" href="http://wmbriggs.com/post/1001/">Poem加密</a>；举例说明加密过程。<br>诗：for my purpose holds to sail beyond the sunset, and the baths of all the western stars until I die.<br>明文：We have run out of cigars, situation desperate.<br>从诗中选择5个词for,sail,all,stars,die，将这些词中的每个字母排序(相同的不合并)，即<br>|  f   |  o   |  r   |  s   |  a   |  i   |  l   |  a   |  l   |<br>| :—: | :—: | :—: | :—: | :—: | :—: | :—: | :—: | :—: |<br>|  6   |  12  |  13  |  15  |  1   |  7   |  9   |  2   |  10  |<br>|  l   |  s   |  t   |  a   |  r   |  s   |  d   |  i   |  e   |<br>|  11  |  16  |  18  |  3   |  14  |  17  |  4   |  8   |  5   |<br>上表共有18个字母，将明文以18个字母一组分成若干行，最后一行未满之处用a,b,…进行填充，即<br>|  1   |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |<br>| :—: | :—: | :—: | :—: | :—: | :—: | :—: | :—: | :—: |<br>|  w   |  e   |  h   |  a   |  v   |  e   |  r   |  u   |  n   |<br>|  r   |  s   |  s   |  i   |  t   |  u   |  a   |  t   |  i   |<br>|  t   |  e   |  a   |  b   |  c   |  d   |  e   |  f   |  g   |<br>|  10  |  11  |  12  |  13  |  14  |  15  |  16  |  17  |  18  |<br>|  o   |  u   |  t   |  o   |  f   |  c   |  i   |  g   |  a   |<br>|  o   |  n   |  d   |  e   |  s   |  p   |  e   |  r   |  a   |<br>|  h   |  i   |  j   |  k   |  l   |  m   |  n   |  o   |  p   |<br>再根据第一个表将各列置换，即eud tdj …，最后连接起来生成密文。</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>题目要求我们解密附件中的信息；打开附件，里面是一首诗，最后给出需要解密的信息。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>此题考察<a target="_blank" rel="noopener" href="http://wmbriggs.com/post/1001/">Poem加密</a>；举例说明加密过程。<br>诗：for my purpose holds to sail beyond the sunset, and the baths of all the western stars until I die.<br>明文：We have run out of cigars, situation desperate.<br>从诗中选择5个词for,sail,all,stars,die，将这些词中的每个字母排序(相同的不合并)，即：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f  o  r  s  a  i  l  a  l  l  s  t  a  r  s  d  i  e</span><br><span class="line">6 12 13 15  1  7  9  2 10 11 16 18  3 14 17  4  8  5</span><br></pre></td></tr></table></figure><br>上表共有18个字母，将明文以18个字母一组分成若干行，最后一行未满之处用a,b,…进行填充，即<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18</span><br><span class="line">w e h a v e r u n o  u  t  o  f  c  i  g  a</span><br><span class="line">r s s i t u a t i o  n  d  e  s  p  e  r  a</span><br><span class="line">t e a b c d e f g h  i  j  k  l  m  n  o  p</span><br></pre></td></tr></table></figure><br>再根据第一个表将各列置换，即eud tdj …，最后连接起来生成密文。</p>
 <p>破解的思路就是从诗中穷举各种取词情况，然后进行解密，然后选择可读的“明文”，已有人写好破解的<a target="_blank" rel="noopener" href="https://github.com/abpolym/crypto-tools/tree/master/poemcode">工具</a></p>
-<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3.解题"></a>3.解题</h1><p>将诗与密文分别存为poem.txt，cip.txt并移到与poemcode.py同目录下，使用工具破解：</p>
+<h2><span id="三-解题">三、解题</span></h2><p>将诗与密文分别存为poem.txt，cip.txt并移到与poemcode.py同目录下，使用工具破解：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python poemcode.py poem.txt cip.txt</span><br><span class="line">...</span><br><span class="line">ifytuothikcrnyptorapyisheansnweroyoturprbletheyoulodnotnowkwhatourrobemiuasbcdfgheijklnoprst</span><br><span class="line">ifyouthinkcryptographyistheanswertoyourproblemthenyoudonotknowwhatyourproblemisabcdefghijklmnopqrstu</span><br><span class="line">pakprictiyorhftyselorohyphurbeewterunhwooaywtooonrbpofjhsgkeilncmbrt</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>中间的为明文。</p>
 
@@ -235,6 +235,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

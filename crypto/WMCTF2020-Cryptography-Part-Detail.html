@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-14">2020-08-14</span>
                 </p>
@@ -169,14 +169,14 @@
             </div>
             <h2 class="post-title">WMCTF2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计3650个字 |
+                本文共计3523个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
             <p>比赛网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/match/contest_challenge?event=146&amp;hash=684a58cc-1140-4937-99f2-ef347d777d9f.event">WMCTF2020</a></p>
-<h1 id="一、piece-of-cake"><a href="#一、piece-of-cake" class="headerlink" title="一、piece_of_cake"></a>一、piece_of_cake</h1><h2 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h2><p>附件是一个py脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF2020/piece_of_cake">Gitee备份</a>中的task.py。</p>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h2><p>eat_cake函数中的各个变量的定义如下：</p>
+<h2><span id="一-piece_of_cake">一、piece_of_cake</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个py脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF/piece_of_cake">Gitee备份</a>中的task.py。</p>
+<h3><span id="12-分析">1.2 分析</span></h3><p>eat_cake函数中的各个变量的定义如下：</p>
 <ul>
 <li><p>$p,q$为512位随机素数，$ph=(p-1) \cdot (q+1),N=p \cdot q,d=e^{-1}\ \textrm{mod}\ ph$</p>
 </li>
@@ -185,12 +185,18 @@
 <li><p>$h=f^{-1} \cdot g\ \textrm{mod}\ q$，$r$为512位随机素数，$c=(r \cdot h+cake)\ \textrm{mod}\ q$</p>
 </li>
 </ul>
-<p>由$h=f^{-1} \cdot g\ \textrm{mod}\ q$可得$f \cdot h \equiv g\ \textrm{mod}\ q$，记为$f \cdot h-t \cdot q=g$，构造矩阵</p>
+<p>由：</p>
+<script type="math/tex; mode=display">
+h=f^{-1} \cdot g\ \textrm{mod}\ q</script><p>可得：</p>
+<script type="math/tex; mode=display">
+f \cdot h \equiv g\ \textrm{mod}\ q</script><p>即存在$t\in Z$，使得：</p>
+<script type="math/tex; mode=display">
+f \cdot h-t \cdot q=g</script><p>构造矩阵$M$如下：</p>
 <script type="math/tex; mode=display">
 M=\begin{pmatrix}
 1 & h\\
 0 & q
-\end{pmatrix}</script><p>则有</p>
+\end{pmatrix}</script><p>则有：</p>
 <script type="math/tex; mode=display">
 \begin{pmatrix}
 f & -t
@@ -200,34 +206,59 @@ f & -t
 \end{pmatrix} = \begin{pmatrix}
 f & g
 \end{pmatrix}</script><p>则$<br>\begin{pmatrix}<br>f &amp; g<br>\end{pmatrix}<br>$是格$L(M)$上的短格基，因此有可能可使用LLL算法或BKZ算法求出，这里说有可能求出，因为在解题时并不是每次都能找到短格基$<br>\begin{pmatrix}<br>f &amp; g<br>\end{pmatrix}<br>$<br>假设我们求出的短格基为$<br>\begin{pmatrix}<br>f &amp; g<br>\end{pmatrix}<br>$，再由公式$c=(r \cdot h+cake)\ \textrm{mod}\ q$</p>
-<p>则</p>
-<p>$f \cdot c \equiv f \cdot (r \cdot h+cake) \equiv (r \cdot g+f \cdot cake)\ \textrm{mod}\ q$</p>
-<p>从而</p>
-<p>$(r \cdot g+f \cdot cake)= f \cdot c\ \textrm{mod}\ q$</p>
-<p>两边模$g$可得</p>
-<p>$f \cdot cake \equiv (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g$</p>
-<p>于是</p>
-<p>$cake=f^{-1} \cdot (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g$</p>
-<p>注意，上面等式中$f^{-1}$是$f$在$g$下的逆，不能与括号内的$f$抵消。</p>
-<h2 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h2><p>上述链接中的solve.sage为解题的sage脚本。</p>
-<h2 id="4-备注"><a href="#4-备注" class="headerlink" title="4. 备注"></a>4. 备注</h2><p>此exp并不能保证次次成功！不过它的有效性不可否认，上述链接中的test.sage即可验证。</p>
+<p>则：</p>
+<script type="math/tex; mode=display">
+f \cdot c \equiv f \cdot (r \cdot h+cake) \equiv (r \cdot g+f \cdot cake)\ \textrm{mod}\ q</script><p>从而：</p>
+<script type="math/tex; mode=display">
+(r \cdot g+f \cdot cake)= f \cdot c\ \textrm{mod}\ q</script><p>两边模$g$可得：</p>
+<script type="math/tex; mode=display">
+f \cdot cake \equiv (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g</script><p>于是：</p>
+<script type="math/tex; mode=display">
+cake=f^{-1} \cdot (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g</script><p>注意，上面等式中$f^{-1}$是$f$在$g$下的逆，不能与括号内的$f$抵消。</p>
+<h3><span id="13-解题">1.3 解题</span></h3><p>上述链接中的solve.sage为解题的sage脚本。</p>
+<h3><span id="14-备注">1.4 备注</span></h3><p>此exp并不能保证次次成功！不过它的有效性不可否认，上述链接中的test.sage即可验证。</p>
 <p>以下是我对test.sage四次的运行结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sage test.sage</span><br><span class="line">success! 48 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 2 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 50 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 24 -th</span><br></pre></td></tr></table></figure>
 <p>从而验证了解题脚本solve.sage的有效性。</p>
-<h1 id="二、babySum"><a href="#二、babySum" class="headerlink" title="二、babySum"></a>二、babySum</h1><h2 id="1-题目信息-1"><a href="#1-题目信息-1" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h2><p>附件是两个py脚本与一个json文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF2020/babySum">Gitee备份</a>中的task.py与check.py。</p>
-<h2 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2. 分析"></a>2. 分析</h2><p>task.py告诉我们生成data中数据的逻辑，其实很好理解：生成$n=120$个150位的随机数，组成数组$A$，从中选$k=20$个相加生成和$s$；</p>
+<h2><span id="二-babysum">二、babySum</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>附件是两个py脚本与一个json文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF2020/babySum">Gitee备份</a>中的task.py与check.py。</p>
+<h3><span id="22-分析">2.2 分析</span></h3><p>task.py告诉我们生成data中数据的逻辑，其实很好理解：生成$n=120$个150位的随机数，组成数组$A$，从中选$k=20$个相加生成和$s$；</p>
 <p>记数组$A=[a_{1},\cdots,a_{n}]$，check.py读入120个数$b_{1},\cdots,b_{n}(b_{i}={0,1})$，其中20个为1，另外100个为1，检验$\sum_{i=1}^{n}a_{i} \cdot b_{i}=s$，如果等式成立，就打印出flag。</p>
 <p>到这里我们共有3个约束条件：</p>
-<ul>
-<li>$\sum_{i=1}^{n}b_{i}=k$</li>
-<li>$\sum_{i=1}^{n}a_{i} \cdot b_{i}=s$</li>
-<li>$b_{i}=0,1;i=1,\cdots,n$</li>
-</ul>
-<p>遇到这种问题一般转化为格基约减问题，构造矩阵$<br>\begin{pmatrix}<br>1 &amp;   &amp;   &amp;   &amp; a_{1} &amp; 1 \\<br>  &amp; 1 &amp;   &amp;   &amp; a_{2} &amp; 1 \\<br>  &amp;   &amp;\ddots &amp;   &amp;\vdots &amp;\vdots \\<br>  &amp;   &amp;   &amp; 1 &amp; a_{n} &amp; 1 \\<br>  &amp;   &amp;   &amp;   &amp; -s &amp; -k &amp;<br>\end{pmatrix}=M<br>$</p>
-<p>那么$<br>\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 1<br>\end{pmatrix} \cdot M=\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 0 &amp; 0<br>\end{pmatrix}<br>$</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\sum_{i=1}^{n}b_{i}=k\\
+\\
+\sum_{i=1}^{n}a_{i} \cdot b_{i}=s\\
+\\
+b_{i}=0,1;i=1,\cdots,n
+\end{cases}</script><p>遇到这种问题一般转化为格基约减问题，构造矩阵$M$如下：</p>
+<script type="math/tex; mode=display">
+M=
+\begin{pmatrix}
+1 &   &   &   & a_{1} & 1 \\
+  & 1 &   &   & a_{2} & 1 \\
+  &   &\ddots &   &\vdots &\vdots \\
+  &   &   & 1 & a_{n} & 1 \\
+  &   &   &   & -s & -k &
+\end{pmatrix}</script><p>那么$<br>\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 1<br>\end{pmatrix} \cdot M=\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 0 &amp; 0<br>\end{pmatrix}<br>$</p>
 <p>即通过格基约减可以求出$b_{1},\cdots,b_{n}$。</p>
 <p>理想很丰满，现实很骨感！</p>
-<p>约减后的格基无法达到我们需要的结果！直到看到writeup，这里需要记住一个很有用的技巧，可类比约束优化问题对约束条件的处理，当不满足约束条件$\begin{cases}<br>\sum_{i=1}^{n}b_{i}=k\\<br>\sum_{i=1}^{n}a_{i} \cdot b_{i}=s<br>\end{cases}<br>$时加大“惩罚”，我们重新设计格基矩阵$M$为$<br>\begin{pmatrix}<br>1 &amp;   &amp;   &amp;   &amp; N \cdot a_{1} &amp; N \\<br>  &amp; 1 &amp;   &amp;   &amp; N \cdot a_{2} &amp; N \\<br>  &amp;   &amp;\ddots &amp;   &amp;\vdots &amp;\vdots \\<br>  &amp;   &amp;   &amp; 1 &amp; N \cdot a_{n} &amp; N \\<br>  &amp;   &amp;   &amp;   &amp; -N \cdot s &amp; -N \cdot k &amp;<br>\end{pmatrix}<br>$<br>其中$N=[\sqrt{n}]$，<br>此时仍然有$<br>\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 1<br>\end{pmatrix} \cdot M=\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 0 &amp; 0<br>\end{pmatrix}<br>$</p>
+<p>约减后的格基无法达到我们需要的结果！直到看到writeup，这里需要记住一个很有用的技巧，可类比约束优化问题对约束条件的处理，当不满足如下约束条件时</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\sum_{i=1}^{n}b_{i}=k\\
+\\
+\sum_{i=1}^{n}a_{i} \cdot b_{i}=s
+\end{cases}</script><p>加大“惩罚”，我们重新设计格基矩阵$M$如下：</p>
+<script type="math/tex; mode=display">
+M=
+\begin{pmatrix}
+1 &   &   &   & N \cdot a_{1} & N \\
+  & 1 &   &   & N \cdot a_{2} & N \\
+  &   &\ddots &   &\vdots &\vdots \\
+  &   &   & 1 & N \cdot a_{n} & N \\
+  &   &   &   & -N \cdot s & -N \cdot k &
+\end{pmatrix}</script><p>其中$N=[\sqrt{n}]$，此时仍然有$<br>\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 1<br>\end{pmatrix} \cdot M=\begin{pmatrix}<br>b_{1} &amp; b_{2} &amp; \cdots &amp; b_{n} &amp; 0 &amp; 0<br>\end{pmatrix}<br>$</p>
 <p>然后就是比较玄学的问题，对同一格，改变格基矩阵行的顺序，约减的结果也会不同，官方的writeup就是不断打乱格基矩阵的行，然后进行格基约减；再就是为了更快得到结果，需要进行多线程编程；上述链接中的solve.sage为解题的sage脚本；官方设置的8个线程，我自己改成6个线程，跑了几次，基本上都是20分钟左右出结果。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sage solve.sage   </span><br><span class="line">(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)</span><br><span class="line">cost time:  0:25:27</span><br></pre></td></tr></table></figure>
             
@@ -284,6 +315,7 @@ f & g
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

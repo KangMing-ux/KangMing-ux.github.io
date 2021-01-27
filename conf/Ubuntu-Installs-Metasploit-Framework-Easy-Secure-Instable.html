@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-10-27">2020-10-27</span>
                 </p>
@@ -174,10 +174,10 @@
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做项目需要用到metasploit-framework这款强大的渗透工具，学长给的<a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers">GitHub链接</a>下载起来巨慢，重新在网上找方法：网上几乎都是添加Kali源来安装metasploit-framework，但是自己手残在apt update后加了一条apt upgrade -y，然后电脑开始下很多奇奇怪怪的东西直到电脑完全动不了，最后只能重装Ubuntu！所以总结一下网上在Ubuntu安装metasploit-framework的两种方法要么慢，要么危险。</p>
-<h1 id="deb包安装"><a href="#deb包安装" class="headerlink" title="deb包安装"></a>deb包安装</h1><p>推荐一种安全又快捷的方法，使用deb包进行安装：<a target="_blank" rel="noopener" href="https://apt.metasploit.com/">deb包链接在此</a>；翻到最下面，可以看到有metasploit-framework的deb包</p>
+            <h2><span id="前言">前言</span></h2><p>做项目需要用到metasploit-framework这款强大的渗透工具，学长给的<a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers">GitHub链接</a>下载起来巨慢，重新在网上找方法：网上几乎都是添加Kali源来安装metasploit-framework，但是自己手残在apt update后加了一条apt upgrade -y，然后电脑开始下很多奇奇怪怪的东西直到电脑完全动不了，最后只能重装Ubuntu！所以总结一下网上在Ubuntu安装metasploit-framework的两种方法要么慢，要么危险。</p>
+<h2><span id="deb包安装">deb包安装</span></h2><p>推荐一种安全又快捷的方法，使用deb包进行安装：<a target="_blank" rel="noopener" href="https://apt.metasploit.com/">deb包链接在此</a>；翻到最下面，可以看到有metasploit-framework的deb包</p>
 <p>选择最新版的下载下来，使用gdebi来安装deb包即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gdebi metasploit-framework_6.0.13+20201023102229~1rapid7-1_amd64.deb</span><br></pre></td></tr></table></figure><br>可以看看安装好的效果：</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我来说一下上面的deb包链接是怎么找到的；从上述的<a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers">GitHub链接</a>开始，下面的Installing</p>
+<h2><span id="后记">后记</span></h2><p>我来说一下上面的deb包链接是怎么找到的；从上述的<a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers">GitHub链接</a>开始，下面的Installing</p>
 <p>点击the free installer,再到下面的Linux manual installation</p>
 <p><a target="_blank" rel="noopener" href="https://apt.metasploit.com">https://apt.metasploit.com</a> 就是deb包的链接。</p>
 
@@ -237,6 +237,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

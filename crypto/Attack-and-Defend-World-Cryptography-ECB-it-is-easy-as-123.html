@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-15">2020-08-15</span>
                 </p>
@@ -169,14 +169,14 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-ecb,_it’s_easy_as_123</h2>
             <div class="post-meta">
-                本文共计1000个字 |
+                本文共计997个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h1><p>附件提供了背景介绍(Somebody leaked a still from the upcoming Happy Feet Three movie, which will be released in 4K, but Warner Bros. was smart enough to encrypt it. But those idiots used a black and white bmp format, and that wasn’t their biggest mistake. Show ‘em who’s boss and get the flag.)，与一个bmp文件。</p>
-<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h1><p>根据背景介绍，原图片应该是bmp格式，经ecb工作模式加密得ecb.bmp；由于ecb工作模式不会掩盖明文的统计规律，因此只要能够修复ecb.bmp就可以见到明文，要修复ecb.bmp，则要求文件的前128字节为bmp文件格式特有的字节。</p>
-<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h1><p>将ecb.bmp的前128字节替换为bmp文件格式特有的字节，则可以见到明文信息，实现的Python脚本如下：</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>附件提供了背景介绍(Somebody leaked a still from the upcoming Happy Feet Three movie, which will be released in 4K, but Warner Bros. was smart enough to encrypt it. But those idiots used a black and white bmp format, and that wasn’t their biggest mistake. Show ‘em who’s boss and get the flag.)，与一个bmp文件。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>根据背景介绍，原图片应该是bmp格式，经ecb工作模式加密得ecb.bmp；由于ecb工作模式不会掩盖明文的统计规律，因此只要能够修复ecb.bmp就可以见到明文，要修复ecb.bmp，则要求文件的前128字节为bmp文件格式特有的字节。</p>
+<h2><span id="三-解题">三、解题</span></h2><p>将ecb.bmp的前128字节替换为bmp文件格式特有的字节，则可以见到明文信息，实现的Python脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ecb.bmp&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data=f.read()</span><br><span class="line">pre=<span class="number">0x424d76483f00000000007600000028000000000f000070080000010004000000000000483f00000000000000000000000000000000000000000000008000008000000080800080000000800080008080000080808000c0c0c0000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00ffffffffffffffffffffL</span></span><br><span class="line">out=long_to_bytes(pre)+data[<span class="number">128</span>:]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;out.bmp&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> g:</span><br><span class="line">    g.write(out)</span><br></pre></td></tr></table></figure>
 <p>out.bmp可被照片查看器打开，从而见到flag。</p>
 
@@ -234,6 +234,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

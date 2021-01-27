@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-11-16">2020-11-16</span>
                 </p>
@@ -169,13 +169,13 @@
             </div>
             <h2 class="post-title">win10正版安装+配置记录</h2>
             <div class="post-meta">
-                本文共计1597个字 |
+                本文共计1547个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>自己以前作为一个电脑小白，重装系统时直接在百度上面搜索，搜到的全是各种下载站，从这些网站上面下载的系统其实已经改过了，安装完之后会给你预装很多软件，你又要花时间把他们删掉，可以说很不方便；去微软官网上面找，如果不知道怎么找，可能很不容易找到，于是写下这篇博客备忘，也方便他人。</p>
-<h1 id="2-下载镜像并制作启动盘"><a href="#2-下载镜像并制作启动盘" class="headerlink" title="2. 下载镜像并制作启动盘"></a>2. 下载镜像并制作启动盘</h1><p>安装前，准备好8GB以上的U盘(必须真的是8G以上，U盘质量一定要过关；另外，U盘里面的数据要备份好，制作启动盘会让原来的数据不复存在)</p>
+            <h2><span id="一-前言">一、前言</span></h2><p>自己以前作为一个电脑小白，重装系统时直接在百度上面搜索，搜到的全是各种下载站，从这些网站上面下载的系统其实已经改过了，安装完之后会给你预装很多软件，你又要花时间把他们删掉，可以说很不方便；去微软官网上面找，如果不知道怎么找，可能很不容易找到，于是写下这篇博客备忘，也方便他人。</p>
+<h2><span id="二-下载镜像并制作启动盘">二、下载镜像并制作启动盘</span></h2><p>安装前，准备好8GB以上的U盘(必须真的是8G以上，U盘质量一定要过关；另外，U盘里面的数据要备份好，制作启动盘会让原来的数据不复存在)</p>
 <p><strong>1.</strong>先去<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10/">微软官方镜像下载地址</a>，下载MediaCreationTool；</p>
 <p><strong>2.</strong>以管理员方式，运行MediaCreationTool；首先给出声明与许可条款，选择接受；此时会给你两种操作，升级本机或者创建安装介质，我习惯创建安装介质；</p>
 <p><strong>3.</strong>选择语言、体系结构与版本，直接默认就好；</p>
@@ -184,29 +184,28 @@
 <p><strong>6.</strong>创建安装介质</p>
 <p>创建完成后，点击完成，工具做一些清理工作就会退出。</p>
 <p>打开文件资源管理器，可以看到启动盘已经制作完毕：</p>
-<h1 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h1><p>1.如果安装时鼠标用不了，可以使用tab键进行切换；</p>
+<h2><span id="三-安装">三、安装</span></h2><p>1.如果安装时鼠标用不了，可以使用tab键进行切换；</p>
 <p>2.安装过程中最好联网；</p>
 <p>3.删除不常用文件夹<br>cmd—&gt;regedit<br>3D对象：HKEY_LOCAL_MACHINE-&gt;SOFTWARE-&gt;Microsoft-&gt;Windows-&gt;CurrentVersion-&gt;Explorer-&gt;MyComputer<br>-&gt;NameSpace-&gt;{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}<br>音乐：{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}</p>
 <p>4.“开始”关掉设置、图片。</p>
-<h1 id="4-安装常用软件"><a href="#4-安装常用软件" class="headerlink" title="4.安装常用软件"></a>4.安装常用软件</h1><p><a target="_blank" rel="noopener" href="https://www.360totalsecurity.com/zh-cn/360zip/">360zip国际版</a></p>
+<h2><span id="四-安装常用软件">四、安装常用软件</span></h2><p><a target="_blank" rel="noopener" href="https://www.360totalsecurity.com/zh-cn/360zip/">360zip国际版</a></p>
 <p><a target="_blank" rel="noopener" href="http://pan.baidu.com/download">百度网盘</a></p>
 <p><a target="_blank" rel="noopener" href="http://en.ejie.me/">Clover</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：我们知道win10下面的文件资源管理器打开多个位置时是多个窗口，这个插件就可以以多标签页来管理，特别好用。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注：我们知道win10下面的文件资源管理器打开多个位置时是多个窗口，这个插件就可以以多标签页来管理，特别好用。</span><br><span class="line">但是你要忍受经常的广告的骚扰</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.google.cn/intl/zh-CN/chrome/">Chrome浏览器</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：虽然Edge用上了chrome的内核，但是你不跨平台还是不太方便。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://office.qq.com/download.html">TIM</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：窗口设置和微信差不多，感觉比QQ好用。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.xunlei.com/">迅雷&amp;迅雷影音</a></p>
 <p><a target="_blank" rel="noopener" href="https://meeting.tencent.com/download-center.html?from=1001">腾讯会议</a></p>
 <p><a target="_blank" rel="noopener" href="https://cmder.net/">cmder</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注：控制台模拟器，让你有一种用上Linux终端的感觉。</span><br><span class="line"></span><br><span class="line">1.更改快捷键Ctrl-T(新建标签页)为Crtl-Shift-T，避免与ctags的快捷键冲突。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">控制台模拟器，让你有一种用上Linux终端的感觉。</span><br><span class="line">更改快捷键Ctrl-T(新建标签页)为Crtl-Shift-T，避免与ctags的快捷键冲突。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://pc.wps.cn/">WPS</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.登录；</span><br><span class="line"></span><br><span class="line">2.在“我的电脑”隐藏网盘。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">记得在“我的电脑”隐藏网盘。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.python.org/downloads/windows/">Python3.6.4</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注：安装的时候注意勾选添加到环境变量；将python改成python3以与python2程序区分；</span><br><span class="line"></span><br><span class="line">1.win10菜单搜索[管理应用执行别名]，关闭下面两个按钮[应用安装程序])；</span><br><span class="line"></span><br><span class="line">2.安装ctf密码学常用python库。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注：安装的时候注意勾选添加到环境变量；将python改成python3以与python2程序区分；</span><br><span class="line">win10菜单搜索[管理应用执行别名]，关闭下面两个按钮[应用安装程序])；</span><br><span class="line">安装ctf密码学常用python库。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/vim/vim-win32-installer/releases">Vim</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.添加环境变量：右键此电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，新建-&gt;填写vim程序的路径，点击3个确定才算成功添加；</span><br><span class="line"></span><br><span class="line">2.在安装vim的文件夹下有一个_vimrc文件，备份好之后写上自己的配置)；</span><br><span class="line"></span><br><span class="line">3.安装ctags插件：http://ctags.sourceforge.net；像ctags58.zip这种名称是支持win10的，下载下来之后只需要将ctags.exe复制到vim的安装目录下即可！</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加环境变量：右键此电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，新建-&gt;填写vim程序的路径，点击3个确定才算成功添加；</span><br><span class="line">在安装vim的文件夹下有一个_vimrc文件，备份好之后写上自己的配置)；</span><br><span class="line">安装ctags插件：http://ctags.sourceforge.net；像ctags58.zip这种名称是支持win10的，下载下来之后只需要将ctags.exe复制到vim的安装目录下即可！</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/yafu/files/">yafu</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">强大的因子分解工具。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/sagemath/sage-windows/releases">Sagemath</a></p>
@@ -270,6 +269,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

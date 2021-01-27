@@ -1174,7 +1174,7 @@ body.night-mode,.night-mode .btn,body.night-mode a,.night-mode .nav-user a,#sear
     overflow:auto;
 }
 .markdown-body table th {
-    font-weight:bold
+    font-weight: bold
 }
 .markdown-body table th,.markdown-body table td {
     padding:6px 13px;

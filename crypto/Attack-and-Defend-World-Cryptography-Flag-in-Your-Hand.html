@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-13">2020-08-13</span>
                 </p>
@@ -169,13 +169,13 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-flag in your hand</h2>
             <div class="post-meta">
-                本文共计2201个字 |
+                本文共计2199个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1. 题目信息"></a>1. 题目信息</h1><p>题目给了两个文件：index.html与script-min.js。</p>
-<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h1><p>先分析index.html的逻辑，第58行：</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>题目给了两个文件：index.html与script-min.js。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>先分析index.html的逻辑，第58行：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Get flag!&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;getFlag()&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>结合浏览器打开index.html的效果，我们知道点击 ‘Get flag!’ 按钮时会调用getFlag()函数；</p>
 <p>getFlag()函数的定义在第32行：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> token = <span class="built_in">document</span>.getElementById(<span class="string">&quot;secToken&quot;</span>).value;</span><br><span class="line">	ic = checkToken(token);</span><br><span class="line">	fg = bm(token);</span><br><span class="line">	showFlag()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在显示flag之前会调用checkToken(token)与bm(token)两个函数，我们先看一下显示flag的showFlag()函数，它定义在第39行：</p>
@@ -249,6 +249,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->

@@ -156,12 +156,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://about.tangkunyin.com"
+                    <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-13">2020-08-13</span>
                 </p>
@@ -169,14 +169,14 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-工业协议分析2</h2>
             <div class="post-meta">
-                本文共计255个字 |
+                本文共计254个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="1-题目信息"><a href="#1-题目信息" class="headerlink" title="1.题目信息"></a>1.题目信息</h1><p>在进行工业企业检查评估工作中，发现了疑似感染恶意软件的上位机。现已提取出上位机通信流量，尝试分析出异常点，获取FLAG。 flag形式为 flag{}。</p>
-<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h1><p>字符串’flag’的16进制编码为0x666c6167，在筛选器输入data contains “666c61677b”筛选包含666c61677b的流量包，筛选出两个包。</p>
-<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3. 解题"></a>3. 解题</h1><p>任选一个提取出数据666c61677b37466f4d3253746b6865507a7d，再进行16进制解码得到flag{7FoM2StkhePz}</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>在进行工业企业检查评估工作中，发现了疑似感染恶意软件的上位机。现已提取出上位机通信流量，尝试分析出异常点，获取FLAG。 flag形式为 flag{}。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>字符串’flag’的16进制编码为0x666c6167，在筛选器输入data contains “666c61677b”筛选包含666c61677b的流量包，筛选出两个包。</p>
+<h2><span id="三-解题">三、解题</span></h2><p>任选一个提取出数据666c61677b37466f4d3253746b6865507a7d，再进行16进制解码得到flag{7FoM2StkhePz}</p>
 
             
                 
@@ -232,6 +232,7 @@
         initMathjaxConfig();
     }
 </script>
+
 
 
         </div><!-- end #main-->
