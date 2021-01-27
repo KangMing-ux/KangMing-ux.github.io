@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chu-kangming.gitee.io/links/index.html</loc>
+    
+    <lastmod>2021-01-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/crypto/WMCTF2020-Cryptography-Part-Detail.html</loc>
     
     <lastmod>2021-01-27</lastmod>
@@ -311,13 +318,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/index.html</loc>
-    
-    <lastmod>2021-01-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/links/index.html</loc>
     
     <lastmod>2021-01-26</lastmod>
     
