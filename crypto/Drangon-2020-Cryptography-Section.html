@@ -174,7 +174,7 @@
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-bit_flip1">一、Bit_Flip1</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/Drangon2020/bit_flip_1">Gitee备份在此</a></p>
+            <h2><span id="一-bit_flip1">一、Bit_Flip1</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/Drangon/bit_flip_1">Gitee备份在此</a></p>
 <h3><span id="12-分析">1.2 分析</span></h3><p><strong>1.过一遍程序</strong></p>
 <ul>
 <li><p>生成16个随机的字节作为alice_seed，与接收到的flip_str异或取后32个字节(不够在前面加\x00)即为seed；</p>
@@ -247,7 +247,7 @@
 <p>接下来按照同样的方式生成AES密钥，对密文进行解密即可！</p>
 <h3><span id="13-解题">1.3 解题</span></h3><p>这道题我并没有在比赛的时候做出来，因此我对task.py的交互方式作了一些改变；flag是自己设置的；上述链接中的solve.py为解题脚本，程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">λ python3 solve.py</span><br><span class="line">b<span class="string">&#x27;1\xbc\xfa\x1b+5\xed1\x99\xf7\xa0\x07\x8e\tQ\xee&#x27;</span></span><br><span class="line">Drangon&#123;just_for_test_flag&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="二-bit_flip2">二、Bit_Flip2</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>附件仍然是一个Python脚本，相对于Bit_Flip1只有1行代码不同，它将print(“bob number”, bob.my_number)这一行注释起来；<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/Drangon2020/bit_flip_2">Gitee备份在此</a></p>
+<h2><span id="二-bit_flip2">二、Bit_Flip2</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>附件仍然是一个Python脚本，相对于Bit_Flip1只有1行代码不同，它将print(“bob number”, bob.my_number)这一行注释起来；<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/Drangon/bit_flip_2">Gitee备份在此</a></p>
 <h3><span id="22-分析">2.2 分析</span></h3><p>同Bit_Flip1的方法可解出alice_seed，可此时我并不知道bob.my_number；虽然当时想过控制alice.my_secret为0，但是觉得太不切实际，而事实上writeup就是这么做的！这需要你对比特币有一定的了解，知道使用块散列算法(可<a href="https://chu-kangming.gitee.io/crypto/Bitcoin-Block-hashing-algorithm.html">参见此处</a>)可以生成以一定长度的0字节结尾的哈希值。按同样的方法推测出alice_seed后发送特定的flip_str使得alice以特定的seed初始化，使得alice.my_secret为0，那么bob.my_number就对我们解密出flag无关紧要了。</p>
 <h3><span id="23-解题">2.3 解题</span></h3><p>上述链接中的solve.py为解题脚本，同样因为题目没有在比赛的时候做出了，flag是我自己设置的；程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">b<span class="string">&#x27;Drangon&#123;just_for_test_flag&#125;\x00\x00\x00\x00\x00&#x27;</span></span><br></pre></td></tr></table></figure>
