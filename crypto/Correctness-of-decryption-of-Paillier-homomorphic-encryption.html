@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>paillier同态加密之解密的正确性 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="paillier同态加密之解密的正确性 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-03-20">2021-03-20</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">Paillier同态加密之解密的正确性</h2>
+            <div class="post-meta">
+                本文共计2769个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h1><span id="一-paillier同态加密系统">一、Paillier同态加密系统</span></h1><h2><span id="11-符号说明">1.1 符号说明</span></h2><ul>
+<li>p,q为大素数，$p\neq q$；</li>
+<li>$n=p\cdot q$；</li>
+<li>$\lambda =(p-1)\cdot (q-1)$；</li>
+<li>$B_{\alpha}=\{e\in Z_{n^{2}}^{*}|ord(e)=\alpha\cdot n\}$；</li>
+<li>$B=\bigcup_{\alpha=1}^{\lambda}B_{\alpha}$；</li>
+<li>函数$L(x,n)=[(x-1)/n]$；</li>
+</ul>
+<h2><span id="12-密钥生成">1.2 密钥生成</span></h2><ul>
+<li>随机选择指定长度的大素数p,q；(p,q)为私钥；</li>
+<li>$n=p*q$；随机选择$g\in B$；(g,n)为公钥；</li>
+</ul>
+<h2><span id="13-加密">1.3 加密</span></h2><ul>
+<li>明文m&lt;n，随机选择r&lt;n；</li>
+<li>密文$c=g^{m}\cdot r^{n}\ \textrm{mod}\ n^{2}$；</li>
+</ul>
+<h2><span id="14-解密">1.4 解密</span></h2><ul>
+<li>密文$c&lt;n^{2}$；</li>
+<li>明文$m=\frac {L(c^{\lambda}\ \textrm{mod}\ n^{2}, n)} {L(g^{\lambda}\ \textrm{mod}\ n^{2}, n)}\ \textrm{mod}\ n$；</li>
+</ul>
+<h1><span id="二-解密的正确性">二、解密的正确性</span></h1><p>对于$g=1+n$的情形，网上已有很多证明解密正确性的推导，而我在这里是希望给出更一般的情形下解密正确性的证明；推导参考提出Paillier同态加密系统的这篇论文：《Public-Key Cryptosystems Based on Composite Degree Residuosity Classes》。</p>
+<p><strong>定义1</strong>：定义映射$\varepsilon_{g}: Z_{n}\times Z_{n}^{<em>}\mapsto Z_{n^{2}}^{</em>}$，$\varepsilon_{g}(x,y)=g^{x}\cdot y^{n}\ \textrm{mod}\ n^{2}$。</p>
+<p><strong>引理1</strong>：若$g$的阶$ord(g)$是$n$的非零整数倍，则$\varepsilon_{g}$是双射。</p>
+<p>证明：由于$Z_{n}\times Z_{n}^{<em>}$与$Z_{n^{2}}^{</em>}$的元素个数均为$n\phi(n)$(参考《近世代数》(第三版)杨子胥 第149页 定理1)，因此只需证明$\varepsilon_{g}$是单射；</p>
+<p>假设$\varepsilon_{g}(x_{1},y_{1})=\varepsilon_{g}(x_{2},y_{2})$；</p>
+<p>则$g^{x_{1}-x_{2}}\cdot (y_{1}\cdot y_{2}^{-1})^{n}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
+<p>因此$g^{\lambda(x_{1}-x_{2})}\cdot (y_{1}\cdot y_{2}^{-1})^{\lambda\cdot n}\equiv g^{\lambda(x_{1}-x_{2})}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
+<p>从而$ord(g)|\lambda(x_{1}-x_{2})$；</p>
+<p>又$n|ord(g)\Rightarrow n|\lambda(x_{1}-x_{2}) , (n,\lambda)=1\Rightarrow n|(x_{1}-x_{2})$；</p>
+<p>因此在$x_{1},x_{2}\in Z_{n}$的意义下，$x_{1}=x_{2}$；</p>
+<p>那么$(y_{1}\cdot y_{2}^{-1})^{n}\equiv 1\ \textrm{mod}\ n^{2}$，则$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，理由如下：</p>
+<p>假设$x^{n}\equiv 1\ \textrm{mod}\ n^{2}$，则：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x^{(p-1)\cdot q+q}\equiv 1\ \textrm{mod}\ p\
+\\
+x^{(q-1)\cdot p+p}\equiv 1\ \textrm{mod}\ q\
+\end{cases}</script><p>即：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x^{q}\equiv 1\ \textrm{mod}\ p\
+\\
+x^{p}\equiv 1\ \textrm{mod}\ q\
+\end{cases}</script><p>又$(p,q-1)=1$，$(q,p-1)=1$，从而存在$s,t\in Z$，使得$p\cdot s\equiv 1\ \textrm{mod}\ q-1 , q\cdot t\equiv 1\ \textrm{mod}\ p-1$，同理可得：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x\equiv 1\ \textrm{mod}\ p\
+\\
+x\equiv 1\ \textrm{mod}\ q\
+\end{cases}</script><p>由中国剩余定理，$x$在模$n$意义下有唯一解，又1满足上述同余方程组，因此$x\equiv 1\ \textrm{mod}\ n$<br>回到本引理的证明，则有$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，即$y_{1}\equiv y_{2}\ \textrm{mod}\ n$；<br>综上，$\varepsilon_{g}$是单射，也是双射。</p>
+<p><strong>解密的正确性</strong></p>
+<p>由引理1，存在$(a,b)\in Z_{n}\times Z_{n}^{*}$使得$g=(1+n)^{a}\cdot b^{n}\ \textrm{mod}\ n^{2}$，则：</p>
+<p>$g^{\lambda}\equiv (1+n)^{a\cdot\lambda}\cdot b^{n\cdot\lambda}\equiv (1+n)^{a\cdot\lambda}\equiv 1+na\lambda\ \textrm{mod}\ n^{2}$</p>
+<p>同理，$c^{\lambda}\equiv (g^{m}\cdot r^{n})^{\lambda}\equiv [(1+n)^{a}\cdot b^{n}]^{m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\cdot b^{n\cdot m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\equiv 1+mna\lambda\ \textrm{mod}\ n^{2}$</p>
+<p>因此，$L(c^{\lambda})\cdot [L(g^{\lambda})]^{-1}\equiv ma\lambda\cdot (a\lambda)^{-1}\equiv m\ \textrm{mod}\ n$。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/Paillier/">Paillier</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
