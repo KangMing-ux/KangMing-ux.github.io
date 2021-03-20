@@ -169,7 +169,7 @@
             </div>
             <h2 class="post-title">Paillier同态加密之解密的正确性</h2>
             <div class="post-meta">
-                本文共计2769个字 |
+                本文共计2796个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -178,13 +178,13 @@
 <li>p,q为大素数，$p\neq q$；</li>
 <li>$n=p\cdot q$；</li>
 <li>$\lambda =(p-1)\cdot (q-1)$；</li>
-<li>$B_{\alpha}=\{e\in Z_{n^{2}}^{*}|ord(e)=\alpha\cdot n\}$；</li>
+<li>$B_{\alpha}=\{e\in Z_{n^{2}}^{\ast}|ord(e)=\alpha\cdot n\}$；</li>
 <li>$B=\bigcup_{\alpha=1}^{\lambda}B_{\alpha}$；</li>
 <li>函数$L(x,n)=[(x-1)/n]$；</li>
 </ul>
 <h2><span id="12-密钥生成">1.2 密钥生成</span></h2><ul>
 <li>随机选择指定长度的大素数p,q；(p,q)为私钥；</li>
-<li>$n=p*q$；随机选择$g\in B$；(g,n)为公钥；</li>
+<li>$n=p\cdot q$；随机选择$g\in B$；(g,n)为公钥；</li>
 </ul>
 <h2><span id="13-加密">1.3 加密</span></h2><ul>
 <li>明文m&lt;n，随机选择r&lt;n；</li>
@@ -192,12 +192,12 @@
 </ul>
 <h2><span id="14-解密">1.4 解密</span></h2><ul>
 <li>密文$c&lt;n^{2}$；</li>
-<li>明文$m=\frac {L(c^{\lambda}\ \textrm{mod}\ n^{2}, n)} {L(g^{\lambda}\ \textrm{mod}\ n^{2}, n)}\ \textrm{mod}\ n$；</li>
+<li>明文$m=L(c^{\lambda}\ \textrm{mod}\ n^{2}, n)\cdot L(g^{\lambda}\ \textrm{mod}\ n^{2}, n)^{-1}\ \textrm{mod}\ n$；</li>
 </ul>
 <h1><span id="二-解密的正确性">二、解密的正确性</span></h1><p>对于$g=1+n$的情形，网上已有很多证明解密正确性的推导，而我在这里是希望给出更一般的情形下解密正确性的证明；推导参考提出Paillier同态加密系统的这篇论文：《Public-Key Cryptosystems Based on Composite Degree Residuosity Classes》。</p>
-<p><strong>定义1</strong>：定义映射$\varepsilon_{g}: Z_{n}\times Z_{n}^{<em>}\mapsto Z_{n^{2}}^{</em>}$，$\varepsilon_{g}(x,y)=g^{x}\cdot y^{n}\ \textrm{mod}\ n^{2}$。</p>
+<p><strong>定义1</strong>：定义映射$\varepsilon_{g}: Z_{n}\times Z_{n}^{\ast}\mapsto Z_{n^{2}}^{\ast}$，$\varepsilon_{g}(x,y)=g^{x}\cdot y^{n}\ \textrm{mod}\ n^{2}$。</p>
 <p><strong>引理1</strong>：若$g$的阶$ord(g)$是$n$的非零整数倍，则$\varepsilon_{g}$是双射。</p>
-<p>证明：由于$Z_{n}\times Z_{n}^{<em>}$与$Z_{n^{2}}^{</em>}$的元素个数均为$n\phi(n)$(参考《近世代数》(第三版)杨子胥 第149页 定理1)，因此只需证明$\varepsilon_{g}$是单射；</p>
+<p>证明：由于$Z_{n}\times Z_{n}^{\ast}$与$Z_{n^{2}}^{\ast}$的元素个数均为$n\phi(n)$(参考《近世代数》(第三版)杨子胥 第149页 定理1)，因此只需证明$\varepsilon_{g}$是单射；</p>
 <p>假设$\varepsilon_{g}(x_{1},y_{1})=\varepsilon_{g}(x_{2},y_{2})$；</p>
 <p>则$g^{x_{1}-x_{2}}\cdot (y_{1}\cdot y_{2}^{-1})^{n}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
 <p>因此$g^{\lambda(x_{1}-x_{2})}\cdot (y_{1}\cdot y_{2}^{-1})^{\lambda\cdot n}\equiv g^{\lambda(x_{1}-x_{2})}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
@@ -225,7 +225,7 @@ x\equiv 1\ \textrm{mod}\ p\
 x\equiv 1\ \textrm{mod}\ q\
 \end{cases}</script><p>由中国剩余定理，$x$在模$n$意义下有唯一解，又1满足上述同余方程组，因此$x\equiv 1\ \textrm{mod}\ n$<br>回到本引理的证明，则有$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，即$y_{1}\equiv y_{2}\ \textrm{mod}\ n$；<br>综上，$\varepsilon_{g}$是单射，也是双射。</p>
 <p><strong>解密的正确性</strong></p>
-<p>由引理1，存在$(a,b)\in Z_{n}\times Z_{n}^{*}$使得$g=(1+n)^{a}\cdot b^{n}\ \textrm{mod}\ n^{2}$，则：</p>
+<p>由引理1，存在$(a,b)\in Z_{n}\times Z_{n}^{\ast}$使得$g=(1+n)^{a}\cdot b^{n}\ \textrm{mod}\ n^{2}$，则：</p>
 <p>$g^{\lambda}\equiv (1+n)^{a\cdot\lambda}\cdot b^{n\cdot\lambda}\equiv (1+n)^{a\cdot\lambda}\equiv 1+na\lambda\ \textrm{mod}\ n^{2}$</p>
 <p>同理，$c^{\lambda}\equiv (g^{m}\cdot r^{n})^{\lambda}\equiv [(1+n)^{a}\cdot b^{n}]^{m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\cdot b^{n\cdot m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\equiv 1+mna\lambda\ \textrm{mod}\ n^{2}$</p>
 <p>因此，$L(c^{\lambda})\cdot [L(g^{\lambda})]^{-1}\equiv ma\lambda\cdot (a\lambda)^{-1}\equiv m\ \textrm{mod}\ n$。</p>
