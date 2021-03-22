@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>攻防世界-密码学-onetimepad2 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="攻防世界-密码学-onetimepad2 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-03-21">2021-03-21</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">攻防世界-密码学-oneTimePad2</h2>
+            <div class="post-meta">
+                本文共计3509个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>看名字也可以猜出来是oneTimePad的升级版。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>process1：GF(2^128)上的乘法操作；也是oneTimePad的唯一考点。</p>
+<p>nextrand：将process2视为$\{(x_{1},x_{2},x_{3},x_{4})|x_{i}\in GF(2^{128})\}$上的乘法操作，则函数最后的tmp1就是$(A,B,0,1)^{N}$；而通过几次尝试，发现$(A,B,0,1)^{N}$有形式$(A^{N},A^{N-1}\cdot B+\cdots +A\cdot B+B,0,1)$，即$(A^{N},B(A^{N}-1)\cdot (A-1)^{-1},0,1)$而这可通过数学归纳法得到证明(证明很简单，此处略)。此外，$N$更新为$N^{2}$(乘法为GF(2^128)上的乘法操作)。从而得到密钥的更新迭代公式为：$k_{i+1}=k_{i}\cdot A^{N}+B(A^{N}-1)\cdot (A-1)^{-1}=(k_{i}+B\cdot (A-1)^{-1})\cdot A^{N}-B(A-1)^{-1}$，则$k_{i+1}+B\cdot (A-1)^{-1}=(k_{i}+B\cdot (A-1)^{-1})\cdot A^{N}$，记$f(k)=k+B\cdot (A-1)^{-1}$，则$A^{N}=f(k_{i+1})\cdot f(k_{i})^{-1}$。128位的离散对数问题sage还是可以搞定的！</p>
+<p>而由于题目给了一定长度的明文，因此我们也就得到了一定数量的密钥(3个)，使用第2个和第3个密钥恢复出生成第3个密钥的$N$；得到$N$之后进行同样的操作来恢复出加密消息时的密钥流。</p>
+<p>注：我恢复的是生成第3个密钥的$N$，需要更新($N\leftarrow N^{2}$)才能对接下来的密文(第4组起)解密！</p>
+<h2><span id="三-解题">三、解题</span></h2><p>解题分为两步，第一步解出$N$，使用的sage脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> unhexlify</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">polify</span>(<span class="params">N</span>):</span></span><br><span class="line">    bN=<span class="built_in">list</span>(<span class="built_in">bin</span>(N)[<span class="number">2</span>:])</span><br><span class="line">    bN.reverse()</span><br><span class="line">    <span class="keyword">return</span> K(bN)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unpolify</span>(<span class="params">Poly</span>):</span></span><br><span class="line">    bN=Poly.polynomial().<span class="built_in">list</span>()</span><br><span class="line">    bN.reverse()</span><br><span class="line">    <span class="keyword">return</span> long(<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">str</span>(it) <span class="keyword">for</span> it <span class="keyword">in</span> bN]),<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    K.&lt;x&gt;=GF(<span class="number">2L</span>^<span class="number">128</span>,modulus=x^<span class="number">128</span>+x^<span class="number">7</span>+x^<span class="number">2</span>+x+<span class="number">1</span>)</span><br><span class="line">    cipher=<span class="string">&#x27;0da8e9e84a99d24d0f788c716ef9e99cc447c3cf12c716206dee92b9ce591dc0722d42462918621120ece68ac64e493a41ea3a70dd7fe2b1d116ac48f08dbf2b26bd63834fa5b4cb75e3c60d496760921b91df5e5e631e8e9e50c9d80350249c&#x27;</span></span><br><span class="line">    cipher=unhexlify(cipher)</span><br><span class="line">    cs=[bytes_to_long(cipher[ii:(ii+<span class="number">16</span>)]) <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(cipher),<span class="number">16</span>)]</span><br><span class="line">    pre=<span class="string">&quot;One-Time Pad is used here. You won&#x27;t know that the flag is flag&#123;&quot;</span></span><br><span class="line">    ps=[bytes_to_long(pre[ii:ii+<span class="number">16</span>]) <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(pre)-<span class="number">16</span>,<span class="number">16</span>)]</span><br><span class="line">    ks=[p^^c <span class="keyword">for</span> p,c <span class="keyword">in</span> <span class="built_in">zip</span>(ps,cs)]</span><br><span class="line">    f=<span class="keyword">lambda</span> k,a,b: k+b*(a-<span class="number">1</span>)^-<span class="number">1</span></span><br><span class="line">    A=<span class="number">0xc6a5777f4dc639d7d1a50d6521e79bfd</span></span><br><span class="line">    B=<span class="number">0x2e18716441db24baf79ff92393735345</span></span><br><span class="line">    KA,KB=polify(A),polify(B)</span><br><span class="line">    Kks=[polify(t) <span class="keyword">for</span> t <span class="keyword">in</span> ks]</span><br><span class="line">    tt=f(Kks[<span class="number">2</span>],KA,KB)*f(Kks[<span class="number">1</span>],KA,KB)^-<span class="number">1</span></span><br><span class="line">    N=discrete_log(tt,KA)</span><br><span class="line">    KN=polify(N)</span><br><span class="line">    <span class="built_in">print</span> unpolify(<span class="built_in">pow</span>(KN,<span class="number">2</span>))</span><br></pre></td></tr></table></figure><br>脚本运行结果如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sage solve.sage</span><br><span class="line">139066609048774629292054833219983607544</span><br></pre></td></tr></table></figure><br>注：我最后做了更新操作，因此直接对第四组起的密文解密即可。</p>
+<p>第二步，进行同样的操作来恢复出加密消息时的密钥流来解密密文，使用的Python脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> unhexlify</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> oneTimePad2 <span class="keyword">import</span> P,A,B</span><br><span class="line"><span class="keyword">from</span> oneTimePad2 <span class="keyword">import</span> process1,process2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nextrand</span>(<span class="params">rand</span>):</span></span><br><span class="line">    <span class="keyword">global</span> N, A, B</span><br><span class="line">    tmp1 = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    tmp2 = [A, B, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    s = N</span><br><span class="line">    N = process1(N, N)</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        <span class="keyword">if</span> s % <span class="number">2</span>:</span><br><span class="line">            tmp1 = process2(tmp2, tmp1)</span><br><span class="line">        tmp2 = process2(tmp2, tmp2)</span><br><span class="line">        s = s / <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> process1(rand, tmp1[<span class="number">0</span>]) ^ tmp1[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">keygen</span>():</span></span><br><span class="line">    key = bytes_to_long(pre)^bytes_to_long(cipher[<span class="number">0</span>:<span class="number">16</span>])</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> key</span><br><span class="line">        key = nextrand(key)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    N=<span class="number">139066609048774629292054833219983607544</span></span><br><span class="line">    cipher=<span class="string">&#x27;0da8e9e84a99d24d0f788c716ef9e99cc447c3cf12c716206dee92b9ce591dc0722d42462918621120ece68ac64e493a41ea3a70dd7fe2b1d116ac48f08dbf2b26bd63834fa5b4cb75e3c60d496760921b91df5e5e631e8e9e50c9d80350249c&#x27;</span></span><br><span class="line">    cipher=unhexlify(cipher[<span class="number">64</span>:])</span><br><span class="line">    pre=<span class="string">&quot;on&#x27;t know that t&quot;</span></span><br><span class="line">    res=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i, key <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">64</span>,<span class="number">16</span>),keygen()):</span><br><span class="line">        res+= long_to_bytes(bytes_to_long(cipher[i:i+<span class="number">16</span>])^key)</span><br><span class="line">    <span class="built_in">print</span> res</span><br></pre></td></tr></table></figure><br>注：为了复用P,A,B以及process1,process2，对oneTimePad2.py做了一定调整，P,A,B的定义放在全局，其他的除了函数定义全部放到<code>if __name__ == &#39;__main__&#39;:</code>下。<br>运行脚本结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">on<span class="string">&#x27;t know that the flag is flag&#123;LCG1sN3ver5aFe!!&#125;.XXXX</span></span><br></pre></td></tr></table></figure>
+<p>注：后面的字符有不可打印字符因此用XXXX代替。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/xctf/">xctf</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

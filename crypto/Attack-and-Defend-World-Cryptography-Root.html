@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>paillier同态加密之解密的正确性 - GAEA</title>
+<title>攻防世界-密码学-root - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="paillier同态加密之解密的正确性 - GAEA" />
+<meta property="og:title" content="攻防世界-密码学-root - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -163,72 +163,22 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-03-20">2021-03-20</span>
+                    <span title="最后编辑于&nbsp;2021-03-21">2021-03-21</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">Paillier同态加密之解密的正确性</h2>
+            <h2 class="post-title">攻防世界-密码学-root</h2>
             <div class="post-meta">
-                本文共计2796个字 |
+                本文共计2264个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-paillier同态加密系统">一、Paillier同态加密系统</span></h2><h3><span id="11-符号说明">1.1 符号说明</span></h3><ul>
-<li>p,q为大素数，$p\neq q$；</li>
-<li>$n=p\cdot q$；</li>
-<li>$\lambda =(p-1)\cdot (q-1)$；</li>
-<li>$B_{\alpha}=\{e\in Z_{n^{2}}^{\ast}|ord(e)=\alpha\cdot n\}$；</li>
-<li>$B=\bigcup_{\alpha=1}^{\lambda}B_{\alpha}$；</li>
-<li>函数$L(x,n)=[(x-1)/n]$；</li>
-</ul>
-<h3><span id="12-密钥生成">1.2 密钥生成</span></h3><ul>
-<li>随机选择指定长度的大素数p,q；(p,q)为私钥；</li>
-<li>$n=p\cdot q$；随机选择$g\in B$；(g,n)为公钥；</li>
-</ul>
-<h3><span id="13-加密">1.3 加密</span></h3><ul>
-<li>明文m&lt;n，随机选择r&lt;n；</li>
-<li>密文$c=g^{m}\cdot r^{n}\ \textrm{mod}\ n^{2}$；</li>
-</ul>
-<h3><span id="14-解密">1.4 解密</span></h3><ul>
-<li>密文$c&lt;n^{2}$；</li>
-<li>明文$m=L(c^{\lambda}\ \textrm{mod}\ n^{2}, n)\cdot L(g^{\lambda}\ \textrm{mod}\ n^{2}, n)^{-1}\ \textrm{mod}\ n$；</li>
-</ul>
-<h2><span id="二-解密的正确性">二、解密的正确性</span></h2><p>对于$g=1+n$的情形，网上已有很多证明解密正确性的推导，而我在这里是希望给出更一般的情形下解密正确性的证明；推导参考提出Paillier同态加密系统的这篇论文：《Public-Key Cryptosystems Based on Composite Degree Residuosity Classes》。</p>
-<p><strong>定义1</strong>：定义映射$\varepsilon_{g}: Z_{n}\times Z_{n}^{\ast}\mapsto Z_{n^{2}}^{\ast}$，$\varepsilon_{g}(x,y)=g^{x}\cdot y^{n}\ \textrm{mod}\ n^{2}$。</p>
-<p><strong>引理1</strong>：若$g$的阶$ord(g)$是$n$的非零整数倍，则$\varepsilon_{g}$是双射。</p>
-<p>证明：由于$Z_{n}\times Z_{n}^{\ast}$与$Z_{n^{2}}^{\ast}$的元素个数均为$n\phi(n)$(参考《近世代数》(第三版)杨子胥 第149页 定理1)，因此只需证明$\varepsilon_{g}$是单射；</p>
-<p>假设$\varepsilon_{g}(x_{1},y_{1})=\varepsilon_{g}(x_{2},y_{2})$；</p>
-<p>则$g^{x_{1}-x_{2}}\cdot (y_{1}\cdot y_{2}^{-1})^{n}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
-<p>因此$g^{\lambda(x_{1}-x_{2})}\cdot (y_{1}\cdot y_{2}^{-1})^{\lambda\cdot n}\equiv g^{\lambda(x_{1}-x_{2})}\equiv 1\ \textrm{mod}\ n^{2}$；</p>
-<p>从而$ord(g)|\lambda(x_{1}-x_{2})$；</p>
-<p>又$n|ord(g)\Rightarrow n|\lambda(x_{1}-x_{2}) , (n,\lambda)=1\Rightarrow n|(x_{1}-x_{2})$；</p>
-<p>因此在$x_{1},x_{2}\in Z_{n}$的意义下，$x_{1}=x_{2}$；</p>
-<p>那么$(y_{1}\cdot y_{2}^{-1})^{n}\equiv 1\ \textrm{mod}\ n^{2}$，则$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，理由如下：</p>
-<p>假设$x^{n}\equiv 1\ \textrm{mod}\ n^{2}$，则：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-x^{(p-1)\cdot q+q}\equiv 1\ \textrm{mod}\ p\
-\\
-x^{(q-1)\cdot p+p}\equiv 1\ \textrm{mod}\ q\
-\end{cases}</script><p>即：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-x^{q}\equiv 1\ \textrm{mod}\ p\
-\\
-x^{p}\equiv 1\ \textrm{mod}\ q\
-\end{cases}</script><p>又$(p,q-1)=1$，$(q,p-1)=1$，从而存在$s,t\in Z$，使得$p\cdot s\equiv 1\ \textrm{mod}\ q-1 , q\cdot t\equiv 1\ \textrm{mod}\ p-1$，同理可得：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-x\equiv 1\ \textrm{mod}\ p\
-\\
-x\equiv 1\ \textrm{mod}\ q\
-\end{cases}</script><p>由中国剩余定理，$x$在模$n$意义下有唯一解，又1满足上述同余方程组，因此$x\equiv 1\ \textrm{mod}\ n$<br>回到本引理的证明，则有$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，即$y_{1}\equiv y_{2}\ \textrm{mod}\ n$；<br>综上，$\varepsilon_{g}$是单射，也是双射。</p>
-<p><strong>解密的正确性</strong></p>
-<p>由引理1，存在$(a,b)\in Z_{n}\times Z_{n}^{\ast}$使得$g=(1+n)^{a}\cdot b^{n}\ \textrm{mod}\ n^{2}$，则：</p>
-<p>$g^{\lambda}\equiv (1+n)^{a\cdot\lambda}\cdot b^{n\cdot\lambda}\equiv (1+n)^{a\cdot\lambda}\equiv 1+na\lambda\ \textrm{mod}\ n^{2}$</p>
-<p>同理，$c^{\lambda}\equiv (g^{m}\cdot r^{n})^{\lambda}\equiv [(1+n)^{a}\cdot b^{n}]^{m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\cdot b^{n\cdot m\lambda}\cdot r^{n\lambda}\equiv (1+n)^{a\cdot m\lambda}\equiv 1+mna\lambda\ \textrm{mod}\ n^{2}$</p>
-<p>因此，$L(c^{\lambda})\cdot [L(g^{\lambda})]^{-1}\equiv ma\lambda\cdot (a\lambda)^{-1}\equiv m\ \textrm{mod}\ n$。</p>
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>附件是一个流量包。</p>
+<h2><span id="二-分析">二、分析</span></h2><p>在流量包中找到RSA公钥，由于没有提供任何其他信息，且模数位数很高，只能寄希望于因子之差很小，即采用费马攻击。之后将私钥导入流量包即可找出flag。</p>
+<h2><span id="三-解题">三、解题</span></h2><p>解题的Python脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> isqrt,square,is_square</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fermat_factors</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">assert</span> n % <span class="number">2</span> != <span class="number">0</span></span><br><span class="line">    a = isqrt(n)</span><br><span class="line">    b2 = square(a) - n</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> is_square(b2):</span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        b2 = square(a) - n</span><br><span class="line">    factor1 = a + isqrt(b2)</span><br><span class="line">    factor2 = a - isqrt(b2)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(factor1), <span class="built_in">int</span>(factor2)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    N=<span class="number">0x726f6f7400000000000000000000000000000000001b000000000000000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001fffff7777777b00000000000000001ffffffffffffb00000000000000001ffffffffffb0000000000000000001ffffffffffb0000000000000000001ffffffffffffb00000000000000001fffff2222222b00000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001ffffb0000000000000000000000001ffffb00000000000000265293c4422be3532638feeb2a635e865e5bccd4862d1491f8e46ed41afdab32ab1e913c296c45a723a371cc4ad218d273a494ac501a1c677576b84d3a1700b24e38f3d7c8090c952767f8a9da532eb4496a953fa2b2641f93af58321e491ad6b3e1f6600ea1757635a2d47562dff2f245bfc8ed511420931de246d56334d8897d6465b227f6c095ece1ad994c7551f08dbc21f8b40691ee51f5f72d052d9352062f90b0e7c52c2eb18196c2c985101af4eac67499396c6241ad4f2439ed11f87d67e73a239b865c45d65a61cf0f56082de831b97fb28ae8222a7195e0ec06c08281ffc16e7106e77e68b8c4510424beeb5582fe21cc345f53534682b75c368d73c9</span></span><br><span class="line">    E=<span class="number">31337</span></span><br><span class="line">    p,q=fermat_factors(N)</span><br><span class="line">    phi=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">assert</span> GCD(E,phi)==<span class="number">1</span></span><br><span class="line">    d=inverse(E,phi)</span><br><span class="line">    rsakey=RSA.construct((N,E,d,p,q))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;key.pem&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(rsakey.exportKey(<span class="string">&#x27;PEM&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure><br>之后将私钥导入流量包，如下图所示：</p>
+<img src="/crypto/Attack-and-Defend-World-Cryptography-Root/1.png" class title="pic1">
+<p>然后返回，快捷键Ctrl-Alt-Shift-S来追踪SSL流，在明文的最后以’666c6167’开头，而它正好是flag的16进制编码。将这串字符进行16进制解码即得到flag。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;666c61673a7768656e5f736f6c76696e675f70726f626c656d735f6469675f61745f7468655f726f6f74735f696e73746561645f6f665f6a7573745f6861636b696e675f61745f7468655f6c6561766573&#x27;</span>.decode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;flag:when_solving_problems_dig_at_the_roots_instead_of_just_hacking_at_the_leaves&#x27;</span></span><br></pre></td></tr></table></figure></p>
 
             
                 
@@ -242,7 +192,7 @@ x\equiv 1\ \textrm{mod}\ q\
         
         <div class="post-tags">标签：
             
-            <a href="/tags/Paillier/">Paillier</a>
+            <a href="/tags/xctf/">xctf</a>
             
         </div>
         
