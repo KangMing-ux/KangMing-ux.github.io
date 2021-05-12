@@ -177,17 +177,19 @@
             </div>
             <h2 class="post-title">第二章 中断、异常与系统调用</h2>
             <div class="post-meta">
-                本文共计957个字 |
+                本文共计960个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="sec1-基本概念与原理">Sec1 基本概念与原理</span></h2><img src="/os/os-ch2/4.png" class title="pic4">
+            <h2><span id="sec1-基本概念与原理">Sec1 基本概念与原理</span></h2><div style="width:36%;margin:auto"><img src="/os/os-ch2/4.png" class title="pic4"></div>
+
 <p>&nbsp;</p>
 <p><strong>系统调用</strong>：应用程序主动向操作系统发出的服务请求；异步响应。</p>
 <p><strong>异常</strong>：非法指令或其他原因导致当前指令执行失败，(如内存出错)后的处理请求；同步响应。</p>
 <p><strong>中断</strong>：来自硬件设备(外设，device)的处理请求。好处：避免CPU不停地去查询外设的状态，提高CPU的运行效率；异步或同步响应。</p>
-<img src="/os/os-ch2/5.png" class title="pic5">
+<div style="width:50%;margin:auto"><img src="/os/os-ch2/5.png" class title="pic5"></div>
+
 <h2><span id="sec2-中断处理机制">Sec2 中断处理机制</span></h2><p><strong>建立中断机制</strong></p>
 <ul>
 <li>建立中断服务例程；</li>
@@ -224,7 +226,8 @@
 <li>sstatus的SIE位置0以禁用中断；</li>
 <li>stval保存中断相关的附加信息；</li>
 </ul>
-<h2><span id="sec-3-系统调用">Sec 3 系统调用</span></h2><img src="/os/os-ch2/6.png" class title="pic6">
+<h2><span id="sec-3-系统调用">Sec 3 系统调用</span></h2><div style="width:80%;margin:auto"><img src="/os/os-ch2/6.png" class title="pic6"></div>
+
 <p>&nbsp;</p>
 <ul>
 <li>ecall指令与sret指令用于系统调用；</li>

@@ -177,7 +177,7 @@
             </div>
             <h2 class="post-title">第一章 浏览器生成消息</h2>
             <div class="post-meta">
-                本文共计2047个字 |
+                本文共计2088个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -204,14 +204,21 @@
 <li><code>http://www.lab.glasscom.com/what</code>：若/what是文件，则访问/目录下的what文件，若what是目录，则访问/what目录下的index.html或default.html；</li>
 </ul>
 <h3><span id="12-生成http请求消息">1.2 生成HTTP请求消息</span></h3><p>HTTP请求消息格式如下：</p>
-<img src="/cn/cn-ch1/1.png" class title="pic1">
+<p>&nbsp;</p>
+<div style="width:64%;margin:auto"><img src="/cn/cn-ch1/1.png" class title="pic1"></div>
+
 <p>&nbsp;</p>
 <p>HTTP的主要方法及其含义如下图所示：</p>
-<img src="/cn/cn-ch1/2.png" class title="pic2">
+<p>&nbsp;</p>
+<div style="width:80%;margin:auto"><img src="/cn/cn-ch1/2.png" class title="pic2"></div>
+
 <p>&nbsp;</p>
 <p>HTTP请求消息中主要的头字段有如下这些：</p>
-<img src="/cn/cn-ch1/3.png" class title="pic3">
-<h2><span id="sec2-向dns服务器查询web服务器的ip地址">Sec2 向DNS服务器查询Web服务器的IP地址</span></h2><img src="/cn/cn-ch1/4.png" class title="pic4">
+<p>&nbsp;</p>
+<div style="width:80%;margin:auto"><img src="/cn/cn-ch1/3.png" class title="pic3"></div>
+
+<h2><span id="sec2-向dns服务器查询web服务器的ip地址">Sec2 向DNS服务器查询Web服务器的IP地址</span></h2><div style="width:64%;margin:auto"><img src="/cn/cn-ch1/4.png" class title="pic4"></div>
+
 <p>&nbsp;</p>
 <ul>
 <li>客户端将查询消息发送给最近的1台DNS服务器(地址填写在客户端的TCP/IP设置中)；若该DNS服务器的缓存中存放了<code>www.lab.glasscom.com</code>Web服务器的IP地址，则直接返回相应IP地址；</li>
@@ -221,7 +228,9 @@
 <li>同时，此次查询结果会缓存到最近的1台DNS服务器中，以便下次查询能够快速响应(DNS服务器缓存的信息都会有一个有效期，过了有效期缓存的信息会被删除)；</li>
 </ul>
 <h2><span id="sec3-委托协议栈发送消息">Sec3 委托协议栈发送消息</span></h2><p>数据通过类似管道的结构来流动：</p>
-<img src="/cn/cn-ch1/5.png" class title="pic5">
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch1/5.png" class title="pic5"></div>
+
 <p>&nbsp;</p>
 <p>收发数据大体分为4个阶段：</p>
 <ul>
@@ -231,7 +240,9 @@
 <li>断开阶段(断开管道并删除套接字)；</li>
 </ul>
 <p>如下示意图：</p>
-<img src="/cn/cn-ch1/6.png" class title="pic6">
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch1/6.png" class title="pic6"></div>
+
 <p>&nbsp;</p>
 <p><strong>创建套接字阶段</strong></p>
 <p>创建套接字通过调用socket程序组件完成，套接字创建完成后，协议栈(socket程序组件)返回关于此套接字的描述符。</p>

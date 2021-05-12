@@ -177,7 +177,7 @@
             </div>
             <h2 class="post-title">鲲鹏计算专场密码学部分详解</h2>
             <div class="post-meta">
-                本文共计1041个字 |
+                本文共计1070个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -197,7 +197,7 @@
 <p><strong>Level 2</strong></p>
 <p>从脚本可得的信息如下：</p>
 <p>$o,s$是两个随机生成的素数，$t$是$o$的下一个素数，$u$是$s$的下一个素数；</p>
-<p>已知$os=o<em>s,tu=t</em>u$，$N_{2}=o<em>s</em>t*u\Rightarrow tu=N_{2}//os$，这道题在18年强网杯的nextrsa的第四关考察过，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WangAoBo/p/8654120.html">此处</a>是对其的writeup</p>
+<p>已知$os=o\cdot s,tu=t\cdot u$，$N_{2}=o\cdot s\cdot t\cdot u\Rightarrow tu=N_{2}//os$，这道题在18年强网杯的nextrsa的第四关考察过，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WangAoBo/p/8654120.html">此处</a>是对其的writeup</p>
 <p><strong>Level 1</strong></p>
 <p>这一层很简单，从$(N_{1}//1323)^{1/4}$往下开始试除即可(第一次写的时候疏忽了，往上试除，程序跑了几分钟都没解出来)。</p>
 <h3><span id="13解题">1.3解题</span></h3><p>上述链接中的solve.py为解题脚本，程序运行结果如下：</p>

@@ -177,7 +177,7 @@
             </div>
             <h2 class="post-title">Paillier同态加密之解密的正确性</h2>
             <div class="post-meta">
-                本文共计2796个字 |
+                本文共计2805个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -218,17 +218,20 @@
 \begin{cases}
 x^{(p-1)\cdot q+q}\equiv 1\ \textrm{mod}\ p\
 \\
+\\
 x^{(q-1)\cdot p+p}\equiv 1\ \textrm{mod}\ q\
 \end{cases}</script><p>即：</p>
 <script type="math/tex; mode=display">
 \begin{cases}
 x^{q}\equiv 1\ \textrm{mod}\ p\
 \\
+\\
 x^{p}\equiv 1\ \textrm{mod}\ q\
 \end{cases}</script><p>又$(p,q-1)=1$，$(q,p-1)=1$，从而存在$s,t\in Z$，使得$p\cdot s\equiv 1\ \textrm{mod}\ q-1 , q\cdot t\equiv 1\ \textrm{mod}\ p-1$，同理可得：</p>
 <script type="math/tex; mode=display">
 \begin{cases}
 x\equiv 1\ \textrm{mod}\ p\
+\\
 \\
 x\equiv 1\ \textrm{mod}\ q\
 \end{cases}</script><p>由中国剩余定理，$x$在模$n$意义下有唯一解，又1满足上述同余方程组，因此$x\equiv 1\ \textrm{mod}\ n$<br>回到本引理的证明，则有$y_{1}\cdot y_{2}^{-1}\equiv 1\ \textrm{mod}\ n$，即$y_{1}\equiv y_{2}\ \textrm{mod}\ n$；<br>综上，$\varepsilon_{g}$是单射，也是双射。</p>

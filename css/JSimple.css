@@ -316,6 +316,9 @@ a.btn:hover {
 .btn-github:hover {
     background-color:#2a2a2a
 }
+.image-size-200
+  img
+    width: 200px
 a.avatar img,img.avatar {
     vertical-align:middle;
     -webkit-border-radius:50%;
