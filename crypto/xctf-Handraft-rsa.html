@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>攻防世界-密码学-handicraft_rsa - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="攻防世界-密码学-handicraft_rsa - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.min.css">
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/os" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计算机网络">计算机网络</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-03-20">2021-03-20</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">攻防世界-密码学-Handicraft_RSA</h2>
+            <div class="post-meta">
+                本文共计5108个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2><span id="一-题目信息">一、题目信息</span></h2><p>有人正在他老房子的地下室里开发自己的RSA系统。 证明他这个RSA系统只在他的地下室有效！</p>
+<h2><span id="二-分析">二、分析</span></h2><p>很明显素数的生成有问题，生成的素数p，其p-1有很多小因子，使用RsaCtfTool即可破解出私钥！</p>
+<h2><span id="三-解题">三、解题</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">$ python3 RsaCtfTool.py -n 21702007965967851183912845012669844623756908507890324243024055496763943595946688940552416734878197459043831494232875785620294668737665396025897150541283087580428261036967329585399916163401369611036124501098728512558174430431806459204349427025717455575024289926516646738721697827263582054632714414433009171634156535642801472435174298248730890036345522414464312932752899972440365978028349224554681969090140541620264972373596402565696085035645624229615500129915303416150964709569033763686335344334340374467597281565279826664494938820964323794098815428802817709142950181265208976166531957235913949338642042322944000000001 -e 65537 --private</span><br><span class="line"></span><br><span class="line">[*] Testing key /tmp/tmpeooqiijv.</span><br><span class="line">[*] Performing boneh_durfee attack on /tmp/tmpeooqiijv.</span><br><span class="line">[*] Performing comfact_cn attack on /tmp/tmpeooqiijv.</span><br><span class="line">[*] Performing cube_root attack on /tmp/tmpeooqiijv.</span><br><span class="line">[*] Performing ecm attack on /tmp/tmpeooqiijv.</span><br><span class="line">[*] ECM Method can run forever and may never succeed, timeout <span class="built_in">set</span> to 30sec. Hit Ctrl-C to bail out.</span><br><span class="line">^C[*] Performing ecm2 attack on /tmp/tmpeooqiijv.</span><br><span class="line">[*] ECM2 Method can run forever and may never succeed, timeout <span class="built_in">set</span> to 30sec. Hit Ctrl-C to bail out.</span><br><span class="line">^C[*] Performing factordb attack on /tmp/tmpeooqiijv.</span><br><span class="line"></span><br><span class="line">Results <span class="keyword">for</span> /tmp/tmpeooqiijv:</span><br><span class="line"></span><br><span class="line">Private key :</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEpAIBAAKCAQEAq+m7iHurBa9G8ujEiTpZ71aHOVNhQXpd6jCQNhwMN3hD6JHk</span><br><span class="line">v0HSxmJwfGe0EnXDtjRraWmS6OYzT4+LSrXsz9IkWGzRlJ4lC7WHS8D3NWIWYHCP</span><br><span class="line">4TRt2N0TlWXWm9nFCrEXqQ3IWgYQpQvKzsdsetnIZJL1tf1wQzGE6rbkbvURlUBb</span><br><span class="line">zBSuidkmi0kY5Qxp2Jfb6OUI647zx2dPxJpDffSCNffVIDUYOvrgYxIhs5HmCF3X</span><br><span class="line">ECC3VfaKtRceL5JM8R0qz5nVU2Ns8hPvSVP+7/i7G447cjW151si0joB7RpBplu4</span><br><span class="line">4Vk8TXXDAk0JZdW6KwJn7ITaX04AAAAAAAAAAQIDAQABAoIBAQCEWcr2FXeiRcIS</span><br><span class="line">it+cYp8QowYyPR4YAfRBsyejcM56+g0WBRQdprh14R2GuXQp7h5BrXOwUQY4ZdnE</span><br><span class="line">+9caKptpl/hBV222xFXzAMtrp+DqaVye3Kn4kJutJO7JywCBNhP72kFD9odzv02b</span><br><span class="line">M0vtDB1ZK0ebHoUqmjaOlJYm+a0+OgzRG/VY6PfVs0GWdsSPtbIcautHI/+5V8US</span><br><span class="line">yG2wRH78JmTobVCLxEmdpjnUNKTM1Vsg/VCatzbkpohrE1cEZHhk+ke9uhyPvIvt</span><br><span class="line">afOC442Y09eI0vaC24IfgyAVuhOfuU3uik+JT6Vz1x9/53vorAD//wAA//8AAP//</span><br><span class="line">AAD//wABAoGBAMaX7gnjTwV6mm9o004b07Hk5Ab3PR4oEzniNgtrpP8/3Ed1wpHg</span><br><span class="line">M54idlm6rYlcLh+XWU4Z7/4v5HaNjbPaRye2tGVfGi+gY+HcrRLbEHUJlhPKUozd</span><br><span class="line">N6nayALynp7Lso19xaOz6kV86oUw+TFSi1PRnHcV01mJTgAAAAAAAAABAoGBAN2b</span><br><span class="line">baKYDQzqBypnO+t/6JQPIvHzY8gC34qdUv7ShqvKgX70QRcFY4BY2C+ZTln0y1jv</span><br><span class="line">tX3tCwq59dzh1CRpgAfwk5nR2IjA+JLU35vAGB1IVqWmVC/VZ46zOSwy07xCJEy4</span><br><span class="line">HQ0d+PqANk8Wv2pMFmZZZfDWsYDWAAAAAAAAAAABAoGAK2b69BhEperko6KiQ7jb</span><br><span class="line">LE7c8xTHu7aAdS8WJqrQ9aQMTWXULzNztITNntCoqpOF1QurzeDnTYNECBDpvjvf</span><br><span class="line">PzOz+0+slmoUSkGDZdKQpzOAJDUck4KpbqrM+a/ysLvN+xRYxG1Grwcc7h0E6R2k</span><br><span class="line">K55s9q3DchcK//8AAP//AAECgYAUPbgb28uFXHLfGqLMddhmfaNxegupHyoP3SLR</span><br><span class="line">h6UpV8vQLrsrQSC/fl3wqw4PBV71dp+bKuWRSz77t9zKnqBFGWJB8HrYsteBgdQS</span><br><span class="line">w87wDcVsR+70l4dn71LPiKzySxBJuZ9drVkqeD99pdRB/0UkgBHhl5qK7AD//wAA</span><br><span class="line">//8AAQKBgQCYIKsSiGhJxY9AGaWofVsVe2sgGPHpwj3l2Yv8/PoG5Fpxozy+mzqv</span><br><span class="line">lDHIzJjsDIhtDeZr2cTkT6ODNM8bswDC62QnG+VUAzltXeN7P/aQzrbEUcGg7zgd</span><br><span class="line">ZzvOJdNjXP9dU/vKGBT9cjjJhvwowfqnDlUVrl12W3AE/jn6U/Xpfg==</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+<p>破解出私钥之后，循环解密多次直到找出flag。如下Python脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    N=<span class="number">21702007965967851183912845012669844623756908507890324243024055496763943595946688940552416734878197459043831494232875785620294668737665396025897150541283087580428261036967329585399916163401369611036124501098728512558174430431806459204349427025717455575024289926516646738721697827263582054632714414433009171634156535642801472435174298248730890036345522414464312932752899972440365978028349224554681969090140541620264972373596402565696085035645624229615500129915303416150964709569033763686335344334340374467597281565279826664494938820964323794098815428802817709142950181265208976166531957235913949338642042322944000000001</span></span><br><span class="line">    d=<span class="number">16707734744082089987096183760536140050531071284398222525928539910115274945961673413424053379896538639181783084998088831705326266248972451538621553176990679827738650084993005694971585059194288779236578752505246610328862945930341561242587398577636666631640913502943335996493633579116896296237142465786006038646664937384294577512911411958573147328359278328601128101352047028079357406162063405979398633542591758429760763171350524080583743130797539259640940004907846945847664144924968938380506532950172261068535550048712875992662239788993590417593968724043704420879416184807161738395187599580068732017638891008132810473473</span></span><br><span class="line">    C=b64decode(<span class="string">b&#x27;eER0JNIcZYx/t+7lnRvv8s8zyMw8dYspZlne0MQUatQNcnDL/wnHtkAoNdCalQkpcbnZeAz4qeMX5GBmsO+BXyAKDueMA4uy3fw2k/dqFSsZFiB7I9M0oEkqUja52IMpkGDJ2eXGj9WHe4mqkniIayS42o4p9b0Qlz754qqRgkuaKzPWkZPKynULAtFXF39zm6dPI/jUA2BEo5WBoPzsCzwRmdr6QmJXTsau5BAQC5qdIkmCNq7+NLY1fjOmSEF/W+mdQvcwYPbe2zezroCiLiPNZnoABfmPbWAcASVU6M0YxvnXsh2YjkyLFf4cJSgroM3Aw4fVz3PPSsAQyCFKBA==&#x27;</span>)</span><br><span class="line">    f=<span class="built_in">open</span>(<span class="string">&#x27;mes&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">80</span>):</span><br><span class="line">        C=long_to_bytes(<span class="built_in">pow</span>(bytes_to_long(C),d,N))</span><br><span class="line">        f.write(C+<span class="string">b&#x27;\n\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure><br>在mes中第64行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">the flag is: ASIS&#123;n0t_5O_e4sy___RSA___in_ASIS!!!&#125;</span><br></pre></td></tr></table></figure>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/xctf/">xctf</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

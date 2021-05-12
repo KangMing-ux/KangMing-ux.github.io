@@ -139,6 +139,14 @@
                     <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
                 </li>
             
+                <li class="">
+                    <a href="/categories/os" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计算机网络">计算机网络</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -169,14 +177,14 @@
             </div>
             <h2 class="post-title">i春秋"巅峰极客"2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计1797个字 |
+                本文共计1725个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
             <h2><span id="一-tryecc">一、tryecc</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个sage脚本与一个文本文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/iCHUNQIU/tryecc">Gitee备份</a>在此</p>
 <h3><span id="12-分析">1.2 分析</span></h3><script type="math/tex; mode=display">
-E_{1}: y^{2}\equiv x^{3}+ax+c\ \textrm{mod}\ N\\
+E_{1}: y^{2}\equiv x^{3}+ax+c\ \textrm{mod}\ N</script><script type="math/tex; mode=display">
 E_{2}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ N</script><p>我们总结一下已知量和未知量：</p>
 <div class="table-container">
 <table>
@@ -196,27 +204,26 @@ E_{2}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ N</script><p>我们总结一下已�
 </div>
 <p>那么已知$P_{1}(x_{1},y_{1}),P_{2}(x_{2},y_{2})$就可以计算出$a,b$：</p>
 <script type="math/tex; mode=display">
-y_{1}^{2}\equiv x_{1}^{3}+a\cdot x_{1}+c\ \textrm{mod}\ N \\
-y_{2}^{2}\equiv x_{2}^{3}+a\cdot x_{2}+b\ \textrm{mod}\ N \\
-a=(y_{1}^{2}-x_{1}^{3}-c)\cdot x_{1}^{-1}\ \textrm{mod}\ N \\
-b=y_{2}^{2}-x_{2}^{3}-a\cdot x_{2}\ \textrm{mod}\ N \\</script><p>好在$x_{1}$在模$N$下有逆，于是$a,b$就可以解出，到此得到了$E_{1},E_{2}$；</p>
+y_{1}^{2}\equiv x_{1}^{3}+a\cdot x_{1}+c\ \textrm{mod}\ N</script><script type="math/tex; mode=display">
+y_{2}^{2}\equiv x_{2}^{3}+a\cdot x_{2}+b\ \textrm{mod}\ N</script><script type="math/tex; mode=display">
+a=(y_{1}^{2}-x_{1}^{3}-c)\cdot x_{1}^{-1}\ \textrm{mod}\ N</script><script type="math/tex; mode=display">
+b=y_{2}^{2}-x_{2}^{3}-a\cdot x_{2}\ \textrm{mod}\ N</script><p>好在$x_{1}$在模$N$下有逆，于是$a,b$就可以解出，到此得到了$E_{1},E_{2}$；</p>
 <script type="math/tex; mode=display">
-P_{3}=m_{1}\cdot P_{2}\ in\ E_{2}\\
+P_{3}=m_{1}\cdot P_{2}\ in\ E_{2}</script><script type="math/tex; mode=display">
 P_{4}=m_{2}\cdot P_{2}\ in\ E_{2}</script><p>丢到sgaemath里面去解离散对数，结果发现解不出来！</p>
 <p>但是发现$N$不是素数，用yafu分解一下$N$，发现$N$是两个素数的乘积，记为$N=p\cdot q$，那么椭圆曲线$E_{2}$可重写为</p>
 <script type="math/tex; mode=display">
 E_{2}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ p\cdot q</script><p>这样$E_{2}$上的点也满足下面两个等式：</p>
 <script type="math/tex; mode=display">
-E_{p}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ p \\
-E_{q}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ q</script><p>即$E_{2}$上的点同时在$E_{p}$与$E_{q}$上(试了一下，我们可以求解$P_{3},P_{4}$在椭圆曲线$E_{p},E_{q}$上关于基点$P_{2}$的离散对数)</p>
+E_{p}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ p</script><p>即$E_{2}$上的点同时在$E_{p}$与$E_{q}$上(试了一下，我们可以求解$P_{3},P_{4}$在椭圆曲线$E_{p},E_{q}$上关于基点$P_{2}$的离散对数)</p>
 <script type="math/tex; mode=display">
 P_{3}=m_{1}\cdot P_{2}\ in\ E_{2}</script><p> 则有：</p>
 <script type="math/tex; mode=display">
-P_{3}=m_{1}\cdot P_{2}\ \ in\ E_{p} \\
+P_{3}=m_{1}\cdot P_{2}\ \ in\ E_{p}</script><script type="math/tex; mode=display">
 P_{3}=m_{1}\cdot P_{2}\ \ in\ E_{q}</script><p>那是不是意味着我们解出$P_{3}$在椭圆曲线$E_{p}$上关于基点$P_{2}$的离散对数就是$m_{1}$呢？非也！我们解出的只是$m_{1}\ \textrm{mod}\ order_{E_{p}}(P_{2})$，即$m_{1}$模了$P_{2}$在椭圆曲线$E_{p}$上的阶之后的值！</p>
 <p>要想解出$m_{1}$，需要将$P_{3}$在椭圆曲线$E_{p},E_{q}$上关于基点$P_{2}$的离散对数结合起来！</p>
 <script type="math/tex; mode=display">
-m_{1}\equiv s_{p}(1)\ \textrm{mod}\ order_{E_{p}}(P_{2}) \\
+m_{1}\equiv s_{p}(1)\ \textrm{mod}\ order_{E_{p}}(P_{2})</script><script type="math/tex; mode=display">
 m_{1}\equiv s_{q}(1)\ \textrm{mod}\ order_{E_{q}}(P_{2})</script><p>这里$s_{p}(1),s_{q}(1)$分别是$P_{3}$在椭圆曲线$E_{p},E_{q}$上关于基点$P_{2}$的离散对数；</p>
 <p>使用中国剩余定理解上述方程组即可解出$m_{1}$，同理解出$m_{2}$</p>
 <h3><span id="13-解题">1.3 解题</span></h3><p>上述链接中的solve.sage为解题的脚本；程序运行结果如下(运行时间有点长，稍微等一下)：</p>

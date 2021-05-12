@@ -2,6 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chu-kangming.gitee.io/crypto/I-Spring-and-Autumn-Peak-Geek-2020-Cryptography-in-detail.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Babyrsa.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tech/B32-64-encode-explanation.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch6.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch4.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/crypto/Use-of-Sagemath-in-CTF-Cryptography.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/crypto/CTF-cryptography-uses-Python-libraries.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch5.html</loc>
+    
+    <lastmod>2021-05-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/cn/cn-ch2.html</loc>
+    
+    <lastmod>2021-05-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/crypto/WMCTF2020-Cryptography-Part-Detail.html</loc>
+    
+    <lastmod>2021-05-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/ATwithT.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch3.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch2.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch1.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/cn/cn-ch1.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/conf/personal-blog.html</loc>
+    
+    <lastmod>2021-05-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tech/The-basic-Git-use-with-Gitee.html</loc>
+    
+    <lastmod>2021-05-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tech/Return2libc-experiment.html</loc>
+    
+    <lastmod>2021-05-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/crypto/HUAWEICTF2021.html</loc>
+    
+    <lastmod>2021-04-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tech/The-Makefile-que.html</loc>
+    
+    <lastmod>2021-04-10</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/links/index.html</loc>
     
     <lastmod>2021-03-31</lastmod>
@@ -16,42 +156,28 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-the-World-Cryptography-Beginners-Luck.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Beginners-Luck.html</loc>
     
     <lastmod>2021-03-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/CTF-cryptography-uses-Python-libraries.html</loc>
-    
-    <lastmod>2021-03-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Beginner-Practice-Area.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Beginner-Practice-Area.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/WMCTF2020-Cryptography-Part-Detail.html</loc>
-    
-    <lastmod>2021-03-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Marijuana.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Marijuana.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Industrial-Protocol-Analysis-II.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Industrial-Protocol-Analysis-II.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
@@ -65,14 +191,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-the-World-Cryptography-Babyrsa1.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Babyrsa1.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Decrypt-the-Message.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Decrypt-the-Message.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
@@ -86,56 +212,42 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tech/B32-64-encode-explanation.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-XOR-GAME.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-XOR-GAME.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Root.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Root.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Onetimepad-2.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Onetimepad-2.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Handraft-rsa.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-the-World-Cryptography-Handraft-rsa.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Easy-One.html</loc>
     
     <lastmod>2021-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Easy-One.html</loc>
-    
-    <lastmod>2021-03-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-the-World-Cryptography-Babyrsa.html</loc>
-    
-    <lastmod>2021-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-ECB-it-is-easy-as-123.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-ECB-it-is-easy-as-123.html</loc>
     
     <lastmod>2021-03-20</lastmod>
     
@@ -156,14 +268,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Simple-Traffic-Analysis.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Simple-Traffic-Analysis.html</loc>
     
     <lastmod>2021-03-20</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-SM.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-SM.html</loc>
     
     <lastmod>2021-03-20</lastmod>
     
@@ -177,28 +289,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Use-of-Sagemath-in-CTF-Cryptography.html</loc>
-    
-    <lastmod>2021-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Kun-Peng-calculation-special-cryptography-part-of-the-detailed.html</loc>
-    
-    <lastmod>2021-03-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Shanghai.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Shanghai.html</loc>
     
     <lastmod>2021-02-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Sleeping-Guard.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Sleeping-Guard.html</loc>
     
     <lastmod>2021-02-27</lastmod>
     
@@ -212,23 +310,9 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/conf/Build-a-personal-blog-based-on-Gitee-Pages-using-Hexo-with-JSimple-Theme.html</loc>
-    
-    <lastmod>2021-02-21</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://chu-kangming.gitee.io/crypto/BytectF2020-cryptography-section-details.html</loc>
     
     <lastmod>2021-02-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tech/Return2libc-experiment.html</loc>
-    
-    <lastmod>2021-01-31</lastmod>
     
   </url>
   
@@ -240,119 +324,105 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tech/The-basic-Git-use-with-Gitee.html</loc>
-    
-    <lastmod>2021-01-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tech/The-Makefile-que.html</loc>
-    
-    <lastmod>2021-01-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-DECODE-THE-FILE.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-DECODE-THE-FILE.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Equation-2.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Equation-2.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Flag-in-Your-Hand.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Flag-in-Your-Hand.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Guess.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Guess.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Need-proof-that-I-cheated.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Need-proof-that-I-cheated.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-OldDriver.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-OldDriver.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Onetimepad.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Onetimepad.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Safer-Than-Rot13.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Safer-Than-Rot13.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-StreamGame1.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-StreamGame1.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-Tells-you-a-secret.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Tells-you-a-secret.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defend-World-Cryptography-WTC-RSA-BBQ.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-WTC-RSA-BBQ.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Banana-Princess.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Banana-Princess.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-fanfile.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-fanfile.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Industrial-Protocol-Analysis-1.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Industrial-Protocol-Analysis-1.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/crypto/Attack-and-Defense-World-Cryptography-Sherlock.html</loc>
+    <loc>https://chu-kangming.gitee.io/crypto/xctf-Sherlock.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
@@ -367,13 +437,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/crypto/GACTF2020-Cryptography-Section.html</loc>
-    
-    <lastmod>2021-01-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/crypto/I-Spring-and-Autumn-Peak-Geek-2020-Cryptography-in-detail.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
@@ -403,141 +466,148 @@
 
   <url>
     <loc>https://chu-kangming.gitee.io/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/xctf/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <loc>https://chu-kangming.gitee.io/tags/backend/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
-    <lastmod>2021-03-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/hexo/</loc>
-    <lastmod>2021-03-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/gitee/</loc>
-    <lastmod>2021-03-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/jsimple/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/python/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/Paillier/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/rsa/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/elgamal/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/ret2libc/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/makefile/</loc>
-    <lastmod>2021-03-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/git/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/Ubuntu/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/msf/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/git/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/ntl/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/sagemath/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/windows/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/hexo/</loc>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/gitee/</loc>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/jsimple/</loc>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/xctf/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/hyper/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -545,22 +615,36 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <loc>https://chu-kangming.gitee.io/categories/os/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://chu-kangming.gitee.io/categories/conf/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/categories/cn/</loc>
+    <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
