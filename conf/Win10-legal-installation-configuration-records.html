@@ -177,13 +177,20 @@
             </div>
             <h2 class="post-title">win10正版安装+配置记录</h2>
             <div class="post-meta">
-                本文共计1547个字 |
+                本文共计1539个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-前言">一、前言</span></h2><p>自己以前作为一个电脑小白，重装系统时直接在百度上面搜索，搜到的全是各种下载站，从这些网站上面下载的系统其实已经改过了，安装完之后会给你预装很多软件，你又要花时间把他们删掉，可以说很不方便；去微软官网上面找，如果不知道怎么找，可能很不容易找到，于是写下这篇博客备忘，也方便他人。</p>
-<h2><span id="二-下载镜像并制作启动盘">二、下载镜像并制作启动盘</span></h2><p>安装前，准备好8GB以上的U盘(必须真的是8G以上，U盘质量一定要过关；另外，U盘里面的数据要备份好，制作启动盘会让原来的数据不复存在)</p>
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">下载镜像并制作启动盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">安装常用软件</span></a></li></ol>
+            </div>
+        
+            <h2><span id="前言">前言</span></h2><p>自己以前作为一个电脑小白，重装系统时直接在百度上面搜索，搜到的全是各种下载站，从这些网站上面下载的系统其实已经改过了，安装完之后会给你预装很多软件，你又要花时间把他们删掉，可以说很不方便；去微软官网上面找，如果不知道怎么找，可能很不容易找到，于是写下这篇博客备忘，也方便他人。</p>
+<h2><span id="下载镜像并制作启动盘">下载镜像并制作启动盘</span></h2><p>安装前，准备好8GB以上的U盘(必须真的是8G以上，U盘质量一定要过关；另外，U盘里面的数据要备份好，制作启动盘会让原来的数据不复存在)</p>
 <p><strong>1.</strong>先去<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10/">微软官方镜像下载地址</a>，下载MediaCreationTool；</p>
 <p><strong>2.</strong>以管理员方式，运行MediaCreationTool；首先给出声明与许可条款，选择接受；此时会给你两种操作，升级本机或者创建安装介质，我习惯创建安装介质；</p>
 <p><strong>3.</strong>选择语言、体系结构与版本，直接默认就好；</p>
@@ -192,11 +199,11 @@
 <p><strong>6.</strong>创建安装介质</p>
 <p>创建完成后，点击完成，工具做一些清理工作就会退出。</p>
 <p>打开文件资源管理器，可以看到启动盘已经制作完毕：</p>
-<h2><span id="三-安装">三、安装</span></h2><p>1.如果安装时鼠标用不了，可以使用tab键进行切换；</p>
+<h2><span id="安装">安装</span></h2><p>1.如果安装时鼠标用不了，可以使用tab键进行切换；</p>
 <p>2.安装过程中最好联网；</p>
 <p>3.删除不常用文件夹<br>cmd—&gt;regedit<br>3D对象：HKEY_LOCAL_MACHINE-&gt;SOFTWARE-&gt;Microsoft-&gt;Windows-&gt;CurrentVersion-&gt;Explorer-&gt;MyComputer<br>-&gt;NameSpace-&gt;{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}<br>音乐：{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}</p>
 <p>4.“开始”关掉设置、图片。</p>
-<h2><span id="四-安装常用软件">四、安装常用软件</span></h2><p><a target="_blank" rel="noopener" href="https://www.360totalsecurity.com/zh-cn/360zip/">360zip国际版</a></p>
+<h2><span id="安装常用软件">安装常用软件</span></h2><p><a target="_blank" rel="noopener" href="https://www.360totalsecurity.com/zh-cn/360zip/">360zip国际版</a></p>
 <p><a target="_blank" rel="noopener" href="http://pan.baidu.com/download">百度网盘</a></p>
 <p><a target="_blank" rel="noopener" href="http://en.ejie.me/">Clover</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注：我们知道win10下面的文件资源管理器打开多个位置时是多个窗口，这个插件就可以以多标签页来管理，特别好用。</span><br><span class="line">但是你要忍受经常的广告的骚扰</span><br></pre></td></tr></table></figure>

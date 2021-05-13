@@ -177,14 +177,16 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-你猜猜</h2>
             <div class="post-meta">
-                本文共计818个字 |
+                本文共计812个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-题目信息">一、题目信息</span></h2><p>附件是一个文本文件，里面是一串16进制数据。</p>
-<h2><span id="二-分析">二、分析</span></h2><p>504B0304开头一般代表zip数据(另外还有526172211a0701开头代表rar数据，377abcaf271c开头代表7z数据)，于是将这一串16进制数据另存为一个zip文件，不用说，压缩时肯定进行了加密，使用fcrackzip工具进行破解。</p>
-<h2><span id="三-解题">三、解题</span></h2><p>首先使用Python将16进制数据另存为一个zip文件：</p>
+		    <!-- Table of Contents -->
+            
+            <h2><span id="题目信息">题目信息</span></h2><p>附件是一个文本文件，里面是一串16进制数据。</p>
+<h2><span id="分析">分析</span></h2><p>504B0304开头一般代表zip数据(另外还有526172211a0701开头代表rar数据，377abcaf271c开头代表7z数据)，于是将这一串16进制数据另存为一个zip文件，不用说，压缩时肯定进行了加密，使用fcrackzip工具进行破解。</p>
+<h2><span id="解题">解题</span></h2><p>首先使用Python将16进制数据另存为一个zip文件：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line">s=<span class="number">0x504B03040A0001080000626D0A49F4B5091F1E0000001200000008000000666C61672E7478746C9F170D35D0A45826A03E161FB96870EDDFC7C89A11862F9199B4CD78E7504B01023F000A0001080000626D0A49F4B5091F1E00000012000000080024000000000000002000000000000000666C61672E7478740A0020000000000001001800AF150210CAF2D1015CAEAA05CAF2D1015CAEAA05CAF2D101504B050600000000010001005A000000440000000000</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.zip&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(long_to_bytes(s))</span><br></pre></td></tr></table></figure>
 <p>再使用fcrackzip工具破解密码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ fcrackzip -b -c <span class="string">&#x27;1&#x27;</span> -l 4-8 -u data.zip</span><br><span class="line"></span><br><span class="line">PASSWORD FOUND!!!!: pw == 123456</span><br></pre></td></tr></table></figure>

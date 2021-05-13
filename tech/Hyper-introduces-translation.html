@@ -177,16 +177,23 @@
             </div>
             <h2 class="post-title">《An elementary introduction to hyperelliptic curves》翻译</h2>
             <div class="post-meta">
-                本文共计15754个字 |
+                本文共计15736个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">基本定义和属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">多项式与有理函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">零点与极点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">因数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">半约化因数的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">约化因数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">约化因数相加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">超椭圆曲线密码系统的实现</span></a></li></ol>
+            </div>
+        
             <h2><span id="摘要">摘要</span></h2><p>​    本文对具有密码相关性的任意特征的有限域上的超椭圆曲线的一些理论作了初步的介绍。给出了在超椭圆曲线雅可比矩阵中求解的康托算法，并证明了该算法的正确性。</p>
-<h2><span id="一-简介">一、简介</span></h2><p>​    超椭圆曲线是一类特殊的代数曲线，可以看作是椭圆曲线的推广。对每类$g\geq1$的超椭圆曲线，当$g=1$时超椭圆曲线退化为椭圆曲线。一百多年来，人们对椭圆曲线进行了广泛的研究，并有大量的相关文献;例如，参见西尔弗曼[34,35]的著作。最初研究椭圆曲线主要是出于纯粹的审美原因，最近已成为几个重要应用领域的必要工具，包括编码理论(如Driencourt和Michon[11]和van der Geer [15])；伪随机数生成(如Kaliski [18]);数论算法(如Goldwasser and Kilian[16]和Lenstra [21]);和公开密钥密码学(见Koblitz [19]， Miller[27]和Menezes [25])。</p>
+<h2><span id="简介">简介</span></h2><p>​    超椭圆曲线是一类特殊的代数曲线，可以看作是椭圆曲线的推广。对每类$g\geq1$的超椭圆曲线，当$g=1$时超椭圆曲线退化为椭圆曲线。一百多年来，人们对椭圆曲线进行了广泛的研究，并有大量的相关文献;例如，参见西尔弗曼[34,35]的著作。最初研究椭圆曲线主要是出于纯粹的审美原因，最近已成为几个重要应用领域的必要工具，包括编码理论(如Driencourt和Michon[11]和van der Geer [15])；伪随机数生成(如Kaliski [18]);数论算法(如Goldwasser and Kilian[16]和Lenstra [21]);和公开密钥密码学(见Koblitz [19]， Miller[27]和Menezes [25])。</p>
 <p>​    另一方面，超椭圆曲线理论还没有得到学术界足够的重视。在代数几何文献中出现的关于超椭圆曲线的大多数结果都是用非常一般的术语表达的。例如，在有关超椭圆曲线的论文中，一个常见的来源是芒福德的书[28]。然而，非专业人士很难将本书中的结果专门研究(更不用说发现)到超椭圆曲线的特殊情况。另一个困难是，这些书中的理论通常仅限于复数上的超椭圆曲线(如芒福德的书)，或特征不等于$2$的代数闭域。最近的Cassels和Flynn[6]的书是关于类为$2$曲线的广泛记述。(与他们的书相比，我们的方法绝对是“低级的”。)近年来，超椭圆曲线在代数几何以外的领域得到了应用。超椭圆曲线是Adleman和Huang关于证明[3]的质数的随机多项式时间算法的关键组成部分。在纠错码[4]、整数分解算法[22]和公钥密码[20]的设计中也考虑了超椭圆曲线。对于实现这些代码和密码系统，在特征为$2$的有限域上的超椭圆曲线是特别有趣的。</p>
 <p>​    Charlap和Robbins[7,8]对椭圆曲线进行了初步的介绍。目的是为有限域上计算椭圆曲线上的点的Schoof算法[33]的一些基本理论提供基本的自成证明。讨论仅限于不等于2或3的特征域。然而，在实际应用中，椭圆曲线和超椭圆曲线在两个特征域上特别具有吸引力。本文与Charlap和Robbins的思想相似，对具有密码相关性的任意特征有限域上的超椭圆曲线的一些理论作了初步的介绍。关于代数曲线理论的一般介绍，请参阅富尔顿的著作[14]。</p>
-<h2><span id="二-基本定义和属性">二、基本定义和属性</span></h2><p> <strong>定义1(超椭圆曲线)</strong>设$K$是一个域，$\bar K$是$K$的代数闭包。$K$上类为$g$的超椭圆曲线定义为如下等式：</p>
+<h2><span id="基本定义和属性">基本定义和属性</span></h2><p> <strong>定义1(超椭圆曲线)</strong>设$K$是一个域，$\bar K$是$K$的代数闭包。$K$上类为$g$的超椭圆曲线定义为如下等式：</p>
 <script type="math/tex; mode=display">
 C: v^{2}+h(u)v=f(u)\ \textrm{in}\ K[u,v] \tag{1}</script><p>其中$h(u)\in K[u]$是次数不超过$g$的多项式，$f(u)\in K[u]$是次数为$2g+1$的首项系数为$1$多项式，并且不存在解$(u,v)\in \bar K\times\bar K$同时满足方程$v^{2}+h(u)v=f(u)\ \textrm{in}\ K[u,v]$与两个偏微分方程$2v+h(u)=0,h^{‘}(u)v-f^{‘}(u)=0$。</p>
 <p>​    所谓$C$上的奇异点是一个解$(u,v)\in \bar K\times\bar K$同时满足上述三个方程。定义$1$表明超椭圆曲线没有任何奇异点。</p>
@@ -242,7 +249,7 @@ f^{'}(u)=0
 <p>考虑有限域$F_{2^{5}}$上类$g=2$曲线$C: v^{2}+(u^{2}+u)v=u^{5}+u^{3}+1$，这里$h(u)=u^{2}+u,f(u)=u^{5}+u^{3}+1$，可以证明$C$没有奇异点(除了$\infty$)，因此$C$实际上是一个超椭圆曲线。$C(F_{2^{5}})$中的有限点如下：</p>
 <img src="/tech/Hyper-introduces-translation/5.png" class title="pic5">
 <p>其中，点$(0,1),(1,1)$是特殊的。</p>
-<h2><span id="三-多项式与有理函数">三、多项式与有理函数</span></h2><p>​    本节介绍多项式和有理函数的基本性质，这些性质是将它们视为超椭圆曲线上的函数而产生的。</p>
+<h2><span id="多项式与有理函数">多项式与有理函数</span></h2><p>​    本节介绍多项式和有理函数的基本性质，这些性质是将它们视为超椭圆曲线上的函数而产生的。</p>
 <p><strong>定义8</strong>(坐标环，多项式函数)$K$上$C$的坐标环，定义为$K[C]$，是商环</p>
 <script type="math/tex; mode=display">
 K[C]=K[u,v]/(v^{2}+h(u)v-f(u))</script><p>其中$(v^{2}+h(u)v-f(u))$定义为由多项式$v^{2}+h(u)v-f(u)$生成的$K[u,v]$的理想。类似地，$\bar K$上$C$的坐标环定义为</p>
@@ -280,7 +287,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <p>$\textrm{(i)}$若$deg(G)&lt;deg(H)$则$R$在$\infty$处的值被定义为$R(\infty)=0$；</p>
 <p>$\textrm{(ii)}$若$deg(G)&gt;deg(H)$则$R$在$\infty$处的无定义；</p>
 <p>$\textrm{(iii)}$若$deg(G)=deg(H)$则$R(\infty)$被定义为$G$与$H$的首项系数的比值。</p>
-<h2><span id="四-零点与极点">四、零点与极点</span></h2><p>​    本节介绍单值化参数的概念，以及有理函数的零点和极点的阶数。</p>
+<h2><span id="零点与极点">零点与极点</span></h2><p>​    本节介绍单值化参数的概念，以及有理函数的零点和极点的阶数。</p>
 <p><strong>定义18</strong>(零点，极点)令$R\in \bar K(C)^{*},P\in C$。若$R(P)=0$则记为$R$在$P$有一个零点。若$R$在$P$处没有定义则记为$R$在$P$处有一个极点，此时我们记为$R(P)=\infty$。</p>
 <p><strong>引理19</strong>令$G\in \bar K(C)^{*},P\in C$，若$G(P)=0$，则$\bar G(\bar P)=0$。</p>
 <p>证明：套定义算就行，过程略。</p>
@@ -317,7 +324,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <img src="/tech/Hyper-introduces-translation/12.png" class title="pic12">
 <p><strong>定义30</strong>(有理函数在一点上的阶数)令$R=G/H\in \bar K(C)^{*} , P\in C$，$R$在$P$处的阶数定义为$ord_{P}(R)=ord_{P}(G)-ord_{P}(H)$。</p>
 <p>不难证明ordP (R)不依赖于G和H的选择，引理25和定理29对于非零有理函数也成立。</p>
-<h2><span id="五-因数">五、因数</span></h2><p>本节介绍因数的基本性质及超椭圆曲线的雅可比矩阵。</p>
+<h2><span id="因数">因数</span></h2><p>本节介绍因数的基本性质及超椭圆曲线的雅可比矩阵。</p>
 <p><strong>定义31</strong>(因数 , 次数 , 阶数)因数D是C中的点的形式和：$D=\sum_{P\in C}m_{P}P ,m_{P}\in Z$，其中只有有限的$m_{P}$是非零的。D的次数，记为$degD$，是$\sum_{P\in C}m_{P}$。$D$在$P$处的阶数$m_{P}$，记$ord_{P}(D)=m_{P}$。<br>所有因数的集合记为D，在加法规则下形成一个可加群：$\sum_{P\in C}m_{P}P+\sum_{P\in C}n_{P}P=\sum_{P\in C}(m_{P}+n_{P})P$。<br>所有次数为$0$的因数组成的集合，记为$\bf{D^{0}}$，是$D$的子群。</p>
 <p><strong>定义32</strong>(因数的公约数)令$D_{1}=\sum_{P\in C}m_{P}P , D_{2}=\sum_{P\in C}n_{P}P$为两个因子，$D_{1}$与$D_{2}$的最大公约数定义为：$gcd(D_{1},D_{2})=\sum_{P\in C}\textrm{min}(m_{P},n_{P})P-(\sum_{P\in C}\textrm{min}(m_{P},n_{P}))\infty$(注意到$gcd(D_{1},D_{2})\in \bf{D^{0}}$)。</p>
 <p><strong>定义33</strong>(有理函数的因数)令$R\in \bar K(C)^{*}$。$R$的因数是$div(R)=\sum_{P\in C}(ord_{P}R)P$，注意到若$R=G/H$则$div(R)=div(G)-div(H)$。定理29表明有理函数的因数确实是一个有限形式和并且次数为0。</p>
@@ -331,7 +338,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <p><strong>引理39</strong>对每个因数$D\in\bf{D^{0}}$存在一个半约化因数$D_{1}(D_{1}\in\bf{D^{0}})$使得$D\sim D_{1}$。</p>
 <p>证明：</p>
 <img src="/tech/Hyper-introduces-translation/13.png" class title="pic13">
-<h2><span id="六-半约化因数的表示">六、半约化因数的表示</span></h2><p>本节描述雅可比矩阵半约化因子的多项式表示。它引出了一个有效的算法来添加雅可比矩阵的元素。</p>
+<h2><span id="半约化因数的表示">半约化因数的表示</span></h2><p>本节描述雅可比矩阵半约化因子的多项式表示。它引出了一个有效的算法来添加雅可比矩阵的元素。</p>
 <p><strong>引理40</strong> 令$P(x,y)$是$C$上一个平凡点，再令$R\in \bar K(C)$是一个在$P$处没有极点的有理函数，则对任意的$k\geq 0$，存在唯一的元素$c_{0},\cdots,c_{k}\in\bar K$与$R_{k}\in \bar K(C)$使得$R=\sum_{i=0}^{k} c_{i}(u-x)^{i}+(u-x)^{k+1}R_{k}$，其中$R_{k}$在$P$处没有极点。</p>
 <p>证明：</p>
 <img src="/tech/Hyper-introduces-translation/14.png" class title="pic14">
@@ -349,7 +356,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <img src="/tech/Hyper-introduces-translation/17.png" class title="pic17">
 <p>注意到零因数表示为$div(1,0)$，下一个结果来自定理42的证明。</p>
 <p><strong>引理43</strong> 令$a(u),b(u)\in \bar K[u]$使得$deg(b)&lt;deg(a)$，若$a|(b^{2}+bh-f)$则$div(a,b)$是半约化的。</p>
-<h2><span id="七-约化因数">七、约化因数</span></h2><p>本节定义了约化因数的概念，并证明了商群的每个陪集$\bf{J=D^{0}/P}$只有一个约化因数，因此，我们可以用它的约化因数来识别每个陪集。</p>
+<h2><span id="约化因数">约化因数</span></h2><p>本节定义了约化因数的概念，并证明了商群的每个陪集$\bf{J=D^{0}/P}$只有一个约化因数，因此，我们可以用它的约化因数来识别每个陪集。</p>
 <p><strong>定义44</strong>(约化因数)令$D=\sum m_{i}P_{i}-(\sum m_{i})\infty$是一个半约化因数，若$\sum m_{i}\leq g$($g$是$C$的属性)，则$D$称为一个约化因数。</p>
 <p><strong>定义45</strong>(因数的范数)令$D=\sum_{P\in C}m_{P}P$是一个因数，$D$的范数定义为：$|D|=\sum_{P\in C\setminus {\infty}}m_{P}$。</p>
 <p>注意到给定一个因数$D\in \bf{D^{0}}$，在引理39的证明中所描述的操作会产生一个半约化因数$D_{1}$使得$D_{1}\sim D$且$D_{1}\leq D$。</p>
@@ -359,7 +366,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <p>证明：</p>
 <img src="/tech/Hyper-introduces-translation/19.png" class title="pic19">
 <img src="/tech/Hyper-introduces-translation/20.png" class title="pic20">
-<h2><span id="八-约化因数相加">八、约化因数相加</span></h2><p>令$C$是定义在有限域$K$上属性为$g$的一个超椭圆曲线，令$J$是$C$的雅克比行列式，令$P(x,y)\in C$，令$\sigma$是$\bar K$到$K$的一个自同构，则$P^{\sigma}=(x^{\sigma},y^{\sigma})$同样是$C$上的一个点。</p>
+<h2><span id="约化因数相加">约化因数相加</span></h2><p>令$C$是定义在有限域$K$上属性为$g$的一个超椭圆曲线，令$J$是$C$的雅克比行列式，令$P(x,y)\in C$，令$\sigma$是$\bar K$到$K$的一个自同构，则$P^{\sigma}=(x^{\sigma},y^{\sigma})$同样是$C$上的一个点。</p>
 <p><strong>定义48</strong>(因数的定义域)若一个因数$D=\sum m_{P}P$有$D^{\sigma}=\sum m_{P}P^{\sigma}$能对任意$\bar K$到$K$的自同构$\sigma$均与$D$相等。</p>
 <p>注意到如果$D$定义在$K$上，这并不代表$D$的支撑集中的每个点均为$K$有理点，一个主因数定义在$K$上当且仅当它是一个有$K$中系数的有理函数的因数，$J$中所有除数类的集合$J(K)$有一个定义在$K$上的代表，是$J$的一个子群。$J(K)$的每个元素都有一个唯一的表示形式，即约化因数$div(a, b)$，其中$a,b\in K[u],deg(a)\leq g,deg(b)&lt;deg(a)$，因此$J(K)$事实上是一个有限Abel群。本节介绍一种在该组中元素相加的有效算法。</p>
 <p>令$D_{1}=\textrm{div}(a_{1},b_{1}),D_{2}=\textrm{div}(a_{2},b_{2})$为两个在$K$上定义的约化因数(则$a_{1},b_{1},a_{2},b_{2}\in K[u]$)。算法1寻找一个半约化因数$D=\textrm{div}(a,b),a,b\in K[u]$使得$D\sim D_{1}+D_{2}$。算法2将$D$约化为等价的约化因数$D^{‘}$。</p>
@@ -380,7 +387,7 @@ deg(G)=max[2deg(a),2g+1+2deg(b)]</script><p><strong>引理16</strong>(次数的�
 <img src="/tech/Hyper-introduces-translation/29.png" class title="pic29">
 <img src="/tech/Hyper-introduces-translation/30.png" class title="pic30">
 <p>注意，算法1和算法2中的所有计算都发生在域$K$本身(而不是$K$的任何适当扩展)。在算法1中，若$deg(a_{1})\leq g,deg(a_{2})\leq g$则$deg(a)\leq 2g$。此时，算法2对步骤1的迭代次数最多为$[g/2]$。</p>
-<h2><span id="九-超椭圆曲线密码系统的实现">九、超椭圆曲线密码系统的实现</span></h2><p>Diffie-Hellman密钥交换[10]是一个协议，两个实体$A$和$B$可以通过公共通道上的一系列传输，就一个秘密的加密密钥达成一致。方法如下。$A$和$B$首先选择一个(乘式写)有限Abel群$G$和某个元素$\alpha\in G$。然后$A$选择一个随机整数$a$且将$\alpha^{a}$传输给$B$，$B$反过来选择一个随机整数$b$且将$\alpha^{b}$传输给$A$。这样$A,B$均能确定$\alpha^{ab}$，作为他们的共享密钥。</p>
+<h2><span id="超椭圆曲线密码系统的实现">超椭圆曲线密码系统的实现</span></h2><p>Diffie-Hellman密钥交换[10]是一个协议，两个实体$A$和$B$可以通过公共通道上的一系列传输，就一个秘密的加密密钥达成一致。方法如下。$A$和$B$首先选择一个(乘式写)有限Abel群$G$和某个元素$\alpha\in G$。然后$A$选择一个随机整数$a$且将$\alpha^{a}$传输给$B$，$B$反过来选择一个随机整数$b$且将$\alpha^{b}$传输给$A$。这样$A,B$均能确定$\alpha^{ab}$，作为他们的共享密钥。</p>
 <p>窃听者$C$监控$A$与$B$之间的传输将会得到$G,\alpha,\alpha^{a},\alpha^{b}$，选择参数$G$和$\alpha$，使$C$确定$\alpha^{ab}$在计算上是不可行的。事实上，若$C$可以计算$a$或者$b$，则$C$可以确定$\alpha^{ab}$。给定$\alpha,\beta=\alpha^{a}$确定$a$的问题称为离散对数问题。当限制在$[0,order(\alpha)-1]$范围内$a$是唯一的，称为以$\alpha$为底，$\beta$的对数。确定$\alpha^{ab}$与计算$G$上的离散对数问题是否等价还没有定论，在其他安全依赖于离散对数问题的加密协议中，有ElGamal公钥加密和数字签名方案[12]，以及最近采用的美国数字签名标准[29]。</p>
 <p>最好的算法以解决离散对数问题在任意$G$组指数平方根攻击(见McCurley[24]),有一个运行时间的平方根成比例最大的质数因子$l$, $l$是$\alpha$的阶。因此，如果选择$G$和$\alpha$，使$l$有一个大的素数因子，那么这些攻击就可以避免。</p>
 <p>令$F_{q}$代表阶为$q$的有限域，再令$q=p^{m}$其中$p$是$F_{q}$的特征，Diffie与Hellman最初提议$G=F_{q}^{*}$，$F_{q}$的乘法群，作为实现Diffie-Hellman密钥交换协议的候选。有一些已知的随机次指数时间算法可用于计算$F_{q}$中的对数。关于$q$为质数的情形，请参见Coppersmith，Odlyzko和Schroeppel [9]和Gordon [17]，对于$p=2$的情况，请参见Odlyzko [30]，有关一般情况，请参见Adleman和DeMarrais [1]。这些算法是对上一段中提到的通用算法的渐进改进。 出于加密目的，我们对相应离散对数问题的次指数算法未知的群感兴趣。另外，为了有效和实际地实施，群操作应该相对容易地应用。 对于这样的群，在有限域上定义的超椭圆曲线的雅可比行列式就是一种可能性。</p>

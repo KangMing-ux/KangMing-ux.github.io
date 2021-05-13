@@ -177,13 +177,15 @@
             </div>
             <h2 class="post-title">i春秋"巅峰极客"2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计1725个字 |
+                本文共计1711个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-tryecc">一、tryecc</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个sage脚本与一个文本文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/iCHUNQIU/tryecc">Gitee备份</a>在此</p>
-<h3><span id="12-分析">1.2 分析</span></h3><script type="math/tex; mode=display">
+		    <!-- Table of Contents -->
+            
+            <h2><span id="tryecc">tryecc</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个sage脚本与一个文本文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/iCHUNQIU/tryecc">Gitee备份</a>在此</p>
+<h3><span id="分析">分析</span></h3><script type="math/tex; mode=display">
 E_{1}: y^{2}\equiv x^{3}+ax+c\ \textrm{mod}\ N</script><script type="math/tex; mode=display">
 E_{2}: y^{2}\equiv x^{3}+ax+b\ \textrm{mod}\ N</script><p>我们总结一下已知量和未知量：</p>
 <div class="table-container">
@@ -226,7 +228,7 @@ P_{3}=m_{1}\cdot P_{2}\ \ in\ E_{q}</script><p>那是不是意味着我们解出
 m_{1}\equiv s_{p}(1)\ \textrm{mod}\ order_{E_{p}}(P_{2})</script><script type="math/tex; mode=display">
 m_{1}\equiv s_{q}(1)\ \textrm{mod}\ order_{E_{q}}(P_{2})</script><p>这里$s_{p}(1),s_{q}(1)$分别是$P_{3}$在椭圆曲线$E_{p},E_{q}$上关于基点$P_{2}$的离散对数；</p>
 <p>使用中国剩余定理解上述方程组即可解出$m_{1}$，同理解出$m_{2}$</p>
-<h3><span id="13-解题">1.3 解题</span></h3><p>上述链接中的solve.sage为解题的脚本；程序运行结果如下(运行时间有点长，稍微等一下)：</p>
+<h3><span id="解题">解题</span></h3><p>上述链接中的solve.sage为解题的脚本；程序运行结果如下(运行时间有点长，稍微等一下)：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sage solve.sage</span><br><span class="line">  ***   Warning: increasing stack size to 2000000.</span><br><span class="line">flag&#123;de7a89ab1d074ef3930fb3054c0e3ac8&#125;</span><br></pre></td></tr></table></figure>
 <h2><span id="后记">后记</span></h2><p>一直在等师傅们关于密码学题目的writeup，结果一直没有找到；就只能把自己唯一做出来的一道题目的writeup写一下。</p>
 

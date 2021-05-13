@@ -177,24 +177,31 @@
             </div>
             <h2 class="post-title">第一章 操作系统与系统结构&程序设计语言</h2>
             <div class="post-meta">
-                本文共计738个字 |
+                本文共计716个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="sec1-从os角度看计算机系统">Sec1 从OS角度看计算机系统</span></h2><p>使用操作系统，在一个CPU上并发的执行多个程序的实例，我们称为进程。在多个进程相互执行时如何做到相互之间不互相影响，保证系统是安全的，这时需要对程序的执行进行<strong>隔离</strong>。这种隔离就需要计算机系统结构给予支持。而这里主要的隔离技术即<strong>虚拟内存</strong>与<strong>特权模式(中断)</strong>。</p>
-<h3><span id="11-隔离">1.1 隔离</span></h3><ul>
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">从OS角度看计算机系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">隔离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">虚拟内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">特权模式&amp;中断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Lab1</span></a></li></ol>
+            </div>
+        
+            <h2><span id="从os角度看计算机系统">从OS角度看计算机系统</span></h2><p>使用操作系统，在一个CPU上并发的执行多个程序的实例，我们称为进程。在多个进程相互执行时如何做到相互之间不互相影响，保证系统是安全的，这时需要对程序的执行进行<strong>隔离</strong>。这种隔离就需要计算机系统结构给予支持。而这里主要的隔离技术即<strong>虚拟内存</strong>与<strong>特权模式(中断)</strong>。</p>
+<h3><span id="隔离">隔离</span></h3><ul>
 <li>隔离以避免对整个系统的可用性、可靠性、安全产生影响；</li>
 <li>运行的程序通常是隔离的单元；</li>
 <li>技术1：地址空间。一个程序只能寻址自己的内存，任一程序若无许可，则不能访问不属于自己的内存。</li>
 <li>技术2：特权模式（中断机制）。防止应用程序访问设备与敏感的CPU寄存器。使用中断机制进行特权模式的切换。</li>
 </ul>
-<h3><span id="12-虚拟内存">1.2 虚拟内存</span></h3><p>由操作系统提供的一种对物理内存的抽象。</p>
-<h3><span id="13-特权模式amp中断">1.3 特权模式&amp;中断</span></h3><ul>
+<h3><span id="虚拟内存">虚拟内存</span></h3><p>由操作系统提供的一种对物理内存的抽象。</p>
+<h3><span id="特权模式amp中断">特权模式&amp;中断</span></h3><ul>
 <li>内核模式(低特权级)</li>
 <li>用户模式(高特权级)</li>
 </ul>
-<h2><span id="sec2-lab1">Sec2 Lab1</span></h2><p>安装qemu-system</p>
+<h2><span id="lab1">Lab1</span></h2><p>安装qemu-system</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y qemu-system</span><br></pre></td></tr></table></figure>
 <p>进入ucore/labcodes/lab1文件夹，使用<code>make</code>命令编译。</p>
 <p>使用qemu-system-x86启动ucore.img但是并不马上执行，以便我们用gdb对其进行远程调试。如无特别说明，以下命令都是在ucore/labcodes/lab1目录下执行。</p>

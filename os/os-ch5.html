@@ -177,21 +177,28 @@
             </div>
             <h2 class="post-title">第五章 虚拟存储概念</h2>
             <div class="post-meta">
-                本文共计1147个字 |
+                本文共计1122个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="sec1-覆盖与交换技术">Sec1 覆盖与交换技术</span></h2><p><strong>覆盖技术</strong>：依据程序的逻辑结构，将程序划分为若干功能独立的模块，将不会同时执行的模块共享同一块内存区域。</p>
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">覆盖与交换技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">局部性原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚拟存储概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚拟页式存储管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">缺页中断</span></a></li></ol>
+            </div>
+        
+            <h2><span id="覆盖与交换技术">覆盖与交换技术</span></h2><p><strong>覆盖技术</strong>：依据程序的逻辑结构，将程序划分为若干功能独立的模块，将不会同时执行的模块共享同一块内存区域。</p>
 <p><strong>交换技术</strong>：将暂时不能运行的程序换到外存，再将外存中某一进程的数据读入内存。</p>
-<h2><span id="sec2-局部性原理">Sec2 局部性原理</span></h2><p>程序在执行过程的一段较短时期内，所执行指令的地址与操作数的地址，分别局限于一定区域。具体来说：</p>
+<h2><span id="局部性原理">局部性原理</span></h2><p>程序在执行过程的一段较短时期内，所执行指令的地址与操作数的地址，分别局限于一定区域。具体来说：</p>
 <ul>
 <li>时间局部性；一条指令在执行后的较短时间内很可能会再次执行，某个内存地址在被访问后的较短时间内很可能会再次访问；</li>
 <li>空间局部性；相邻指令访问的内存地址很可能集中在一个较小的区域；</li>
 <li>分支局部性；一条跳转指令的两次执行，很可能会跳到相同的内存地址；</li>
 </ul>
 <p>局部性原理给虚拟存储技术提供了理论支持。</p>
-<h2><span id="sec3-虚拟存储概述">Sec3 虚拟存储概述</span></h2><ul>
+<h2><span id="虚拟存储概述">虚拟存储概述</span></h2><ul>
 <li>在装载程序时，只将指令执行需要的部分页面或段装入内存；</li>
 <li>当指令执行时需要的指令或数据不在内存中时(即缺页或缺段)，处理器通知操作系统将相应的页面或者段读入内存；</li>
 <li>此外，操作系统还会时刻监控内存中页或段的使用情况，从而将暂时不用的页或段换到外存；</li>
@@ -199,7 +206,7 @@
 <p>要实现虚拟存储，需要硬件与操作系统的支持；</p>
 <p>对硬件：支持虚拟存储的页或段式地址转换机制；</p>
 <p>对操作系统：管理内存与外存间页或段的数据的写入；</p>
-<h2><span id="sec4-虚拟页式存储管理">Sec4 虚拟页式存储管理</span></h2><p>概括地说，虚拟页式存储管理就是在页式存储管理的基础上增加请求调页与页面置换。</p>
+<h2><span id="虚拟页式存储管理">虚拟页式存储管理</span></h2><p>概括地说，虚拟页式存储管理就是在页式存储管理的基础上增加请求调页与页面置换。</p>
 <p>上一章指出了页表项的结构，但是对其中的控制位并未作解释；在这里我们指出这些控制位在虚拟页式存储管理中所起的作用。</p>
 <div style="width:80%;margin:auto"><img src="/os/os-ch5/29.jpg" class title="pic29"></div>
 
@@ -218,7 +225,7 @@
 <p>指令要访问的页面不在内存中，操作系统调用缺页中断服务例程将该页读入内存，并将该页对应页表项的P位置1；</p>
 <p><strong>页面换出内存</strong></p>
 <p>若页面对应页表项的D位为0，则只需要将P位置0即可；否则，操作系统要将内存中的该页写到外存中对应位置；</p>
-<h2><span id="sec5-缺页中断">Sec5 缺页中断</span></h2><p>下面详细介绍缺页中断处理例程。发生缺页中断时，操作系统会找到外存中的对应页面，之后在内存中申请一个空闲页面，将外存中的页面装载到内存中，如果内存中此时没有空闲页面，那么需要根据页面置换算法将内存中的某些页面换出内存。具体的页面置换算法在下一章介绍。</p>
+<h2><span id="缺页中断">缺页中断</span></h2><p>下面详细介绍缺页中断处理例程。发生缺页中断时，操作系统会找到外存中的对应页面，之后在内存中申请一个空闲页面，将外存中的页面装载到内存中，如果内存中此时没有空闲页面，那么需要根据页面置换算法将内存中的某些页面换出内存。具体的页面置换算法在下一章介绍。</p>
 
             
                 

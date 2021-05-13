@@ -177,14 +177,16 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-fanfie</h2>
             <div class="post-meta">
-                本文共计766个字 |
+                本文共计760个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-题目信息">一、题目信息</span></h2><p>附件是一个文本文件，里面是一段长34的字符串。</p>
-<h2><span id="二-分析">二、分析</span></h2><p>文本中的字符串看上去像base32编码，加填充后解码得乱码；很多时候比赛的名称是解密的谜面，对字符串BITSCTF进行base32编码得字符串IJEVIU2DKRDA====，与文本中的字符串MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI进行对比，发现字符I两次对应M，猜测是移位密码或仿射密码，加密运算的有限集为{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,2,3,4,5,6,7}，不理解的可以参见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/coming1890/p/13503574.html">对base编码的介绍</a>,尝试之后得加密方式为仿射密码，求得解密式为$x=5y+12\ \textrm{mod}\ 32$。</p>
-<h2><span id="三-解题">三、解题</span></h2><p>实现的Python脚本如下：</p>
+		    <!-- Table of Contents -->
+            
+            <h2><span id="题目信息">题目信息</span></h2><p>附件是一个文本文件，里面是一段长34的字符串。</p>
+<h2><span id="分析">分析</span></h2><p>文本中的字符串看上去像base32编码，加填充后解码得乱码；很多时候比赛的名称是解密的谜面，对字符串BITSCTF进行base32编码得字符串IJEVIU2DKRDA====，与文本中的字符串MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI进行对比，发现字符I两次对应M，猜测是移位密码或仿射密码，加密运算的有限集为{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,2,3,4,5,6,7}，不理解的可以参见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/coming1890/p/13503574.html">对base编码的介绍</a>,尝试之后得加密方式为仿射密码，求得解密式为$x=5y+12\ \textrm{mod}\ 32$。</p>
+<h2><span id="解题">解题</span></h2><p>实现的Python脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b32decode</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>():</span></span><br><span class="line">    s=<span class="string">&#x27;MZYVMIWLGBL7CIJOGJQVOA3IN5BLYC3NHI&#x27;</span></span><br><span class="line">    dic=<span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ234567&#x27;</span></span><br><span class="line">    msg=<span class="string">&#x27;&#x27;</span>.join([dic[(<span class="number">5</span>*dic.find(x)+<span class="number">12</span>)%<span class="number">32</span>] <span class="keyword">for</span> x <span class="keyword">in</span> s])</span><br><span class="line">    <span class="keyword">return</span> b32decode(msg+<span class="string">&#x27;=&#x27;</span>*(<span class="number">8</span>-<span class="built_in">len</span>(msg)%<span class="number">8</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment">#python solve.py</span></span><br><span class="line">    <span class="built_in">print</span> solve()</span><br></pre></td></tr></table></figure>
 <p>运行程序得如下结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">BITSCTF&#123;S2VyY2tob2Zm&#125;</span><br></pre></td></tr></table></figure></p>
 

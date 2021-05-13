@@ -177,14 +177,16 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-banana-princess</h2>
             <div class="post-meta">
-                本文共计268个字 |
+                本文共计262个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-题目信息">一、题目信息</span></h2><p>附件给出一个PDF文件，但是用阅读器打开显示文件已损坏。</p>
-<h2><span id="二-分析">二、分析</span></h2><p>用vim打开PDF文件，开头为%CQS-1.5，既然是PDF文件，那就找找CQS与PDF的关系，首先想到的是凯撒密码，结果发现这三个字母均在字母表中相隔13，另外PDF文件中的小写字母也需要进行解密替换。</p>
-<h2><span id="三-解题">三、解题</span></h2><p>使用Shell，一行就可以完成解密：</p>
+		    <!-- Table of Contents -->
+            
+            <h2><span id="题目信息">题目信息</span></h2><p>附件给出一个PDF文件，但是用阅读器打开显示文件已损坏。</p>
+<h2><span id="分析">分析</span></h2><p>用vim打开PDF文件，开头为%CQS-1.5，既然是PDF文件，那就找找CQS与PDF的关系，首先想到的是凯撒密码，结果发现这三个字母均在字母表中相隔13，另外PDF文件中的小写字母也需要进行解密替换。</p>
+<h2><span id="解题">解题</span></h2><p>使用Shell，一行就可以完成解密：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat cip.pdf | tr A-Za-z N-ZA-Mn-za-m &gt; msg.pdf</span><br></pre></td></tr></table></figure>
 <p>结果发现flag被遮住了，另存为图片，flag可见，为BITSCTF{save_the_kid}。</p>
 

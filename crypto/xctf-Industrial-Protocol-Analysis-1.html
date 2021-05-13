@@ -177,14 +177,16 @@
             </div>
             <h2 class="post-title">攻防世界-密码学-工业协议分析1</h2>
             <div class="post-meta">
-                本文共计445个字 |
+                本文共计438个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2><span id="一-题目信息">一、 题目信息</span></h2><p>工业网络中存在异常，尝试通过分析PCAP流量包，分析出流量数据中的异常点，并拿到FLAG。flag形式为 flag{}，流量包在附件。</p>
-<h2><span id="二-分析">二、分析</span></h2><p>将流量包的长度排序(由大到小)，第一个流量包的长度为10120，比第二长的流量包超过太多，猜测有问题；一段乱码之后，data=”data:image/png;base64,后面是一段很长的base64编码。</p>
-<h2><span id="三-解题">三、解题</span></h2><p>先将流量包中的base64编码复制到文本文件data.txt中，再进行解码，最后将解码的数据写入png文件，实现的Python脚本如下：</p>
+		    <!-- Table of Contents -->
+            
+            <h2><span id="题目信息">题目信息</span></h2><p>工业网络中存在异常，尝试通过分析PCAP流量包，分析出流量数据中的异常点，并拿到FLAG。flag形式为 flag{}，流量包在附件。</p>
+<h2><span id="分析">分析</span></h2><p>将流量包的长度排序(由大到小)，第一个流量包的长度为10120，比第二长的流量包超过太多，猜测有问题；一段乱码之后，data=”data:image/png;base64,后面是一段很长的base64编码。</p>
+<h2><span id="解题">解题</span></h2><p>先将流量包中的base64编码复制到文本文件data.txt中，再进行解码，最后将解码的数据写入png文件，实现的Python脚本如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    da=f.read()</span><br><span class="line"></span><br><span class="line">data=b64decode(da)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;flag.png&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> g:</span><br><span class="line">    g.write(data)</span><br></pre></td></tr></table></figure>
             
                 

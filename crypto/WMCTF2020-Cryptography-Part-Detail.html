@@ -177,14 +177,16 @@
             </div>
             <h2 class="post-title">WMCTF2020密码学部分详解</h2>
             <div class="post-meta">
-                本文共计3523个字 |
+                本文共计3495个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
             <p>比赛网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/match/contest_challenge?event=146&amp;hash=684a58cc-1140-4937-99f2-ef347d777d9f.event">WMCTF2020</a></p>
-<h2><span id="一-piece_of_cake">一、piece_of_cake</span></h2><h3><span id="11-题目信息">1.1 题目信息</span></h3><p>附件是一个py脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF/piece_of_cake">Gitee备份</a>中的task.py。</p>
-<h3><span id="12-分析">1.2 分析</span></h3><p>eat_cake函数中的各个变量的定义如下：</p>
+<h2><span id="piece_of_cake">piece_of_cake</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个py脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF/piece_of_cake">Gitee备份</a>中的task.py。</p>
+<h3><span id="分析">分析</span></h3><p>eat_cake函数中的各个变量的定义如下：</p>
 <ul>
 <li><p>$p,q$为512位随机素数，$ph=(p-1) \cdot (q+1),N=p \cdot q,d=e^{-1}\ \textrm{mod}\ ph$</p>
 </li>
@@ -223,13 +225,13 @@ f \cdot c \equiv f \cdot (r \cdot h+cake) \equiv (r \cdot g+f \cdot cake)\ \text
 f \cdot cake \equiv (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g</script><p>于是：</p>
 <script type="math/tex; mode=display">
 cake=f^{-1} \cdot (f \cdot c\ \textrm{mod}\ q)\ \textrm{mod}\ g</script><p>注意，上面等式中$f^{-1}$是$f$在$g$下的逆，不能与括号内的$f$抵消。</p>
-<h3><span id="13-解题">1.3 解题</span></h3><p>上述链接中的solve.sage为解题的sage脚本。</p>
-<h3><span id="14-备注">1.4 备注</span></h3><p>此exp并不能保证次次成功！不过它的有效性不可否认，上述链接中的test.sage即可验证。</p>
+<h3><span id="解题">解题</span></h3><p>上述链接中的solve.sage为解题的sage脚本。</p>
+<h3><span id="备注">备注</span></h3><p>此exp并不能保证次次成功！不过它的有效性不可否认，上述链接中的test.sage即可验证。</p>
 <p>以下是我对test.sage四次的运行结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sage test.sage</span><br><span class="line">success! 48 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 2 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 50 -th</span><br><span class="line">$ sage test.sage</span><br><span class="line">success! 24 -th</span><br></pre></td></tr></table></figure>
 <p>从而验证了解题脚本solve.sage的有效性。</p>
-<h2><span id="二-babysum">二、babySum</span></h2><h3><span id="21-题目信息">2.1 题目信息</span></h3><p>附件是两个py脚本与一个json文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF/babySum">Gitee备份</a>中的task.py与check.py。</p>
-<h3><span id="22-分析">2.2 分析</span></h3><p>task.py告诉我们生成data中数据的逻辑，其实很好理解：生成$n=120$个150位的随机数，组成数组$A$，从中选$k=20$个相加生成和$s$；</p>
+<h2><span id="babysum">babySum</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是两个py脚本与一个json文件，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/WMCTF/babySum">Gitee备份</a>中的task.py与check.py。</p>
+<h3><span id="分析">分析</span></h3><p>task.py告诉我们生成data中数据的逻辑，其实很好理解：生成$n=120$个150位的随机数，组成数组$A$，从中选$k=20$个相加生成和$s$；</p>
 <p>记数组$A=[a_{1},\cdots,a_{n}]$，check.py读入120个数$b_{1},\cdots,b_{n}(b_{i}={0,1})$，其中20个为1，另外100个为1，检验$\sum_{i=1}^{n}a_{i} \cdot b_{i}=s$，如果等式成立，就打印出flag。</p>
 <p>到这里我们共有3个约束条件：</p>
 <script type="math/tex; mode=display">
