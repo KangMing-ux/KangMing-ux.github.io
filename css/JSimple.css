@@ -154,7 +154,7 @@ table {
     border-spacing:0
 }
 body {
-    font:14px/1.7 "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",STXihei,"华文细黑","WenQuanYi Micro Hei",sans-serif;
+    font:14px/1.7 "微软雅黑","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","lucida grande",STXihei,"华文细黑","WenQuanYi Micro Hei",sans-serif;
     color:#1a1a1a
 }
 a {
@@ -324,33 +324,6 @@ a.avatar img,img.avatar {
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
     border-radius:50%
-}
-/*toc*/
-.toc-article {
-  background #eee
-  border 1px solid #bbb
-  border-radius 10px
-  margin 1.5em 0 0.3em 1.5em
-  padding 1.2em 1em 0 1em
-  max-width 28%
-}
-.toc-title {
-  font-size 120%
-}
-#toc {
-  line-height 1em
-  font-size 0.9em
-  float right
-  .toc {
-    padding 0
-    margin 1em
-    line-height 1.8em
-    li
-      list-style-type none
-  }
-  .toc-child {
-    margin-left 1em
-  }
 }
 body {
     padding-left:170px
@@ -1038,7 +1011,7 @@ body.night-mode,.night-mode .btn,body.night-mode a,.night-mode .nav-user a,#sear
     content:"\f0f2"
 }
 .markdown-body {
-    line-height:1.6;
+    line-height:2.2;
     word-wrap:break-word;
     overflow: scroll;
 }
