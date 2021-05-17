@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>at&amp;t汇编基础知识 - GAEA</title>
+<title>第九章 进程与线程 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="at&amp;t汇编基础知识 - GAEA" />
+<meta property="og:title" content="第九章 进程与线程 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-05-09">2021-05-09</span>
+                    <span title="最后编辑于&nbsp;2021-05-17">2021-05-17</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">AT&T汇编基础知识</h2>
+            <h2 class="post-title">第九章 进程与线程</h2>
             <div class="post-meta">
-                本文共计1626个字 |
+                本文共计1045个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,42 +187,130 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">GCC基本内联汇编</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">GCC扩展内联汇编</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程控制块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程挂起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">用户线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">内存线程</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="基本语法">基本语法</span></h2><p>AT&amp;T与Inter汇编主要有以下几个不同：</p>
+            <h2><span id="进程的概念">进程的概念</span></h2><p><strong>进程</strong>：具有一定独立功能的程序在一个数据集合上的一次动态执行过程；</p>
+<p>程序是有序代码的集合，进程是程序的执行。</p>
+<h2><span id="进程控制块">进程控制块</span></h2><p><strong>进程控制块(PCB)</strong>：操作系统管理控制进程运行所用的信息集合。包含以下信息：</p>
 <ul>
-<li>寄存器的命名；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：%eax                   Intel：eax</span><br></pre></td></tr></table></figure></li>
-<li>源操作数与目的操作数的顺序；AT&amp;T赋值方向为从左向右。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl %eax, %ebx         Intel：mov ebx, eax</span><br></pre></td></tr></table></figure></li>
-<li>常数与立即数的格式；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl $12, %ebx          Intel：mov eax, 12</span><br></pre></td></tr></table></figure></li>
-<li>地址；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl $0xd00d, %ebx      Intel：mov eax, 0xd00d</span><br></pre></td></tr></table></figure></li>
-<li>操作数长度标识；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movw %ax, %bx           Intel：mov bx, ax</span><br></pre></td></tr></table></figure></li>
-<li>寻址方式；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通用寻址</span><br><span class="line">AT&amp;T：imm32(base, ip, scale)   Intel：[base+ip×scale+imm32]</span><br><span class="line">#直接寻址</span><br><span class="line">AT&amp;T：foo                      Intel：[foo]</span><br><span class="line">#寄存器间接寻址</span><br><span class="line">AT&amp;T：(%eax)                   Intel：[eax]</span><br></pre></td></tr></table></figure>
-</li>
+<li>调度进程与处理机使用情况；</li>
+<li>进程间通信相关的各种标识；</li>
+<li>指向进程映像存储空间的数据结构；</li>
+<li>进程使用的系统资源；</li>
+<li>数据结构连接信息；</li>
 </ul>
-<h2><span id="gcc基本内联汇编">GCC基本内联汇编</span></h2><p>基本内联汇编的格式为：<code>asm(&quot;statements&quot;);</code></p>
-<h2><span id="gcc扩展内联汇编">GCC扩展内联汇编</span></h2><p>GCC扩展内联汇编的格式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">asm [volatile]( Assembler Template</span><br><span class="line">	: Output Operands</span><br><span class="line">	[ : Input Operands</span><br><span class="line">	[ : Clobbers ]])</span><br></pre></td></tr></table></figure>
-<p>注：如果不希望汇编语句被gcc优化而改变位置，就需要在asm符号后添加volatile关键词；</p>
-<p><strong>样例</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#define read_cr0() (&#123; \</span><br><span class="line">unsigned int __dummy; \</span><br><span class="line">__asm__( \</span><br><span class="line">	&quot;movl %%cr0, %0\n\t&quot; \</span><br><span class="line">	:&quot;&#x3D;r&quot; (__dummy)); \</span><br><span class="line">__dummy; \</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>说明</strong></p>
-<ul>
-<li>在<code>__asm__</code>的括号内，第一行为汇编程序模板；其中<code>%0</code>以占位符作为汇编指令的操作数，GCC将这些占位符与C语言表达式按照出现的顺序相对应。即<code>%0</code>对应C语言表达式<code>__dummy</code>；</li>
-<li>第二行为输出部分；输出部分用来规定输出变量如何与寄存器结合的约束，输出部分可以有多个约束，互相以逗号分开，每个约束以”=”开头，接着用一个字母来表示操作数的类型，接着是关于变量结合的约束。在上例中，”r”代表任一通用寄存器，其他常用约束字母与含义见下表：</li>
-</ul>
-<div style="width:80%;margin:auto"><img src="/os/ATwithT/2.png" class title="pic2"></div>
+<h2><span id="进程的状态">进程的状态</span></h2><p>进程的生命周期划分：创建、执行、等待、抢占、唤醒与结束；这些不同周期的转换如下图所示：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch9/37.png" class title="pic37"></div>
 
 <p>&nbsp;</p>
-<ul>
-<li>如果有输入部分；输入部分与输出部分相似，但是没有”=”；</li>
-<li>汇编程序模板为必选项，输入部分与输出部分为可选项；当存在输入部分而不存在输出部分时，需要保留”:”(代表输出部分，即使输出部分不存在)，而当只存在修改部分时，需要保留”:::”(代表输出部分、输入部分与修改部分)；</li>
-</ul>
-<p><strong>练习</strong></p>
-<p>扩展内联汇编代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> value=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> buf[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">asm</span>(</span><br><span class="line">        <span class="string">&quot;cld \n\t&quot;</span></span><br><span class="line">        <span class="string">&quot;rep \n\t&quot;</span></span><br><span class="line">        <span class="string">&quot;stosl&quot;</span></span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;c&quot;</span> (count), <span class="string">&quot;a&quot;</span> (value) , <span class="string">&quot;D&quot;</span> (buf)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>经过GCC编译之后得到的汇编代码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">movl count,%ecx</span><br><span class="line">movl value,%eax</span><br><span class="line">movl buf,%edi</span><br><span class="line">#APP</span><br><span class="line">cld</span><br><span class="line">rep</span><br><span class="line">stosl</span><br><span class="line">#NO_APP</span><br></pre></td></tr></table></figure>
+<p>每种状态转换的条件见下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">箭头</th>
+<th style="text-align:center">条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(1)</td>
+<td style="text-align:center">系统初始化；<br>用户请求创建一个新进程；<br>正在运行的进程调用了创建进程的系统调用；</td>
+</tr>
+<tr>
+<td style="text-align:center">(2)</td>
+<td style="text-align:center">获得CPU的调度；</td>
+</tr>
+<tr>
+<td style="text-align:center">(3)</td>
+<td style="text-align:center">请求并等待系统服务，无法马上完成；<br>启动某种操作，无法马上完成；<br>需要的数据还未到达；</td>
+</tr>
+<tr>
+<td style="text-align:center">(4)</td>
+<td style="text-align:center">高优先级进程就绪；<br>操作系统给进程分配的时间片已用完；</td>
+</tr>
+<tr>
+<td style="text-align:center">(5)</td>
+<td style="text-align:center">使进程进入等待状态的条件被满足；</td>
+</tr>
+<tr>
+<td style="text-align:center">(6)</td>
+<td style="text-align:center">正常退出；<br>错误退出(自愿的)；<br>致命错误(强制性)；<br>被其他进程杀死(强制性)；</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2><span id="进程挂起">进程挂起</span></h2><p><strong>进程挂起</strong>：操作系统将进程从内存移到外存(以节省内存占用)；与之对应的，将进程从外存移入内存称为(进程)激活。</p>
+<p>在进程的状态中考虑进程挂起后，就多了就绪挂起与等待挂起两种状态；这时各种状态的转换如下图所示：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch9/38.png" class title="pic38"></div>
+
+<p>&nbsp;</p>
+<p>相比上一节的状态转换，增加的状态转换的条件见下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">箭头</th>
+<th style="text-align:center">条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(7)</td>
+<td style="text-align:center">操作系统根据当前资源状况和性能要求将就绪态进程对换出去成为挂起就绪态；</td>
+</tr>
+<tr>
+<td style="text-align:center">(8)</td>
+<td style="text-align:center">没有就绪进程或挂起进程的优先级高于就绪态进程的优先级；</td>
+</tr>
+<tr>
+<td style="text-align:center">(9)</td>
+<td style="text-align:center">在抢先式分时系统，高优先级挂起进程就绪；</td>
+</tr>
+<tr>
+<td style="text-align:center">(10)</td>
+<td style="text-align:center">同(5)</td>
+</tr>
+<tr>
+<td style="text-align:center">(11)</td>
+<td style="text-align:center">其他进程释放了足够内存，且本进程在挂起的进程中优先级最高；</td>
+</tr>
+<tr>
+<td style="text-align:center">(12)</td>
+<td style="text-align:center">操作系统根据当前资源状况和性能要求将等待态进程对换出去成为挂起等待态；</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="width:50%;margin:auto"><img src="/os/os-ch9/39.png" class title="pic39"></div>
+
+<h2><span id="线程的概念">线程的概念</span></h2><p>线程是进程的一部分，描述指令流执行状态。它是进程中指令执行流的最小单元，是CPU调度的基本单位。</p>
+<p>线程=进程-共享资源(地址空间，文件等)</p>
+<p>对进程与线程作一个比较：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">进程</th>
+<th style="text-align:center">线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">资源分配单位</td>
+<td style="text-align:center">CPU调度单位</td>
+</tr>
+<tr>
+<td style="text-align:center">拥有程序执行完整的资源</td>
+<td style="text-align:center">只独享指令流执行必要的资源(寄存器、栈)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><span id="用户线程">用户线程</span></h3><p>用户自己实现，操作系统并不支持多线程。</p>
+<h3><span id="内存线程">内存线程</span></h3><p>进程由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止与管理。</p>
+
             
                 
             

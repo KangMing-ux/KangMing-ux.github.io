@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>标签 - GAEA</title>
+<title>第七章 全局页面置换算法 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="标签 - GAEA" />
+<meta property="og:title" content="第七章 全局页面置换算法 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -40,7 +40,7 @@
         (function() {
             let jsi_config = {
                 rootUrl: 'https://chu-kangming.gitee.io/',
-                isPost: 'false',
+                isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
                 donateImg: '/images/donate-qr.png',
@@ -125,8 +125,30 @@
 
             <div class="page-title">
     <ul>
-        <li><a href="/" data-name="首页" title="Back Home">首页</a></li>
-        <li><a href="/archives" data-name="归档" title="归档">归档</a></li>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF密码学">CTF密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/os" data-name="操作系统">操作系统</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计算机网络">计算机网络</a>
+                </li>
+            
+        
         <li class="page-search">
     <form id="search" class="search-form">
         <input type="text"
@@ -142,62 +164,112 @@
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
-            <h3 class="post-title">总的来说，本站目前涉及20个领域 😄️</h3>
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-05-16">2021-05-16</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第七章 全局页面置换算法</h2>
+            <div class="post-meta">
+                本文共计771个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">工作集置换算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">缺页率置换算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">抖动与负载控制</span></a></li></ol>
+            </div>
+        
+            <h2><span id="工作集置换算法">工作集置换算法</span></h2><p><strong>工作集</strong>：一个进程当前正在使用的逻辑页面集合，可表示为二元函数W(t,delta)；t为当前执行时刻，delta为一个页面访问时间窗口，称为工作集窗口；W(t,delta)是时刻t前delta时间窗口内所有访问的页面所组成的集合，|W(t,delta)|就是时刻t前delta时间窗口内访问的页面的数目。</p>
+<p><strong>常驻集</strong>：当前时刻，进程实际驻留在内存中的页面集合。</p>
+<p>缺页率与(工作集, 常驻集)的关系：</p>
+<ul>
+<li>常驻集包含工作集时，缺页率较小；</li>
+<li>工作集发生剧烈变动时，缺页率较高；</li>
+<li>进程常驻集大小到达一定数目后，缺页率不会明显下降；</li>
+</ul>
+<p><strong>工作集置换算法</strong>：每次访问内存后，换出不在工作集中的页面；</p>
+<h2><span id="缺页率置换算法">缺页率置换算法</span></h2><p><strong>缺页率</strong>：缺页时间间隔的倒数。</p>
+<p><strong>缺页率置换算法</strong>：通过(在发生缺页中断时)调节常驻集大小，使进程的缺页率保持在一个合理的范围内。具体来说，在发生缺页时计算相邻两次缺页的时间间隔delta；对于预先设定的T，若delta&gt;T，操作系统将未被引用的内存页面换出内存，记这些页面的数目为nr，则操作系统收回进程的(nr-1)个未被引用的内存页面，并将缺失页写入剩下的那个未被引用的内存页面；若delta&lt;=T，操作系统为进程申请一个内存页面来写入缺失页(相当于将缺失页增加到工作集中)。</p>
+<h2><span id="抖动与负载控制">抖动与负载控制</span></h2><p><strong>抖动</strong>：并发进程数目太多，使得分配给每个进程的内存页面太少而不能包含工作集；造成了大量缺页，从而操作系统需要频繁地进行置换，降低了CPU的工作效率，进程的运行速度变慢。</p>
+<p>操作系统通过调节并发进程数(MPL)来进行负载控制。</p>
+<p>CPU利用率与并发进程数的关系大致如下图：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch7/32.png" class title="pic32"></div>
+
+<p>&nbsp;</p>
+<p>而图中的Nmax不好确定，因此只能对Nmax作一个估计，使平均缺页间隔时间=缺页异常处理时间的并发进程数，这样可以近似地使系统处于均衡的繁忙状态。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
         </div>
         
-        <div class="post-content markdown-body" itemprop="articleBody">
-            <ul class="tag-list">
-                
-                <li><a href="/tags/Paillier/">Paillier(1)</a></li>
-                
-                <li><a href="/tags/Ubuntu/">Ubuntu(2)</a></li>
-                
-                <li><a href="/tags/backend/">backend(12)</a></li>
-                
-                <li><a href="/tags/ctf/">ctf(9)</a></li>
-                
-                <li><a href="/tags/elgamal/">elgamal(1)</a></li>
-                
-                <li><a href="/tags/encode/">encode(1)</a></li>
-                
-                <li><a href="/tags/git/">git(1)</a></li>
-                
-                <li><a href="/tags/gitee/">gitee(1)</a></li>
-                
-                <li><a href="/tags/hexo/">hexo(1)</a></li>
-                
-                <li><a href="/tags/hyper/">hyper(1)</a></li>
-                
-                <li><a href="/tags/jsimple/">jsimple(1)</a></li>
-                
-                <li><a href="/tags/makefile/">makefile(1)</a></li>
-                
-                <li><a href="/tags/msf/">msf(1)</a></li>
-                
-                <li><a href="/tags/ntl/">ntl(1)</a></li>
-                
-                <li><a href="/tags/python/">python(1)</a></li>
-                
-                <li><a href="/tags/ret2libc/">ret2libc(1)</a></li>
-                
-                <li><a href="/tags/rsa/">rsa(2)</a></li>
-                
-                <li><a href="/tags/sagemath/">sagemath(1)</a></li>
-                
-                <li><a href="/tags/windows/">windows(1)</a></li>
-                
-                <li><a href="/tags/xctf/">xctf(32)</a></li>
-                
-            </ul>
+        <div class="post-tags">标签：
+            
+            <a href="/tags/backend/">backend</a>
+            
         </div>
-        <p style="width: 100%; text-align: center"><img src="/images/tags-bg.png" alt="tags-bg"></p>
+        
     </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
 </div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->

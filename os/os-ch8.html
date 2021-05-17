@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>at&amp;t汇编基础知识 - GAEA</title>
+<title>第八章 面向缓存的页置换算法 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="at&amp;t汇编基础知识 - GAEA" />
+<meta property="og:title" content="第八章 面向缓存的页置换算法 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-05-09">2021-05-09</span>
+                    <span title="最后编辑于&nbsp;2021-05-16">2021-05-16</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">AT&T汇编基础知识</h2>
+            <h2 class="post-title">第八章 面向缓存的页置换算法</h2>
             <div class="post-meta">
-                本文共计1626个字 |
+                本文共计2289个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,42 +187,68 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">GCC基本内联汇编</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">GCC扩展内联汇编</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">访问频率置换算法(FBR)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">LRU-K 2Q页置换算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">LRU-K页置换算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">LRU-2Q页置换算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">LIRS页置换算法</span></a></li></ol>
             </div>
         
-            <h2><span id="基本语法">基本语法</span></h2><p>AT&amp;T与Inter汇编主要有以下几个不同：</p>
-<ul>
-<li>寄存器的命名；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：%eax                   Intel：eax</span><br></pre></td></tr></table></figure></li>
-<li>源操作数与目的操作数的顺序；AT&amp;T赋值方向为从左向右。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl %eax, %ebx         Intel：mov ebx, eax</span><br></pre></td></tr></table></figure></li>
-<li>常数与立即数的格式；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl $12, %ebx          Intel：mov eax, 12</span><br></pre></td></tr></table></figure></li>
-<li>地址；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movl $0xd00d, %ebx      Intel：mov eax, 0xd00d</span><br></pre></td></tr></table></figure></li>
-<li>操作数长度标识；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT&amp;T：movw %ax, %bx           Intel：mov bx, ax</span><br></pre></td></tr></table></figure></li>
-<li>寻址方式；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通用寻址</span><br><span class="line">AT&amp;T：imm32(base, ip, scale)   Intel：[base+ip×scale+imm32]</span><br><span class="line">#直接寻址</span><br><span class="line">AT&amp;T：foo                      Intel：[foo]</span><br><span class="line">#寄存器间接寻址</span><br><span class="line">AT&amp;T：(%eax)                   Intel：[eax]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2><span id="gcc基本内联汇编">GCC基本内联汇编</span></h2><p>基本内联汇编的格式为：<code>asm(&quot;statements&quot;);</code></p>
-<h2><span id="gcc扩展内联汇编">GCC扩展内联汇编</span></h2><p>GCC扩展内联汇编的格式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">asm [volatile]( Assembler Template</span><br><span class="line">	: Output Operands</span><br><span class="line">	[ : Input Operands</span><br><span class="line">	[ : Clobbers ]])</span><br></pre></td></tr></table></figure>
-<p>注：如果不希望汇编语句被gcc优化而改变位置，就需要在asm符号后添加volatile关键词；</p>
-<p><strong>样例</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#define read_cr0() (&#123; \</span><br><span class="line">unsigned int __dummy; \</span><br><span class="line">__asm__( \</span><br><span class="line">	&quot;movl %%cr0, %0\n\t&quot; \</span><br><span class="line">	:&quot;&#x3D;r&quot; (__dummy)); \</span><br><span class="line">__dummy; \</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>说明</strong></p>
-<ul>
-<li>在<code>__asm__</code>的括号内，第一行为汇编程序模板；其中<code>%0</code>以占位符作为汇编指令的操作数，GCC将这些占位符与C语言表达式按照出现的顺序相对应。即<code>%0</code>对应C语言表达式<code>__dummy</code>；</li>
-<li>第二行为输出部分；输出部分用来规定输出变量如何与寄存器结合的约束，输出部分可以有多个约束，互相以逗号分开，每个约束以”=”开头，接着用一个字母来表示操作数的类型，接着是关于变量结合的约束。在上例中，”r”代表任一通用寄存器，其他常用约束字母与含义见下表：</li>
-</ul>
-<div style="width:80%;margin:auto"><img src="/os/ATwithT/2.png" class title="pic2"></div>
+            <h2><span id="访问频率置换算法fbr">访问频率置换算法(FBR)</span></h2><p>操作系统维护一个如下形式的栈来存放缓存数据：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch8/33.png" class title="pic33"></div>
 
 <p>&nbsp;</p>
+<p>栈分为3个部分：新区域、中间区域与旧区域；每个缓存块都有一个引用计数，算法具体处理如下：</p>
 <ul>
-<li>如果有输入部分；输入部分与输出部分相似，但是没有”=”；</li>
-<li>汇编程序模板为必选项，输入部分与输出部分为可选项；当存在输入部分而不存在输出部分时，需要保留”:”(代表输出部分，即使输出部分不存在)，而当只存在修改部分时，需要保留”:::”(代表输出部分、输入部分与修改部分)；</li>
+<li>访问的数据在栈中：缓存块被移到栈顶，若缓存块不在新区域，将其引用计数加1；</li>
+<li>访问的数据不在栈中：在访问完数据之后；栈的旧区域中引用计数最小的缓存块被移出；将访问的数据放到栈顶，其引用计数置1；</li>
 </ul>
-<p><strong>练习</strong></p>
-<p>扩展内联汇编代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> value=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> buf[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">asm</span>(</span><br><span class="line">        <span class="string">&quot;cld \n\t&quot;</span></span><br><span class="line">        <span class="string">&quot;rep \n\t&quot;</span></span><br><span class="line">        <span class="string">&quot;stosl&quot;</span></span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;c&quot;</span> (count), <span class="string">&quot;a&quot;</span> (value) , <span class="string">&quot;D&quot;</span> (buf)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>经过GCC编译之后得到的汇编代码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">movl count,%ecx</span><br><span class="line">movl value,%eax</span><br><span class="line">movl buf,%edi</span><br><span class="line">#APP</span><br><span class="line">cld</span><br><span class="line">rep</span><br><span class="line">stosl</span><br><span class="line">#NO_APP</span><br></pre></td></tr></table></figure>
+<p>FBR算法的问题：需要调整参数。</p>
+<h2><span id="lru-k-2q页置换算法">LRU-K 2Q页置换算法</span></h2><p>考虑一下在进程访问数据时，会有哪些模式的访问：</p>
+<ul>
+<li>顺序访问：数据块一个接一个被访问，不存在重复访问；</li>
+<li>循环访问：所有的数据块按照一定的间隔重复访问；</li>
+<li>时间密集访问：最近被访问的数据块是将来最可能被访问的；</li>
+<li>概率访问：所有数据块都有固定的概率被访问，且被访问的概率相互独立；</li>
+</ul>
+<h3><span id="lru-k页置换算法">LRU-K页置换算法</span></h3><p>LRU-K算法是LRU算法的扩展；增加了一个数据访问历史记录队列，记录数据被访问的次数以及最近的访问时间戳。</p>
+<p>如果[数据]在离开历史记录队列之前被访问了K次，则需要将[数据]加入数据缓存队列：如果缓存队列的长度超过最大缓存长度，则先将缓存队列头部的数据删除，然后在缓存队列的队尾加上[数据]，然后[数据]的访问历史记录从历史记录队列中删除。</p>
+<p>若缓存队列的[数据]被访问，则将[数据]放到缓存队列的队尾。</p>
+<p>综上，LRU-K页置换算法的示意图如下：</p>
+<div style="width:36%;margin:auto"><img src="/os/os-ch8/34.png" class title="pic34"></div>
+
+<p>&nbsp;</p>
+<p>其中，LRU-2是综合考虑各种访问模式后的最优选择。</p>
+<h3><span id="lru-2q页置换算法">LRU-2Q页置换算法</span></h3><p>进一步改进LRU-2页置换算法；使用两个缓存队列来维护缓存区，示意图如下：</p>
+<div style="width:36%;margin:auto"><img src="/os/os-ch8/35.png" class title="pic35"></div>
+
+<p>&nbsp;</p>
+<p>数据块第一次被访问时，数据块缓存到FIFO队列的队尾(如果队列没有空闲空间，就删除队列头部的数据)，如果数据块在离开FIFO队列之前被再次访问，则将数据块移到LRU队列的队尾(同样地，如果队列没有空闲空间，就删除队列头部的数据)；若LRU队列的数据块被访问，则将数据块放到LRU队列的队尾。</p>
+<h2><span id="lirs页置换算法">LIRS页置换算法</span></h2><p>定义两个属性；R(i,t)：从最近一次访问数据块i之后到当前时刻t，被访问的不重复数据块数；IRR(i)：在最近两次访问数据块i之间，被访问的不重复数据块数。</p>
+<p>初始时，每个数据块的IRR=inf, R=0；</p>
+<p>有数据块(记为i)被访问后，每个数据块的IRR值与R值更新：</p>
+<ul>
+<li>被访问：IRR(i,t)=R(i,t-1), R=0；</li>
+<li>未被访问：IRR(j)不变，R(j,t)=R(j,t-1)+1{最近一次访问数据块j之后到t-1时刻, 数据块i没有被访问过}，j!=i；</li>
+</ul>
+<p><strong>性质1</strong>：每次访问数据块时，除了被访问的数据块，其他数据块的R值均单调不减。</p>
+<p>LIRS算法区分IRR值高的数据块与IRR值低的数据块，缓存区分为两个部分：常驻cache与暂驻cache；LIR块(低IRR值的数据块)放在常驻cache，HIR块(高IRR值的数据块)放在暂驻cache；</p>
+<p>我们可以看到，<strong>R值其实就是IRR值的一个候选，一旦数据块被访问，它的R值就成为IRR值</strong>；</p>
+<p>由于常驻cache与暂驻cache是根据数据块的IRR值进行区分，那么这两个cache的数据块也会因为其IRR值进行调整；因此，当一个HIR块i被访问后，若存在LIR块j，R(j,t)&gt;size且R(j,t)&gt;IIR(i)，则数据块i与数据块j的状态交换。即max{R(j,t)|j in LIR}&gt;max{size, IIR(i)}。</p>
+<p>LIRS算法在各种访问模式下均有很好的表现，但是算法要维护两组值(R值与IRR值)使得算法的开销很大；因此，也就有了下面利用栈而不用显式计算R值与IRR值的方法。</p>
+<div style="width:24%;margin:auto"><img src="/os/os-ch8/36.png" class title="pic36"></div>
+
+<p>&nbsp;</p>
+<p>维护两个栈：栈S与栈Q；</p>
+<p>栈S：LIR块(低IRR值的数据块)与IRR值小于LIR块的最大R值的HIR块(高IRR值的数据块)；</p>
+<p>栈Q：常驻cache中的HIR块；</p>
+<p>事实上，栈S存放着当前的LIR块与之后有可能成为LIR块的HIR块；下面介绍”栈裁剪”操作。</p>
+<p>“栈裁剪”操作：若栈S底部的LIR块被删除，则一直删除底部数据块直到遇到LIR块。</p>
+<p>Q：”栈裁剪”操作的合理性是什么?</p>
+<p>A：若栈S底部的LIR块被删除，则底部的HIR块将不会成为LIR块。</p>
+<p>在证明”栈裁剪”操作的合理性之前，注意到如下的性质：</p>
+<p><strong>性质2</strong>：记S栈如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------</span><br><span class="line">                q_3 | q_2 | q_1 | q_0 |</span><br><span class="line">---------------------------------------</span><br></pre></td></tr></table></figure>
+<p>那么R(q_i, t)&gt;R(q_i+1, t)，即R(q_i, t)&gt;=R(q_i+1, t)+1。</p>
+<p>对栈底部的HIR块i，考虑它再次被访问后：IRR(i)=R(i,t-1)&gt;max{R(j,t-1)|j in LIR} =&gt; IRR(i)&gt;=max{R(j,t)|j in LIR}；从而状态交换的条件不成立，因此HIR块不会成为LIR块；</p>
+<p>考虑访问各种数据块时算法的反应：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|</span><br><span class="line">|—— LIR块：LIR块移到栈顶，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">|</span><br><span class="line">|—— HIR块</span><br><span class="line">     |</span><br><span class="line">     |—— 在S中：HIR块状态变为LIR块并被移到S栈顶，S栈底LIR块状态变为HIR并从栈S中移到栈Q中，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">     |</span><br><span class="line">     |—— 不在S中：HIR块移到Q栈顶；</span><br></pre></td></tr></table></figure>
             
                 
             
