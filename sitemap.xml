@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch10.html</loc>
+    
+    <lastmod>2021-05-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/os/os-ch12.html</loc>
     
     <lastmod>2021-05-21</lastmod>
@@ -17,13 +24,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/os/os-ch9.html</loc>
-    
-    <lastmod>2021-05-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/os/os-ch10.html</loc>
     
     <lastmod>2021-05-18</lastmod>
     
@@ -515,6 +515,13 @@
 
   
   <url>
+    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
+    <lastmod>2021-05-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/tags/backend/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
@@ -523,13 +530,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
-    <lastmod>2021-05-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -564,28 +564,7 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/Ubuntu/</loc>
-    <lastmod>2021-05-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/ntl/</loc>
-    <lastmod>2021-05-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/git/</loc>
-    <lastmod>2021-05-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/msf/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/ret2libc/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -599,7 +578,28 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/ret2libc/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/git/</loc>
+    <lastmod>2021-05-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/Ubuntu/</loc>
+    <lastmod>2021-05-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/msf/</loc>
+    <lastmod>2021-05-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/ntl/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -657,6 +657,13 @@
 
   
   <url>
+    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
+    <lastmod>2021-05-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/categories/os/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
@@ -665,13 +672,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
-    <lastmod>2021-05-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
     <lastmod>2021-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -198,7 +198,7 @@
 
 
 <p>为了对进程进行切换，操作系统将相同状态的PCB放置在同一队列。如下图所示：有就绪(进程)队列、等待(进程)队列以及僵尸队列(要退出的进程)。</p>
-<div style="width:64    %;margin:auto"><img src="/os/os-ch10/41.png" class title="pic41"></div>
+<div style="width:64%;margin:auto"><img src="/os/os-ch10/41.png" class title="pic41"></div>
 
 <p>当并发的进程数目太多时，使用双向链表来组织PCB使得查找的时间过长，那么这时采用Hash表，Hash值相同PCB组成双向链表，再通过数组将这些双向链表组织起来。</p>
 <div style="width:45%;margin:auto"><img src="/os/os-ch10/42.png" class title="pic42"></div>
