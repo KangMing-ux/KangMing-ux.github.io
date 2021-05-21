@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第九章 进程与线程</h2>
             <div class="post-meta">
-                本文共计1045个字 |
+                本文共计1071个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程控制块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程挂起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">用户线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">内存线程</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程控制块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程挂起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">用户线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">内核线程</span></a></li></ol></li></ol>
             </div>
         
             <h2><span id="进程的概念">进程的概念</span></h2><p><strong>进程</strong>：具有一定独立功能的程序在一个数据集合上的一次动态执行过程；</p>
@@ -201,7 +201,7 @@
 <li>数据结构连接信息；</li>
 </ul>
 <h2><span id="进程的状态">进程的状态</span></h2><p>进程的生命周期划分：创建、执行、等待、抢占、唤醒与结束；这些不同周期的转换如下图所示：</p>
-<div style="width:50%;margin:auto"><img src="/os/os-ch9/37.png" class title="pic37"></div>
+<div style="width:32%;margin:auto"><img src="/os/os-ch9/37.png" class title="pic37"></div>
 
 <p>&nbsp;</p>
 <p>每种状态转换的条件见下表：</p>
@@ -243,7 +243,7 @@
 </div>
 <h2><span id="进程挂起">进程挂起</span></h2><p><strong>进程挂起</strong>：操作系统将进程从内存移到外存(以节省内存占用)；与之对应的，将进程从外存移入内存称为(进程)激活。</p>
 <p>在进程的状态中考虑进程挂起后，就多了就绪挂起与等待挂起两种状态；这时各种状态的转换如下图所示：</p>
-<div style="width:50%;margin:auto"><img src="/os/os-ch9/38.png" class title="pic38"></div>
+<div style="width:40%;margin:auto"><img src="/os/os-ch9/38.png" class title="pic38"></div>
 
 <p>&nbsp;</p>
 <p>相比上一节的状态转换，增加的状态转换的条件见下表：</p>
@@ -283,7 +283,9 @@
 </tbody>
 </table>
 </div>
-<div style="width:50%;margin:auto"><img src="/os/os-ch9/39.png" class title="pic39"></div>
+<p>&nbsp;</p>
+<p>最后，操作系统切换进程的示意图如下：</p>
+<div style="width:45%;margin:auto"><img src="/os/os-ch9/39.png" class title="pic39"></div>
 
 <h2><span id="线程的概念">线程的概念</span></h2><p>线程是进程的一部分，描述指令流执行状态。它是进程中指令执行流的最小单元，是CPU调度的基本单位。</p>
 <p>线程=进程-共享资源(地址空间，文件等)</p>
@@ -309,7 +311,7 @@
 </table>
 </div>
 <h3><span id="用户线程">用户线程</span></h3><p>用户自己实现，操作系统并不支持多线程。</p>
-<h3><span id="内存线程">内存线程</span></h3><p>进程由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止与管理。</p>
+<h3><span id="内核线程">内核线程</span></h3><p>进程由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止与管理。</p>
 
             
                 
