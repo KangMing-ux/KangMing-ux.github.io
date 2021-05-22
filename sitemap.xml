@@ -536,6 +536,13 @@
   </url>
   
   <url>
+    <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
+    <lastmod>2021-05-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
     <lastmod>2021-05-22</lastmod>
     <changefreq>daily</changefreq>
@@ -543,7 +550,7 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
     <lastmod>2021-05-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -565,13 +572,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/elgamal/</loc>
-    <lastmod>2021-05-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
     <lastmod>2021-05-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -678,14 +678,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
+    <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
     <lastmod>2021-05-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
+    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
     <lastmod>2021-05-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
