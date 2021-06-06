@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第十八章 文件系统实例</h2>
             <div class="post-meta">
-                本文共计879个字 |
+                本文共计885个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -191,23 +191,23 @@
             </div>
         
             <h2><span id="fat文件系统">FAT文件系统</span></h2><p>FAT文件系统的结构如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">------------------------------------------------------------------------------------</span><br><span class="line">| 启动扇区 |   文件分配表   |  文件分配表副本  |  根目录项  |           其他文件           |</span><br><span class="line">------------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------------------------------</span><br><span class="line">| 启动扇区 |   文件分配表   |  文件分配表副本  |  根目录项  |           其他文件           |</span><br><span class="line">---------------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
 <h2><span id="ext4文件系统">EXT4文件系统</span></h2><p>支持大容量存储，可快速恢复异常状态。</p>
-<h3><span id="大容量存储">大容量存储</span></h3><div style="width:45%;margin:auto"><img src="/os/os-ch18/68.png" class title="pic68"></div>
+<h3><span id="大容量存储">大容量存储</span></h3><div style="width:68%;margin:auto"><img src="/os/os-ch18/68.png" class title="pic68"></div>
 
 <p>&nbsp;</p>
 <p>索引块采用”段机制”，对于大文件(一般连续)，只需要一次访问。</p>
 <h3><span id="异常恢复">异常恢复</span></h3><p>EXT4文件系统框架示意图如下：</p>
-<div style="width:45%;margin:auto"><img src="/os/os-ch18/71.png" class title="pic71"></div>
+<div style="width:40%;margin:auto"><img src="/os/os-ch18/71.png" class title="pic71"></div>
 
 <p>&nbsp;</p>
 <p>其中Group的结构如下图：</p>
-<div style="width:45%;margin:auto"><img src="/os/os-ch18/69.png" class title="pic69"></div>
+<div style="width:50%;margin:auto"><img src="/os/os-ch18/69.png" class title="pic69"></div>
 
 <p>&nbsp;</p>
 <p>其中，Bitmaps标志每个文件数据块是否被占用，文件数据块有两种——索引数据块与存储数据块；</p>
 <p>当系统出现断电或者系统崩溃，有些在缓存中的数据还未写入文件，这时就出现缓存与文件的数据不一致。EXT4文件系统使用日志来恢复异常(现代的文件系统都是日志文件系统)。日志的组成如下：</p>
-<div style="width:45%;margin:auto"><img src="/os/os-ch18/70.png" class title="pic70"></div>
+<div style="width:40%;margin:auto"><img src="/os/os-ch18/70.png" class title="pic70"></div>
 
 <p>其中，TxB与TxE分配标志一个日志的开始与结束，中间是日志的内容：</p>
 <ul>
