@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第十三章 同步互斥 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第十三章 同步互斥 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF">CTF</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/os" data-name="OS">OS</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计网">计网</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-05-31">2021-05-31</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第十三章 同步互斥</h2>
+            <div class="post-meta">
+                本文共计1883个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">同步互斥的背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">原子操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">进程的交互关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">同步方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">禁用硬件中断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">基于软件的同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">高级抽象的同步方法</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="同步互斥的背景">同步互斥的背景</span></h2><p>同步互斥是操作系统中协调进程协作与相互关系的一种机制。对于并发的进程，存在多个进程共享资源的情形，那么这时进程执行就会存在不确定性与不可重现性；然而，进程并发执行具有节约资源(共享)、高速等优点，因此为了使并发的进程能够正确运行，操作系统使用了同步互斥机制。</p>
+<h3><span id="原子操作">原子操作</span></h3><p>一次不存在任何中断与失败的操作。</p>
+<p>操作系统需要利用同步互斥机制在并发执行的同时，保证一些操作是原子操作。</p>
+<p>实现同步互斥机制最简单有效的方案为利用两个原子操作实现一个锁：</p>
+<ul>
+<li>Lock.Acquire()：在锁释放前请求锁的进程一直处于等待状态；如果多于一个进程都在等待同一个锁，在锁释放之后，只有一个进程能够获得锁。</li>
+<li>Lock.Release()：解锁并唤醒任何等待中的进程。</li>
+</ul>
+<p>事实上，这就是用两个原子操作的锁放在一段需要是原子操作的代码两端，使这段代码的执行是原子操作。开头的锁操作称为进入临界区，代码后的解锁操作称为退出临界区。</p>
+<h3><span id="进程的交互关系">进程的交互关系</span></h3><p>根据进程相互感知程度的不同，进程之间的交互分为3种关系，如下表所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">相互感知的程度</th>
+<th style="text-align:center">交互关系</th>
+<th style="text-align:center">进程间的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">相互不感知(完全不了解其他进程的存在)</td>
+<td style="text-align:center">独立</td>
+<td style="text-align:center">进程间的操作互不影响</td>
+</tr>
+<tr>
+<td style="text-align:center">间接感知(双方与第三方交互，如共享资源)</td>
+<td style="text-align:center">通过共享进行协作</td>
+<td style="text-align:center">进程的结果依赖于共享资源的状态</td>
+</tr>
+<tr>
+<td style="text-align:center">直接感知(双方直接交互，如通信)</td>
+<td style="text-align:center">通过通信进行协作</td>
+<td style="text-align:center">进程的结果依赖于从其他进程获取的信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此时进程间会出现如下三种状态。</p>
+<ul>
+<li>互斥：一个进程占用资源，其他的进程不能使用该资源；</li>
+<li>死锁：多个进程各自占用部分资源，形成循环等待；</li>
+<li>饥饿：进程一直得不到资源。</li>
+</ul>
+<h2><span id="同步方法">同步方法</span></h2><p>为了保证只有一个进程进入临界区执行，需要在进入临界区之前检查进程是否能够进入临界区，若可以进入，接下来设置相应”进入临界区”的标志。进程使用完资源之后，退出临界区，去除相应”进入临界区”的标志。</p>
+<p>综上，临界区的访问规则为空闲则入、忙则等待、有限等待与让权等待(可选)。</p>
+<h3><span id="禁用硬件中断">禁用硬件中断</span></h3><p>没有中断，没有上下文切换，因此没有并发。</p>
+<ul>
+<li>硬件将中断处理延迟到中断被启用之后；</li>
+<li>现代计算机体系结构都提供指令来实现禁用中断；</li>
+</ul>
+<p>因此，进入临界区就是禁用所有中断并保存标志位；退出临界区就是启用所有中断并恢复标志位。禁用硬件中断可有效实现同步互斥，但是也有如下局限性：</p>
+<ul>
+<li>禁用中断后，进程无法被停止；会使整个操作系统暂停，导致其他进程处于饥饿状态；</li>
+<li>临界区执行时间可能很长；</li>
+</ul>
+<p>因此，禁用硬件中断的方法须小心使用。</p>
+<h3><span id="基于软件的同步">基于软件的同步</span></h3><p>复杂(需要两个进程间的共享数据项)，是一个忙等待(浪费CPU时间)。</p>
+<h3><span id="高级抽象的同步方法">高级抽象的同步方法</span></h3><p>原子操作指令1：测试与置位指令(TS指令)——从内存单元读取值并返回，期间将内存单元置1；</p>
+<p>该指令的伪代码操作如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">bool</span> * target)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> rv=* target;</span><br><span class="line">    * target=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原子操作指令2：交换指令(exchange)，顾名思义，交互内存中的两个值。</p>
+<p>基于上述两个原子操作指令，来实现锁。</p>
+<p><strong>使用TS指令实现锁</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lock</span>&#123;</span></span><br><span class="line">    <span class="keyword">bool</span> value=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lock::Acquire()&#123;</span><br><span class="line">    <span class="keyword">while</span> (TS(&amp; value))&#123;</span><br><span class="line">        <span class="comment">//run</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lock::Release()&#123;</span><br><span class="line">    value=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是上述实现是一种忙等待，改进如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增加一个等待队列</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lock</span>&#123;</span></span><br><span class="line">    <span class="keyword">bool</span> value=<span class="number">0</span>;</span><br><span class="line">    WaitQuene q=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当进程申请不到资源时，进入等待队列，执行进程调度</span></span><br><span class="line">Lock::Acquire(pcb)&#123;</span><br><span class="line">    <span class="keyword">while</span> (TS(&amp; value))&#123;</span><br><span class="line">        q.add(pcb);</span><br><span class="line">        schedule();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当占用资源的进程使用完资源后，释放锁，并且将某个等待的进程从等待队列中移除并将其唤醒</span></span><br><span class="line">Lock::Release(pcb)&#123;</span><br><span class="line">    value=<span class="number">0</span>;</span><br><span class="line">    q.remove(pcb);</span><br><span class="line">    wakeup(pcb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/backend/">backend</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
