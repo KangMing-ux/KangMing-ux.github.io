@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>分类 - os - GAEA</title>
+<title>第十九章 i/o子系统 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="分类 - os - GAEA" />
+<meta property="og:title" content="第十九章 i/o子系统 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -40,7 +40,7 @@
         (function() {
             let jsi_config = {
                 rootUrl: 'https://chu-kangming.gitee.io/',
-                isPost: 'false',
+                isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
                 donateImg: '/images/donate-qr.png',
@@ -125,29 +125,29 @@
 
             <div class="page-title">
     <ul>
-        <li class="">
-            <a href="/" data-name="最近">最近</a>
-        </li>
+        <li><a href="/">最近</a></li>
         
-        <li class="">
-            <a href="/categories/tech" data-name="技术">技术</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/conf" data-name="配置">配置</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/crypto" data-name="CTF">CTF</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/os" data-name="OS">OS</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/cn" data-name="计网">计网</a>
-        </li>
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF">CTF</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/os" data-name="OS">OS</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计网">计网</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -162,133 +162,119 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-        
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-06-07">2021-06-07</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第十九章 I/O子系统</h2>
+            <div class="post-meta">
+                本文共计507个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>coming</strong>
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">I&#x2F;O特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">I&#x2F;O结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">I&#x2F;O数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Linux I&#x2F;O子系统</span></a></li></ol>
+            </div>
+        
+            <h2><span id="io特点">I/O特点</span></h2><p>I/O设备有三种常见类型：字符设备(键盘、鼠标等)，块设备(磁盘驱动器、光驱等)，网络设备(无线网卡、蓝牙等)。不同类型的设备访问特征不同。</p>
+<ul>
+<li>字符设备：以字节为单位顺序访问，访问使用get()、put()函数；</li>
+<li>块设备：读写以一个数据块为单位，访问既可以使用get()、put()函数，也可以使用文件系统接口，或者将文件映射到内存；</li>
+<li>网络设备：交互复杂，接收格式化的网络报文，访问使用专门的网络报文收发接口——send/receive；</li>
+</ul>
+<h2><span id="io结构">I/O结构</span></h2><p>如下是整个计算机系统的结构：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch19/77.png" class title="pic77"></div>
+
+<p>&nbsp;</p>
+<p>I/O的结构层次如下：</p>
+<div style="width:50%;margin:auto"><img src="/os/os-ch19/78.png" class title="pic78"></div>
+
+<p>&nbsp;</p>
+<p>下面考虑一个完整的I/O请求的生命周期：</p>
+<div style="width:60%;margin:auto"><img src="/os/os-ch19/79.png" class title="pic79"></div>
+
+<h2><span id="io数据传输">I/O数据传输</span></h2><p>访问设备的数据可通过CPU指令(in/out)实现，这种方式便于实现但是消耗CPU(时间与数据量成正比)。或者直接通过内存访问，只需要在传输数据的开始和结束使用CPU，传输数据过程不影响CPU，在高吞吐量的I/O设备中使用该方式。</p>
+<p>处理设备请求有两种方式：轮询与设备中断；设备中断效率高，设备中断的I/O处理流程如下：</p>
+<div style="width:56%;margin:auto"><img src="/os/os-ch19/80.png" class title="pic80"></div>
+
+<p>&nbsp;</p>
+<h2><span id="linux-io子系统">Linux I/O子系统</span></h2><p>Linux I/O系统结构如下图所示：</p>
+<div style="width:38%;margin:auto"><img src="/os/os-ch19/81.png" class title="pic81"></div>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
-            <em>·</em>2021-05-09
-            
         </div>
-        <a class="post-title" href="/os/ATwithT.html" target="_blank" title="AT&amp;T汇编基础知识">AT&amp;T汇编基础知识</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/backend/" target="_blank">backend</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        AT&amp;T汇编基础知识
-    </div>
-</article>
-
-
-
         
+        <div class="post-tags">标签：
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2021-05-08
+            <a href="/tags/backend/">backend</a>
             
         </div>
-        <a class="post-title" href="/os/os-ch3.html" target="_blank" title="第三章 物理内存管理：连续内存分配">第三章 物理内存管理：连续内存分配</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/backend/" target="_blank">backend</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        第三章 物理内存管理：连续内存分配
-    </div>
-</article>
-
-
-
         
-            
-<article class="post">
+    </article>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2021-05-07
-            
-        </div>
-        <a class="post-title" href="/os/os-ch2.html" target="_blank" title="第二章 中断、异常与系统调用">第二章 中断、异常与系统调用</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/backend/" target="_blank">backend</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        第二章 中断、异常与系统调用
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://about.tangkunyin.com" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2021-05-07
-            
-        </div>
-        <a class="post-title" href="/os/os-ch1.html" target="_blank" title="第一章 操作系统与系统结构&amp;程序设计语言">第一章 操作系统与系统结构&amp;程序设计语言</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/backend/" target="_blank">backend</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        第一章 操作系统与系统结构&amp;程序设计语言
-    </div>
-</article>
-
-
-
-        
     
+    
+    
+
+
 </div>
 
-<div id="btn-pager">
-    
-    <a class="extend prev" rel="prev" href="/categories/os/page/2/">上一页</a><a class="page-number" href="/categories/os/">1</a><a class="page-number" href="/categories/os/page/2/">2</a><span class="page-number current">3</span>
-</div>
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
 
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->

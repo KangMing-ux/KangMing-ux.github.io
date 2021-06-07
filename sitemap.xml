@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chu-kangming.gitee.io/os/os-ch19.html</loc>
+    
+    <lastmod>2021-06-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chu-kangming.gitee.io/os/os-ch18.html</loc>
     
     <lastmod>2021-06-07</lastmod>
@@ -571,7 +578,7 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -585,7 +592,21 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/encode/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
+    <lastmod>2021-06-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
+    <lastmod>2021-06-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/Paillier/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -600,20 +621,6 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/elgamal/</loc>
-    <lastmod>2021-06-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/Paillier/</loc>
-    <lastmod>2021-06-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -641,14 +648,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/sagemath/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/Ubuntu/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/Ubuntu/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/msf/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -662,7 +669,7 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/msf/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/sagemath/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -713,7 +720,7 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
+    <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -727,7 +734,7 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
+    <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
