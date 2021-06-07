@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第十八章 文件系统实例</h2>
             <div class="post-meta">
-                本文共计885个字 |
+                本文共计1322个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">FAT文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">EXT4文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">大容量存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">异常恢复</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">FAT文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">EXT4文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">大容量存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">异常恢复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">ZFS文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">数据完整性</span></a></li></ol></li></ol>
             </div>
         
             <h2><span id="fat文件系统">FAT文件系统</span></h2><p>FAT文件系统的结构如下：</p>
@@ -218,6 +218,33 @@
 <p>日志文件系统先将对应日志写入日志数据块，再将缓存数据写入文件。为保证TxE的正确性，先写入TxB、I[v2]、B[v2]，再写入TxE。</p>
 <p>为提高数据写入文件的速度，可采用批处理；此外，通过循环日志的方式，缩小日志数据的规模。</p>
 <p>为了进一步提高数据写入文件的速度，metadata日志省略了在日志数据块中写入Db，但此时要调整数据写入顺序：Db写入文件-&gt;metadata写入日志数据块-&gt;metadata写入文件系统。通过强制首先写入数据，保证指针永远不会指向垃圾数据。</p>
+<h2><span id="zfs文件系统">ZFS文件系统</span></h2><h3><span id="概述">概述</span></h3><p>ZFS是一种新型的文件系统，它提供了简单的管理、事务语义、端到端数据完整性与极大的可扩展性。ZFS文件系统框架如下图：</p>
+<div style="width:60%;margin:auto"><img src="/os/os-ch18/72.png" class title="pic72"></div>
+
+<ul>
+<li>ZPL：封装的处理文件的接口；</li>
+<li>DMU：数据管理单元，提供基于对象的事务操作的支持；</li>
+<li>ARC：(类似内存的)缓存与替换算法；</li>
+<li>ZIO：对实际的I/O处理做抽象，向ARC层提供支持；</li>
+<li>VDEV：虚拟设备，内置了各种RAID；</li>
+</ul>
+<p>ZFS文件系统使用存储池作为存储设备。取消了文件卷，采用分配与回收机制，分配的空间易于调整；</p>
+<div style="width:40%;margin:auto"><img src="/os/os-ch18/73.png" class title="pic73"></div>
+
+<p>&nbsp;</p>
+<h3><span id="数据完整性">数据完整性</span></h3><p><strong>写时复制</strong>：对数据进行修改时，先复制数据的一个副本，在副本上修改完再写回数据的位置(提交)。</p>
+<p>读数据时，采用分层校验，即ZFS校验树，每级目录都有校验和；</p>
+<div style="width:30%;margin:auto"><img src="/os/os-ch18/74.png" class title="pic74"></div>
+
+<p>&nbsp;</p>
+<p>在读数据时，如果数据未能通过校验，则读取数据副本，并将副本写入数据位置。</p>
+<div style="width:40%;margin:auto"><img src="/os/os-ch18/75.png" class title="pic75"></div>
+
+<p>&nbsp;</p>
+<p>ZFS采用动态条带宽，不同对象校验数据块的的个数也不同，根据所需安全性来选择合适的校验数据块个数；</p>
+<div style="width:30%;margin:auto"><img src="/os/os-ch18/76.png" class title="pic76"></div>
+
+<p>&nbsp;</p>
 
             
                 
