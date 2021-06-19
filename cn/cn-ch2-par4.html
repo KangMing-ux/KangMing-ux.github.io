@@ -203,7 +203,7 @@
 <p>(1)对地址为X的相邻路由器发来的RIP报文中的路由表，将路由表中的所有路由的下一跳项改为X、距离项的值加1；</p>
 <p>(2)对修改后的每一路由r：若路由器的路由表中没有到r中目的网络y的路由，则将此路由添加到路由器的路由表中。否则，记路由器的路由表中到目的网络y的路由为s，(i)若s的下一跳地址为X，则将r替换s；(ii)s的下一跳地址非X，若r的距离小于s的距离，则将r替换s。</p>
 <p>(3)若3分钟未收到相邻路由器的路由表，则将此相邻路由器标记为不可达。</p>
-<h3><span id="rip协议的报文格式">RIP协议的报文格式</span></h3><div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par4/14.png" class title="pic14"></div>
+<h3><span id="rip协议的报文格式">RIP协议的报文格式</span></h3><div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par4/14.png" class title="pic14"></div>
 
 <p>&nbsp;</p>
 <p>其中路由标记填入自治系统号ASN。RIP实现简单、开销小，存在的问题是传递故障信息的速度很慢，适用于小规模网络。</p>
@@ -215,7 +215,7 @@
 </ul>
 <p>各路由器之间频繁交换链路状态信息，最终所有的路由器都能建立一个链路状态数据库，即全网的拓扑结构图。每个路由器根据拓扑结构图使用Dijkstra算法计算到各路由器的路由。</p>
 <h3><span id="划分区域">划分区域</span></h3><p>OSPF为适应大规模的自治系统，将其划分为若干个小范围——区域，每一区域有一个32位的标识符。此时再使用洪泛法发送信息时就只在区域内传递。为使得区域间能发送消息，OSPF会定义一个主干区域，其他区域均为边界区域。主干区域的标识符为0.0.0.0，它连接所有的边界区域，来自其他区域的信息先汇集到该区域的边界路由器，进入主干区域后流入目的区域。如下是一个例子。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par4/15.png" class title="pic15"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par4/15.png" class title="pic15"></div>
 
 <p>&nbsp;</p>
 <h3><span id="ospf协议报文格式">OSPF协议报文格式</span></h3><p>OSPF使用IP数据报传递信息，OSPF分组使用如下图的24字节固定长度头部，如下图为OSPF协议报文格式。</p>
@@ -241,7 +241,7 @@
 <div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par4/17.png" class title="pic17"></div>
 
 <h2><span id="外部网关协议bgp">外部网关协议BGP</span></h2><h3><span id="工作原理">工作原理</span></h3><p>在配置BGP时，每个自治系统的管理员至少选择一个路由器作为”BGP发言人”，BGP发言人使用TCP连接交换路由信息。BGP发言人与自治系统AS之间的关系如下图。各BGP发言人之间交换的信息就是达到某个网络需经过的自治系统。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par4/18.png" class title="pic18"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par4/18.png" class title="pic18"></div>
 
 <p>&nbsp;</p>
 <p>BGP协议支持无分类域间路由选择CIDR，因此使用BGP协议的路由器的每条路由应包含目的网络前缀、下一跳IP地址、到达目的网络需经过的自治系统序列。若某个BGP发言人收到其他BGP发言人的路径通知，它需要检查自身是否在通知的路径中，若在，则不能采用此路径，避免形成回路。</p>
@@ -253,7 +253,7 @@
 <li>NOTIFICATION报文。发送检测到的差错。</li>
 </ul>
 <h3><span id="bgp报文格式">BGP报文格式</span></h3><p>4类BGP报文具有同样的通用BGP头部，如下图所示。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par4/19.png" class title="pic19"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par4/19.png" class title="pic19"></div>
 
 <p>&nbsp;</p>
 <p>KEEPALIVE报文只有BGP头部，共19字节。OPEN报文主体有6个字段：版本、本自治系统号、保持时间、BGP标识符、可选参数长度、可选参数；UPDATE报文主体有5个字段：不可行路由长度、撤销路由列表、路径属性总长度、路径属性、网络层可达信息。NOTIFICATION报文有3个字段：差错代码、差错子代码、差错数据。</p>

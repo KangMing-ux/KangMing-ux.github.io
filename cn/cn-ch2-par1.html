@@ -204,7 +204,7 @@
 <p>MAC地址是网卡地址，网卡才是真正能够做通讯的设备，IP只是上层的软件，负责将不同的网络连接在一起。</p>
 <p>&nbsp;</p>
 <p>IP地址用在网络层及以上，MAC地址用在数据链路层及以下。如下图，三个局域网用两个路由器连接起来，由于路由器R1、R2同时连接在两个局域网上，因此R1、R2都有两个MAC地址。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par1/5.png" class title="pic5"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par1/5.png" class title="pic5"></div>
 
 <p>&nbsp;</p>
 <h2><span id="地址解析协议arp">地址解析协议ARP</span></h2><p>根据IP地址，解析出同一局域网上设备的MAC地址。每台主机上都设置一个ARP高速缓存，存放着本局域网上各主机与路由器的IP地址到MAC地址的映射表。显然，如果主机查询的IP地址在主机的ARP高速缓存中存在，即可读取出IP地址对应的MAC地址，否则，按如下步骤找出IP地址对应的MAC地址。</p>
@@ -214,10 +214,10 @@
 <li>IP地址与请求分组中查询MAC地址的IP地址不一致的主机忽略此请求，否则，(IP地址与请求分组中查询MAC地址的IP地址一致的主机)向查询主机发送ARP响应分组，其中包含自身的MAC地址。同时在自身的ARP高速缓存中写入查询主机的IP : MAC映射；</li>
 <li>查询主机收到响应分组后，在其ARP缓存中添加这组IP : MAC映射；</li>
 </ul>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par1/6.png" class title="pic6"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par1/6.png" class title="pic6"></div>
 
 <p>&nbsp;</p>
-<h2><span id="ip数据报的格式">IP数据报的格式</span></h2><div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par1/7.png" class title="pic7"></div>
+<h2><span id="ip数据报的格式">IP数据报的格式</span></h2><div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par1/7.png" class title="pic7"></div>
 
 <p>&nbsp;</p>
 <p>格式中大部分内容的作用很显然，这里解释一下标识。IP软件维持一个计数器，每产生一个数据报，计数器加1，并将计数器的值赋给标识字段。这个标识并不是序号(IP是无连接的)，这是因为当数据报很长需要分组传输时，每个分组的数据包的标识字段都是一样的。相同标识字段的数据包意味着数据包来自同一数据报。</p>

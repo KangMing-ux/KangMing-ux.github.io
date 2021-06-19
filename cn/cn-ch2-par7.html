@@ -197,19 +197,19 @@
 <li>192.168.0.0至192.168.255.255；</li>
 </ul>
 <p>利用公用互联网作为机构各专用网之间的通信载体，这样的专用网称为虚拟专用网VPN。下图用例子说明如何用IP隧道技术实现虚拟专用网。</p>
-<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par7/26.png" class title="pic26"></div>
+<div style="width:64%;margin:auto"><img src="/cn/cn-ch2-par7/26.png" class title="pic26"></div>
 
 <h2><span id="网络地址转换nat">网络地址转换NAT</span></h2><p>NAT方法需要专用网上路由器有NAT组件，所有使用专用地址与外界通信的主机，都要在NAT路由器上将源IP地址转换为NAT路由器的IP地址，才能发送到互联网中。NAT的工作原理如下图所示。</p>
-<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par7/27.png" class title="pic27"></div>
+<div style="width:64%;margin:auto"><img src="/cn/cn-ch2-par7/27.png" class title="pic27"></div>
 
 <p>&nbsp;</p>
 <p>而数据包出入时源IP地址/目的IP地址的转换就通过NAT地址转换表进行。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par7/28.png" class title="pic28"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par7/28.png" class title="pic28"></div>
 
 <p>&nbsp;</p>
 <p>由此可见，如果NAT路由器有n个全球IP地址，则专用网内最多可有n台主机接入互联网。</p>
 <p>为更充分利用NAT路由器的IP地址，目前的NAT转换表将传输层的端口号也利用上，这也称为网络地址与端口号转换。此时的NAT地址转换表如下。</p>
-<div style="width:70%;margin:auto"><img src="/cn/cn-ch2-par7/29.png" class title="pic29"></div>
+<div style="width:75%;margin:auto"><img src="/cn/cn-ch2-par7/29.png" class title="pic29"></div>
             
                 
             

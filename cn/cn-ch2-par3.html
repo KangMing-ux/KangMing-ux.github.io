@@ -191,11 +191,11 @@
             </div>
         
             <h2><span id="概述">概述</span></h2><p>为更有效地转发IP数据报，在网络层使用网际控制报文协议ICMP。ICMP允许路由器或主机报告IP数据报的差错情况。ICMP报文格式如下：</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par3/11.png" class title="pic11"></div>
+<div style="width:45%;margin:auto"><img src="/cn/cn-ch2-par3/11.png" class title="pic11"></div>
 
 <p>&nbsp;</p>
 <p>ICMP报文分两种：ICMP差错报告报文与ICMP询问报文。ICMP报文前4字节是包含3个字段(类型、代码、校验和)的固定格式，接下来4个字节的内容与ICMP的类型有关。最后的数据字段取决于ICMP的类型。下表给出常用的ICMP报文类型。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par3/12.png" class title="pic12"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par3/12.png" class title="pic12"></div>
 
 <p>&nbsp;</p>
 <p>下面具体介绍。</p>
@@ -207,7 +207,7 @@
 <li>改变路由(重定向)。路由器将改变路由报文发送给主机，告知主机下次将报文发送给另外的路由器。</li>
 </ul>
 <p>对于需要进行差错报告的IP数据报，路由器或主机会将IP头部与IP数据字段的前8字节取出，作为ICMP报文的数据字段，再填写ICMP头部得到ICMP报文。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par3/13.png" class title="pic13"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par3/13.png" class title="pic13"></div>
 
 <p>&nbsp;</p>
 <p>对于以下几种情形，均不发送ICMP差错报文。</p>

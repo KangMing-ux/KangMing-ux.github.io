@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第二章第二节 划分子网与构造超网</h2>
             <div class="post-meta">
-                本文共计1032个字 |
+                本文共计895个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -209,13 +209,12 @@
 <li>报告分组转发出错。</li>
 </ul>
 <h2><span id="无分类编址cidr">无分类编址CIDR</span></h2><h3><span id="网络前缀">网络前缀</span></h3><p>无分类域间路由选择。CIDR将32位的IP地址划分为前后两个部分，前面部分指明网络，后面部分指明主机。消除了传统的A类、B类、C类地址与划分子网概念。如下是一个CIDR地址划分的例子。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par2/9.png" class title="pic9"></div>
+<div style="width:56%;margin:auto"><img src="/cn/cn-ch2-par2/9.png" class title="pic9"></div>
 
 <p>&nbsp;</p>
-<p>从这里我们可以看出CIDR的作用，上述ISP拥有64个C类网络，这种路由聚合也称为构造超网。如果不使用CIDR，则在与该ISP的路由器交互路由信息的每个路由器的路由表中，就需要64个项目。但采用地址聚合的CIDR技术，用206.0.64.0/18一个项目就能访问此ISP。</p>
 <h3><span id="最长前缀匹配">最长前缀匹配</span></h3><p>根据上节的例子可以看到，在查找路由表时可能会得到不止一个匹配结果，此时应该选择匹配长度最长的路由。这称为最长前缀匹配。</p>
 <h3><span id="二叉线索查找路由">二叉线索查找路由</span></h3><p>为进行有效查找，无分类编址的路由表存放在二叉线索树中。在查找前，找出对应每个IP地址在表中的唯一前缀，接下来以这些前缀构造二叉线索，查找时，只要可以与唯一前缀匹配即可。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch2-par2/10.png" class title="pic10"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par2/10.png" class title="pic10"></div>
             
                 
             
