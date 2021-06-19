@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第二章 传输tcp/ip数据 - GAEA</title>
+<title>超椭圆曲线(二)基本定义与属性 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第二章 传输tcp/ip数据 - GAEA" />
+<meta property="og:title" content="超椭圆曲线(二)基本定义与属性 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-05-10">2021-05-10</span>
+                    <span title="最后编辑于&nbsp;2021-06-19">2021-06-19</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第二章 传输TCP/IP数据</h2>
+            <h2 class="post-title">超椭圆曲线(二)基本定义与属性</h2>
             <div class="post-meta">
-                本文共计2228个字 |
+                本文共计2726个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,100 +187,75 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">创建套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">协议栈的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">套接字：通信控制信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">socket的内部实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">连接服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">连接：通信双方交换控制信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">保存控制信息的头部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">连接的具体操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">收发数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">请求消息进入协议栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">对长数据进行拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">网络包的接收确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ACK号等待时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">滑动窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ACK与窗口信息的合并发送</span></a></li></ol></li></ol>
+                    
             </div>
         
-            <h2><span id="创建套接字">创建套接字</span></h2><h3><span id="协议栈的结构">协议栈的结构</span></h3><div style="width:60%;margin:auto"><img src="/cn/cn-ch2/7.png" class title="pic7"></div>
+            <p><strong>定义1(超椭圆曲线)</strong>设$K$是一个域，$\bar K$是$K$的代数闭包。$K$上类为$g$的超椭圆曲线定义为如下等式：</p>
+<script type="math/tex; mode=display">
+C: v^{2}+h(u)v=f(u)\ \textrm{in}\ K[u,v] \tag{1}</script><p>其中$h(u)\in K[u]$是次数不超过$g$的多项式，$f(u)\in K[u]$是次数为$2g+1$的首项系数为$1$多项式，并且不存在解$(u,v)\in \bar K\times\bar K$同时满足方程$v^{2}+h(u)v=f(u)\ \textrm{in}\ K[u,v]$与两个偏微分方程$2v+h(u)=0,h^{‘}(u)v-f^{‘}(u)=0$。</p>
+<p>所谓$C$上的奇异点是一个解$(u,v)\in \bar K\times\bar K$同时满足上述三个方程。定义$1$表明超椭圆曲线没有任何奇异点。</p>
+<p>对于本文的其余部分，假设域$K$和曲线$C$已经固定。</p>
+<p><strong>引理1</strong> 令$C$是$K$上如式$(1)$定义的超椭圆曲线；</p>
+<p>$(\textrm{i})$ 若$h(u)=0$，则$char(K)\neq 2$；</p>
+<p>$(\textrm{ii})$ 若$char(K)\neq 2$，则变量替换$u\rightarrow u,v\rightarrow (v-h(u)/2)$将$C$转换为形式$v^{2}=f(u)$，其中$f$的次数为$2g+1$；</p>
+<p>$(\textrm{iii})$ 令$C$是形如$(1)$的等式且$h(u)=0,char(K)\neq 2$，则$C$是超椭圆曲线当且仅当$f(u)$在$\bar K$上没有重根；</p>
+<p>证明：</p>
+<p>$(\textrm{i})$假设$char(K)=2$，则任意的$x\in K , 2x=0$，因此要成为曲线$C$上的奇异点只需要满足如下两个等式即可：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+v^{2}=f(u)\\
+\\
+f^{'}(u)=0
+\end{cases}</script><p>先求满足$f^{‘}(u)=0$的根$u_{0}$，再求满足$v^{2}=f(u_{0})$的根$v_{0}$，从而得到曲线$C$的奇异点$(u_{1},v_{0})$；这与$C$是超椭圆曲线矛盾。</p>
+<p>$(\textrm{ii})$经变量替换，$C$的形式为：$(v-\frac {h(u)} {2})^{2}=f(u)\Rightarrow v^{2}=f(u)-\frac {h^{2}(u)} {4}$，而$deg(h)\leq g\Rightarrow deg(f(u)-\frac {h^{2}(u)} {4})=2g+1$。</p>
+<p>$(\textrm{iii}) 当h(u)=0,char(K)\neq 2$时，$C$有奇异点等价于存在$(u,v)\in \bar K\times\bar K$，满足：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+v^{2}=f(u)\\
+\\
+2v=0\\
+\\
+f^{'}(u)=0
+\end{cases}</script><p>等价于：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+f(u)=0\\
+\\
+f^{'}(u)=0\\
+\\
+v=0
+\end{cases}</script><p>因此，$C$有奇异点等价于存在$u\in \bar K$，满足：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+f(u)=0\\
+\\
+f^{'}(u)=0
+\end{cases}</script><p>即$f$有重根；因此，$C$是超椭圆曲线等价于$f$无重根。</p>
+<p><strong>定义3</strong>(有理点，无限点，有限点)设$L$是$K$的扩展域。$C$上$L$有理点的集合，记为$C(L)$，是满足曲线$C$的等式$(1)$的所有点$P(x,y)\in L\times L$连同一个在无穷远处的特殊点(记为$\infty$)，点集$C(\bar K)$简单地被$C$定义，$C$上异于$\infty$的点称为有限点。</p>
+<p><strong>例4</strong>(实数域上的超椭圆曲线)如下是实数域上的超椭圆曲线的三个例子，每条曲线类$g=2$且$h(u)=0$。</p>
+<p>$(\textrm{i})\ C_{1}:\ v^{2}=u^{5}+u^{4}+4u^{3}+4u^{2}+3u+3=(u+1)(u^{2}+1)(u^{2}+3)$，$C_{1}$在实平面的图像如图$1$所示；</p>
+<div style="width:80%;margin:auto"><img src="/tech/Hyper-ch2/1.png" class title="pic1"></div>
 
 <p>&nbsp;</p>
-<h3><span id="套接字通信控制信息">套接字：通信控制信息</span></h3><p>套接字记录着通信对象的IP地址与端口号、通信的状态等等；总之，套接字中记录了用于控制通信的各种信息，协议栈根据这些信息判断下一步操作。</p>
-<h3><span id="socket的内部实现">socket的内部实现</span></h3><p>以下所示是更详细的收发数据示意图：</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/8.png" class title="pic8"></div>
-
-<h2><span id="连接服务器">连接服务器</span></h2><h3><span id="连接通信双方交换控制信息">连接：通信双方交换控制信息</span></h3><p>所谓建立连接，就是为通信双方互相交换控制信息，在套接字中记录这些必要信息并准备数据收发的一系列操作。</p>
-<h3><span id="保存控制信息的头部">保存控制信息的头部</span></h3><p>在数据包的头部，存放着客户端与服务器相互联络所需的控制信息，这些信息在TCP协议中进行了定义，如下表所示。</p>
-<p>&nbsp;</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch2/9.png" class title="pic9"></div>
+<p>$(\textrm{ii})\ C_{2}:\ v^{2}=u^{5}+u^{4}-u^{2}-u=u(u-1)(u+1)(u^{2}+u+1)$，$C_{2}$在实平面的图像如图$2$所示；</p>
+<div style="width:80%;margin:auto"><img src="/tech/Hyper-ch2/2.png" class title="pic2"></div>
 
 <p>&nbsp;</p>
-<p>在连接阶段，通信双方只交换控制信息，此时网络包的结构如下图：</p>
-<p>&nbsp;</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/11.png" class title="pic11"></div>
+<p>$(\textrm{iii})\ C_{3}:\ v^{2}=u^{5}-5u^{3}-u^{2}+4u=u(u-1)(u+1)(u-2)(u+2)$，$C_{3}$在实平面的图像如图$3$所示；</p>
+<div style="width:80%;margin:auto"><img src="/tech/Hyper-ch2/3.png" class title="pic3"></div>
 
 <p>&nbsp;</p>
-<p>通信双方建立连接之后，通信双方开始互相发送数据，此时的网络包结构如下图：</p>
-<p>&nbsp;</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/10.png" class title="pic10"></div>
+<p><strong>定义5</strong>(相反点、特殊点和平凡点)令$P(x,y)$是曲线$C$上的一个有限点。$P$的相反点是$\bar P(x,-y-h(x))$。(注意到$\bar P$确实在$C$上。)我们同样定义$\infty$的相反点$\bar \infty=\infty$为他的本身。若一个有限点$P$满足$P=\bar P$，则该点被称为特殊的；否则，该点被称为平凡的。</p>
+<p><strong>例6</strong>($Z_{7}$上的超椭圆曲线)考虑有限域$Z_{7}$上的曲线$C:v^{2}+uv=u^{5}+5u^{4}+6u^{2}+u+3$。这里，$h(u)=u,f(u)=u^{5}+5u^{4}+6u^{2}+u+3$且$g=2$，可以证明$C$没有奇异点(除了$\infty$)，因此$C$确实是一个超椭圆曲线。$C$上的$Z_{7}$有理点为$C(Z_{7})={\infty,(1,1),(1,5),(2,2),(2,3),(5,3),(5,6),(6,4)}$，点$(6,4)$是一个特殊点。</p>
+<p><strong>例7</strong>($F_{2^{5}}$上的超椭圆曲线)考虑有限域$F_{2^{5}}=F_{2}[x]/(x^{5}+x^{2}+1)$，并且令$\alpha$是本原多项式$x^{5}+x^{2}+1$在$F_{2^{5}}$的根。$\alpha$的指数如表$1$所示。</p>
+<div style="width:60%;margin:auto"><img src="/tech/Hyper-ch2/4.png" class title="pic4"></div>
 
 <p>&nbsp;</p>
-<h3><span id="连接的具体操作">连接的具体操作</span></h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">服务器端</th>
-<th>方向</th>
-<th style="text-align:center">客户端</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td>&lt;</td>
-<td style="text-align:center">创建TCP头部，其中包含表示开始数据收发操作的控制信息；<br><br>对TCP头部进行初始化设置(源IP与目的IP、源端口与目的端口、SYN位置1、序号设置与窗口大小设置等等)；<br><br>将TCP头部传给IP层并委托IP层发送给服务器端。</td>
-</tr>
-<tr>
-<td style="text-align:center">服务器端接收到数据，经以太层、IP层解析之后到达TCP层；<br><br>TCP层根据头部的目的端口号找到连接此请求的套接字，并向该套接字中写入相应的信息；套接字的状态改为正在连接；<br><br>服务器端也是发送一个TCP头部给客户端(操作与客户端的操作相同，但是有些地方的设置要反过来，比如TCP头部的源IP与目的IP、源端口与目的端口之类)；此外，还要将ACK位置为1，表示已经接收到相应的网络包。</td>
-<td>&gt;</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>&lt;</td>
-<td style="text-align:center">客户端接收到数据，经以太层、IP层解析之后到达TCP层；<br>TCP层通过接收到的TCP头部的SYN位确认连接服务器的操作是否成功；若SYN位为1,(表示连接成功)，此时TCP模块会向套接字中写入服务器的IP地址，端口号等信息；并将套接字的状态设置为连接完毕；<br>同样地，客户端也需要将TCP头部的ACK位置1并将TCP头部传给IP层并委托IP层发送给服务器端。</td>
-</tr>
-<tr>
-<td style="text-align:center">服务器收到客户端第二次发送的网络包，连接操作全部完成。</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>此后，套接字进入了随时可以收发数据的状态。到这里，也就是connect执行完毕。</p>
-<h2><span id="收发数据">收发数据</span></h2><h3><span id="请求消息进入协议栈">请求消息进入协议栈</span></h3><p>协议栈收到数据后，先将其存放在内部的发送缓冲区，继续等待应用程序后续的数据；协议栈是否发送数据有以下两个判断要素：</p>
-<ul>
-<li>缓存的数据包长度是否接近MSS(最大分段大小)。MSS=MTU-ip_head_len-tcp_head_len，MTU(最大传输单元)一般为1500；</li>
-<li>等待时间。即使数据包长度还未接近MSS，但是已经等待了一定时间，为避免造成发送延迟，也会将数据包发送出去；</li>
-</ul>
-<p>应用程序可以控制数据包发送的时机(长度优先或时间优先)，若应用程序未指定，则由协议栈自行决定。</p>
-<h3><span id="对长数据进行拆分">对长数据进行拆分</span></h3><p>当应用程序送入协议栈的数据长度大于MSS，数据以MSS个字节为单位进行分组，在每组数据前加上TCP头部后送入IP层，委托IP将数据发送。</p>
-<p>&nbsp;</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/12.png" class title="pic12"></div>
+<p>考虑有限域$F_{2^{5}}$上类$g=2$曲线$C: v^{2}+(u^{2}+u)v=u^{5}+u^{3}+1$，这里$h(u)=u^{2}+u,f(u)=u^{5}+u^{3}+1$，可以证明$C$没有奇异点(除了$\infty$)，因此$C$实际上是一个超椭圆曲线。$C(F_{2^{5}})$中的有限点如下：</p>
+<div style="width:80%;margin:auto"><img src="/tech/Hyper-ch2/5.png" class title="pic5"></div>
 
 <p>&nbsp;</p>
-<h3><span id="网络包的接收确认">网络包的接收确认</span></h3><p>每发送一个网络包，都需要进行确认操作。首先，在客户端(发送方)与服务器端(接收方)建立连接时，客户端(发送方)向服务器(接收方)发送的tcp头部使用一个32位的随机数作为序列号；在(发送方)TCP模块拆分数据时，每一数据块前所加的TCP头部的序列号为在上述序列号(32位的随机数)的基础上加上数据块的位置。服务器端(接收方)在收到网络包后，会计算ACK值(序列号+data_len+1)；</p>
-<p>&nbsp;</p>
-<p>服务器端(接收方)创建一个TCP头部(ACK的值为上述ACK的值，ACK位置1)，然后发送给客户端(发送方)；客户端(发送方)在没有收到某个数据包对应的ACK号之前，数据包会一直保存在发送缓冲区中，如果没有收到某个数据包对应的ACK号，TCP模块会重新发送此数据包。</p>
-<p>以下是TCP数据包传输的示意图(简便起见，没有考虑32随机数的初始序列号)。</p>
-<p>&nbsp;</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/13.png" class title="pic13"></div>
-
-<p>&nbsp;</p>
-<p>同时，TCP的数据收发是双向的，即服务器端作为发送方、客户端作为接收方，也会为网络包的接收确认做上述操作。</p>
-<p>如下是TCP数据双向传输的示意图：</p>
-<p>&nbsp;</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/14.png" class title="pic14"></div>
-
-<p>&nbsp;</p>
-<h3><span id="ack号等待时间">ACK号等待时间</span></h3><p>TCP协议采用动态调整的策略来设置ACK号的等待时间。策略是：在TCP模块发送数据时持续测量ACK号的等待时间，若ACK号的返回变慢，则增大ACK号的等待时间，若ACK号的返回变快，则减小ACK号的等待时间。</p>
-<h3><span id="滑动窗口">滑动窗口</span></h3><p>接收方告知发送方自己最多能接收的数据，然后发送方根据这个值对发送的数据量进行控制。以下是一个TCP滑动窗口的示例。</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch2/15.png" class title="pic15"></div>
-
-<p>&nbsp;</p>
-<h3><span id="ack与窗口信息的合并发送">ACK与窗口信息的合并发送</span></h3><p>Q1：接收方何时要向发送方发送窗口的更新信息？</p>
-<p>答：应用程序从接收缓冲区取出数据后。</p>
-<p>Q2：接收方何时要向发送方发送ACK号？</p>
-<p>答：收到数据包确认无误后。</p>
-<p>为了提高网络的效率，可考虑将这两种信息放入同一tcp头部进行发送。这时，在等待过程中(一种情形是刚刚收到了tcp数据包并确认无误，等待应用程序从接收缓冲区取出数据；另一种情形是应用程序从接收缓冲区取出了数据，等待数据包的到来与确认)，窗口信息或ACK号会有多个值，此时只需要传递最终结果即可。</p>
+<p>其中，点$(0,1),(1,1)$是特殊的。</p>
 
             
                 
@@ -294,7 +269,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/backend/">backend</a>
+            <a href="/tags/hyper/">hyper</a>
             
         </div>
         

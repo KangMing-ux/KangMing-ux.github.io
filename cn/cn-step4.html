@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第四章 web服务器处理请求 - GAEA</title>
+<title>第四步 web服务器处理请求 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第四章 web服务器处理请求 - GAEA" />
+<meta property="og:title" content="第四步 web服务器处理请求 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -176,7 +176,7 @@
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第四章 Web服务器处理请求</h2>
+            <h2 class="post-title">第四步 Web服务器处理请求</h2>
             <div class="post-meta">
                 本文共计945个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
@@ -191,18 +191,18 @@
             </div>
         
             <h2><span id="服务器程序的结构">服务器程序的结构</span></h2><p>为保证服务器同时与多个客户端进行通信，服务器启动多个服务器程序一对一地与客户端交互。服务器程序的结构如下图所示：</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch4/20.png" class title="pic20"></div>
+<div style="width:50%;margin:auto"><img src="/cn/cn-step4/20.png" class title="pic20"></div>
 
 <p>&nbsp;</p>
 <p>服务器程序分为两个模块：等待连接模块与通信模块；在服务器启动并完成初始化操作后，它就会运行等待连接模块；等待连接模块创建套接字，然后进入等待连接的暂停状态，直到客户端发起连接；等待连接模块恢复运行并接受连接，启动客户端通信模块，传递套接字的副本给通信模块；</p>
 <p>通信模块使用已连接的套接字与客户端通信。由于在服务器上，一个端口可能与多个客户端建立通信，因此会有多个套接字的端口号相同，于是不能只通过端口号来指定套接字(在客户端可以这样做)，还需要加上源IP，因为各个客户端的IP肯定是不同，每个套接字与客户端一一对应，这样就能准确指定套接字。</p>
 <h2><span id="服务器的接收操作">服务器的接收操作</span></h2><p>数据经网卡、MAC层、IP层到达TCP层(对于HTTP消息来说)，TCP的数据收发详见第二章，只剩下TCP的断开操作还未介绍；TCP断开操作称为四次挥手，示意图如下：</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch4/21.jpg" class title="pic21"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step4/21.jpg" class title="pic21"></div>
 
 <p>&nbsp;</p>
 <p>HTTP协议规定服务器返回响应消息后主动断开连接，于是服务器端执行TCP断开操作；服务器端发送FIN位置1的TCP头部(表面自己已经没有要发送的消息)，客户端收到后返回确认接收的TCP头部，客户端仍然可以给服务器端发送消息，等客户端处理完数据可以结束与服务器端的连接时，客户端发送FIN位置1的TCP头部，处于等待状态的服务器返回确认接收的TCP头部，到此TCP连接彻底断开。</p>
 <h2><span id="服务器解析请求消息并作出响应">服务器解析请求消息并作出响应</span></h2><p>Web服务器公开的目录并不是磁盘上的实际目录，而是如下图所示的虚拟目录：</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch4/22.png" class title="pic22"></div>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step4/22.png" class title="pic22"></div>
 
 <p>&nbsp;</p>
 <p>Web服务器根据请求消息中的源IP、用户名&amp;密码、客户端域名进行访问控制；只有满足条件的请求消息才会对请求消息作出响应。</p>

@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第三章 服务器端的局域网 - GAEA</title>
+<title>第二步 传输tcp/ip数据 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第三章 服务器端的局域网 - GAEA" />
+<meta property="og:title" content="第二步 传输tcp/ip数据 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-05-22">2021-05-22</span>
+                    <span title="最后编辑于&nbsp;2021-05-10">2021-05-10</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第三章 服务器端的局域网</h2>
+            <h2 class="post-title">第二步 传输TCP/IP数据</h2>
             <div class="post-meta">
-                本文共计2050个字 |
+                本文共计2228个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,48 +187,100 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">防火墙的结构与原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">缓存服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">缓存服务器的工作过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">内容分发服务</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">创建套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">协议栈的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">套接字：通信控制信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">socket的内部实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">连接服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">连接：通信双方交换控制信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">保存控制信息的头部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">连接的具体操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">收发数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">请求消息进入协议栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">对长数据进行拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">网络包的接收确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ACK号等待时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">滑动窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ACK与窗口信息的合并发送</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="防火墙的结构与原理">防火墙的结构与原理</span></h2><p>防火墙的基本思路：只允许发往特定服务器的特定应用程序的网络包通过，屏蔽其他的网络包。其中最主流的方式为包过滤，它根据源IP与目的IP、源端口与目的端口、控制位等信息来判断是否允许网络包通过。</p>
-<h2><span id="负载均衡">负载均衡</span></h2><p>若对服务器的访问量上升，则需要多台服务器来分担负载，即分布式架构。要采用这种方法，需要一种机制将客户端发送的请求分发到不同的服务器上，最简单的方式是通过DNS服务器来分配——由于客户端访问Web服务器时需要先向DNS服务器查询Web服务器的IP地址，这时在DNS服务器中对Web服务器的域名填写多个IP地址，则每次查询时DNS服务器都会按顺序(循环地)返回不同的IP地址，即轮询。但是，DNS服务器不能确认某个IP地址对应的Web服务器是否正常工作，因此，如果某台Web服务器出现故障，DNS仍然会给客户端返回这台Web服务器的IP地址，那么客户端发送的请求就无法被处理。</p>
-<p>另外，由于一些操作需要发送多次HTTP请求，这就导致需要在一个Web服务器上完成这多个请求，然而轮询会把这些HTTP请求分发到不同的Web服务器上。</p>
-<p>为避免上述问题，需要使用名为负载均衡器的设备，对于相关HTTP请求消息，客户端发送HTTP请求消息时在表单里面加上表示关联的信息，或者对HTTP规格进行扩展，在HTTP头部字段加上用来判断相关性的信息。若请求消息相关，负载均衡器将不考虑Web服务器的负载而是必须将相关的请求发送到同一Web服务器。</p>
-<p>同样地，要使用负载均衡器，要将Web服务器域名对应的IP在DNS服务器中设置为负载均衡器的IP。</p>
-<h2><span id="缓存服务器">缓存服务器</span></h2><p>Web服务器需要检查网址与访问权限，还有一些在页面填充数据的操作，因此将页面返回客户端的时间较长；相对地，缓存服务器只需要将保存在磁盘上的数据读取出来发送给客户端即可。使用缓存服务器既减轻了Web服务器的负担，又缩短了请求响应的时间。</p>
-<h3><span id="缓存服务器的工作过程">缓存服务器的工作过程</span></h3><p>与负载均衡器相同，缓存服务器也需要代替Web服务器被注册到DNS服务器上；因此，对于使用了缓存服务器的Web服务器，客户端的请求会到达缓存服务器，缓存服务器接收请求消息，接收操作下一章介绍；然后，缓存服务器会检查请求消息的内容，判断请求的数据是否已经在缓存中；</p>
-<ul>
-<li>不在缓存中。缓存服务器在HTTP请求消息头部添加一个Via字段，表示这个消息经过缓存服务器转发，然后将消息转发给Web服务器(如果有多台Web服务器，可根据请求消息中URL的目录名来判断)，示意图如下：</li>
-</ul>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch3/16.png" class title="pic16"></div>
+            <h2><span id="创建套接字">创建套接字</span></h2><h3><span id="协议栈的结构">协议栈的结构</span></h3><div style="width:60%;margin:auto"><img src="/cn/cn-step2/7.png" class title="pic7"></div>
 
 <p>&nbsp;</p>
-<p>缓存服务器转发请求消息时，缓存服务器相当于客户端，会创建套接字并连接Web服务器的套接字，然后转发请求消息并接收Web服务器的响应消息，然后在响应消息中加上Via字段表示响应消息是经缓存服务器中转的；最后，响应消息会保存在缓存服务器中，并记录保存的时间。</p>
-<ul>
-<li>在缓存中。缓存服务器在HTTP请求头部添加一个If-Modified-Since字段(内容为缓存数据被保存的时间)并将请求转发给Web服务器，Web服务器比较请求数据最后的更新时间与缓存数据被保存的时间来判断Web服务器上的请求的数据与缓存服务器上保存的请求的数据是否一致。<ul>
-<li>若一致。缓存服务器将请求的数据返回给客户端，同样加上Via字段；示意图如下。</li>
-<li>若不一致。Web服务器返回最新的请求数据，缓存服务器加上Via字段转发给客户端。</li>
-</ul>
-</li>
-</ul>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch3/17.png" class title="pic17"></div>
+<h3><span id="套接字通信控制信息">套接字：通信控制信息</span></h3><p>套接字记录着通信对象的IP地址与端口号、通信的状态等等；总之，套接字中记录了用于控制通信的各种信息，协议栈根据这些信息判断下一步操作。</p>
+<h3><span id="socket的内部实现">socket的内部实现</span></h3><p>以下所示是更详细的收发数据示意图：</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/8.png" class title="pic8"></div>
+
+<h2><span id="连接服务器">连接服务器</span></h2><h3><span id="连接通信双方交换控制信息">连接：通信双方交换控制信息</span></h3><p>所谓建立连接，就是为通信双方互相交换控制信息，在套接字中记录这些必要信息并准备数据收发的一系列操作。</p>
+<h3><span id="保存控制信息的头部">保存控制信息的头部</span></h3><p>在数据包的头部，存放着客户端与服务器相互联络所需的控制信息，这些信息在TCP协议中进行了定义，如下表所示。</p>
+<p>&nbsp;</p>
+<div style="width:80%;margin:auto"><img src="/cn/cn-step2/9.png" class title="pic9"></div>
 
 <p>&nbsp;</p>
-<p>这种在Web服务器端缓存数据的代理机制，称为反向代理。</p>
-<p><strong>透明代理</strong>：缓存服务器在判断转发的目标Web服务器时，还可以查看请求消息头部，从而可以将消息转发给任一Web服务器。</p>
-<h2><span id="内容分发服务">内容分发服务</span></h2><p>缓存服务器放在Web服务器端虽然可以减轻Web服务器的负载，但无法减少互联网中的流量。从这一点来看，将缓存服务器放在客户端更有效，但是Web服务器的运营者无法控制客户端的缓存服务器。于是出现了内容分发服务，一些专门从事相关服务的厂商来部署缓存服务器，并租借给Web服务器运营者。</p>
-<p>而互联网中有很多缓存服务器，需要找到离客户端最近的一个。</p>
-<ul>
-<li>一种方法是DNS服务器使用路由表的路由信息计算大致距离，并向客户端返回距离(收到客户端查询请求的DNS服务器)最近的缓存服务器的IP地址。这种计算比较粗略；</li>
-</ul>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch3/18.png" class title="pic18"></div>
+<p>在连接阶段，通信双方只交换控制信息，此时网络包的结构如下图：</p>
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/11.png" class title="pic11"></div>
 
-<ul>
-<li>另一种方法是使用重定向服务器分配访问目标；当使用重定向告知客户端最近的缓存服务器时，首先需要将重定向服务器注册到DNS服务器上。于是，客户端会将HTTP请求消息发送到重定向服务器上。重定向服务器和刚才一种方法中的DNS服务器一样，收集了来自各个路由器的路由信息，并根据这些信息找到离客户端最近的缓存服务器，然后将缓存服务器的地址放到Location字段中返回响应。这样，客户端就会重新去访问指定的缓存服务器了。</li>
-</ul>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch3/19.png" class title="pic19"></div>
+<p>&nbsp;</p>
+<p>通信双方建立连接之后，通信双方开始互相发送数据，此时的网络包结构如下图：</p>
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/10.png" class title="pic10"></div>
 
-<p>同时，每次客户端发送请求时缓存服务器都需要询问Web服务器缓存的数据是否一致，而更好的方法是每次Web服务器中数据发生改变时主动联系缓存服务器，使缓存服务器上的内容时刻保持最新。</p>
+<p>&nbsp;</p>
+<h3><span id="连接的具体操作">连接的具体操作</span></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">服务器端</th>
+<th>方向</th>
+<th style="text-align:center">客户端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td>&lt;</td>
+<td style="text-align:center">创建TCP头部，其中包含表示开始数据收发操作的控制信息；<br><br>对TCP头部进行初始化设置(源IP与目的IP、源端口与目的端口、SYN位置1、序号设置与窗口大小设置等等)；<br><br>将TCP头部传给IP层并委托IP层发送给服务器端。</td>
+</tr>
+<tr>
+<td style="text-align:center">服务器端接收到数据，经以太层、IP层解析之后到达TCP层；<br><br>TCP层根据头部的目的端口号找到连接此请求的套接字，并向该套接字中写入相应的信息；套接字的状态改为正在连接；<br><br>服务器端也是发送一个TCP头部给客户端(操作与客户端的操作相同，但是有些地方的设置要反过来，比如TCP头部的源IP与目的IP、源端口与目的端口之类)；此外，还要将ACK位置为1，表示已经接收到相应的网络包。</td>
+<td>&gt;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>&lt;</td>
+<td style="text-align:center">客户端接收到数据，经以太层、IP层解析之后到达TCP层；<br>TCP层通过接收到的TCP头部的SYN位确认连接服务器的操作是否成功；若SYN位为1,(表示连接成功)，此时TCP模块会向套接字中写入服务器的IP地址，端口号等信息；并将套接字的状态设置为连接完毕；<br>同样地，客户端也需要将TCP头部的ACK位置1并将TCP头部传给IP层并委托IP层发送给服务器端。</td>
+</tr>
+<tr>
+<td style="text-align:center">服务器收到客户端第二次发送的网络包，连接操作全部完成。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此后，套接字进入了随时可以收发数据的状态。到这里，也就是connect执行完毕。</p>
+<h2><span id="收发数据">收发数据</span></h2><h3><span id="请求消息进入协议栈">请求消息进入协议栈</span></h3><p>协议栈收到数据后，先将其存放在内部的发送缓冲区，继续等待应用程序后续的数据；协议栈是否发送数据有以下两个判断要素：</p>
+<ul>
+<li>缓存的数据包长度是否接近MSS(最大分段大小)。MSS=MTU-ip_head_len-tcp_head_len，MTU(最大传输单元)一般为1500；</li>
+<li>等待时间。即使数据包长度还未接近MSS，但是已经等待了一定时间，为避免造成发送延迟，也会将数据包发送出去；</li>
+</ul>
+<p>应用程序可以控制数据包发送的时机(长度优先或时间优先)，若应用程序未指定，则由协议栈自行决定。</p>
+<h3><span id="对长数据进行拆分">对长数据进行拆分</span></h3><p>当应用程序送入协议栈的数据长度大于MSS，数据以MSS个字节为单位进行分组，在每组数据前加上TCP头部后送入IP层，委托IP将数据发送。</p>
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/12.png" class title="pic12"></div>
+
+<p>&nbsp;</p>
+<h3><span id="网络包的接收确认">网络包的接收确认</span></h3><p>每发送一个网络包，都需要进行确认操作。首先，在客户端(发送方)与服务器端(接收方)建立连接时，客户端(发送方)向服务器(接收方)发送的tcp头部使用一个32位的随机数作为序列号；在(发送方)TCP模块拆分数据时，每一数据块前所加的TCP头部的序列号为在上述序列号(32位的随机数)的基础上加上数据块的位置。服务器端(接收方)在收到网络包后，会计算ACK值(序列号+data_len+1)；</p>
+<p>&nbsp;</p>
+<p>服务器端(接收方)创建一个TCP头部(ACK的值为上述ACK的值，ACK位置1)，然后发送给客户端(发送方)；客户端(发送方)在没有收到某个数据包对应的ACK号之前，数据包会一直保存在发送缓冲区中，如果没有收到某个数据包对应的ACK号，TCP模块会重新发送此数据包。</p>
+<p>以下是TCP数据包传输的示意图(简便起见，没有考虑32随机数的初始序列号)。</p>
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/13.png" class title="pic13"></div>
+
+<p>&nbsp;</p>
+<p>同时，TCP的数据收发是双向的，即服务器端作为发送方、客户端作为接收方，也会为网络包的接收确认做上述操作。</p>
+<p>如下是TCP数据双向传输的示意图：</p>
+<p>&nbsp;</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/14.png" class title="pic14"></div>
+
+<p>&nbsp;</p>
+<h3><span id="ack号等待时间">ACK号等待时间</span></h3><p>TCP协议采用动态调整的策略来设置ACK号的等待时间。策略是：在TCP模块发送数据时持续测量ACK号的等待时间，若ACK号的返回变慢，则增大ACK号的等待时间，若ACK号的返回变快，则减小ACK号的等待时间。</p>
+<h3><span id="滑动窗口">滑动窗口</span></h3><p>接收方告知发送方自己最多能接收的数据，然后发送方根据这个值对发送的数据量进行控制。以下是一个TCP滑动窗口的示例。</p>
+<div style="width:60%;margin:auto"><img src="/cn/cn-step2/15.png" class title="pic15"></div>
+
+<p>&nbsp;</p>
+<h3><span id="ack与窗口信息的合并发送">ACK与窗口信息的合并发送</span></h3><p>Q1：接收方何时要向发送方发送窗口的更新信息？</p>
+<p>答：应用程序从接收缓冲区取出数据后。</p>
+<p>Q2：接收方何时要向发送方发送ACK号？</p>
+<p>答：收到数据包确认无误后。</p>
+<p>为了提高网络的效率，可考虑将这两种信息放入同一tcp头部进行发送。这时，在等待过程中(一种情形是刚刚收到了tcp数据包并确认无误，等待应用程序从接收缓冲区取出数据；另一种情形是应用程序从接收缓冲区取出了数据，等待数据包的到来与确认)，窗口信息或ACK号会有多个值，此时只需要传递最终结果即可。</p>
 
             
                 
