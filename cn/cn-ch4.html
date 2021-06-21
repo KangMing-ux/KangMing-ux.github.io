@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第四章第三节 万维网 - GAEA</title>
+<title>第四章 应用层 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第四章第三节 万维网 - GAEA" />
+<meta property="og:title" content="第四章 应用层 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -176,9 +176,9 @@
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第四章第三节 万维网</h2>
+            <h2 class="post-title">第四章 应用层</h2>
             <div class="post-meta">
-                本文共计919个字 |
+                本文共计44个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,47 +187,13 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">统一资源定位符URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">超文本传送协议HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">HTTP的操作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">代理服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">HTTP报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Cookie</span></a></li></ol></li></ol>
+                    
             </div>
         
-            <h2><span id="统一资源定位符url">统一资源定位符URL</span></h2><p>URL一般格式为：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;。</p>
-<h2><span id="超文本传送协议http">超文本传送协议HTTP</span></h2><p>HTTP协议基于TCP协议。HTTP协议的端口号为80。HTTP是无连接的、无状态的。</p>
-<h3><span id="http的操作过程">HTTP的操作过程</span></h3><p>如下是一个建立HTTP请求到收到HTTP响应的过程示意图。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch4-par3/46.png" class title="pic46"></div>
-
-<p>&nbsp;</p>
-<p>可以看到，整个从建立HTTP请求到收到HTTP响应所花的时间=2RTT+服务器处理时间。而HTTP1.0规定服务器发送完响应消息后，要主动执行断开操作，而HTML文档与图片被视为独立的对象，因此要获取一个有多个图片的网页的全部内容时就需要多次HTTP请求与释放，这使得获取数据的效率很低。于是，HTTP1.1采用持续连接，即服务器在发送响应后的一段时间仍然保持这条连接。</p>
-<h3><span id="代理服务器">代理服务器</span></h3><p>代理服务器可减轻网络上的负载。</p>
-<div style="width:56%;margin:auto"><img src="/cn/cn-ch4-par3/47.png" class title="pic47"></div>
-
-<p>&nbsp;</p>
-<h3><span id="http报文结构">HTTP报文结构</span></h3><p>HTTP有两类报文：HTTP请求报文与HTTP响应报文。区别在于开始行不同。</p>
-<div style="width:64%;margin:auto"><img src="/cn/cn-ch4-par3/48.png" class title="pic48"></div>
-
-<p>&nbsp;</p>
-<p>HTTP请求报文中的一些方法如下。</p>
-<div style="width:45%;margin:auto"><img src="/cn/cn-ch4-par3/49.png" class title="pic49"></div>
-
-<p>&nbsp;</p>
-<p>HTTP请求报文中的一些首部字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/50.png" class title="pic50"></div>
-
-<p>&nbsp;</p>
-<p>HTTP响应报文中的一些首部字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/51.png" class title="pic51"></div>
-
-<p>&nbsp;</p>
-<p>实体中用到的一些字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/52.png" class title="pic52"></div>
-
-<p>&nbsp;</p>
-<p>状态码是一个3位数，分为5大类。</p>
-<p>1XX表示通知信息；2XX表示成功；3XX表示重定向；4XX表示客户的差错；5XX表示服务器的差错。</p>
-<h3><span id="cookie">Cookie</span></h3><p>当用户A流量某个使用Cookie的网站时，网站的服务器为A产生一个唯一的识别码，并以此为索引在服务器后端数据库中产生一个项目。</p>
-<p>接着在给A的响应报文中添加一个Set-cookie的首部行(如Set-cookie: 31d4d96e407aad42)；</p>
-<p>当A收到响应后，其浏览器就在它管理的特定Cookie文件中添加一行，其中包括服务器的主机名及其给出的识别码；</p>
-<p>当A继续浏览网站时，每发送一个HTTP请求报文，浏览器均会从Cookie文件中取出此网站的识别码，并放到HTTP请求报文的首部行(Cookie: 31d4d96e407aad42)。</p>
-<p>于是，这个网站就能跟踪用户A在该网站的活动。</p>
+            <p><a href="https://chu-kangming.gitee.io/cn/cn-ch4-par1.html">第一节 域名系统DNS</a></p>
+<p><a href="https://chu-kangming.gitee.io/cn/cn-ch4-par2.html">第二节 文件传送协议</a></p>
+<p><a href="https://chu-kangming.gitee.io/cn/cn-ch4-par3.html">第三节 万维网</a></p>
+<p><a href="https://chu-kangming.gitee.io/cn/cn-ch4-par4.html">第四节 动态主机配置协议</a></p>
 
             
                 

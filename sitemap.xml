@@ -2,7 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://chu-kangming.gitee.io/cn/cn-ch4-par4.html</loc>
+    <loc>https://chu-kangming.gitee.io/cn/cn-ch4.html</loc>
+    
+    <lastmod>2021-06-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/cn/cn-ch3.html</loc>
     
     <lastmod>2021-06-21</lastmod>
     
@@ -10,6 +17,13 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/cn/cn-ch4-par3.html</loc>
+    
+    <lastmod>2021-06-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/cn/cn-ch4-par4.html</loc>
     
     <lastmod>2021-06-21</lastmod>
     
@@ -26,13 +40,6 @@
     <loc>https://chu-kangming.gitee.io/cn/cn-ch4-par1.html</loc>
     
     <lastmod>2021-06-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://chu-kangming.gitee.io/cn/cn-ch3.html</loc>
-    
-    <lastmod>2021-06-20</lastmod>
     
   </url>
   
@@ -781,13 +788,6 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/backend/</loc>
-    <lastmod>2021-06-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chu-kangming.gitee.io/tags/ctf/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
@@ -802,14 +802,14 @@
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/backend/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chu-kangming.gitee.io/tags/Paillier/</loc>
+    <loc>https://chu-kangming.gitee.io/tags/python/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -831,6 +831,13 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/tags/hyper/</loc>
+    <lastmod>2021-06-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/tags/Paillier/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -923,13 +930,6 @@
 
   
   <url>
-    <loc>https://chu-kangming.gitee.io/categories/os/</loc>
-    <lastmod>2021-06-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chu-kangming.gitee.io/categories/crypto/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
@@ -938,6 +938,13 @@
   
   <url>
     <loc>https://chu-kangming.gitee.io/categories/tech/</loc>
+    <lastmod>2021-06-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chu-kangming.gitee.io/categories/os/</loc>
     <lastmod>2021-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
