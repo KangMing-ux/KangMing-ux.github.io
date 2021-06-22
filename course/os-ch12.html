@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第十二章 cpu多核调度 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第十二章 cpu多核调度 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://chu-kangming.gitee.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-05-21">2021-05-21</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第十二章 CPU多核调度</h2>
+            <div class="post-meta">
+                本文共计2190个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">CPU多核调度概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">单队列多核调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">多队列多核调度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">O1调度器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">CFS调度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">BFS调度算法</span></a></li></ol>
+            </div>
+        
+            <h2><span id="cpu多核调度概述">CPU多核调度概述</span></h2><h3><span id="单队列多核调度">单队列多核调度</span></h3><ul>
+<li>缺乏可扩展性：多个CPU核均对一个就绪队列进行读写操作；</li>
+<li>缺乏缓存亲和性：CPU核对进程的缓存不能得到有效利用；</li>
+</ul>
+<p>如下图，4个CPU核对5个进程的调度：</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/46.png" class title="pic46"></div>
+
+<p>为了提高调度算法的缓存亲和性，尽量让进程在同一个CPU核上运行(在保持对该进程的缓存亲和性时，可能会牺牲其他进程的缓存亲和性)；如下图所示：</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/47.png" class title="pic47"></div>
+
+<h3><span id="多队列多核调度">多队列多核调度</span></h3><ul>
+<li>每个CPU核维护一个就绪队列，各CPU核之间的调度相互独立；</li>
+<li>会出现负载不均衡；</li>
+</ul>
+<p>如下图，开始给进程A、C分配CPU核0，给进程B、D分配CPU核1；</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/48.png" class title="pic48"></div>
+
+<p>一段时间之后，进程C结束，进程A独占CPU核0；</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/49.png" class title="pic49"></div>
+
+<p>一段时间之后，进程A结束，CPU核0处于空闲状态，而CPU核1还在运行着两个进程，此时就出现了负载不均衡；</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/50.png" class title="pic50"></div>
+
+<p>为了解决出现的负载不均衡问题，就要将繁忙的CPU核上的进程迁移到空闲的CPU核上去；比如上幅图，可以将进程B移到CPU核0上，然后系统负载均衡；而对于进程A独占CPU核0的情形，调度就比较复杂，此时操作系统该如何决定发起迁移？</p>
+<p>一般采用一种叫做”工作窃取”的技术；让执行的进程数目少的CPU核”不定期”地查看其他CPU核的就绪队列，从那些长的就绪队列中”拉取”一个或多个进程，从而实现负载均衡。而这个查看的时刻一般选在CPU核的进程进行切换的时候。</p>
+<h2><span id="o1调度器">O1调度器</span></h2><p>Linux系统中进程有140种优先级，使用长140的比特数组来记录优先级；每个(优先级)比特对应该优先级的FIFO进程队列(若一个优先级下有进程队列，则这个优先级对应的bit位置1)，其中run比特数组管理还未运行的就绪态进程，expired比特数组管理运行过的进程；给每个CPU核维护上述两个数组。</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/51.png" class title="pic51"></div>
+
+<p>对于调度时对数组进行的3种基本操作：访问(最高优先级就绪态进程)、(在expired比特数组对应的优先级队列中)插入(刚刚运行过的进程)、(在expired比特数组对应的优先级队列中)删除(刚刚运行过的进程)；分析这些操作的复杂度：</p>
+<ul>
+<li>访问：在切换进程时，会寻找最高优先级的就绪态进程，而这等价于寻找一个比特数组中为1的最高位比特，CPU可在O(1)时间内找出一个字节中为1的最高位比特；因此，随机访问的复杂度为O(1)；</li>
+<li>插入：在队尾插入，复杂度O(1)；如果插入前在expired数组的该优先级下没有进程队列，则将expired数组的该优先级对应的比特置1；</li>
+<li>删除：在队头删除，复杂度O(1)；如果删除后在run数组的该优先级下没有进程队列，则将run数组的该优先级对应的比特置0；如果run数组所有比特均为0，则交换run数组与expired数组；并且，每个CPU核不定期检查自己的负载，如果自己负载较其他CPU核轻，则”拉取”其他CPU核上的就绪态进程；</li>
+</ul>
+<h2><span id="cfs调度">CFS调度</span></h2><p>完全公平的调度。通过进程消耗的CPU时间(标准化之后的虚拟CPU时间)来确定调度哪个进程；</p>
+<p>分配给进程的运行时间=调度周期×进程权重/所有进程权重之和；但是调度周期一直处于动态变化中，通过这个式子确定分配给进程的运行时间比较麻烦，因此引入虚拟运行时间vruntime=实际运行时间×1024/进程权重；这样既考虑到分配CPU运行时间较少的进程(对它给予一定补偿)，有考虑到高优先级的进程。</p>
+<p>Linux系统(每个CPU核)采用红黑树来维护进程的vruntime，需要调度时，从红黑树中选取vruntime最小的进程投入CPU中执行。</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/52.png" class title="pic52"></div>
+
+<p>为避免已经运行一段时间的进程在新的进程进入后出现”饥饿”现象=&gt;不能将新进程的vruntime设置为0，而应该设置为红黑树中就绪态进程的最小vruntime。</p>
+<p>对于休眠了一段时间的进程，由于其他进程的vruntime一直增加而休眠进程的vruntime并未增加，因此在休眠进程被唤醒后可能会长时间抢占其他进程的CPU资源=&gt;在休眠进程被唤醒后应该以红黑树中就绪态进程的最小vruntime为基准重新设置其vruntime值。</p>
+<p>在负载轻的CPU核”拉取”负载重的CPU核上的就绪态进程时，它的vruntime需要进行调整以”适应新的环境”=&gt;记进程的vruntime为vrt，它所在CPU核的红黑树中就绪态进程的最小vruntime记为min_vrt_1，”拉取”此进程的CPU核的红黑树中就绪态进程的最小vruntime记为min_vrt_2，则此进程新的vruntime=vrt-min_vrt_1+min_vrt_2；</p>
+<p>由计算vruntime的式子可以看到，CPU的运行时间长了之后，各进程的实际运行时间也会很长，这是算出的vruntime值可能会产生溢出，考虑到vruntime的作用是作为调度的依据——选择最小vruntime的进程=&gt;填在红黑树中的节点值实际上是每个进程的vrt-min_vrt；</p>
+<h2><span id="bfs调度算法">BFS调度算法</span></h2><p>BFS调度算法是时间片轮转算法的变种。大致形式如下图：</p>
+<div style="width:64%;margin:auto"><img src="/course/os-ch12/53.png" class title="pic53"></div>
+
+<p>BFS算法在多核CPU的情形下使用单就绪队列(链表)，增加了队列互斥访问的开销，但减少了维护负载均衡的开销。</p>
+<p>BFS算法设定了103个优先级(100个静态的实时优先级与3个普通的优先级)，每个优先级维护一个就绪进程队列。每个CPU核计算进程的虚拟截止时间时，对于进程上一次执行的CPU核，会适当减小其虚拟截止时间。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/OS/">OS</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

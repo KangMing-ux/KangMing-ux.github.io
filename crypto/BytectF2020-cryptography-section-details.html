@@ -129,23 +129,23 @@
         
             
                 <li class="">
-                    <a href="/categories/tech" data-name="技术">技术</a>
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/conf" data-name="配置">配置</a>
+                    <a href="/categories/config" data-name="配置">配置</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/crypto" data-name="CTF">CTF</a>
+                    <a href="/categories/course" data-name="课程">课程</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/os" data-name="OS">OS</a>
+                    <a href="/categories/program" data-name="编程">编程</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/cn" data-name="计网">计网</a>
+                    <a href="/categories/job" data-name="工作">工作</a>
                 </li>
             
         
@@ -185,6 +185,11 @@
         <div class="post-content markdown-body">
 		    <!-- Table of Contents -->
             
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">noise</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">题目信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">利用$n_{i}$控制$k_{i}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">值得注意的地方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">解题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">threshold</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">题目信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">解题</span></a></li></ol></li></ol>
+            </div>
+        
             <h2><span id="noise">noise</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF/noise">Gitee备份在此</a></p>
 <h3><span id="分析">分析</span></h3><p>穷举通过proof_of_work之后，我们来看代码逻辑：</p>
 <ul>
