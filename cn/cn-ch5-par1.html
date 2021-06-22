@@ -18,15 +18,15 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>GAEA - </title>
+<title>第五章第一节 arp欺骗与泛洪 - GAEA</title>
 
 <meta name="keywords" content="">
 
 <meta name="description " content="">
 
 <!-- Jetpack Open Graph Tags -->
-<meta property="og:type" content="blog" />
-<meta property="og:title" content="GAEA - " />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第五章第一节 arp欺骗与泛洪 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -40,7 +40,7 @@
         (function() {
             let jsi_config = {
                 rootUrl: 'https://chu-kangming.gitee.io/',
-                isPost: 'false',
+                isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
                 donateImg: '/images/donate-qr.png',
@@ -125,29 +125,29 @@
 
             <div class="page-title">
     <ul>
-        <li class="active">
-            <a href="/" data-name="最近">最近</a>
-        </li>
+        <li><a href="/">最近</a></li>
         
-        <li class="">
-            <a href="/categories/tech" data-name="技术">技术</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/conf" data-name="配置">配置</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/crypto" data-name="CTF">CTF</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/os" data-name="OS">OS</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/cn" data-name="计网">计网</a>
-        </li>
+            
+                <li class="">
+                    <a href="/categories/tech" data-name="技术">技术</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/conf" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="CTF">CTF</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/os" data-name="OS">OS</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/cn" data-name="计网">计网</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -162,189 +162,100 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-        
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://about.tangkunyin.com"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://about.tangkunyin.com"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-06-22">2021-06-22</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第五章第一节 ARP欺骗与泛洪</h2>
+            <div class="post-meta">
+                本文共计323个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">常见ARP攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">防御策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">防御ARP欺骗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">防御ARP泛洪</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="常见arp攻击">常见ARP攻击</span></h2><p>(1)ARP欺骗；攻击者发送伪造的ARP应答报文来恶意修改网关或网络中其他主机的ARP表项，造成用户或网络的报文转发异常。</p>
+<p>(2)ARP泛洪；攻击者向网络中发送大量目的IP地址无法解析的ARP请求报文，造成网络设备上ARP表项溢出，无法缓存正常用户的ARP表项。</p>
+<h2><span id="防御策略">防御策略</span></h2><h3><span id="防御arp欺骗">防御ARP欺骗</span></h3><p>设备收到ARP应答报文后，对其MAC头部的源、目的MAC地址与ARP报文数据段中的源、目的MAC地址进行一致性检查，若不一致，则丢弃此ARP报文。</p>
+<h3><span id="防御arp泛洪">防御ARP泛洪</span></h3><p>禁止接口学习ARP表项的功能或配置ARP表项严格学习(只学习自己请求的ARP应答报文、限制接口可以学习的ARP表项的总数目、或限制一定时间内可以学习的ARP表项的数目，即限速，等等)</p>
+<div style="width:100%;margin:auto"><img src="/cn/cn-ch5-par1/56.png" class title="pic56"></div>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
-            <em>·</em>2020-08-13
-            
         </div>
-        <a class="post-title" href="/crypto/xctf-Guess.html" target="_blank" title="攻防世界-密码学-你猜猜">攻防世界-密码学-你猜猜</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-你猜猜
-    </div>
-</article>
-
-
-
         
+        <div class="post-tags">标签：
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2020-08-13
+            <a href="/tags/backend/">backend</a>
             
         </div>
-        <a class="post-title" href="/crypto/xctf-Sherlock.html" target="_blank" title="攻防世界-密码学-sherlock">攻防世界-密码学-sherlock</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-sherlock
-    </div>
-</article>
-
-
-
         
-            
-<article class="post">
+    </article>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2020-08-13
-            
-        </div>
-        <a class="post-title" href="/crypto/xctf-Tells-you-a-secret.html" target="_blank" title="攻防世界-密码学-告诉你一个秘密">攻防世界-密码学-告诉你一个秘密</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-告诉你一个秘密
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2020-08-13
-            
-        </div>
-        <a class="post-title" href="/crypto/xctf-Flag-in-Your-Hand.html" target="_blank" title="攻防世界-密码学-flag in your hand">攻防世界-密码学-flag in your hand</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-flag in your hand
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2020-08-13
-            
-        </div>
-        <a class="post-title" href="/crypto/xctf-Industrial-Protocol-Analysis-II.html" target="_blank" title="攻防世界-密码学-工业协议分析2">攻防世界-密码学-工业协议分析2</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-工业协议分析2
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://chu-kangming.gitee.io/" target="_blank">
-                <strong>coming</strong>
-            </a>
-            <em>·</em>2020-08-12
-            
-        </div>
-        <a class="post-title" href="/crypto/xctf-Beginner-Practice-Area.html" target="_blank" title="攻防世界-密码学-新手练习区">攻防世界-密码学-新手练习区</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://chu-kangming.gitee.io/tags/xctf/" target="_blank">xctf</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        攻防世界-密码学-新手练习区
-    </div>
-</article>
-
-
-
-        
     
+
+
 </div>
 
-<div id="btn-pager">
-    
-    <a class="extend prev" rel="prev" href="/page/13/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span>
-</div>
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
 
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->

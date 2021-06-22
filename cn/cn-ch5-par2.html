@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第四章第三节 万维网 - GAEA</title>
+<title>第五章第二节 拒绝服务攻击 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第四章第三节 万维网 - GAEA" />
+<meta property="og:title" content="第五章第二节 拒绝服务攻击 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://about.tangkunyin.com"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-06-21">2021-06-21</span>
+                    <span title="最后编辑于&nbsp;2021-06-22">2021-06-22</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第四章第三节 万维网</h2>
+            <h2 class="post-title">第五章第二节 拒绝服务攻击</h2>
             <div class="post-meta">
-                本文共计2153个字 |
+                本文共计1032个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,77 +187,20 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">统一资源定位符URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">超文本传送协议HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">HTTP的操作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">代理服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">HTTP报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">TLS握手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">HTTPS优化</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">拒绝服务攻击简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">洪泛攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">分布式拒绝服务攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">反射攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">TCP SYN Flood</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">攻击原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">防御策略</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="统一资源定位符url">统一资源定位符URL</span></h2><p>URL一般格式为：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;。</p>
-<h2><span id="超文本传送协议http">超文本传送协议HTTP</span></h2><p>HTTP协议基于TCP协议。HTTP协议的端口号为80。HTTP是无连接的、无状态的。</p>
-<h3><span id="http的操作过程">HTTP的操作过程</span></h3><p>如下是一个建立HTTP请求到收到HTTP响应的过程示意图。</p>
-<div style="width:50%;margin:auto"><img src="/cn/cn-ch4-par3/46.png" class title="pic46"></div>
-
-<p>&nbsp;</p>
-<p>可以看到，整个从建立HTTP请求到收到HTTP响应所花的时间=2RTT+服务器处理时间。而HTTP1.0规定服务器发送完响应消息后，要主动执行断开操作，而HTML文档与图片被视为独立的对象，因此要获取一个有多个图片的网页的全部内容时就需要多次HTTP请求与释放，这使得获取数据的效率很低。于是，HTTP1.1采用持续连接，即服务器在发送响应后的一段时间仍然保持这条连接。</p>
-<h3><span id="代理服务器">代理服务器</span></h3><p>代理服务器可减轻网络上的负载。</p>
-<div style="width:56%;margin:auto"><img src="/cn/cn-ch4-par3/47.png" class title="pic47"></div>
-
-<p>&nbsp;</p>
-<h3><span id="http报文结构">HTTP报文结构</span></h3><p>HTTP有两类报文：HTTP请求报文与HTTP响应报文。区别在于开始行不同。</p>
-<div style="width:64%;margin:auto"><img src="/cn/cn-ch4-par3/48.png" class title="pic48"></div>
-
-<p>&nbsp;</p>
-<p>HTTP请求报文中的一些方法如下。</p>
-<div style="width:45%;margin:auto"><img src="/cn/cn-ch4-par3/49.png" class title="pic49"></div>
-
-<p>&nbsp;</p>
-<p>HTTP请求报文中的一些首部字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/50.png" class title="pic50"></div>
-
-<p>&nbsp;</p>
-<p>HTTP响应报文中的一些首部字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/51.png" class title="pic51"></div>
-
-<p>&nbsp;</p>
-<p>实体中用到的一些字段如下。</p>
-<div style="width:80%;margin:auto"><img src="/cn/cn-ch4-par3/52.png" class title="pic52"></div>
-
-<p>&nbsp;</p>
-<p>状态码是一个3位数，分为5大类。</p>
-<p>1XX表示通知信息；2XX表示成功；3XX表示重定向；4XX表示客户的差错；5XX表示服务器的差错。</p>
-<h3><span id="cookie">Cookie</span></h3><p>当用户A流量某个使用Cookie的网站时，网站的服务器为A产生一个唯一的识别码，并以此为索引在服务器后端数据库中产生一个项目。</p>
-<p>接着在给A的响应报文中添加一个Set-cookie的首部行(如Set-cookie: 31d4d96e407aad42)；</p>
-<p>当A收到响应后，其浏览器就在它管理的特定Cookie文件中添加一行，其中包括服务器的主机名及其给出的识别码；</p>
-<p>当A继续浏览网站时，每发送一个HTTP请求报文，浏览器均会从Cookie文件中取出此网站的识别码，并放到HTTP请求报文的首部行(Cookie: 31d4d96e407aad42)。</p>
-<p>于是，这个网站就能跟踪用户A在该网站的活动。</p>
-<h2><span id="https">HTTPS</span></h2><h3><span id="tls握手">TLS握手</span></h3><p>HTTPS相对于HTTP，在建立TCP连接后，还需要进行TLS握手来协商出加密的参数。TLS握手示意图如下。</p>
-<div style="width:60%;margin:auto"><img src="/cn/cn-ch4-par3/54.png" class title="pic54"></div>
-
-<p>&nbsp;</p>
-<p>(1)客户端向服务器发送Hello报文，其中包含客户端生成的随机数C、客户端的TLS版本号、支持的密码套件列表以及扩展列表。</p>
-<p>(2)服务器回复ACK报文；服务器向客户端发送Hello报文(选择了用来协商密钥的非对称加密算法后，自己计算出一对公私钥)，其中包含服务器生成的随机数S、对TLS版本号的确认、选择使用的密码套件(非对称加密算法与对称加密算法)、本服务器的证书，公钥与私钥的签名。</p>
-<p>(3)客户端回复ACK报文；然后验证证书与签名，确认无误后，自己计算出一对公私钥，并发送自己的公钥给服务器；客户端根据C、S与协商出来的密钥pre_master计算出主密钥master_secret，这将用来派生出对称加密密钥。同时，服务器按照相同的方式计算出主密钥master_secret。</p>
-<p>(4)，此时客户端与服务器都能知道所有派生出的密钥，注意双方对称加密的密钥是不同的，这主要是为了进一步提高安全性，但是双方都可以解密出对方加密的密文。</p>
-<p>(5)客户端发送Change Cipher spec报文表明之后使用对称加密进行通信，并且发送对所有握手数据的摘要的加密密文(Finish报文)供服务器验证。</p>
-<p>(6)服务器回复ACK报文；不等服务器向客户端发送Change Cipher spec报文与Finish报文，客户端就开始向服务器发送加密的HTTP请求报文，这就是False start。</p>
-<p>(7)服务器回复ACK报文；服务器向客户端发送Change Cipher spec报文与Finish报文。</p>
-<p>(8)客户端回复ACK报文；之后双方进入HTTP加密通信。</p>
-<h3><span id="https优化">HTTPS优化</span></h3><p>通常所说”HTTPS连接慢”就是指刚开始建立时相对于HTTP增加了TLS握手。而在对称加密通信过程中，对称加密算法的软硬件优化已经做得很好。对于HTTPS，有如下方面可以优化。</p>
-<ul>
-<li>HSTS重定向技术。启用HSTS后，保证浏览器始终连接到网站的HTTPS加密版本，省去301跳转的出现，缩短访问时间。</li>
-<li>TLS握手优化。使用ECDHE椭圆曲线密码套件，可以节约带宽与计算量，还能实现False start。</li>
-<li>会话标识符复用。<ul>
-<li>服务器为每次会话生成并记录一个ID号，发送给客户端；</li>
-<li>若客户端重新发起连接，则要向服务器发送此ID号；</li>
-<li>服务器收到客户端发来的ID号，查找自己的会话记录，匹配ID后，双方就可以重新使用之前协商好的密钥进行加密通信；</li>
-</ul>
-</li>
-<li>开启OSCP装订。服务器主动获取OSCP查询结果与证书一起发送给客户端，客户端可直接验证证书，省去浏览器的在线验证过程；</li>
-<li>完全前向加密。采用ECDHE算法，每次握手都会生成一对临时的公私钥，每次通信的密钥对均不同，即使之前的密钥被泄露，目前进行的加密通信也是安全的。</li>
-</ul>
-<p>参考链接</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxcx/p/12775311.html">TLS握手</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35642036/article/details/82788421">HTTPS</a></li>
-</ul>
+            <h2><span id="拒绝服务攻击简介">拒绝服务攻击简介</span></h2><p>拒绝服务是一种耗尽CPU、内存、带宽、磁盘资源等系统资源，来阻止或削弱对网络、系统或应用程序的授权使用的行为。</p>
+<p>拒绝服务攻击使用到洪泛法、源地址欺骗、SYN欺骗等方法。下面介绍经典的拒绝服务攻击。</p>
+<h2><span id="洪泛攻击">洪泛攻击</span></h2><p>洪泛攻击利用大量的恶意数据包来充斥整个网络，由于这种网络阻塞，在到达目标服务器的路径上很多数据包被丢弃，合法的流量很难在</p>
+<p>洪泛攻击中存活下来，使得服务器对网络上连接请求的响应能力急剧下降。可使用ICMP、UDP、TCP SYN数据包进行洪泛攻击。</p>
+<h3><span id="分布式拒绝服务攻击">分布式拒绝服务攻击</span></h3><p>攻击者首先入侵多台主机使其被控制，然后控制这些主机一起发送恶意数据包。</p>
+<h3><span id="反射攻击">反射攻击</span></h3><p>反射攻击，是利用网络服务系统中的正常功能，向网络服务系统发送请求(源地址为目标系统的IP地址)让其对目标系统进行响应，网络服务系统向目标系统返回大量的响应数据包来占用目标系统大量资源，从而完成攻击。反射攻击一般要求利用的网络服务能够由较少数据的请求产生较大数据的响应，如Chargen,NDS,SNMP或ISAKMP服务等。</p>
+<h2><span id="tcp-syn-flood">TCP SYN Flood</span></h2><h3><span id="攻击原理">攻击原理</span></h3><p>与洪泛攻击不同(攻击带宽)，还有一类拒绝服务攻击，它是通过大量占用系统资源来导致服务器无法对其他正常的网络请求作出响应。著名的就是TCP SYN Flood。其攻击原理如下。</p>
+<p>由TCP三次握手的步骤，客户端首先发送SYN请求，服务器返回SYN+ACK响应，而如果SYN请求是伪造的，报文中的源IP并未发起TCP请求，于是当服务器返回SYN+ACK响应返回给源IP主机时，此主机不会作出回应。而服务器如果没有收到回应，会重试3-5次并等待一个SYN Time。</p>
+<p>攻击者只需发送一定量的伪造SYN请求至目标主机，就可以使服务器消耗大量系统资源来保留TCP半连接，当服务器的TCP连接表被占完，就会使得服务器无暇顾及合法的TCP请求连接。</p>
+<h3><span id="防御策略">防御策略</span></h3><p><strong>Cookie源认证</strong>：当服务器收到第一个SYN请求报文时，让Dos防护系统来响应，同样返回一个SYN+ACK响应(但这不是TCP组件响应的，而是Dos防护系统)，若SYN请求报文不是伪造的，请求主机会返回ACK字段为seq+1的ACK报文，而如果SYN报文是伪造的，所谓的请求主机并不会返回ACK字段为seq+1的ACK报文。</p>
+<p><strong>首包丢弃</strong>：根据TCP可靠重传特性，服务器在首次收到SYN请求报文后，并不作回应，如果是正常请求，源主机在一段时间内没有收到SYN+ACK响应时会再次发送SYN请求。b</p>
 
             
                 

@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第二章第一节 网际协议IP</h2>
             <div class="post-meta">
-                本文共计1697个字 |
+                本文共计1860个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚拟互连网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">分类的IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP地址与硬件地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">地址解析协议ARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP数据报的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP数据报的分组转发</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚拟互连网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">分类的IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP地址与硬件地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">地址解析协议ARP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ARP报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ARP工作原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP数据报的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">IP数据报的分组转发</span></a></li></ol>
             </div>
         
             <h2><span id="虚拟互连网络">虚拟互连网络</span></h2><p>许多计算机网络通过路由器互连，参加互连的计算机网络都使用相同的网际协议IP，因此可以把互连以后的计算机网络看成如下图所示的一个虚拟互连网络。互连起来的各种物理网络的异构性是客观存在的，但是使用IP协议就可以使这些性能各异的网络在网络层看起来如同一个统一的网络。</p>
@@ -207,7 +207,18 @@
 <div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par1/5.png" class title="pic5"></div>
 
 <p>&nbsp;</p>
-<h2><span id="地址解析协议arp">地址解析协议ARP</span></h2><p>根据IP地址，解析出同一局域网上设备的MAC地址。每台主机上都设置一个ARP高速缓存，存放着本局域网上各主机与路由器的IP地址到MAC地址的映射表。显然，如果主机查询的IP地址在主机的ARP高速缓存中存在，即可读取出IP地址对应的MAC地址，否则，按如下步骤找出IP地址对应的MAC地址。</p>
+<h2><span id="地址解析协议arp">地址解析协议ARP</span></h2><h3><span id="arp报文格式">ARP报文格式</span></h3><div style="width:60%;margin:auto"><img src="/cn/cn-ch2-par1/55.jpg" class title="pic55"></div>
+
+<p>&nbsp;</p>
+<ul>
+<li>硬件地址：表示ARP报文可在哪种类型的网络上传输，1表示以太网；</li>
+<li>上层协议类型：表示硬件地址要映射的地址协议类型。映射IP地址时为0x0800；</li>
+<li>MAC地址长度：6；</li>
+<li>IP协议地址长度：4；</li>
+<li>操作类型：1表示请求报文，2表示应答报文；</li>
+</ul>
+<p>ARP报文加上MAC头部发送到网络上。</p>
+<h3><span id="arp工作原理">ARP工作原理</span></h3><p>根据IP地址，解析出同一局域网上设备的MAC地址。每台主机上都设置一个ARP高速缓存，存放着本局域网上各主机与路由器的IP地址到MAC地址的映射表。显然，如果主机查询的IP地址在主机的ARP高速缓存中存在，即可读取出IP地址对应的MAC地址，否则，按如下步骤找出IP地址对应的MAC地址。</p>
 <ul>
 <li>查询主机的ARP进程在本局域网上广播发送一个ARP请求分组用于查询IP地址对应的MAC地址；</li>
 <li>本局域网上所有主机运行的ARP进程都收到此ARP请求分组；</li>
