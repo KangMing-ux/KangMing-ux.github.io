@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第四章 物理内存管理：非连续内存分配</h2>
             <div class="post-meta">
-                本文共计1065个字 |
+                本文共计1088个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">段式存储管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页式存储管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">页表自映射</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">快表与多级页表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页映射机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">开启页表机制</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">段式存储管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页式存储管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">快表与多级页表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">快表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">多级页表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">页映射机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">开启页表机制</span></a></li></ol>
             </div>
         
             <h2><span id="背景">背景</span></h2><p>如果使用连续内存分配，有时不一定有满足要求的一块连续的物理内存；此外，连续内存分配产生的内/外碎片也降低内存分配效率，并且分配了的内存空间无法动态调整。</p>
@@ -203,21 +203,21 @@
 <p>&nbsp;</p>
 <p>可以看出，页表项中除了记录对应页框的物理地址，还存放一些控制位(如存在位P)；</p>
 <p>但是在线性地址转物理地址的原理图中可以看到除了页表之外，还有页目录表，这就是下一节要介绍的多级页表。</p>
-<h3><span id="页表自映射">页表自映射</span></h3><p>考虑一个非常特殊的页表项：页目录表对应的页表项。</p>
+<h2><span id="快表与多级页表">快表与多级页表</span></h2><h3><span id="快表">快表</span></h3><p>为提高内存访问效率，会将访问过的页表项缓存到CPU的关联存储器中，这一区域称为快表，相比在页表中查找，在快表中查找会快很多(CPU的处理速度比内存中的访问速度快很多)；于是，在访问内存时，首先在快表中查找页表项，若快表中缓存了此页表项，直接从快表中读取此页表项然后去访问相应的物理地址即可，若快表中未缓存此页表项，接下来则需要通过页表查询页表项，并且将此页表项缓存到CPU的关联存储器中。</p>
+<h3><span id="多级页表">多级页表</span></h3><p>通过间接引用，将线性地址分为若干级，在转换物理地址时，通过各级页表的索引(上一级索引的页表项中的页框地址作为下一级页表的地址)最终找到页表项。得到的页表项中的页框地址加上页内偏移就是要访问的物理内存地址。</p>
+<p>如下是两级页表寻址的示意图：</p>
+<div style="width:50%;margin:auto"><img src="/course/os-ch4/30.png" class title="pic30"></div>
+
+<p>&nbsp;</p>
+<p><strong>页表自映射</strong>：考虑一个非常特殊的页表项：页目录表对应的页表项。</p>
 <p>页表也是页，因此页目录表也是页表。因此，页目录表中必然有一个指向页目录表的页表项；如下图所示：</p>
 <div style="width:36%;margin:auto"><img src="/course/os-ch4/32.png" class title="pic32"></div>
 
 <p>&nbsp;</p>
 <p>页目录表对应的页表项的线性地址记为B1|B2|B3；下面解释为何将B1、B2与B3标注在图所示位置。</p>
-<p>图中阴影页表项就是指向页目录表的页表项，显然B3应该标注在此；</p>
-<p>将页目录表看作一个页，而指向这个页的页目录项就是图中阴影页表项，因此B2应该标注在此；</p>
+<p>图中阴影页表项就是指向页目录表的页表项，而每个页表项占4个字节，因此4×B3应该标注在此；</p>
+<p>将页目录表看作一个页，而指向这个页的页目录项就是图中阴影页表项，因此4×B2应该标注在此；</p>
 <p>将页目录表看作一个页表，页目录表中指向这个页表的页目录项就是图中阴影页表项，因此B1应该标注在此；</p>
-<h2><span id="快表与多级页表">快表与多级页表</span></h2><p>为提高内存访问效率，会将访问过的页表项缓存到CPU的关联存储器中，这一区域称为快表，相比在页表中查找，在快表中查找会快很多(CPU的处理速度比内存中的访问速度快很多)；于是，在访问内存时，首先在快表中查找页表项，若快表中缓存了此页表项，直接从快表中读取此页表项然后去访问相应的物理地址即可，若快表中未缓存此页表项，接下来则需要通过页表查询页表项，并且将此页表项缓存到CPU的关联存储器中。</p>
-<p>&nbsp;</p>
-<p>通过间接引用，将线性地址分为若干级，在转换物理地址时，通过各级页表的索引(上一级索引的页表项中的页框地址作为下一级页表的地址)最终找到页表项。得到的页表项中的页框地址加上页内偏移就是要访问的物理内存地址。</p>
-<p>如下是两级页表寻址的示意图：</p>
-<div style="width:50%;margin:auto"><img src="/course/os-ch4/30.png" class title="pic30"></div>
-
 <h2><span id="页映射机制">页映射机制</span></h2><p>&nbsp;</p>
 <h2><span id="开启页表机制">开启页表机制</span></h2><p>&nbsp;</p>
 

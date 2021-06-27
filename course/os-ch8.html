@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第八章 面向缓存的页置换算法</h2>
             <div class="post-meta">
-                本文共计2289个字 |
+                本文共计2298个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -224,7 +224,7 @@
 <p>初始时，每个数据块的IRR=inf, R=0；</p>
 <p>有数据块(记为i)被访问后，每个数据块的IRR值与R值更新：</p>
 <ul>
-<li>被访问：IRR(i,t)=R(i,t-1), R=0；</li>
+<li>被访问：IRR(i,t)=R(i,t-1), R(i, t)=0；</li>
 <li>未被访问：IRR(j)不变，R(j,t)=R(j,t-1)+1{最近一次访问数据块j之后到t-1时刻, 数据块i没有被访问过}，j!=i；</li>
 </ul>
 <p><strong>性质1</strong>：每次访问数据块时，除了被访问的数据块，其他数据块的R值均单调不减。</p>
@@ -246,9 +246,9 @@
 <p><strong>性质2</strong>：记S栈如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------</span><br><span class="line">                q_3 | q_2 | q_1 | q_0 |</span><br><span class="line">---------------------------------------</span><br></pre></td></tr></table></figure>
 <p>那么R(q_i, t)&gt;R(q_i+1, t)，即R(q_i, t)&gt;=R(q_i+1, t)+1。</p>
-<p>对栈底部的HIR块i，考虑它再次被访问后：IRR(i)=R(i,t-1)&gt;max{R(j,t-1)|j in LIR} =&gt; IRR(i)&gt;=max{R(j,t)|j in LIR}；从而状态交换的条件不成立，因此HIR块不会成为LIR块；</p>
+<p>对栈底部的HIR块i，考虑它再次被访问后：IRR(i)=R(i,t-1)&gt;max{R(j,t-1)|j in LIR} =&gt; IRR(i)&gt;=max{R(j,t)|j in LIR}；从而状态交换的条件不成立，因此栈底部的HIR块不会成为LIR块；</p>
 <p>考虑访问各种数据块时算法的反应：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|</span><br><span class="line">|—— LIR块：LIR块移到栈顶，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">|</span><br><span class="line">|—— HIR块</span><br><span class="line">     |</span><br><span class="line">     |—— 在S中：HIR块状态变为LIR块并被移到S栈顶，S栈底LIR块状态变为HIR并从栈S中移到栈Q中，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">     |</span><br><span class="line">     |—— 不在S中：HIR块移到Q栈顶；</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|</span><br><span class="line">|—— LIR块：LIR块移到栈顶，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">|</span><br><span class="line">|—— HIR块</span><br><span class="line">     |</span><br><span class="line">     |—— 在S中：HIR块状态变为LIR并被移到S栈顶，S栈底LIR块状态变为HIR并从栈S中移到栈Q中，执行<span class="string">&quot;栈裁剪&quot;</span>操作；</span><br><span class="line">     |</span><br><span class="line">     |—— 不在S中：HIR块移到Q栈顶；</span><br></pre></td></tr></table></figure>
             
                 
             

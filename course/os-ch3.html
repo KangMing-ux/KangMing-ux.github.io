@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第三章 物理内存管理：连续内存分配</h2>
             <div class="post-meta">
-                本文共计2776个字 |
+                本文共计2777个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -296,7 +296,7 @@
 <img src="/course/os-ch3/23.jpg" class title="pic23">
 <p>&nbsp;</p>
 <p><strong>释放kmem_cache_node上partial链表(有多个object被分配)上的object</strong></p>
-<p>先释放该object，之后该object所在slab的状态仍为partial。</p>
+<p>先释放该object，并将该object放入所在slab的freelist链表。</p>
 <img src="/course/os-ch3/24.jpg" class title="pic24">
 <hr>
 <img src="/course/os-ch3/25.jpg" class title="pic25">
