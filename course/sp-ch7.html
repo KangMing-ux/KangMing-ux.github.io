@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第七章 linux共享库的组织 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第七章 linux共享库的组织 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://chu-kangming.gitee.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-07-06">2021-07-06</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第七章 Linux共享库的组织</h2>
+            <div class="post-meta">
+                本文共计2426个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">共享库版本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">共享库的兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">共享库版本命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">SO-NAME</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">链接名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">符号版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">共享库系统路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">共享库的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">共享库的创建与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">创建共享库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">清除符号信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">安装共享库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">共享库构造与析构函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">共享库脚本</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="共享库版本">共享库版本</span></h2><h3><span id="共享库的兼容性">共享库的兼容性</span></h3><p>在共享库升级时有如下4种修改会导致C语言的共享库二进制接口发生改变。</p>
+<ul>
+<li>导出函数的行为发生改变；</li>
+<li>导出函数被删除；</li>
+<li>导出数据的结构发生变化；</li>
+<li>导出函数的接口发生变化，如函数的返回值、参数变化；</li>
+</ul>
+<h3><span id="共享库版本命名">共享库版本命名</span></h3><p>共享库升级导致的不兼容是不可避免的，为此，只有对共享库进行版本命名：x.y.z；其中x为主版本号，y为次版本号，z为发布版本号；主版本号表示共享库的重大升级，不同主版本号的共享库之间不兼容；次版本号表示共享库的增量升级，主版本号相同时，次版本号高的共享库可兼容次版本号低的共享库。发布版本号表示库中错误的修正、函数性能的提升等，既不添加新的接口，也不对接口进行修改；相同主、次版本号的共享库完全兼容。</p>
+<h3><span id="so-name">SO-NAME</span></h3><p>在ELF文件中用SO-NAME来命名一个依赖的共享库，具体做法为去掉共享库名称中的次、发布版本号；如ELF依赖共享库libfoo.so.2.6.1，则这个共享库对应的SO-NAME为libfoo.so.2。在Linux系统中，系统会为每个共享库在其所在目录创建一个以其SO-NAME为名的软链接指向其自身。通过软链接可以定向到相同主版本号中最新版本的共享库。这是因为在Linux系统安装或更新一个共享库时，会运行ldconfig工具，该工具会遍历所有的默认共享库目录，如/lib、/usr/lib，并更新所有的软链接，将其指向最新版本的共享库。</p>
+<h3><span id="链接名">链接名</span></h3><p>需要链接一个libXXX.so.x.y.z的共享库，只需要在GCC编译时加上-lXXX选项即可！其中，XXX也被称为链接名。</p>
+<h2><span id="符号版本">符号版本</span></h2><p>如果一个ELF可执行文件所依赖的共享库的次版本号高于系统中该共享库的次版本号(主版本号相等)，SO-NAME机制也解决不了此时有可能发生的不兼容问题。为此，现在的操作系统使用一种更加精巧的机制——符号版本。</p>
+<p>符号版本的基本思路是：对共享库中每个导入&amp;导出的符号关联一个版本号，每次共享库升级时，给那些新添加/修改的符号关联升级后的共享库版本命名。</p>
+<h2><span id="共享库系统路径">共享库系统路径</span></h2><p>目前包括Linux在内的大部分开源操作系统都遵守FHS标准，这个标准规定了一个系统中的系统文件该如何存放，以及每个目录的组织与作用，共享库作为系统中重要的文件，也是如此。FHS规定：一个系统中主要有两个存放共享库的位置——/lib与/usr/lib，以及一个存放第三方程序共享库的位置/usr/local/lib。</p>
+<ul>
+<li>/lib。存放系统中最关键的共享库，如动态链接器、C语言运行库、数学库等，这些库主要被/bin与/sbin下的程序用到，以及系统启动所需；</li>
+<li>/usr/lib。存放开发时会用到的共享库；</li>
+<li>/usr/local/lib。存放第三方应用程序所需的共享库；</li>
+</ul>
+<h2><span id="共享库的查找">共享库的查找</span></h2><p>一个动态链接的可执行文件所依赖的共享库的路径保存在.dynamic段中，由DT_NEED类型的项表示；保存的路径可以是绝对路径或相对路径，考虑到程序的可移植性，一般使用相对路径。</p>
+<p>为加快共享库的查找速度，ldconfig会建立SO-NAME缓存存放在/etc/ld.so.cache，/etc/ld.so.cache的特殊结构极其利于查找。若动态链接器未在/etc/ld.so.cache找到共享库，才会去遍历/lib与/usr/lib这两个目录。如果仍然没有找到，则会返回错误信息。</p>
+<h2><span id="环境变量">环境变量</span></h2><ul>
+<li>LD_LIBRARY_PATH。临时改变某个应用程序的共享库查找路径；因此更准确地说，动态链接器最先去LD_LIBRARY_PATH指定的路径下查找共享库；</li>
+<li>LD_PRELOAD。指定预先装载的共享库或目标文件，LD_PRELOAD指定的文件会在动态链接器按照既定规则搜索共享库进行装载之前被装载，无论程序是否依赖它们。</li>
+<li>LD_DEBUG。设置该环境变量之后，动态链接器会在运行时打印各种有用的信息。</li>
+</ul>
+<div style="width:32%;margin:auto"><img src="/course/sp-ch7/11.png" class title="pic11"></div>
+
+<div style="width:35%;margin:auto"><img src="/course/sp-ch7/12.png" class title="pic12"></div>
+
+<p>&nbsp;</p>
+<h2><span id="共享库的创建与安装">共享库的创建与安装</span></h2><h3><span id="创建共享库">创建共享库</span></h3><p>在GCC编译时，加上<code>-shared</code>与<code>-fPIC</code>两个选项，就可以输出共享库；此外，还可以加上<code>-WI</code>选项，该选项可以将指定的参数传递给链接器，如<code>-WI, -soname, my_soname</code>就是将<code>-soname my_soname</code>传递给链接器，用来指定生成的共享库的SO-NAME。如下是一个GCC编译出共享库的例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC -Wl,-soname,libfoo.so.1 -o libfoo.so.1.0.0 libfoo1.c libfoo2.c -lbar1 -lbar2</span><br></pre></td></tr></table></figure>
+<p>在链接器输出可执行文件时，只会将那些在链接时被其他共享模块引用到的符号放到动态符号表，则动态加载模块在被加载时无法引用主模块在链接时未被其他共享模块引用的符号，即<strong>反向引用</strong>失败。为避免上述问题，ld链接器提供了-export-dynamic参数，该参数指定ld链接器在输出可执行文件时将所有全局符号导出到全局符号表。</p>
+<h3><span id="清除符号信息">清除符号信息</span></h3><p>strip工具可清除共享库/可执行文件的所有符号与调试信息。</p>
+<h3><span id="安装共享库">安装共享库</span></h3><p>安装共享库最简便的方法是将其复制到某个标准的共享库目录，再运行ldconfig。需要root权限。</p>
+<h3><span id="共享库构造与析构函数">共享库构造与析构函数</span></h3><p>GCC提供了为共享库定义构造/析构函数的方法：在函数声明时加上<code>__attribute__((constructor))</code>或<code>__attribute__((destructor))</code>修饰。同时，GCC还支持为构造/析构函数指定优先级，如<code>__attribute__((constructor(5)))</code>，对于构造函数，优先级越小越先于其他构造函数执行，而对于析构函数与之相反。</p>
+<h3><span id="共享库脚本">共享库脚本</span></h3><p>事实上，共享库除了是ELF共享对象文件外，还可以是链接脚本，例如将C运行库与数学库结合起来的共享库libfoo.so文件的内容可以是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GROUP( /lib/libc.so.6 /lib/libm.so.2)</span><br></pre></td></tr></table></figure>
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/SP/">系统编程</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

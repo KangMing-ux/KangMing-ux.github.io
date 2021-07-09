@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第九章 运行库 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第九章 运行库 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://chu-kangming.gitee.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-07-08">2021-07-08</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第九章 运行库</h2>
+            <div class="post-meta">
+                本文共计2946个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">入口函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">C&amp;C++运行库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">C语言运行库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">C语言标准库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">glibc与GCC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">运行库与多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">C++全局构造与析构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">_GLOBAL__I_Hw</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">C++全局构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">析构</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="入口函数">入口函数</span></h2><p>一个程序完整的运行过程应该如下。</p>
+<ul>
+<li>操作系统创建进程后，将控制权交给程序的入口处，入口处是运行库中的入口函数；</li>
+<li>入口函数对运行库与程序运行环境进行初始化，包括堆、I/O、线程、全局变量构造等；</li>
+<li>入口函数在完成初始化之后调用main函数，开始执行程序主体部分；</li>
+<li>main函数返回后，入口函数进行清理工作，包括全局变量析构、堆销毁、关闭I/O等；</li>
+</ul>
+<h2><span id="campc运行库">C&amp;C++运行库</span></h2><h3><span id="c语言运行库">C语言运行库</span></h3><p>一个C语言运行库大致包含如下功能。</p>
+<ul>
+<li>启动与退出：包括入口函数与入口函数所依赖的函数；</li>
+<li>标准函数：由C语言标准规定的C语言标准库所包含的函数实现；</li>
+<li>I/O：I/O功能的封装与实现；</li>
+<li>堆：堆的封装与实现；</li>
+<li>语言实现：语言中一些特殊功能的实现；</li>
+<li>调试：实现调试功能的代码；</li>
+</ul>
+<p>其中，以C语言标准库占主要部分。</p>
+<h3><span id="c语言标准库">C语言标准库</span></h3><p>ANSI C的标准库由24个C头文件组成，包含数学函数、字符/字符串处理、I/O等基本方面。</p>
+<ul>
+<li>标准输入输出(stdio.h)；</li>
+<li>文件操作(stdio.h)；</li>
+<li>字符操作(ctype.h)；</li>
+<li>字符串操作(string.h)；</li>
+<li>数学函数(math.h)；</li>
+<li>资源管理(stdlib.h)；</li>
+<li>格式转换(stdlib.h)；</li>
+<li>时间与日期(time.h)；</li>
+<li>断言(assert.h)；</li>
+<li>各种类型的常数(limits.h、float.h)；</li>
+</ul>
+<p>除此之外，C语言标准库还有实现了一些扩展功能。</p>
+<ul>
+<li>变长参数(stdarg.h)；</li>
+<li>非局部跳转(setjmp.h)；</li>
+</ul>
+<p>比如标准库中的printf函数就是变长参数。</p>
+<p>关于非局部跳转，如下是一个示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;setjmp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">jmp_buf b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">    longjmp(b,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(setjmp(b))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;World!\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Hello, &quot;</span>);</span><br><span class="line">        f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序的输出结果是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<h3><span id="glibc与gcc">glibc与GCC</span></h3><p><strong>glibc简介</strong></p>
+<p>glibc的发布版本由两部分组成——头文件(/usr/include/stdio.h、/usr/include/stdlib.h等)与二进制文件(动态标准库/lib/x86_64-linux-gnu/libc.so.6、静态标准库/usr/lib/x86_64-linux-gnu/libc.a)，除了这些标准库以外，glibc还有几个辅助程序运行的运行库/usr/lib/x86_64-linux-gnu/crt1.o、/usr/lib/x86_64-linux-gnu/crti.o、/usr/lib/x86_64-linux-gnu/crtn.o。</p>
+<p>程序的入口函数_start就包含于crt1.o，而crti.o与crtn.o是分别用来辅助.init段与.finit段中指令的执行。crt1.o为了支持.init段与.finit段，它会向<code>__libc_start_main</code>传递两个函数指针<code>__libc_csu_init</code>与<code>__libc_csu_fini</code>，这两个函数指针指向函数<code>_init()</code>与<code>_finit()</code>。事实上，最终的输出文件的.init段与.finit段分别包含的就是<code>_init()</code>与<code>_finit()</code>，其中crti.o与crtn.o中的代码作为这两个函数的开始与结尾部分。</p>
+<p>.init段与.finit段正好在main函数执行前后被执行，正好可以用来实现C++全局构造与析构。.init段与.finit段中分别有对一个执行所有构造/析构函数的函数的调用。具体执行所有构造/析构函数的工作由编译器完成。于是就要介绍下面的<strong>GCC平台相关目标文件</strong>。</p>
+<p><strong>GCC平台相关目标文件</strong></p>
+<p>在静态链接生成ELF可执行文件时用到如下GCC平台相关目标文件(均在/usr/lib/gcc目录下)。</p>
+<ul>
+<li>x86_64-linux-gnu/7/crtbeginT.o；具体实现C++全局构造。</li>
+<li>x86_64-linux-gnu/7/crtend.o；具体实现C++析构；</li>
+<li>x86_64-linux-gnu/7/libgcc.a；抹除不同平台的差异性，支持GCC的跨平台特性；对应的动态链接版本为libgcc_s.so。</li>
+<li>x86_64-linux-gnu/7/libgcc_eh.a；支持C++的异常处理；</li>
+</ul>
+<p>综上，.init段与.finit段只是提供了一个在main函数执行前后执行的机制，具体的C++全局构造与析构分别由crtbeginT.o与crtend.o实现。在”C++全局构造与析构”这一节介绍。</p>
+<h2><span id="运行库与多线程">运行库与多线程</span></h2><p>&nbsp;</p>
+<h2><span id="c全局构造与析构">C++全局构造与析构</span></h2><h3><span id="_global__i_hw">_GLOBAL__I_Hw</span></h3><p>对每个编译单元(cpp文件)，GCC编译器会遍历其中所有的全局对象，生成一个特殊函数<code>_GLOBAL__I_Hw</code>(对所在编译单元的所有全局对象进行初始化)，然后将此函数的地址放在目标文件的.ctors段。</p>
+<p>这样，在链接器链接这些目标文件时，根据”相同段合并原则”，链接器会把所有目标文件的.ctors段合并为输出文件的.ctors段；同样地，crtbeginT.o的.ctors段放在输出文件的.ctors段的开头，它并没有指向哪个<code>_GLOBAL__I_Hw</code>，链接器会将后面构造函数的个数存放到这个位置，链接器将.ctors段的起始地址定义成符号<code>__CTOR_LIST__</code>；crtbeginT.o的.ctors段放在输出文件的.ctors段的结尾，这个段的值为0，链接器将.ctors段的结尾地址定义为符号<code>__CTOR_END__</code>。</p>
+<h3><span id="c全局构造">C++全局构造</span></h3><p>如下是全局构造的调用链。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_start-&gt;__libc_start_main-&gt;__libc_csu_init-&gt;_init-&gt;_do_global_ctors_aux</span><br></pre></td></tr></table></figure>
+<p>在<code>_do_global_ctors_aux</code>函数中具体实现了C++全局构造，关键代码如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> __do_global_ctors_aux(<span class="keyword">void</span>)&#123;</span><br><span class="line">    <span class="comment">/* Call constructor functions */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> nptrs=(<span class="keyword">unsigned</span> <span class="keyword">long</span>)__CTOR_LIST__[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=nptrs;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">        __CTOR_LIST__[i]();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="析构">析构</span></h3><p>全局对象的析构与构造的工作类似，如.init变成.finit、<code>_do_global_ctors_aux</code>变成<code>_do_global_dtor_aux</code>、<code>__CTOR_LIST__</code>对应<code>__DTOR_LIST__</code>；但是注意，析构函数的调用顺序与构造函数的调用顺序相反。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/SP/">系统编程</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
