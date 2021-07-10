@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第五章 可执行文件的装载与进程 - GAEA</title>
+<title>answers for chapter one - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第五章 可执行文件的装载与进程 - GAEA" />
+<meta property="og:title" content="answers for chapter one - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://chu-kangming.gitee.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://chu-kangming.gitee.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2021-06-30">2021-06-30</span>
+                    <span title="最后编辑于&nbsp;2021-07-10">2021-07-10</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第五章 可执行文件的装载与进程</h2>
+            <h2 class="post-title">Answers for chapter one</h2>
             <div class="post-meta">
-                本文共计2026个字 |
+                本文共计4623个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,41 +187,54 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">可执行文件的装载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">进程的建立</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">进程的虚拟空间分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Segment &amp; Section</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">堆与栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">多段共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">进程栈的初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">ELF可执行文件的装载</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Answers</span></a></li></ol>
             </div>
         
-            <h2><span id="可执行文件的装载">可执行文件的装载</span></h2><h3><span id="进程的建立">进程的建立</span></h3><ul>
-<li>创建虚拟地址空间。事实上只需要分配一个页目录表。其中的内容等到发生缺页中断再填写。</li>
-<li>读取可执行文件头，建立虚拟地址空间与可执行文件的映射关系。以便在发生缺页中断时定位到该缺页在可执行文件中的位置。</li>
-<li>将可执行文件入口地址写入CPU指令寄存器，CPU开始运行。</li>
-</ul>
-<h2><span id="进程的虚拟空间分布">进程的虚拟空间分布</span></h2><h3><span id="segment-amp-section">Segment &amp; Section</span></h3><p>在操作系统装载可执行文件时，对每个段只区分其权限(可读可执行、可读可写、只读)。为了提高内存的利用效率，可将相同权限的段合并，这时用Segment表示相同权限的段的合并。</p>
-<div style="width:50%;margin:auto"><img src="/course/sp-ch5/5.png" class title="pic5"></div>
-
+            <h2><span id="answers">Answers</span></h2><p>(1)程序为什么要被编译器编译之后才能运行？</p>
+<p>解：程序的源代码属于高级语言，而能让计算机理解执行的只有机器语言；因此，编译器的编译就是做将高级语言转换为机器语言的工作的。</p>
 <p>&nbsp;</p>
-<p>Segment的信息保存在ELF可执行文件的程序头表中。</p>
-<h3><span id="堆与栈">堆与栈</span></h3><p>常见的进程的虚拟地址空间如下。</p>
-<div style="width:50%;margin:auto"><img src="/course/sp-ch5/6.png" class title="pic6"></div>
-
+<p>(2)编译器是如何将C语言程序转化成可执行的机器码的？</p>
+<p>解：经4个步骤：预处理、编译、汇编、链接。详见<a href="https://chu-kangming.gitee.io/course/sp-ch2.html">编译与链接</a></p>
 <p>&nbsp;</p>
-<p>堆与栈共用同一内存区域，统称堆栈。堆从区域底部向上增长，栈从区域顶部向下增长，可用如下程序验证。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">stack_inc_dir</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> * pid)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> id=<span class="number">0x42</span>;</span><br><span class="line">	<span class="keyword">if</span>(pid)&#123;</span><br><span class="line">		id++;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Stack increase from %p to %p\n&quot;</span>, pid, &amp; id);</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> stack_inc_dir(&amp; id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">heap_inc_dir</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> * ip1, * ip2;</span><br><span class="line">	<span class="keyword">if</span>(!(ip1=(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">16</span>))||</span><br><span class="line">			!(ip2=(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">64</span>)))</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Heap increase from %p to %p\n&quot;</span>, ip1, ip2);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> stack_inc_dir(<span class="literal">NULL</span>)|heap_inc_dir();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//gcc stack_heap.c -o stack_heap</span></span><br></pre></td></tr></table></figure>
-<h3><span id="多段共享">多段共享</span></h3><p>由于页是(虚拟地址与物理地址)映射的最小单位。因此每一段的起始地址都要是4K的整数倍，这样会产生大量的内部碎片，从而极大降低了内存的利用效率。为此，Unix让各段相接部分共享同一物理页面，具体做法如下例。</p>
-<p>ELF文件的起始虚拟地址为0x08048000，第一个虚拟内存区域VMA0的长度为0x709e5，因此第一个虚拟内存区域VMA0的结束地址为0x080b89e5。VMA0并未将以0x080b8000为起始地址的虚拟页对应的物理页面用完，于是VMA0要与下一段共享以0x080b8000为起始地址的虚拟页对应的物理页面。又因为段的起始地址必须是4字节的倍数，因此下一段从下一虚拟页的0x9e8偏移处开始，即0x080b99e8。</p>
-<h3><span id="进程栈的初始化">进程栈的初始化</span></h3><p>进程在刚开始启动时，需要知道一些进程运行的环境参数，常见的做法是操作系统在进程启动前将这些信息保存到进程的虚拟地址空间的堆栈上。在bash上以<code>prog 123</code>命令运行的进程的栈的初始化状态如下图所示。</p>
-<div style="width:50%;margin:auto"><img src="/course/sp-ch5/7.png" class title="pic7"></div>
-
-<p>&nbsp;</p>
-<p>栈顶指针esp指向栈顶(堆栈区域的最低地址)，首4字节存放命令行参数的数目。接下来的两个4字节为指向两个参数的指针，然后一个值为0的4字节，作为分隔标记。接下来的两个4字节存放环境变量的指针。然后一个值为0的4字节，作为分隔标记。然后是命令行参数与环境变量。</p>
-<h2><span id="elf可执行文件的装载">ELF可执行文件的装载</span></h2><p>宏观层面来说，Linux调用exec来装载可执行文件到内存。而exec调用sys_execve，sys_execve进行一些参数的检查复制后，调用do_execve，do_execve首先查找被执行的文件，如果找到，则读取其前128字节(这是因为Linux支持的可执行文件不止一种，因此需要通过文件最开始的128字节来判断文件格式)，对于ELF可执行文件，do_execve确定其文件格式后，调用load_elf_binary来装载ELF可执行文件。load_elf_binary处理流程如下。</p>
+<p>(3)可执行文件中有哪些内容，它们是如何组织的？</p>
+<p>解：一个动态链接的可执行文件具有如下的段。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .interp       0000001c  0000000000000238  0000000000000238  00000238  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  1 .note.ABI-tag 00000020  0000000000000254  0000000000000254  00000254  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  2 .note.gnu.build-id 00000024  0000000000000274  0000000000000274  00000274  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  3 .gnu.hash     0000001c  0000000000000298  0000000000000298  00000298  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  4 .dynsym       000000a8  00000000000002b8  00000000000002b8  000002b8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  5 .dynstr       00000084  0000000000000360  0000000000000360  00000360  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  6 .gnu.version  0000000e  00000000000003e4  00000000000003e4  000003e4  2**1</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  7 .gnu.version_r 00000020  00000000000003f8  00000000000003f8  000003f8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  8 .rela.dyn     000000c0  0000000000000418  0000000000000418  00000418  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  9 .rela.plt     00000018  00000000000004d8  00000000000004d8  000004d8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line"> 10 .init         00000017  00000000000004f0  00000000000004f0  000004f0  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line"> 11 .plt          00000020  0000000000000510  0000000000000510  00000510  2**4</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line"> 12 .plt.got      00000008  0000000000000530  0000000000000530  00000530  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line"> 13 .text         000001f2  0000000000000540  0000000000000540  00000540  2**4</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line"> 14 .fini         00000009  0000000000000734  0000000000000734  00000734  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line"> 15 .rodata       0000001e  0000000000000740  0000000000000740  00000740  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line"> 16 .eh_frame_hdr 00000044  0000000000000760  0000000000000760  00000760  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line"> 17 .eh_frame     00000128  00000000000007a8  00000000000007a8  000007a8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line"> 18 .init_array   00000008  0000000000200db8  0000000000200db8  00000db8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line"> 19 .fini_array   00000008  0000000000200dc0  0000000000200dc0  00000dc0  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line"> 20 .dynamic      000001f0  0000000000200dc8  0000000000200dc8  00000dc8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line"> 21 .got          00000048  0000000000200fb8  0000000000200fb8  00000fb8  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line"> 22 .data         00000014  0000000000201000  0000000000201000  00001000  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line"> 23 .bss          0000000c  0000000000201014  0000000000201014  00001014  2**2</span><br><span class="line">                  ALLOC</span><br><span class="line"> 24 .comment      00000029  0000000000000000  0000000000000000  00001014  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br></pre></td></tr></table></figure>
+<p>可执行文件主要包含</p>
 <ul>
-<li>检查ELF可执行文件格式的有效性。</li>
-<li>寻找动态链接的<code>.interp</code>段，设置动态链接器路径。</li>
-<li>根据程序头表建立虚拟地址空间与可执行文件的映射。</li>
-<li>初始化进程的运行环境。</li>
-<li>修改系统调用的返回地址为ELF可执行文件的入口地址(对于静态链接的ELF文件，程序入口地址为ELF文件头中e_entry所指地址；对于动态链接的ELF文件，程序入口地址为动态链接器地址)。</li>
+<li>.text代码段(存放执行指令)；</li>
+<li>.data数据段(已初始化的全局变量与局部静态变量)；</li>
+<li>.rodata只读数据段(存放只读数据)；</li>
+<li>.bss段(未初始化的全局变量与局部静态变量)；</li>
+<li>.interp段(指出程序所需动态链接器版本)；</li>
+<li>.dynamic段(动态链接的基本信息)；</li>
+<li>.dynsym段(保存动态链接的共享模块间符号的导入导出关系)；</li>
+<li>.dynstr段(保存.dynsym段中符号的名称)；</li>
+<li>.got段(全局偏移表)；</li>
+<li>.rela.dyn段(用来修正.got段中全局变量和.data段中符号的地址)；</li>
+<li>.plt段(程序链接表，用于实现延迟绑定)；</li>
+<li>.rela.plt段(用来修正.got段中外部函数的地址)；</li>
+<li>.init段(程序初始化)、fini段(程序退出清理)；</li>
 </ul>
-
+<p>&nbsp;</p>
+<p>(4)解释<code>#include&lt;stdio.h&gt;</code>的作用，C语言库是什么？要如何实现？</p>
+<p>解：包含处理标准输入输出的C语言标准库。C语言库是支撑C语言程序可以正常运行的代码集合。</p>
+<p>&nbsp;</p>
+<p>(5)不同的编译器、硬件平台以及操作系统，编译同一源代码的结果是否相同？为什么？</p>
+<p>解：不相同。不同的编译器在编译过程中所做的优化不同，不同的硬件平台所支持的汇编指令集不同，不同的操作系统对C语言标准库中函数的具体实现不同；因此，即使编译同一源代码，所得结果也不会相同。</p>
+<p>&nbsp;</p>
+<p>(7)一个程序在没有操作系统的机器上如何才能运行？</p>
+<p>解：略。</p>
+<p>&nbsp;</p>
+<p>(8)printf函数是如何实现的？</p>
+<p>解：要实现printf函数有两点，一个是使用write系统调用向屏幕写数据、一个是支持变长参数；在printf函数内部定义va_list类型的变量ap，先用宏函数va_start将其初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">va_start(ap, lastarg);<span class="comment">//lastarg为printf函数的最后一个具名参数</span></span><br></pre></td></tr></table></figure>
+<p>接下来，可以通过va_arg宏函数来获取下一个不定参数；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type next=va_arg(ap, type);<span class="comment">//type为下一个不定参数的类型</span></span><br></pre></td></tr></table></figure>
+<p>在调用完write系统调用之后，用宏函数va_end来清理现场。</p>
+<p>&nbsp;</p>
+<p>(9)程序在运行时，它在内存中的组成？</p>
+<p>解：程序在运行时，它在内存中的组成包括Linux内核、堆栈、动态装载库、数据段、代码段以及保留部分。这些部分的组织如下图。</p>
+<div style="width:35%;margin:auto"><img src="/course/sp-ch11/13.png" class title="pic13"></div>
             
                 
             

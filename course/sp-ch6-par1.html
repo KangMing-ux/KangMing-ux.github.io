@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第六章第一节 动态链接基础</h2>
             <div class="post-meta">
-                本文共计3251个字 |
+                本文共计3340个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -212,9 +212,9 @@
 <p>使用readelf查看所有段的信息。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -s -d Lib.so</span><br></pre></td></tr></table></figure>
 <h3><span id="延迟绑定的实现">延迟绑定的实现</span></h3><p>为了实现延迟绑定，ELF在间接访问外部函数的过程中增加了一次间接跳转，调用外部函数gfun时先跳转到外部函数在.plt表中对应项gfun@plt，gfun@plt的实现如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gfun@plt:</span><br><span class="line">jmp *(gfun@got) #gfun@got为gfun在.got表中对应项，即gfun的地址</span><br><span class="line">push n #n为gfun这个符号在重定位表.rel.plt中的下标</span><br><span class="line">jmp PLT0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gfun@plt:</span><br><span class="line">jmp *(gfun@got) #gfun@got为gfun在.got表中对应项，即gfun的地址，为实现延迟绑定，gfun@got最初存放的是下面push n指令的地址</span><br><span class="line">push n #n为gfun这个符号在重定位表.rel.plt中的下标</span><br><span class="line">jmp PLT0</span><br></pre></td></tr></table></figure>
 <p>其中，PLT0为.plt表中第一项，它的实现为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push *(GOT+4) #GOT为.got.plt表的地址，而根据.got.plt表的前三项内容可知，该指令是将本模块的ID压栈</span><br><span class="line">jmp *(GOT+8) #同理，该指令跳转到_dl_runtime_resolve函数处执行，前面的压栈是模拟函数的参数进栈</span><br><span class="line">nopl #.plt表中每一项为16字节</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push *(GOT+4) #GOT为.got.plt表的地址，而根据.got.plt表的前三项内容可知，该指令是将本模块的ID压栈</span><br><span class="line">jmp *(GOT+8) #同理，该指令跳转到_dl_runtime_resolve函数处执行，该函数用来绑定gfun函数，前面的压栈是模拟函数的参数进栈</span><br><span class="line">nopl #.plt表中每一项为16字节</span><br></pre></td></tr></table></figure>
 <p>要使gcc编译时产生地址无关代码，加上-fPIC选项即可。要想判断一个so文件是否是地址无关代码，可使用如下命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readelf -d lib.so | grep TEXTREL</span><br></pre></td></tr></table></figure>
 <h3><span id="共享对象的全局变量">共享对象的全局变量</span></h3><p>由于共享对象的全局变量可能在模块外部修改，因此编译器在编译共享对象时，默认将模块内部的全局变量当作模块外部的全局变量。采用上述第四种地址引用方式访问全局变量。共享对象被装载时，对其中的全局变量var：若var在可执行文件中被分配了空间，则var在GOT中的地址指向可执行文件中的var(若var在共享对象中被初始化，还需要将初始化的值复制到可执行文件的var)；否则，var在GOT中的地址指向共享对象内的var。</p>
@@ -228,7 +228,7 @@
 <p>使用readelf工具可查看.dynamic段的内容。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readelf -d Lib.so</span><br></pre></td></tr></table></figure>
 <h3><span id="动态符号表">动态符号表</span></h3><p>保存动态链接的共享模块间符号的导入导出关系。动态符号表在可执行文件中为.dynsym段。</p>
-<h3><span id="动态链接重定位表">动态链接重定位表</span></h3><p>.rel.dyn段修正的地址位于.got段与数据段，.rel.plt修正的地址位于.got.plt。使用readelf工具可查看可执行文件的重定位表。</p>
+<h3><span id="动态链接重定位表">动态链接重定位表</span></h3><p>.rel.dyn段修正的地址位于.got段与数据段，.rel.plt修正的地址位于.got.plt(也存在.got未被拆分的情况，此时.rel.plt修正的符号也位于.got)。使用readelf工具可查看可执行文件的重定位表。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readelf -r Lib.so</span><br></pre></td></tr></table></figure>
 <p>其中有如下三种类型的重定位入口：R_386_RELATIVE、R_386_GLOB_DAT、R_386_JUMP_SLOT。R_386_GLOB_DAT与R_386_JUMP_SLOT。被修正位置只需要直接填入符号的地址即可；R_386_RELATIVE入口的重定位方式为基址重置，这是由于编译器在编译共享对象时，为其分配的地址空间从0开始，假设一个静态变量的地址为B，则对此静态变量的地址重定位时，再加上共享对象的装载地址A，即A+B。</p>
 <h3><span id="进程堆栈初始化">进程堆栈初始化</span></h3><p>同样地，操作系统在将控制权交给动态链接器之前，会在进程的堆栈中保存动态链接器所需信息，以辅助信息结构体数组的形式存放，结构体定义如下。</p>
