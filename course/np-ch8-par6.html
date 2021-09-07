@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第八章第六节 event_base结构体 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第八章第六节 event_base结构体 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://chu-kangming.gitee.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-09-07">2021-09-07</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第八章第六节 event_base结构体</h2>
+            <div class="post-meta">
+                本文共计3058个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">event_base结构体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">事件循环</span></a></li></ol>
+            </div>
+        
+            <h2><span id="event_base结构体">event_base结构体</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;event.h&gt;</span></span><br><span class="line"><span class="comment">    evsel: event_base对象选择的I/O复用机制</span></span><br><span class="line"><span class="comment">    evbase: event_base对象的存储数据地址(通过evsel成员的init函数初始化)</span></span><br><span class="line"><span class="comment">    changelist: 事件变化队列(考虑一个文件描述符上注册的事件被多次修改, 那么可以使用缓存来避免重复的系统调用, 仅用于事件检测算法的复杂度为O(1)的I/O复用技术)</span></span><br><span class="line"><span class="comment">    evsigsel: 信号的后端处理机制(目前在signal.c中定义了一种处理机制)</span></span><br><span class="line"><span class="comment">    sig: 被信号事件处理器使用，其中封装了一个由socketpair创建的管道; 管道用于信号处理函数与事件多路分发器之间的通信, 即统一事件源</span></span><br><span class="line"><span class="comment">    virtual_event_count: 添加到event_base对象中的虚拟事件数</span></span><br><span class="line"><span class="comment">    event_count: 添加到event_base对象上所有事件的数量</span></span><br><span class="line"><span class="comment">    event_count_active: event_base对象上的激活事件数</span></span><br><span class="line"><span class="comment">    event_gotterm: 是否执行完活动队列上的剩余任务后就退出事件循环</span></span><br><span class="line"><span class="comment">    event_break: 是否立即退出事件循环，而不论是否还要任务需要处理</span></span><br><span class="line"><span class="comment">    event_continue: 是否应该启动一个新的事件循环</span></span><br><span class="line"><span class="comment">    event_running_priority: 目前正在处理的活动事件队列的优先级</span></span><br><span class="line"><span class="comment">    running_loop: 事件循环是否已经启动</span></span><br><span class="line"><span class="comment">    activequeues: 活动事件队列数组(索引值越小的队列, 优先级越高, 高优先级中的)</span></span><br><span class="line"><span class="comment">    common_timeout_queues: 通用定时器队列</span></span><br><span class="line"><span class="comment">    io: 文件描述符与I/O事件之间的映射关系表</span></span><br><span class="line"><span class="comment">    sigmap: 信号值与信号事件的映射关系表</span></span><br><span class="line"><span class="comment">    th_owner_id: 当前运行该event_base的事件循环的线程</span></span><br><span class="line"><span class="comment">    th_base_lock: 对该event_base的独占锁</span></span><br><span class="line"><span class="comment">    current_event_cond: 条件变量(用于唤醒正在等待某个事件处理完毕的线程)</span></span><br><span class="line"><span class="comment">    current_event_waiters: 等待条件变量current_event_cond的线程数</span></span><br><span class="line"><span class="comment">    flags:  event_base对象的配置参数</span></span><br><span class="line"><span class="comment">    is_notify_pending: 工作线程是否要唤醒管道</span></span><br><span class="line"><span class="comment">    th_notify_fd: 工作线程与主线程建立的管道</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">event_base</span> &#123;</span></span><br><span class="line">        <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">eventop</span> *<span class="title">evsel</span>;</span></span><br><span class="line">        <span class="keyword">void</span> *evbase;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event_changelist</span> <span class="title">changelist</span>;</span></span><br><span class="line">        <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">eventop</span> *<span class="title">evsigsel</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">evsig_info</span> <span class="title">sig</span>;</span></span><br><span class="line">        <span class="keyword">int</span> virtual_event_count;</span><br><span class="line">        <span class="keyword">int</span> virtual_event_count_max;</span><br><span class="line">        <span class="keyword">int</span> event_count;</span><br><span class="line">        <span class="keyword">int</span> event_count_max;</span><br><span class="line">        <span class="keyword">int</span> event_count_active;</span><br><span class="line">        <span class="keyword">int</span> event_count_active_max;</span><br><span class="line">        <span class="keyword">int</span> event_gotterm;</span><br><span class="line">        <span class="keyword">int</span> event_break;</span><br><span class="line">        <span class="keyword">int</span> event_continue;</span><br><span class="line">        <span class="keyword">int</span> event_running_priority;</span><br><span class="line">        <span class="keyword">int</span> running_loop;</span><br><span class="line">        <span class="keyword">int</span> n_deferreds_queued;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">evcallback_list</span> *<span class="title">activequeues</span>;</span></span><br><span class="line">        <span class="keyword">int</span> nactivequeues;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">evcallback_list</span> <span class="title">active_later_queue</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">common_timeout_list</span> **<span class="title">common_timeout_queues</span>;</span></span><br><span class="line">        <span class="keyword">int</span> n_common_timeouts;</span><br><span class="line">        <span class="keyword">int</span> n_common_timeouts_allocated;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event_io_map</span> <span class="title">io</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event_signal_map</span> <span class="title">sigmap</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">min_heap</span> <span class="title">timeheap</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv_cache</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">evutil_monotonic_timer</span> <span class="title">monotonic_timer</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv_clock_diff</span>;</span></span><br><span class="line">        <span class="keyword">time_t</span> last_updated_clock_diff;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> EVENT__DISABLE_THREAD_SUPPORT</span></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> th_owner_id;</span><br><span class="line">        <span class="keyword">void</span> *th_base_lock;</span><br><span class="line">        <span class="keyword">void</span> *current_event_cond;</span><br><span class="line">        <span class="keyword">int</span> current_event_waiters;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event_callback</span> *<span class="title">current_event</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event_iocp_port</span> *<span class="title">iocp</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="class"><span class="keyword">enum</span> <span class="title">event_base_config_flag</span> <span class="title">flags</span>;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">max_dispatch_time</span>;</span></span><br><span class="line">        <span class="keyword">int</span> max_dispatch_callbacks;</span><br><span class="line">        <span class="keyword">int</span> limit_callbacks_after_prio;</span><br><span class="line">        <span class="keyword">int</span> is_notify_pending;</span><br><span class="line">        <span class="keyword">evutil_socket_t</span> th_notify_fd[<span class="number">2</span>];</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">event</span> <span class="title">th_notify</span>;</span></span><br><span class="line">        <span class="keyword">int</span> (*th_notify_fn)(struct event_base *base);</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">evutil_weakrand_state</span> <span class="title">weakrand_seed</span>;</span></span><br><span class="line">        LIST_HEAD(once_event_list, event_once) once_events;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2><span id="事件循环">事件循环</span></h2><p>事件循环由event_base_loop函数实现。关于event_base_loop函数的分析详见代码清单12-10。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/NP/">网络编程</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

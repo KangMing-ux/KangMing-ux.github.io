@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第五章第三节 epoll系列系统调用 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第五章第三节 epoll系列系统调用 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prefetch" href="https://chu-kangming.gitee.io">
+<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://chu-kangming.gitee.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://chu-kangming.gitee.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-08-12">2021-08-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第五章第三节 epoll系列系统调用</h2>
+            <div class="post-meta">
+                本文共计2582个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">内核事件表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">epoll_wait函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">LT与ET模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">LT模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">ET模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">EPOLLONESHOT事件</span></a></li></ol>
+            </div>
+        
+            <h2><span id="内核事件表">内核事件表</span></h2><p>epoll是Linux特有的I/O复用函数，epoll使用一组函数来完成任务。epoll将用户关心的文件描述符上的事件放在内核的事件表中，此时epoll需要使用一个额外的文件描述符来唯一标识内核中的这个事件表。该文件描述符由epoll_create函数来创建。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/epoll.h&gt;</span></span><br><span class="line"><span class="comment">    size: 告知内核事件表需要多大</span></span><br><span class="line"><span class="comment">    返回文件描述符: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_create</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>此函数的返回文件描述符用作其他所有epoll系统调用的第一个参数，以指定要访问的内核事件表。</p>
+<p>下面的函数来操作epoll的内核事件表。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/epoll.h&gt;</span></span><br><span class="line"><span class="comment">    op: 指定操作类型; EPOLL_CTL_ADD(向事件表中注册fd上的事件) || EPOLL_CTL_MOD(修改fd上的注册事件) || EPOLL_CTL_DEL(删除fd上的注册事件)</span></span><br><span class="line"><span class="comment">    fd: 要操作的文件描述符</span></span><br><span class="line"><span class="comment">    event: 指定事件</span></span><br><span class="line"><span class="comment">    返回0: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_ctl</span><span class="params">(<span class="keyword">int</span> epfd, <span class="keyword">int</span> op, <span class="keyword">int</span> fd, struct epoll_event * event)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其中，epoll_event结构体定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span>&#123;</span></span><br><span class="line">  <span class="keyword">uint32_t</span> events;</span><br><span class="line">  <span class="keyword">epoll_data_t</span> data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>events成员指定事件类型；epoll支持的事件类型与poll基本相同，表示epoll事件类型的宏是在poll对应的宏前面加”E”，如epoll的可读事件类型的宏为EPOLLIN。此外，epoll有两个额外事件类型：EPOLLET与EPOLLONESHOT(它们对epoll的高效运作非常关键，将在之后详细介绍)。</li>
+<li>data存储用户数据；epoll_data_t结构体的定义如下。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">epoll_data</span>&#123;</span></span><br><span class="line">  <span class="keyword">void</span> *ptr;</span><br><span class="line">  <span class="keyword">int</span> fd;</span><br><span class="line">  <span class="keyword">uint32_t</span> u32;</span><br><span class="line">  <span class="keyword">uint64_t</span> u64;</span><br><span class="line">&#125; <span class="keyword">epoll_data_t</span>;</span><br></pre></td></tr></table></figure>
+<p>epoll_data_t结构体是一个联合体。如果使用fd，则指定事件所从属的文件描述符；如果使用ptr，则指定与fd有关的用户数据。若要同时使用ptr与fd，可考虑在ptr指定的用户数据内包含fd。</p>
+<h2><span id="epoll_wait函数">epoll_wait函数</span></h2><p>epoll_wait函数在一段超时时间内等待一组文件描述符上的事件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/epoll.h&gt;</span></span><br><span class="line"><span class="comment">    events: 用于存放内核事件表中的就绪事件</span></span><br><span class="line"><span class="comment">    maxevents: 指定监听事件的数目最大值</span></span><br><span class="line"><span class="comment">    timeout: 以毫秒为单位的超时值, timeout=-1: epoll_wait调用一直阻塞直到某个事件发生 || timeout=0: epoll_wait调用立即返回</span></span><br><span class="line"><span class="comment">    返回就绪文件描述符总数: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_wait</span><span class="params">(<span class="keyword">int</span> epfd, struct epoll_event * events, <span class="keyword">int</span> maxevents, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>由于epoll在内核中维护一个事件表，每次epoll_wait调用都直接从内核事件表中取得用户注册的事件，而无需反复从用户空间读入这些事件；同时epoll_wait函数仅将事件就绪的文件描述符存入events数组中，从而网络程序索引就绪的文件描述符的时间复杂度为O(1)。</p>
+<h2><span id="lt与et模式">LT与ET模式</span></h2><p>epoll对文件描述符的操作有两种模式：LT(电平触发)模式与ET(边沿触发)模式。</p>
+<p>LT模式是默认的工作模式，LT模式下的epoll相当于一个效率较高的poll。</p>
+<p>注：很多时候网络程序调用完select/poll/epoll_wait都会处理就绪的文件描述符，这时使用select/poll的网络程序需要遍历所有的文件描述符再进行相应的判断操作(对于select：使用FD_ISSET函数；对于poll，将<code>(fds+i)-&gt;revents</code>与POLLIN按位与)，而epoll_wait可以直接遍历就绪的文件描述符。</p>
+<p>网络程序向epoll内核事件表注册一个文件描述符上的EPOLLET事件后，epoll将以ET模式来操作该文件描述符。ET模式是epoll的高效工作模式。</p>
+<h3><span id="lt模式">LT模式</span></h3><p>对于采用LT模式的文件描述符，当epoll_wait函数检测到该文件描述符上有事件发生并将此事件通知应用程序后，应用程序可以不立即处理该事件；当应用程序下次调用epoll_wait时，epoll_wait还会再次向应用程序通知此事件，直到此事件被处理。</p>
+<h3><span id="et模式">ET模式</span></h3><p>ET模式只支持非阻塞的socket文件。</p>
+<p>注：如果文件描述符是阻塞的，那么读或写操作将会因为没有后续事件而一直处于阻塞状态</p>
+<p>当epoll_wait函数检测到该文件描述符上有事件发生并将此事件通知应用程序后，应用程序必须立即处理该事件！</p>
+<p>注：在这个套接字中新的事件到来之前，网络程序都无法再从epoll_wait中获取该事件。因此这次必须处理完该事件。</p>
+<p>ET模式在很多程度上降低了一个epoll事件被重复触发的次数，因此效率要高于LT模式。</p>
+<h2><span id="epolloneshot事件">EPOLLONESHOT事件</span></h2><p>若希望一个socket连接在任一时刻最多被一个线程处理，可向socket文件描述符注册EPOLLONESHOT事件。</p>
+<p>对于注册了EPOLLONESHOT事件的socket文件描述符，操作系统最多触发该文件描述符上注册的一个可读/可写/异常事件，且只触发一次，除非网络程序使用epoll_ctl函数重置该文件描述符上注册的EPOLLONESHOT事件。因此，一个线程处理完注册了EPOLLONESHOT事件的socket文件描述符后，需要重置该文件描述符上注册的EPOLLONESHOT事件。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/NP/">网络编程</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

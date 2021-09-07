@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第三章第六节 TCP的传输连接管理</h2>
             <div class="post-meta">
-                本文共计419个字 |
+                本文共计1033个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">四次挥手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">TCP的有限状态机</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">四次挥手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">复位报文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">TCP的有限状态机</span></a></li></ol>
             </div>
         
             <h2><span id="三次握手">三次握手</span></h2><div style="width:56%;margin:auto"><img src="/course/cn-ch3-par6/41.png" class title="pic41"></div>
@@ -203,7 +203,18 @@
 <h2><span id="四次挥手">四次挥手</span></h2><div style="width:60%;margin:auto"><img src="/course/cn-ch3-par6/42.png" class title="pic42"></div>
 
 <p>&nbsp;</p>
-<p>此时为什么第(2)次挥手与第(3)次挥手不能合并，是因为服务器端收到客户端请求释放连接的报文后，可能还需要处理一些工作，因此只能先发送确认收到报文，然后等工作处理完之后，向客户端发送允许释放连接的报文，客户端收到此报文后回复确认收到的报文后即可释放此TCP连接，服务器端收到客户端确认收到的回复报文后，释放此TCP连接，进入LISTEN状态。</p>
+<p>Q：为什么第(2)次挥手与第(3)次挥手不能合并?</p>
+<p>A：服务器端收到客户端请求释放连接的报文后，可能还需要处理一些工作，因此只能先发送确认收到报文，然后等工作处理完之后，向客户端发送允许释放连接的报文，客户端收到此报文后回复确认收到的报文后即可释放此TCP连接，服务器端收到客户端确认收到的回复报文后，释放此TCP连接，进入LISTEN状态。</p>
+<p>&nbsp;</p>
+<p>Q：为什么在TCP释放连接时发起方返回ACK报文后还要等待2MSL时间?</p>
+<p>A：MSL为报文最大生存时间，它是任何报文在网络上存在的最长时间。若释放连接的发起方返回的ACK报文未被另一方接收，则另一方会在超时后重传允许释放连接报文，释放连接的发起方就会在返回ACK报文后的2MSL时间内收到这个重传的报文，然后重新发送ACK报文。而如果直接退出，那么释放连接的发起方就不会重新发送ACK报文，另一方将无法按照正常的步骤进入CLOSED状态。</p>
+<p>此外，经过2MSL时间后，此次TCP连接中传送的所有报文均在网络中消失，可以使通信双方下一次建立的TCP连接与此次TCP连接完全地分离开，即不会出现此次TCP连接中传送的报文出现在下一次建立的TCP连接中的情况。</p>
+<h2><span id="复位报文">复位报文</span></h2><p>在一些特殊情况下，TCP连接的一端会向另一端发送携带RST标志的报文，即复位报文，以通知对方关闭连接或重新打开连接。有如下3种产生复位报文的情况。</p>
+<ul>
+<li>访问了不存在的端口；当客户端访问一个不存在的端口，目标主机将向它发送一个复位报文；</li>
+<li>异常终止连接；TCP提供了异常终止一个连接的方法——向对方发送一个复位报文，一旦发送了复位报文，TCP发送缓冲区中的数据都将被丢弃；</li>
+<li>处理半打开连接；TCP连接一方关闭或异常终止了TCP连接，但是对方没有收到结束/复位报文，于是对方仍然维持着TCP连接，这种状态称为半连接；如果对方这时发送报文，就会收到复位报文；</li>
+</ul>
 <h2><span id="tcp的有限状态机">TCP的有限状态机</span></h2><div style="width:56%;margin:auto"><img src="/course/cn-ch3-par6/43.png" class title="pic43"></div>
             
                 

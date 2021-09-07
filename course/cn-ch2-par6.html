@@ -190,7 +190,7 @@
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">网际组管理协议IGMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">多播路由选择协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">洪泛与剪除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">隧道技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">基于核心的发现技术</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="网际组管理协议igmp">网际组管理协议IGMP</span></h2><p>IGMP协议基于IP协议。ICMP的工作大体分为两类。</p>
+            <h2><span id="网际组管理协议igmp">网际组管理协议IGMP</span></h2><p>IGMP协议基于IP协议。IGMP的工作大体分为两类。</p>
 <ul>
 <li>有主机要加入某一多播组时，主机向该多播组的多播地址发送一个IGMP报文，声明加入该组。本地的多播路由器收到IGMP报文后，需利用多播路由选择协议将这种组成员关系转发给互联网上的其他多播路由器；</li>
 <li>本地多播路由器需周期性探询本地局域网上的主机，以便知道这些主机是否仍然为组成员。只要有一台组内的主机响应，那么本地的多播路由器就认为该组活跃，否则，本地的多播路由器认为局域网中所有主机离开该组，不再将这个组的成员关系转发给其他多播路由器；</li>
@@ -201,7 +201,7 @@
 <li>多播路由器在探询组成员关系时，只需要对所有组发送一个请求信息的询问报文；</li>
 <li>同一组内每台主机都要监听响应，若本组的其他主机先发送了响应，则自己不用再发送响应；</li>
 </ul>
-<h2><span id="多播路由选择协议">多播路由选择协议</span></h2><p>多播路由选择就是要找出以源主机为根节点的多播转发树，多播路由选择协议尚未标准化，下面接收多播路由选择的3种方法。</p>
+<h2><span id="多播路由选择协议">多播路由选择协议</span></h2><p>多播路由选择就是要找出以源主机为根节点的多播转发树，多播路由选择协议尚未标准化，下面介绍多播路由选择的3种方法。</p>
 <h3><span id="洪泛与剪除">洪泛与剪除</span></h3><p>开始，路由器使用洪泛法转发多播数据报，每个路由器在收到一个数据包后，检查数据包是否是从源点经最短路径传送来的(计算从路由器到源点的最短路径，判断刚刚转发数据包的路由器是否为最短路径上的第一个路由器)。若是，则向所有其他方向转发此多播数据包，否则丢弃而不转发。如下是一个例子。</p>
 <div style="width:50%;margin:auto"><img src="/course/cn-ch2-par6/25.png" class title="pic25"></div>
 

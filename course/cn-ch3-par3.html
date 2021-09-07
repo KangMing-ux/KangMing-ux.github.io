@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第三章第三节 传输控制协议TCP概述</h2>
             <div class="post-meta">
-                本文共计625个字 |
+                本文共计882个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -197,14 +197,16 @@
 <li>TCP提供全双工通信。运行通信双方的应用进程在(建立连接之后，释放连接以前的)任何时候都可以发送数据，通信双方既是发送方也是接收方，TCP连接的两端都设有发送缓存与接收缓存；</li>
 <li>面向字节流。TCP将应用程序交付下来的数据仅仅看作一连串无结构的字节流。</li>
 </ul>
-<h2><span id="tcp连接">TCP连接</span></h2><p>TCP连接有两个端点，这个端点就是套接字，可使用<code>IP:Port</code>唯一区分。</p>
+<h2><span id="tcp连接">TCP连接</span></h2><p>TCP连接有两个端点，这个端点就是套接字socket，可使用<code>IP:Port</code>唯一区分。</p>
+<p>socket是操作系统提供的网络编程接口，因为数据链路层、网络层、传输层协议均在内核中实现，而应用层基本上在用户空间，因此操作系统必须提供一组系统调用使应用层可以使用数据链路层、网络层、传输层提供的服务。</p>
+<p>socket主要提供两种功能：(1)将应用程序数据从用户缓冲区复制到TCP/UDP内核发送缓冲区、或从TCP/UDP内核接收缓冲区复制数据到用户缓冲区；(2)应用程序可通过socket提供的接口修改内核中各层协议的控制信息，从而精确地调整底层通信的行为。</p>
 <h2><span id="tcp头部">TCP头部</span></h2><p>TCP头部格式如下。</p>
 <div style="width:60%;margin:auto"><img src="/course/cn-ch3-par3/36.png" class title="pic36"></div>
 
 <p>&nbsp;</p>
 <ul>
 <li>确认号。若确认号为N，则表明从起始序号到N-1的TCP字节流已经按顺序收到。</li>
-<li>数据偏移。即TCP头部长度。</li>
+<li>数据偏移。以4字节为单位，即若数据偏移为5，则TCP头部长20字节。</li>
 <li>确认ACK。仅当确认ACK为1时确认号字段才有效，TCP规定：在连接建立后，所有传送的报文段都必须将ACK置1。</li>
 <li>复位RST。RST为1表明TCP连接出现严重差错，必须立即释放连接。</li>
 <li>SYN位。在连接建立时用来同步序号，SYN=1且ACK=0用来请求连接，SYN=1且ACK=1表明接受连接；SYN位置1标志建立连接阶段的报文。</li>

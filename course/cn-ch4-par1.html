@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第四章第一节 域名系统DNS</h2>
             <div class="post-meta">
-                本文共计493个字 |
+                本文共计1208个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -190,7 +190,49 @@
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">域名系统概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">互联网的域名结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">域名服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">域名解析</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="域名系统概述">域名系统概述</span></h2><p>域名系统DNS用来将计算机的域名解析为计算机的IP地址。</p>
+            <h2><span id="域名系统概述">域名系统概述</span></h2><p>域名系统DNS用来将计算机的域名解析为计算机的IP地址。DNS报文格式如下。</p>
+<div style="width:60%;margin:auto"><img src="/course/cn-ch4-par1/58.png" class title="pic58"></div>
+
+<p>&nbsp;</p>
+<ul>
+<li>16位标识字段用于标记一对DNS查询与应答；</li>
+<li>16位标志字段用于协商具体的通信方式与反馈通信状态，该字段细节如下图；<ul>
+<li>QR：查询/应答标志。0表示查询，1表示应答；</li>
+<li>opcode：定义查询与应答的类型。0表示标准查询，1表示反向查询(由IP地址获取主机域名)，2表示请求服务器状态；</li>
+<li>AA：授权应答标志。仅由应答报文使用，1表示域名服务器是授权服务器；</li>
+<li>TC：截断标志。仅当DNS报文使用UDP协议时使用。由于UDP数据报有长度限制，因此过长的DNS报文将被截断。1表示DNS报文超过512字节并被截断；</li>
+<li>RD：递归查询标志。1表示执行递归查询，0表示执行迭代查询；</li>
+<li>RA：允许递归标志。仅由应答报文使用，1表示DNS服务器支持递归查询；</li>
+<li>zero：未使用；</li>
+<li>rcode：4位返回码。0：无错误，3：域名不存在；</li>
+</ul>
+</li>
+</ul>
+<div style="width:60%;margin:auto"><img src="/course/cn-ch4-par1/59.png" class title="pic59"></div>
+
+<p>&nbsp;</p>
+<ul>
+<li>之后4个字段分别指出DNS报文最后4个字段的资源记录数目。</li>
+<li>查询问题格式如下。<ul>
+<li>查询名：以一定格式封装要查询的主机域名；</li>
+<li>查询类型：如何执行查询操作。类型A(值为1)：获取目标主机的IP地址，类型CNAME(值为5)：获得目标主机别名，类型PTR(值为12)：方向查询；</li>
+<li>查询类：通常为1，指获取因特网地址；</li>
+</ul>
+</li>
+</ul>
+<div style="width:60%;margin:auto"><img src="/course/cn-ch4-par1/60.png" class title="pic60"></div>
+
+<p>&nbsp;</p>
+<ul>
+<li>其他三个字段都使用资源记录格式。其格式如下图。<ul>
+<li>32位域名、16位类型、16位类与对应查询问题的查询名、查询类型、查询类内容一致；</li>
+<li>32位生存时间：该查询记录的结果可被客户端缓存多长时间，以秒为单位；</li>
+</ul>
+</li>
+</ul>
+<div style="width:60%;margin:auto"><img src="/course/cn-ch4-par1/61.png" class title="pic61"></div>
+
+<p>&nbsp;</p>
 <h2><span id="互联网的域名结构">互联网的域名结构</span></h2><p>互联网的域名命名采用层次结构。</p>
 <div style="width:56%;margin:auto"><img src="/course/cn-ch4-par1/44.png" class title="pic44"></div>
 
@@ -202,6 +244,8 @@
 <li>权限域名服务器。</li>
 <li>本地域名服务器。一台主机发出DNS查询请求时，查询报文首先发送到本地域名服务器。</li>
 </ul>
+<p>可使用host命令访问DNS服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host -t A www.baidu.com</span><br></pre></td></tr></table></figure>
 <h3><span id="域名解析">域名解析</span></h3><p><strong>递归查询</strong>：若主机请求解析的域名在本地域名服务器中不存在，则本地域名服务器以DNS客户的身份，向根域名服务器发送查询请求。</p>
 <p><strong>迭代查询</strong>：根域名服务器收到本地域名服务器的查询请求后，要么给出要查询的IP地址，要么给出下一个查询请求对象的IP地址。本地域名服务器就这样进行迭代查询直到得知域名的IP地址或查询失败。</p>
 <p>本地域名服务器将查询结果(IP地址或查询失败)返回给主机，并且将查询结果缓存，以便下次查询此域名能够快速响应。</p>
