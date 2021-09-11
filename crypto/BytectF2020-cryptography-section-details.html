@@ -2,14 +2,14 @@
 <html class="no-js" lang="zh-CN">
 <head>
     <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
 <![endif]-->
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta name="author" content="coming">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
 <meta http-equiv="X-DNS-Prefetch-Control" content="on">
 
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -28,18 +28,18 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="bytectf2020密码学部分详解 - GAEA" />
 <meta property="og:description" content="" />
-<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
 
-<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
 <link rel="stylesheet" href="/css/JSimple.css">
 
     <script type="text/javascript">
         (function() {
             let jsi_config = {
-                rootUrl: 'https://chu-kangming.gitee.io/',
+                rootUrl: 'https://kangming-ux.github.io/',
                 isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
@@ -90,7 +90,7 @@
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
-    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
     <div class="cover-info">
         
         <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
@@ -113,7 +113,7 @@
     </div>
 
     &nbsp;&nbsp;<div class="btn btn-slack">
-        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
             <i class="fa fa-slack"></i>
         </a>
     </div>
@@ -165,12 +165,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://chu-kangming.gitee.io/about/"
+                    <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-10-30">2020-10-30</span>
                 </p>
@@ -190,7 +190,7 @@
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">noise</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">题目信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">利用$n_{i}$控制$k_{i}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">值得注意的地方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">解题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">threshold</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">题目信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">解题</span></a></li></ol></li></ol>
             </div>
         
-            <h2><span id="noise">noise</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF/noise">Gitee备份在此</a></p>
+            <h2><span id="noise">noise</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/ByteCTF/noise">Gitee备份在此</a></p>
 <h3><span id="分析">分析</span></h3><p>穷举通过proof_of_work之后，我们来看代码逻辑：</p>
 <ul>
 <li>secret=getrandbits(1024)，注意他自己实现的getrandbits(1024)实际上是生成长1017~1024位的随机数；</li>
@@ -246,7 +246,7 @@ log(n_{i})+log(g_{i}) &<log(m)+1
 <h3><span id="解题">解题</span></h3><p>上述链接中的solve.py为解题的Python脚本，程序运行(成功时)结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ python3 solve.py</span><br><span class="line">[+] Opening connection to 182.92.153.117 on port 30101: Done</span><br><span class="line">[+] MBruteforcing: Found key: <span class="string">&quot;l9a&quot;</span></span><br><span class="line">success!</span><br><span class="line">95613903744255213782277288259288084531700829576284706991256294359734535087821985034716432798049279163174069238632678362676474782669781482301447573436852554131343117198284150657465643396718720128642929008328391123641254705186541184339088382138616985634723733544083949806487213357784626124965521562172300016682</span><br><span class="line">b<span class="string">&#x27;CONGRATULATIONS ByteCTF&#123;Noise_i5_rea11y_ANN0YING&#125;\n&#x27;</span></span><br><span class="line">[*] Closed connection to 182.92.153.117 port 30101</span><br></pre></td></tr></table></figure>
 <p>注：此程序并非次次运行都能解出secret</p>
-<h2><span id="threshold">threshold</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/ByteCTF/threshold">Gitee备份在此</a></p>
+<h2><span id="threshold">threshold</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/ByteCTF/threshold">Gitee备份在此</a></p>
 <h3><span id="分析">分析</span></h3><p>程序又臭又长，但其实考点特别简单，稍微使用一下欧拉定理即可！我来分析一下程序的逻辑：</p>
 <p>在类TSM2初始化时：</p>
 <p>$pks \equiv [(sk+1)\cdot sks]^{n-2}\ \textrm{mod}\ n$</p>
@@ -336,7 +336,7 @@ log(n_{i})+log(g_{i}) &<log(m)+1
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
             ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
-            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>
 </footer>

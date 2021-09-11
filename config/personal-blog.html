@@ -2,14 +2,14 @@
 <html class="no-js" lang="zh-CN">
 <head>
     <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
 <![endif]-->
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta name="author" content="coming">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
 <meta http-equiv="X-DNS-Prefetch-Control" content="on">
 
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -28,18 +28,18 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="使用hexo搭建基于gitee pages的个人博客(jsimple主题) - GAEA" />
 <meta property="og:description" content="" />
-<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
 
-<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
 <link rel="stylesheet" href="/css/JSimple.css">
 
     <script type="text/javascript">
         (function() {
             let jsi_config = {
-                rootUrl: 'https://chu-kangming.gitee.io/',
+                rootUrl: 'https://kangming-ux.github.io/',
                 isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
@@ -90,7 +90,7 @@
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
-    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
     <div class="cover-info">
         
         <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
@@ -113,7 +113,7 @@
     </div>
 
     &nbsp;&nbsp;<div class="btn btn-slack">
-        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
             <i class="fa fa-slack"></i>
         </a>
     </div>
@@ -165,12 +165,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://chu-kangming.gitee.io/about/"
+                    <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2021-01-24">2021-01-24</span>
                 </p>
@@ -215,7 +215,7 @@
 <h2><span id="部署到gitee">部署到Gitee</span></h2><p>在本地将博客配置得足够满意之后，还要将博客部署到Gitee上面，这样其他人也可以在互联网访问；</p>
 <h3><span id="申请gitee-pages">申请Gitee pages</span></h3><p>这个主题必须要求博客是<code>根目录部署</code>，就是创建的项目名称与个人空间地址一致，重要的事情说三遍！！！网上大部分教程说的项目名称与用户名一致是因为他们申请Gitee账号后没有更改用户名，从而个人空间地址与用户名一致，因此他们的做法可以正确部署到根目录，但是如果你更改过用户名导致个人空间地址与用户名一致的话，那么这时你创建的项目名称应该与个人空间地址一致，否则就是错误的<code>根目录部署</code>！</p>
 <p>个人空间地址在：设置—&gt;个人资料—&gt;个人空间地址进行查看。</p>
-<p>项目创建好之后，新建一个blog分支；然后开启Gitee Page服务，服务部署到blog分支上，勾选强制使用HTTPS；然后就可以生成Page了，这时我们可以看到什么叫根目录部署了，以我的Gitee Pages服务的地址为例：<code>https://chu-kangming.gitee.io</code>；</p>
+<p>项目创建好之后，新建一个blog分支；然后开启Gitee Page服务，服务部署到blog分支上，勾选强制使用HTTPS；然后就可以生成Page了，这时我们可以看到什么叫根目录部署了，以我的Gitee Pages服务的地址为例：<code>https://KangMing-ux.github.io</code>；</p>
 <h3><span id="部署到gitee-pages">部署到Gitee Pages</span></h3><p>安装hexo-deployer-git组件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/nodejs/bin/npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>我这里假定你电脑上面已经安装git，并且公钥已经添加到了Gitee；修改站点配置文件_config.yml的deploy：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: ssh地址</span><br><span class="line">  branch: blog</span><br></pre></td></tr></table></figure><br>使用命令<code>hexo d</code>就可以将本地的博客数据部署到Gitee上面，可以看到blog分支下已经有了博客数据，但是，但是你如果这个时候打开Gitee Pages服务的地址它还是404，或者和你本地的博客显示不一致，这时因为Gitee Pages还没有更新(Gitee Pages Pro可以自动更新，但是需要氪金)，你只能手动更新：</p>
@@ -229,10 +229,10 @@
 </li>
 </ul>
 <p><strong>参考链接</strong></p>
-<p><a target="_blank" rel="noopener" href="https://xiuxiuing.gitee.io/blog/2018/08/08/giteepage/">使用Gitee+Hexo搭建个人博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://xiuxiuing.github.io/blog/2018/08/08/githubpage/">使用Gitee+Hexo搭建个人博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/tangkunyin/hexo-theme-jsimple">jsimple主题</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/GAI159/article/details/105128186">hexo本地与部署不一致</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/jelly123/hexo-gitee-cai-keng-zhi-bei">Hexo + Gitee采坑指北</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/jelly123/hexo-github-cai-keng-zhi-bei">Hexo + Gitee采坑指北</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7ab21c7f0674">渲染公式</a></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000019625231">引用图片</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/formemorywithyou/article/details/96478453">sitemap</a></p>
@@ -251,7 +251,7 @@
             
             <a href="/tags/hexo/">hexo</a>
             
-            <a href="/tags/gitee/">gitee</a>
+            <a href="/tags/github/">github</a>
             
             <a href="/tags/jsimple/">jsimple</a>
             
@@ -314,7 +314,7 @@
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
             ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
-            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>
 </footer>

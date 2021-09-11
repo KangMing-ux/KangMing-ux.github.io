@@ -2,14 +2,14 @@
 <html class="no-js" lang="zh-CN">
 <head>
     <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
 <![endif]-->
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta name="author" content="coming">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
 <meta http-equiv="X-DNS-Prefetch-Control" content="on">
 
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -28,18 +28,18 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="gactf2020密码学部分详解 - GAEA" />
 <meta property="og:description" content="" />
-<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
 
-<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
 <link rel="stylesheet" href="/css/JSimple.css">
 
     <script type="text/javascript">
         (function() {
             let jsi_config = {
-                rootUrl: 'https://chu-kangming.gitee.io/',
+                rootUrl: 'https://kangming-ux.github.io/',
                 isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
@@ -90,7 +90,7 @@
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
-    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
     <div class="cover-info">
         
         <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
@@ -113,7 +113,7 @@
     </div>
 
     &nbsp;&nbsp;<div class="btn btn-slack">
-        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
             <i class="fa fa-slack"></i>
         </a>
     </div>
@@ -165,12 +165,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://chu-kangming.gitee.io/about/"
+                    <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-31">2020-08-31</span>
                 </p>
@@ -191,7 +191,7 @@
             </div>
         
             <h3><span id="前言">前言</span></h3><p>比赛网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/match/contest_challenge?event=147&amp;hash=cf494a33-0f22-4e85-a48d-7a02efeedc90.event">GACTF2020</a><br><a target="_blank" rel="noopener" href="https://0xdktb.top/2020/08/30/WriteUp-GACTF2020-Crypto/">writeup参考链接</a></p>
-<h2><span id="ezaes">ezAES</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF/ezAES">Gitee备份</a>的challeng.py。</p>
+<h2><span id="ezaes">ezAES</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/GACTF/ezAES">Gitee备份</a>的challeng.py。</p>
 <h3><span id="分析">分析</span></h3><p>整体浏览Python脚本后，可得此题考察CBC分组加密工作模式；总结一下脚本给出的信息：</p>
 <ul>
 <li>key给出前14位(key长16位，即最后2位未知)</li>
@@ -204,17 +204,17 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py</span><br><span class="line">[+] MBruteforcing: Found key: <span class="string">&quot;pd&quot;</span></span><br><span class="line">9j_for_aes_cbc!!</span><br></pre></td></tr></table></figure>
 <h2><span id="what_r_the_noise">what_r_the_noise</span></h2><h3><span id="题目信息">题目信息</span></h3><p>噪音太大，听不见，China:124.71.145.165:9999(现在应该已经失效了)。</p>
 <h3><span id="分析">分析</span></h3><p>大致意思是服务器返回的数据是加入了噪声的，让你去掉噪声，解出正确的明文；有点概率论知识应该想到获取多次数据取平均值。</p>
-<h3><span id="解题">解题</span></h3><p>解题的Python脚本在<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/what_r_the_noise">Gitee备份</a>中；</p>
+<h3><span id="解题">解题</span></h3><p>解题的Python脚本在<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/GACTF2020/what_r_the_noise">Gitee备份</a>中；</p>
 <p>解出的flag可能不完全正确，但是你基本可以猜出是什么单词了！</p>
 <p>最后得到flag为gactf{you_know_much_about_differential_privacy}</p>
-<h2><span id="da-vinci-after-rsa">da Vinci after rsa</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件中包含两个文本文件encryption与output；encryption中是一列数，output给出“RSA公钥”与密文；<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/da_Vinci_after_rsa">Gitee备份</a></p>
+<h2><span id="da-vinci-after-rsa">da Vinci after rsa</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件中包含两个文本文件encryption与output；encryption中是一列数，output给出“RSA公钥”与密文；<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/GACTF2020/da_Vinci_after_rsa">Gitee备份</a></p>
 <h3><span id="分析">分析</span></h3><p>da Vinci翻译了一下(英语不好)是达芬奇，这既然是密码学题目，自然去查了一下达芬奇密码，发现这是一本书，在网上不停地查这本书，找到一个片段，“打乱的数字”一下引起我的注意，后面马上提到“斐波那契数列”，回去一看，encryption中的那一列数确实是打乱的斐波那契数列，到此encryption的作用弄明白了；</p>
-<p>接下来将公钥的模数N放到yafu中分解，得到三个因子；但是我想，不怕，和RSA问题一样求解$d\equiv e^{-1}\ \textrm{mod}\ \phi(N)$即可解出$m\equiv c^{d}\ \textrm{mod}\ N$，编好程序运行时发现$e$在$\phi(N)$下没有逆，这一下子就不知道怎么办了，其实这样的方程也是有办法求解的，<a href="https://chu-kangming.gitee.io/crypto/Elgamal-RSA-summary.html">求解思路链接在此</a></p>
+<p>接下来将公钥的模数N放到yafu中分解，得到三个因子；但是我想，不怕，和RSA问题一样求解$d\equiv e^{-1}\ \textrm{mod}\ \phi(N)$即可解出$m\equiv c^{d}\ \textrm{mod}\ N$，编好程序运行时发现$e$在$\phi(N)$下没有逆，这一下子就不知道怎么办了，其实这样的方程也是有办法求解的，<a href="https://KangMing-ux.github.io/crypto/Elgamal-RSA-summary.html">求解思路链接在此</a></p>
 <p>解出的$m$虽然有多个，但是flag每个字符都是可见字符，这样最后只剩下一个$m$，这还不是flag；花括号内正好25个字符，encryption中正好25个数，按照一样的规则打乱花括号内的25个字符即得到真正的flag；</p>
 <h3><span id="解题">解题</span></h3><p>上述GitHub备份链接中的solve.sage脚本为解题的sage脚本；</p>
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sage solve.sage</span><br><span class="line">flag&#123;w5awd4fa994f87_dwad3123_2&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="elgamal_rsa">elgamal_rsa</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/elgamal_rsa">Gitee备份</a></p>
+<h2><span id="elgamal_rsa">elgamal_rsa</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/GACTF2020/elgamal_rsa">Gitee备份</a></p>
 <h3><span id="分析">分析</span></h3><p>$g^{q}\equiv 1\ \textrm{mod}\ p,h\equiv g^{d}\ \textrm{mod}\ p$</p>
 <p>$c_{1}\equiv g^{r_{1}}\ \textrm{mod}\ p,c_{2}\equiv m\cdot h^{r_{1}}\ \textrm{mod}\ p$</p>
 <p>$c_{11}\equiv g^{r_{2}}\ \textrm{mod}\ p,c_{22}\equiv m\cdot h^{r_{2}}\ \textrm{mod}\ p$</p>
@@ -228,7 +228,7 @@
 <p>程序运行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python step1.py</span><br><span class="line">329380824451982777596468080979390700896875051159309053251427777390225223390054462862874890632092714850180031743329031313028975903871751004003831036860000454098274963081490031808010876171935539110201531253322208564941373067673598629247111527738724700328114569409692796434368030258427126193825227856160081569366870307559297674909108870298864572520476006338972072593434914773857347865349086098662711283463352902488164071184362082990162654586995346553108747183805073294471613391819978413596510467204977114038549473397779377039088475929677184284430986636686769839308217865627271293739711926018699557041530631349486791876338842184994986024157099233298972714917732995013317087756483</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sage step2.sage</span><br><span class="line">you_4re_good_at_b0th_el94mal_and_rs4</span><br></pre></td></tr></table></figure>
-<h2><span id="babycrypto">babycrypto</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/master/2020/GACTF2020/babycrypto">Gitee备份</a></p>
+<h2><span id="babycrypto">babycrypto</span></h2><h3><span id="题目信息">题目信息</span></h3><p>附件是一个Python脚本，<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/master/2020/GACTF2020/babycrypto">Gitee备份</a></p>
 <h3><span id="分析">分析</span></h3><p>在GF(p)上定义的点集$\{(x,y)|x,y\in GF(p)\}$上定义加法”+”：$(x_{1},y_{1})+(x_{2},y_{2})=(x_{1}x_{2}-y_{1}y_{2},x_{1}y_{2}+x_{2}y_{1})$，定义乘法”$\cdot$”：$k\cdot (x,y)=(x,y)+\cdots +(x,y)$</p>
 <p>给出基点g，$A=a\cdot g,B=b\cdot g$，给出A,B；</p>
 <p>$shared=b\cdot A$，再利用shared生成AES密钥进行加密；</p>
@@ -320,7 +320,7 @@
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
             ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
-            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>
 </footer>

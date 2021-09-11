@@ -2,14 +2,14 @@
 <html class="no-js" lang="zh-CN">
 <head>
     <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=https://chu-kangming.gitee.io/warn.html">
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
 <![endif]-->
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 <meta name="author" content="coming">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="mobile-agent" content="format=html5; url=https://chu-kangming.gitee.io">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
 <meta http-equiv="X-DNS-Prefetch-Control" content="on">
 
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -28,18 +28,18 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="攻防世界-密码学-shanghai - GAEA" />
 <meta property="og:description" content="" />
-<meta property="og:url" content="https://chu-kangming.gitee.io" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
 
-<link rel="dns-prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prefetch" href="https://chu-kangming.gitee.io">
-<link rel="prerender" href="https://chu-kangming.gitee.io">
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
 <link rel="stylesheet" href="/css/JSimple.css">
 
     <script type="text/javascript">
         (function() {
             let jsi_config = {
-                rootUrl: 'https://chu-kangming.gitee.io/',
+                rootUrl: 'https://kangming-ux.github.io/',
                 isPost: 'true',
                 buildingTime: '01/23/2021',
                 snsQRCode: '/images/sns-qrcode.png',
@@ -90,7 +90,7 @@
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
-    <img class="cover-img" src="https://chu-kangming.gitee.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
     <div class="cover-info">
         
         <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
@@ -113,7 +113,7 @@
     </div>
 
     &nbsp;&nbsp;<div class="btn btn-slack">
-        <a href="https://gitee.com/chu-kangming" target="_blank" title="slack" ref="friend">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
             <i class="fa fa-slack"></i>
         </a>
     </div>
@@ -165,12 +165,12 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
             <div class="post-author clearfix">
-                <a class="avatar fleft" href="https://chu-kangming.gitee.io/"
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
                    target="_blank">
                     <img width="48" src="/images/avatar.png" alt="avatar"/>
                 </a>
                 <p><span class="label">作者</span>
-                    <a href="https://chu-kangming.gitee.io/about/"
+                    <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
                     <span title="最后编辑于&nbsp;2020-08-18">2020-08-18</span>
                 </p>
@@ -186,7 +186,7 @@
 		    <!-- Table of Contents -->
             
             <h2><span id="题目信息">题目信息</span></h2><p>题目给出提示“维吉利亚密码”，密文在附件中。</p>
-<h2><span id="分析">分析</span></h2><p>由于维吉利亚密码加密时密钥重用，导致可通过分析密文进行破解；由于明文中存在一些出现频率很高的单词：the,and,for,with等等，因此很有可能这些单词再次被同样的密钥加密，从而生成同样的密文，其间隔一定是密钥长度的倍数，因此可通过对密文进行分析得到密钥的长度；另外，由于这些密文对应着那些出现频率高的明文，因此可破解出密钥；自己写了一个<a target="_blank" rel="noopener" href="https://gitee.com/chu-kangming/CTFs-Crypto/tree/tool/TRA/Virginia-analysis">工具</a>来求解这类问题。</p>
+<h2><span id="分析">分析</span></h2><p>由于维吉利亚密码加密时密钥重用，导致可通过分析密文进行破解；由于明文中存在一些出现频率很高的单词：the,and,for,with等等，因此很有可能这些单词再次被同样的密钥加密，从而生成同样的密文，其间隔一定是密钥长度的倍数，因此可通过对密文进行分析得到密钥的长度；另外，由于这些密文对应着那些出现频率高的明文，因此可破解出密钥；自己写了一个<a target="_blank" rel="noopener" href="https://github.com/KangMing-ux/CTFs-Crypto/tree/tool/TRA/Virginia-analysis">工具</a>来求解这类问题。</p>
 <h2><span id="解题">解题</span></h2><p>如下是我使用工具的解题过程，注释是我自己加的，并非程序的输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">$ python solve.py shanghai.txt</span><br><span class="line"><span class="comment"># 先寻找密文中多次出现(本程序设定的至少3次)的词汇，并计算它们之间的距离，这有助于分析出密钥的长度</span></span><br><span class="line">word:  bju</span><br><span class="line">distance:  [1078, 2222, 154, 814, 132, 264]</span><br><span class="line">the minimum distance:  132</span><br><span class="line"></span><br><span class="line">word:  glv</span><br><span class="line">distance:  [660, 408, 186, 374, 88, 66, 836, 44, 649, 110, 880, 88, 209, 66]</span><br><span class="line">the minimum distance:  44</span><br><span class="line"></span><br><span class="line">word:  vxz</span><br><span class="line">distance:  [1936, 154, 264, 253, 121, 517, 154, 440, 11, 220, 66]</span><br><span class="line">the minimum distance:  11</span><br><span class="line"></span><br><span class="line">word:  bni</span><br><span class="line">distance:  [22, 979, 2002, 583, 165, 132, 22]</span><br><span class="line">the minimum distance:  22</span><br><span class="line"></span><br><span class="line">word:  xpg</span><br><span class="line">distance:  [11, 396, 660, 2409, 11, 374, 37, 51, 572]</span><br><span class="line">the minimum distance:  11</span><br><span class="line"></span><br><span class="line">word:  jcm</span><br><span class="line">distance:  [1595, 88, 99, 297, 781, 11, 22, 110, 66, 231, 627]</span><br><span class="line">the minimum distance:  11</span><br><span class="line"></span><br><span class="line">word:  zlr</span><br><span class="line">distance:  [286, 583, 583, 154, 22, 154, 22, 407, 55, 396, 1155]</span><br><span class="line">the minimum distance:  22</span><br><span class="line"></span><br><span class="line">word:  klm</span><br><span class="line">distance:  [594, 308, 605, 2145, 231, 297, 44, 44, 198]</span><br><span class="line">the minimum distance:  44</span><br><span class="line"></span><br><span class="line">word:  mfr</span><br><span class="line">distance:  [44, 99, 99, 715, 1884, 536]</span><br><span class="line">the minimum distance:  44</span><br><span class="line"></span><br><span class="line">word:  gvtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  vtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  tyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  yiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 246, 106]</span><br><span class="line">the minimum distance:  106</span><br><span class="line"></span><br><span class="line">word:  opk</span><br><span class="line">distance:  [66, 1342, 385, 11, 1771, 583, 374]</span><br><span class="line">the minimum distance:  11</span><br><span class="line"></span><br><span class="line">word:  tyi</span><br><span class="line">distance:  [165, 968, 488, 62, 275, 220, 37, 1639, 491, 352]</span><br><span class="line">the minimum distance:  37</span><br><span class="line"></span><br><span class="line">word:  gvtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  vtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  pkv</span><br><span class="line">distance:  [297, 33, 407, 1221, 572, 88]</span><br><span class="line">the minimum distance:  33</span><br><span class="line"></span><br><span class="line">word:  gvtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  vtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  xui</span><br><span class="line">distance:  [638, 682, 77, 154, 55, 649, 363, 143]</span><br><span class="line">the minimum distance:  55</span><br><span class="line"></span><br><span class="line">word:  tui</span><br><span class="line">distance:  [55, 1628, 154, 286, 787, 797]</span><br><span class="line">the minimum distance:  55</span><br><span class="line"></span><br><span class="line">word:  gvtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"></span><br><span class="line">word:  vtyiz</span><br><span class="line">distance:  [165, 968, 550, 275, 220, 2167, 352]</span><br><span class="line">the minimum distance:  165</span><br><span class="line"><span class="comment">#到此我们应该也能看出，密钥的长度为11</span></span><br><span class="line"><span class="comment">#接下来，进行已知明文攻击</span></span><br></pre></td></tr></table></figure><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#密文中有一段：frxnimp 1914 qil 1940，猜测是between 1914 and 1940</span></span><br><span class="line">plaintext:betweenand</span><br><span class="line">cipher:frxnimpqil</span><br><span class="line">possible key:enereicqvi len:10</span><br><span class="line"><span class="comment">#如果需要更多的明-密文对分析，则输入y；否则，已计算出密钥，则可以进行解密你需要解密的内容</span></span><br><span class="line">try more plain-cipher(y) or start decrypt(n)y</span><br><span class="line">plaintext:the</span><br><span class="line">cipher:opk</span><br><span class="line">possible key:vig len:3</span><br><span class="line">try more plain-cipher(y) or start decrypt(n)n</span><br><span class="line">key:enereicqvig</span><br><span class="line">cipher:jtcw, <span class="string">&#x27;&#123;&#x27;</span> vvj <span class="string">&#x27;zvkvrmtudabiecveaaxpp&#x27;</span> grq <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">fgyf, <span class="string">&#x27;&#123;&#x27;</span> rnh <span class="string">&#x27;jacpnzpdzszsjupanwglh&#x27;</span> ebv <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">dpps, <span class="string">&#x27;&#123;&#x27;</span> erb <span class="string">&#x27;xfpnligqmwtgohnywntyl&#x27;</span> ypa <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">bnyj, <span class="string">&#x27;&#123;&#x27;</span> ref <span class="string">&#x27;rtuajgphzjxacmawuwkly&#x27;</span> cjo <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">olws, <span class="string">&#x27;&#123;&#x27;</span> irs <span class="string">&#x27;vnifwenqqwkewafjsutcl&#x27;</span> pni <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">tyuq, <span class="string">&#x27;&#123;&#x27;</span> rif <span class="string">&#x27;irctbrloznxrautofsrlc&#x27;</span> cam <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">hdho, <span class="string">&#x27;&#123;&#x27;</span> prw <span class="string">&#x27;vegnpwymxwoenynckfpjl&#x27;</span> tnz <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">brmb, <span class="string">&#x27;&#123;&#x27;</span> npf <span class="string">&#x27;mrtrjkdzvuxvalrwykchj&#x27;</span> cem <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">flag, <span class="string">&#x27;&#123;&#x27;</span> and <span class="string">&#x27;vigenereisveryeasyhuh&#x27;</span> and <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">spuu, <span class="string">&#x27;&#123;&#x27;</span> fab <span class="string">&#x27;trxrailsnftcaprnwsvzu&#x27;</span> ylm <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">fcyo, <span class="string">&#x27;&#123;&#x27;</span> tfo <span class="string">&#x27;rpginvpmbkgayyiajwpnz&#x27;</span> ljk <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">wpls, <span class="string">&#x27;&#123;&#x27;</span> ntt <span class="string">&#x27;enereicqvylnwwrrwjthn&#x27;</span> qwi <span class="string">&#x27;&#125;&#x27;</span></span><br></pre></td></tr></table></figure><br>解出flag为flag{vigenereisveryeasyhuh}。</p>
 
             
@@ -262,7 +262,7 @@
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
             ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
-            ，Hosted by <a href="https://gitee.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>
 </footer>
