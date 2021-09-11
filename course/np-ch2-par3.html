@@ -193,9 +193,9 @@
             <h2><span id="fcntl函数">fcntl函数</span></h2><p>fcntl函数提供对文件描述符的各种控制操作。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;fcntl.h&gt;</span></span><br><span class="line"><span class="comment">    cmd: 指定执行哪种类型的操作</span></span><br><span class="line"><span class="comment">    返回值根据操作与arg的不同而不同, 若失败返回-1并设置errno</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcntl</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> cmd,...)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>根据操作类型的不同，fcntl函数可能还需要第三个可选参数arg。fcntl函数支持的常用操作及其参数见下表。</p>
-<div style="width:62%;margin:auto"><img src="/course/np-ch2-par3/6.png" class title="pic6"></div>
+<div style="width:75%;margin:auto"><img src="/course/np-ch2-par3/6.png" class title="pic6"></div>
 
-<div style="width:62%;margin:auto"><img src="/course/np-ch2-par3/7.png" class title="pic7"></div>
+<div style="width:75%;margin:auto"><img src="/course/np-ch2-par3/7.png" class title="pic7"></div>
 
 <p>&nbsp;</p>
 <p>在网络编程中，fcntl函数通常用来将一个文件描述符设置为非阻塞的。基本框架如下。</p>
