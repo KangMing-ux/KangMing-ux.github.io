@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第五章第二节 poll系统调用</h2>
             <div class="post-meta">
-                本文共计691个字 |
+                本文共计698个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -191,17 +191,17 @@
             </div>
         
             <p>poll系统调用与select系统调用类似，也是在指定时间内轮询一定数量的文件描述符，以测试其中是否有就绪者。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;poll.h&gt;</span></span><br><span class="line"><span class="comment">    fds: pollfd结构体数组, 指定程序感兴趣的所有文件描述符上发生的可读/可写/异常事件</span></span><br><span class="line"><span class="comment">    nfds: 指定fds的大小</span></span><br><span class="line"><span class="comment">    timeout: 以毫秒为单位的超时值, timeout=-1: poll调用一直阻塞直到某个事件发生 || timeout=0: poll调用立即返回</span></span><br><span class="line"><span class="comment">    返回就绪文件描述符总数: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span><span class="params">(struct pollfd * fds, <span class="keyword">nfds_t</span> nfds, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;poll.h&gt;</span></span><br><span class="line"><span class="comment">    fds: pollfd结构体数组, 指定程序感兴趣的所有文件描述符上发生的可读/可写/异常事件</span></span><br><span class="line"><span class="comment">    nfds: 指定fds有效长度</span></span><br><span class="line"><span class="comment">    timeout: 以毫秒为单位的超时值; timeout=-1: poll调用一直阻塞直到某个事件发生 || timeout=0: poll调用立即返回</span></span><br><span class="line"><span class="comment">    返回就绪文件描述符总数: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span><span class="params">(struct pollfd * fds, <span class="keyword">nfds_t</span> nfds, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>其中，pollfd结构体的定义如下。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pollfd</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> fd;</span><br><span class="line">    <span class="keyword">short</span> <span class="keyword">int</span> events;</span><br><span class="line">    <span class="keyword">short</span> <span class="keyword">int</span> revents;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>其中，fd指定文件描述符，events成员告知poll需要监听fd上哪些事件，它是一系列事件的按位或。</p>
-<div style="width:72%;margin:auto"><img src="/course/np-ch5-par2/25.png" class title="pic25"></div>
+<div style="width:80%;margin:auto"><img src="/course/np-ch5-par2/25.png" class title="pic25"></div>
 
-<div style="width:72%;margin:auto"><img src="/course/np-ch5-par2/26.png" class title="pic26"></div>
+<div style="width:80%;margin:auto"><img src="/course/np-ch5-par2/26.png" class title="pic26"></div>
 
 <p>&nbsp;</p>
 <p>revents成员由内核修改，以通知应用程序fd上实际发生了哪些事件。</p>
-<p>自Linux2.6.17内核之后，GNU为poll系统调用增加了一个POLLRDHUP事件，它在socket接收到对方关闭连接的请求后触发，从而区分socket上接收到的数据是有效数据还是对方关闭连接的请求。使用POLLRDHUP事件需要在代码最开始处定义<code>_GNU_SOURCE</code>。</p>
+<p>自Linux2.6.17内核之后，GNU为poll系统调用增加了一个POLLRDHUP事件，它在socket接收到对方关闭连接的请求后触发，从而区分socket上接收到的数据是有效数据还是对方关闭连接的请求。使用POLLRDHUP事件需要在代码最开始处<code>#define _GNU_SOURCE</code>。</p>
 
             
                 
@@ -275,7 +275,7 @@
             本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
             ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>

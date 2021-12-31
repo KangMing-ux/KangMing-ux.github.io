@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第五章第一节 select系统调用</h2>
             <div class="post-meta">
-                本文共计2093个字 |
+                本文共计2137个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -226,7 +226,7 @@
 <li>socket上有未处理的错误，调用getsockopt来清除错误；</li>
 </ul>
 <p>socket能处理的异常情况只有一种：socket上接收了带外数据。</p>
-<h3><span id="处理带外数据">处理带外数据</span></h3><p>socket接收到普通数据与带外数据都将使select返回，但socket处于不同的就绪状态：前者处于可读状态、后者处于异常状态。</p>
+<h3><span id="处理带外数据">处理带外数据</span></h3><p>socket接收到普通数据与带外数据都将使select返回，但socket处于不同的就绪状态：前者处于可读状态(FD_ISSET(fd, rfds)为1)、后者处于异常状态(FD_ISSET(fd, efds)为1)。</p>
 
             
                 
@@ -300,7 +300,7 @@
             本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
             ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>

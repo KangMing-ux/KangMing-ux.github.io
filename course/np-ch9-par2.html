@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第九章第二节 管道与信号量 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第九章第二节 管道与信号量 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-09-19">2021-09-19</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第九章第二节 管道与信号量</h2>
+            <div class="post-meta">
+                本文共计5072个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">信号量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">semget系统调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">semop系统调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">semctl系统调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">特殊键值IPC_PRIVATE</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="管道">管道</span></h2><p>父进程调用pipe创建管道，fork之后管道的两端fd[0]与fd[1]在父子进程中均打开。此时，若要实现父进程向子进程写数据，则需要在父进程关闭fd[0]，在子进程关闭fd[1]。</p>
+<p>而若要实现父子进程的双向数据传输，可使用socketpair创建一个双向管道，父子进程各关闭一个，从而实现双向的数据传输。</p>
+<p>管道只能用于有关联的进程间通信，对于没有关联的进程间通信，需要使用如下3种System V IPV，它们都使用一个全局唯一的键值来标识一条信道。</p>
+<h2><span id="信号量">信号量</span></h2><h3><span id="semget系统调用">semget系统调用</span></h3><p>semget系统调用创建一个新的信号量集，或者获取一个已经存在的信号量集。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    key: 键值, 用来标识一个全局唯一的信号量集; 两个进程要使用信号量通信, 则需要使用相同的键值来创建/获取该信号量</span></span><br><span class="line"><span class="comment">    num: 指定要创建/获取的信号量集中信号量的数目; 创建: 必须设置 || 获取: 可设置为0</span></span><br><span class="line"><span class="comment">    flags: 指定一组标志, 其低端的9比特为该信号量的权限, 格式含义均与系统调用open的mode参数相同, 可与下面标志按位或</span></span><br><span class="line"><span class="comment">        IPC_CREAT: 创建新的信号量集</span></span><br><span class="line"><span class="comment">        IPC_EXCL: 确保创建的信号量集唯一(若信号量集已经存在, 则semget返回-1并设置errno为EEXIST)</span></span><br><span class="line"><span class="comment">    返回一个正整数作为信号量集的标识符: 成功 || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">int</span> num, <span class="keyword">int</span> flags)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>在semget用于创建信号量集后，与之关联的内核数据结构体semid_ds将被创建并初始化。semid_ds结构体定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    __key: 键值</span></span><br><span class="line"><span class="comment">    uid: 所有者的有效用户ID</span></span><br><span class="line"><span class="comment">    gid: 所有者的有效组ID</span></span><br><span class="line"><span class="comment">    cuid: 创建者的有效用户ID</span></span><br><span class="line"><span class="comment">    cgid: 创建者的有效用户ID</span></span><br><span class="line"><span class="comment">    mode: 访问权限</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ipc_perm</span>&#123;</span></span><br><span class="line">    <span class="keyword">__key_t</span> __key;</span><br><span class="line">    <span class="keyword">__uid_t</span> uid;</span><br><span class="line">    <span class="keyword">__gid_t</span> gid;</span><br><span class="line">    <span class="keyword">__uid_t</span> cuid;</span><br><span class="line">    <span class="keyword">__gid_t</span> cgid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> mode;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> __pad1;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> __seq;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> __pad2;</span><br><span class="line">    <span class="keyword">__syscall_ulong_t</span> __unused1;</span><br><span class="line">    <span class="keyword">__syscall_ulong_t</span> __unused2;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    sem_perm: 信号量的操作权限</span></span><br><span class="line"><span class="comment">    sem_nsems: 信号量集中信号量的数目</span></span><br><span class="line"><span class="comment">    sem_otime: 最后一次调用semop的时间</span></span><br><span class="line"><span class="comment">    sem_ctime: 最后一次调用semctl的时间</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">semid_ds</span>&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">ipc_perm</span> <span class="title">sem_perm</span>;</span></span><br><span class="line">  <span class="keyword">__time_t</span> sem_otime;</span><br><span class="line">  <span class="keyword">__syscall_ulong_t</span> __unused1;</span><br><span class="line">  <span class="keyword">__time_t</span> sem_ctime;</span><br><span class="line">  <span class="keyword">__syscall_ulong_t</span> __unused2;</span><br><span class="line">  <span class="keyword">__syscall_ulong_t</span> sem_nsems;</span><br><span class="line">  <span class="keyword">__syscall_ulong_t</span> __unused3;</span><br><span class="line">  <span class="keyword">__syscall_ulong_t</span> __unused4;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>semget对semid_ds结构体的初始化如下。</p>
+<ul>
+<li>sem_perm.cuid与sem_perm.uid设置为调用进程的有效用户ID；</li>
+<li>sem_perm.cgid与sem_perm.gid设置为调用进程的有效组ID；</li>
+<li>sem_perm.mode低9位设置为flags参数的最低9位；</li>
+<li>sem_nsems设置为num；</li>
+<li>sem_otime设置为0；</li>
+<li>sem_ctime设置为当前系统时</li>
+</ul>
+<h3><span id="semop系统调用">semop系统调用</span></h3><p>先介绍与每个信号量关联的一些重要的内核变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> semval; <span class="comment">//信号量的值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> semzcnt; <span class="comment">//等待信号值变为0的进程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> semncnt; <span class="comment">//等待信号量值增加的进程数量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">pid_t</span> sempid; <span class="comment">//最后一次执行semop操作的进程ID</span></span><br></pre></td></tr></table></figure>
+<p>semop函数对信号量的操作其实就是对这些内核变量的操作；下面介绍semop函数，其定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    id: 目标信号量集的标识符(由semget函数返回)</span></span><br><span class="line"><span class="comment">    sem_ops: 控制semop函数的行为, 详见下文</span></span><br><span class="line"><span class="comment">    num_sem_ops: 指定要执行的操作个数(即sem_ops数组中元素的个数)</span></span><br><span class="line"><span class="comment">    返回0: 成功 || 返回-1并设置errno: 失败(此时数组sem_ops中的操作均不被执行)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semop</span><span class="params">(<span class="keyword">int</span> id, struct sembuf * sem_ops, <span class="keyword">size_t</span> num_sem_ops)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sembuf结构体的定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    sem_num: 信号量在信号量集中的编号</span></span><br><span class="line"><span class="comment">    sem_op: 指定操作类型, 详见下文; 同时每种类型的操作行为还会受到sem_flg的影响</span></span><br><span class="line"><span class="comment">    sem_flg: IPC_NOWAIT: semop调用是非阻塞的 || SEM_UNDO: 进程退出时取消正在进行的semop操作</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sembuf</span>&#123;</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> sem_num;</span><br><span class="line">  <span class="keyword">short</span> <span class="keyword">int</span> sem_op;</span><br><span class="line">  <span class="keyword">short</span> <span class="keyword">int</span> sem_flg;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>sem_op与sem_flg搭配会有如下这些效果。</p>
+<ul>
+<li>sem_op大于0，semop将被操作的信号量的值semval增加sem_op(即V操作)，此时要求调用进程对操作的信号量集拥有写权限。此外，若sem_flg设置了SEM_UNDO标志，则系统将更新进程的semadj变量(用以跟踪进程对信号量的修改情况)；</li>
+<li>sem_op等于0，这表示一个”等待0”操作，该操作要求调用进程对操作的信号量集拥有读权限。<ul>
+<li>若此时信号量的值为0，则调用立即成功返回；</li>
+<li>否则，调用失败返回或阻塞进程以等待信号量变为0；具体来说：若sem_flg设置了IPC_NOWAIT标志，则semop调用立即返回-1并设置errno为EAGAIN；</li>
+<li>否则，信号量的semzcnt加1，进程被挂起直到以下3个条件之一满足：(1)信号量的semzcnt值为0，此时系统将该信号量的semzcnt减1；(2)被操作信号量所在信号量集被进程移除，此时semop调用失败返回， errno被设置为EIDRM；(3)调用被信号中断，此时semop调用失败返回，errno被设置为EINTR，同时系统将信号量的semzcnt减1；</li>
+</ul>
+</li>
+<li>sem_op小于0，semop将被操作的信号量的值semval减去sem_op的绝对值(即P操作)，此时要求调用进程对操作的信号量集具有写权限。此外，若em_flg设置了SEM_UNDO标志，操作系统将更新进程的semadj变量(同样用于跟踪进程对信号量的修改情况)；<ul>
+<li>若semval+sem_op大于0，则semop调用成功返回，调用进程立即获得信号量；此外，操作系统将该信号量的值semval重置为semval+sem_op；</li>
+<li>否则，则semop失败返回或阻塞进程以等待信号量可用；具体来说：若sem_flg设置了IPC_NOWAIT标志，semop立即返回-1，并设置errno为EAGAIN；</li>
+<li>否则，则信号量的semncnt加1，进程被挂起直到以下3个条件之一满足：(1)semval+sem_op大于0，此时系统将该信号量的semncnt减1；此外，若sem_flg设置了SEM_UNDO标志，则系统将更新进程的semadj变量；(2)被操作信号量所在信号量集被进程移除，此时semop调用失败返回， errno被设置为EIDRM；(3)调用被信号中断，此时semop调用失败返回，errno被设置为EINTR，同时系统将信号量的semncnt减1；</li>
+</ul>
+</li>
+</ul>
+<h3><span id="semctl系统调用">semctl系统调用</span></h3><p>semctl系统调用允许调用者对信号量进行直接控制。其定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    id: 目标信号量集的标识符(由semget函数返回)</span></span><br><span class="line"><span class="comment">    sem_ind: 被操作的信号量在信号量集中的编号</span></span><br><span class="line"><span class="comment">    command: 指定执行的命令</span></span><br><span class="line"><span class="comment">    返回值取决于command || 返回-1并设置errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">semctl</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> sem_ind, <span class="keyword">int</span> command, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>有些命令需要调用者传递第4个参数，参数类型由用户自行定义，但sys/sem.h中给出了推荐的格式。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;sys/sem.h&gt;</span></span><br><span class="line"><span class="comment">    semmap: Linux内核未使用</span></span><br><span class="line"><span class="comment">    semmni: 系统最多可以拥有的信号量集数目</span></span><br><span class="line"><span class="comment">    semmns: 系统最多可以拥有的信号量数目</span></span><br><span class="line"><span class="comment">    semmnu: Linux内核未使用</span></span><br><span class="line"><span class="comment">    semmsl: 一个信号量集最多可以包含的信号量数目</span></span><br><span class="line"><span class="comment">    semopm: semop一次最多可以执行的sem_op操作数目</span></span><br><span class="line"><span class="comment">    semume: Linux内核未使用</span></span><br><span class="line"><span class="comment">    semusz: sem_undo结构体的大小</span></span><br><span class="line"><span class="comment">    semvmx: 最多允许的信号量值</span></span><br><span class="line"><span class="comment">    semaem: 最多允许的UNDO次数(带SEM_UNDO标志的sem_op操作的次数)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">seminfo</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> semmap;</span><br><span class="line">    <span class="keyword">int</span> semmni;</span><br><span class="line">    <span class="keyword">int</span> semmns;</span><br><span class="line">    <span class="keyword">int</span> semmnu;</span><br><span class="line">    <span class="keyword">int</span> semmsl;</span><br><span class="line">    <span class="keyword">int</span> semopm;</span><br><span class="line">    <span class="keyword">int</span> semume;</span><br><span class="line">    <span class="keyword">int</span> semusz;</span><br><span class="line">    <span class="keyword">int</span> semvmx;</span><br><span class="line">    <span class="keyword">int</span> semaem;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: 未定义(只是推荐使用)</span></span><br><span class="line"><span class="comment">    val: 用于SETVAL命令</span></span><br><span class="line"><span class="comment">    buf: 用于IPC_STAT与IPC_SET命令</span></span><br><span class="line"><span class="comment">    array: 用于GETALL与SETALL命令</span></span><br><span class="line"><span class="comment">    __buf: 用于IPC_INFO命令</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">semun</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">semid_ds</span> * <span class="title">buf</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> * <span class="built_in">array</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">seminfo</span> * __<span class="title">buf</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最后，semctl支持的所以命令如下图所示。</p>
+<div style="width:90%;margin:auto"><img src="/course/np-ch9-par2/39.png" class title="pic39"></div>
+
+<p>&nbsp;</p>
+<p>注：GETNCNT、GETPID、GETVAL、GETZCNT、SETVAL命令操作的是单个信号量，它是由标识符sem_id指定的信号量集中的第sem_ind个信号量；其他命令操作整个信号量集，此时sem_ind参数被忽略。</p>
+<h3><span id="特殊键值ipc_private">特殊键值IPC_PRIVATE</span></h3><p>semget的调用者可以向其key参数传递一个特殊的键值IPC_PRIVATE(值为0)，这样无论该信号量集是否存在，semget都将创建一个新的信号量。其实更应该称为IPC_NEW。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/NP/">网络编程</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

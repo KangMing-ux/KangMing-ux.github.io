@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第四章第一节 innodb体系架构 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第四章第一节 innodb体系架构 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-12-10">2021-12-10</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第四章第一节 InnoDB体系架构</h2>
+            <div class="post-meta">
+                本文共计2968个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">InnoDB引擎架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">页的组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">重做日志缓冲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">额外的内存池</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Checkpoint技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Master Thread Checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">FLUSH_LRU_LIST Checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Async&#x2F;Sync Flush Checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Dirty Page too much Checkpoint</span></a></li></ol></li></ol>
+            </div>
+        
+            <h2><span id="innodb引擎架构">InnoDB引擎架构</span></h2><div style="width:65%;margin:auto"><img src="/course/sql-ch4-par1/21.png" class title="pic21"></div>
+
+<p>&nbsp;</p>
+<p>后台线程负责刷新内存池中的数据，保证缓冲池中的内存缓存是最近的数据；此外，后台线程还需要将已修改的数据文件刷新到磁盘文件，同时保证在数据库发生异常时能够恢复到正常状态。</p>
+<h3><span id="后台线程">后台线程</span></h3><p>InnoDB存储引擎为多线程模型，其中Master线程为主线程，负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性(脏页的刷新，合并插入缓冲，UNDO页的回收等)；IO线程多使用AIO(异步IO)来处理IO请求，这可以极大地提高数据库性能；Purge线程回收已经使用并分配的undo页；Page Cleaner线程专门用来将脏页刷新到磁盘。</p>
+<h3><span id="内存">内存</span></h3><p>InnoDB存储引擎基于磁盘存储，并将数据用页来组织，而由于CPU与磁盘的速度之间的鸿沟，InnoDB存储引擎需要使用缓冲池技术来提高数据库的整体性能。</p>
+<p>缓冲池是一块内存区域，在客户端从磁盘中读取数据时，先将数据所在页读到缓冲池，再从缓冲池读取数据；下次读取该页就只需要从缓冲池中读取。因此，在客户端读取数据时先判断该数据所在页是否已在缓冲池中，若在可直接从缓冲池读取。</p>
+<p>对磁盘中页的修改(必然已被读入缓冲池)，应首先修改缓冲池中的页，再以一定的频率刷新到磁盘上，刷新的机制称为Checkpoint。</p>
+<p>具体地，缓冲池中缓存的数据页类型有：索引页、数据页、UNDO页、插入缓存(Insert buffer)、自适应哈希索引、InnoDB存储的锁信息、数据字典信息等。</p>
+<div style="width:65%;margin:auto"><img src="/course/sql-ch4-par1/22.png" class title="pic22"></div>
+
+<p>&nbsp;</p>
+<p>InnoDB1.0.x版本开始允许多个缓冲池实例，</p>
+<h3><span id="页的组织">页的组织</span></h3><p>缓冲池中的页面通常使用LRU算法来管理，当缓冲池不能存放新读取到的页时，会释放LRU列表尾端的页释放。</p>
+<p>在InnoDB存储引擎中，缓冲池中页的默认大小为16KB，并做了优化——midpoint：新读取的页并不是直接放在LRU列表的头部，而是放在LRU列表的midpoint位置，midpoint默认为5/8，之所以不将新读取的页放在LRU列表头部，是因为客户端有时会做一些全局或部分的扫描，这些页仅仅在这次查询中会用到，这样反而将之后会经常用到的页移除，将之后不会再用到的页放入。</p>
+<p>InnoDB存储引擎引入参数innodb_old_blocks_time表示页读取到mid位置后需要等待多久才会被加入LRU列表的热端，即前midpoint部分。</p>
+<p>InnoDB1.0.x版本开始支持压缩页，即将默认的16KB的页压缩为1KB、2KB、4KB与8KB，这些页使用unzip_LRU列表进行管理。unzip_LRU对不同大小的压缩页分别管理，并使用伙伴算法进行内存的分配。</p>
+<p>&nbsp;</p>
+<p>缓冲池中的脏页存放在Flush列表中(也同时存放在LRU列表中)，其中LRU列表用来管理缓冲池中页的可用性，Flush列表用来管理需要刷新回磁盘的页。</p>
+<h3><span id="重做日志缓冲">重做日志缓冲</span></h3><p>InnoDB存储引擎先将日志信息存入该缓冲区中，再按一定频率(每秒)将其刷新到重做日志文件；此外，每个事务提交时会将重做日志缓冲刷新到重做日志文件；当重做日志缓冲区剩余空间小于1/2时，重做日志缓冲也需要刷新到重做日志文件。</p>
+<h3><span id="额外的内存池">额外的内存池</span></h3><p>在InnoDB存储引擎中，由堆对内存进行管理，而管理所用到的数据结构的内存就是从这个额外的内存池中分配。因此，在申请大的缓冲池时也应该增大额外的内存池的大小。</p>
+<h2><span id="checkpoint技术">Checkpoint技术</span></h2><p>客户端对页的操作首先在缓冲池中完成，InnoDB存储引擎需要将该页的新版本刷新回磁盘。若每次页发生变化都将新版本刷新回磁盘，则开销会很大，；同时，如果在刷新时磁盘发生了宕机，数据也会丢失。</p>
+<p>当前存储引擎通常采用Write Ahead Log策略，即事务提交时，先写重做日志，在写磁盘中的页。这保证了事务ACID特性中的D性(持久性)。</p>
+<p>Checkpoint解决如下问题。</p>
+<ul>
+<li>缩短数据的恢复时间(在磁盘宕机时，只需要对Checkpoint之后的重做日志进行恢复)；</li>
+<li>在缓冲池或重做日志不够用时将脏页刷新回磁盘；</li>
+</ul>
+<p>重做日志设计为循环使用，如果要使用的部分还没有产生Checkpoint，则必须强制产生Checkpoint，将对应缓冲池中的页刷新回磁盘。</p>
+<p>InnoDB存储引擎通过LSN来标记(页、重做日志、Checkpoint)版本，LSN长8字节，单位为字节。</p>
+<p>在InnoDB存储引擎中，Checkpoint发生的时间，条件以及脏页的选择都很复杂。其中有两种Checkpoint：Sharp Checkpoint与Fuzzy Checkpoint。在InnoDB存储引擎内部可能发生如下几种情况的Fuzzy Checkpoint。</p>
+<ul>
+<li>Master Thread Checkpoint</li>
+<li>FLUSH_LRU_LIST Checkpoint</li>
+<li>Async/Sync Flush Checkpoint</li>
+<li>Dirty Page too much Checkpoint</li>
+</ul>
+<h3><span id="master-thread-checkpoint">Master Thread Checkpoint</span></h3><p>在Master线程中，几乎以每秒/每十秒的频率各刷新一定比例的页回磁盘；该过程是异步的，即此时InnoDB存储引擎仍可以进行其他的操作，用户查询线程不会阻塞。</p>
+<h3><span id="flush_lru_list-checkpoint">FLUSH_LRU_LIST Checkpoint</span></h3><p>InnoDB存储引擎需保证LRU列表中至少有100个空闲页可供使用，若LRU列表中不够100个空闲页，则InnoDB存储引擎会将LRU列表尾部的页移除，而如果其中哪个页也在Flush列表中，就需要进行Checkpoint。</p>
+<p>InnoDB1.2.x版本开始，这个检查(LRU列表中是否有100个空闲页)被放在一个单独的Page Cleaner线程中进行，不会再阻塞用户的查询操作。</p>
+<h3><span id="asyncsync-flush-checkpoint">Async/Sync Flush Checkpoint</span></h3><p>在日志文件不可用时，这时需要将一些脏页强制刷新到磁盘；记checkpoint_lsn为缓冲区里面已经刷新回磁盘的最新页的LSN，redo_lsn为日志里面最新页的LSN。定义checkpoint_age=redo_lsn-checkpoint_lsn，即还需要刷新回磁盘里的字节数。</p>
+<p>定义async_water_mark=75% <em> total_log_file_size，sync_water_mark=90% </em> total_log_file_size；</p>
+<ul>
+<li>当checkpoint_age&lt;async_water_mark时，无需刷新脏页到磁盘；</li>
+<li>当async_water_mark&lt;checkpoint_age&lt;sync_water_mark时触发Async Flush，从Flush列表中刷新足够的脏页使得刷新后的checkpoint_age&lt;async_water_mark；</li>
+<li>checkpoint_age&gt;sync_water_mark一般不会发生；</li>
+</ul>
+<p>从InnoDB1.2.x版本开始这个刷新操作单独放在Page Cleaner线程中，不会再阻塞用户的查询操作。</p>
+<h3><span id="dirty-page-too-much-checkpoint">Dirty Page too much Checkpoint</span></h3><p>在脏页数量太多时，InnoDB存储引擎会强制进行Checkpoint，从InnoDB1.0.x开始，当脏页占到缓冲池中页面的75%时会触发该操作。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/SQL/">数据库</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>第七章第五节 深度优先遍历 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="第七章第五节 深度优先遍历 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2021-11-10">2021-11-10</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">第七章第五节 深度优先遍历</h2>
+            <div class="post-meta">
+                本文共计1684个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">深度优先遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">深度优先生成树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">双连通性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">欧拉回路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">有向图的深度优先遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">查找强分支</span></a></li></ol>
+            </div>
+        
+            <h2><span id="深度优先遍历">深度优先遍历</span></h2><p>从图中任一顶点X开始遍历，在遍历任一时刻，若当前顶点有相邻的未被遍历的顶点，则访问该顶点，否则沿原路退回；</p>
+<ul>
+<li>在沿原路返回X的路径上存在某个顶点还有未被遍历的相邻顶点，则继续遍历；</li>
+<li>返回到X且X没有未被遍历的相邻顶点，退出；</li>
+</ul>
+<h2><span id="深度优先生成树">深度优先生成树</span></h2><p>图中深度优先遍历程序经过的边组成深度优先生成树(次序小者指向次序大者)，图中其余边为背边(次序大者指向次序小者)</p>
+<h2><span id="双连通性">双连通性</span></h2><p>若一个连通的无向图G中任一顶点删除之后的图仍然连通，则图G是双连通的。若一个图不是双连通的，即存在一个顶点X，将其删除之后图不再连通，那么这个顶点就称为割点，割点在图中非常重要，而使用深度优先遍历，可以求出图中所有割点。</p>
+<p>首先，在深度优先遍历的过程中，顶点v被遍历的次序为Num(v)；得到深度优先生成树之后，对树上每个顶点v，需计算v对应如下三种值中的最小值Low(v)：</p>
+<ul>
+<li>Num(v)；</li>
+<li>min(Num(w), (v, w)为背边)；</li>
+<li>min(Low(w), (v, w)为树边)；</li>
+</ul>
+<p>由Low值的定义可知，需后序遍历深度优先生成树。</p>
+<p>对图中的一个顶点v，若v不是深度优先生成树的根节点，则v为割点当且仅当在v在深度优先生成树中存在子节点w使得Low(w)&gt;=Num(v)；若v是深度优先生成树的根节点，则v为割点当且仅当在v在深度优先生成树中有多于一个的子节点。</p>
+<h2><span id="欧拉回路">欧拉回路</span></h2><p>对一个无向图G，若能找到一条路径，恰好经过每条边一次然后又回到起点，则这条路径称为欧拉回路；事实上，一个图存在欧拉回路当且仅当所有顶点的度为偶数。在线性时间内就可以判断一个图是否存在欧拉回路，而求出图的欧拉回路基本操作是深度优先遍历。</p>
+<p>有所不同的是，这时的深度优先遍历需要标记访问过的边而不是顶点；用邻接表存储图。</p>
+<p>初始：使用链表P存储路径上的顶点，初始为空；随机选择一个顶点开始遍历；</p>
+<p>循环：链表TP存储每一轮得到的路径，初始为空；从当前顶点开始执行深度优先遍历；</p>
+<ul>
+<li>当前顶点加入链表TP，然后遍历当前顶点的邻接子链表直到找到一个未被标记的边对应的顶点X，对该邻接子链表保存最后访问的顶点X，标记这条未被标记的边，当前顶点来到X；以此类推，直到当前顶点回到本轮的起点，本轮遍历过程结束；</li>
+<li>若P为空，则TP=P；否则，将TP拼接到P中(P中此轮顶点的前置指向TP的头节点，TP的尾节点指向P中此轮顶点的后继)</li>
+<li>在链表P中从本轮起点开始遍历直到找到一个有未被标记的边的顶点，将该顶点作为下一轮的起点；</li>
+</ul>
+<p>退出：未找到新的起点(即所有的边都已经加入路径中)</p>
+<h2><span id="有向图的深度优先遍历">有向图的深度优先遍历</span></h2><p>遍历过程大同小异，除了深度优先遍历过程中会经过的边是树边，有向图中还会有其余三种边。</p>
+<ul>
+<li>背向边：深度优先生成树中的后裔顶点指向祖父顶点；</li>
+<li>前向边：深度优先生成树中的祖父顶点指向后裔顶点；</li>
+<li>交叉边： 深度优先生成树中没有”直系血缘”关系的两个顶点；</li>
+</ul>
+<p>可在深度优先遍历的过程中将这三种边区分，在此之前，定义图中顶点在深度优先遍历过程中的三种状态：初始状态(未被遍历)，被遍历，遍历完成；当深度优先遍历程序到达该顶点时，顶点的状态从初始状态变成被遍历状态，当深度优先遍历程序从顶点退出时，顶点的状态从被遍历状态变成遍历完成状态。</p>
+<p>在深度优先遍历时一个数组state用来存放所有顶点的状态，初始化全为0；被遍历state置1，遍历完成state置2；当边(u, v)被考察时：</p>
+<ul>
+<li>state[v]=0则(u, v)为树边；</li>
+<li>state[v]=1则(u, v)为背边；</li>
+<li>state[v]=2且u先于v被访问，则(u, v)为前向边；</li>
+<li>state[v]=2且v先于u被访问，则(u, v)为交叉边；</li>
+</ul>
+<p><strong>参考链接</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/2020pengxiyue/p/8371241.html">深度优先遍历中的各种边</a></p>
+<h2><span id="查找强分支">查找强分支</span></h2><p>有向图的强连通分支为强分支；查找强分支的做法为：在图G上做一次深度优先遍历，再对得到的深度优先生成森林进行后序遍历对其顶点编号，再将G中所有的边反向，得到的图记为G_r；</p>
+<p>查找强分支的算法为：每轮从G_r中未被遍历的顶点中选择序号最高者做深度优先遍历，执行完一轮深度优先遍历即可得到一个强分支；</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/AL/">数据结构与算法</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

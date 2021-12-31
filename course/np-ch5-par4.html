@@ -199,7 +199,7 @@
 <p>而epoll_wait采用回调的方式，内核检测到就绪的文件描述符后触发回调函数，回调函数将该文件描述符上对应事件插入内核就绪事件队列，内核最后在合适的时机将该就绪事件队列中的内容拷贝到用户空间。</p>
 <p>然而，在活动连接较多时，epoll_wait将会频繁触发回调函数，此时epoll_wait的效率不一定比select/poll高。可见epoll_wait适用于连接数量多，但活动连接少的情形。</p>
 <h2><span id="小结">小结</span></h2><p>这3组I/O复用系统调用的区别如下表总结。</p>
-<div style="width:75%;margin:auto"><img src="/course/np-ch5-par4/27.png" class title="pic27"></div>
+<div style="width:72%;margin:auto"><img src="/course/np-ch5-par4/27.png" class title="pic27"></div>
 
             
                 
@@ -273,7 +273,7 @@
             本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
             ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
             ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，作者&nbsp<a href="https://about.tangkunyin.com" target="_blank" rel="friend">coming</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
             ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
         </p>
     </div>
