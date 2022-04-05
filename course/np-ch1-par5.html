@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第一章第五节 网络信息API</h2>
             <div class="post-meta">
-                本文共计2895个字 |
+                本文共计2796个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -193,7 +193,8 @@
             <h2><span id="域名解析">域名解析</span></h2><p>Linux提供gethostbyname函数对域名进行解析。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;netdb.h&gt;</span></span><br><span class="line"><span class="comment">    doname: 域名</span></span><br><span class="line"><span class="comment">    返回hostent结构体指针: 成功 || 返回NULL并设置h_errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">struct hostent * <span class="title">gethostbyname</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * doname)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>其中，结构体hostent定义如下。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">&quot;width:75%;margin:auto&quot;</span>&gt;&#123;% asset_img <span class="number">1.</span>png pic1 %&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<div style="width:75%;margin:auto"></div>
+
 <p>如果想通过IP地址查到主机信息，使用gethostbyaddr函数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    引用方式: #include &lt;netdb.h&gt;</span></span><br><span class="line"><span class="comment">    addr: 目标主机的IP地址(结构体in_addr或结构体in6_addr的指针)</span></span><br><span class="line"><span class="comment">    len: IP地址长度(sizeof(* addr))</span></span><br><span class="line"><span class="comment">    type: IP地址类型; AF_INET || AF_INET6</span></span><br><span class="line"><span class="comment">    返回hostent结构体指针: 成功 || 返回NULL并设置h_errno: 失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">struct hostent * <span class="title">gethostbyaddr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> * addr, <span class="keyword">size_t</span> len, <span class="keyword">int</span> type)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>上述两个函数不可重入。</p>
