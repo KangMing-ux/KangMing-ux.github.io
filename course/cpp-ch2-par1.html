@@ -178,7 +178,7 @@
             </div>
             <h2 class="post-title">第二章第一节 抽象容器类型</h2>
             <div class="post-meta">
-                本文共计834个字 |
+                本文共计886个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -204,7 +204,7 @@
 <p>还可以用一个容器对象初始化一个新的容器对象。</p>
 <h2><span id="迭代器">迭代器</span></h2><p>第一节简要介绍了使用迭代器遍历容器中的元素，若要以只读方式遍历容器中的元素，需使用const_iterator类型的迭代器。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Container&lt;Element&gt;::const_iterator c_iter;</span><br></pre></td></tr></table></figure>
-<p>对于vector或deque容器类，其迭代器iter可使用标量运算；而对于list容器类，</p>
+<p>对于vector或deque容器类，其迭代器iter可使用标量运算；而对于list容器类，其元素通过一对指向首尾元素的指针双向链接起来，各元素所在内存单元并不连续，因此无法通过标量运算进行访问。</p>
 <h2><span id="容器的操作">容器的操作</span></h2><p>若要更随意地插入元素到容器中，需使用insert方法。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iter=find(Object.begin(), Object.end(), var_flag); <span class="comment">//使用find方法查询var_flag在容器Object中所在位置</span></span><br><span class="line"></span><br><span class="line">Object.insert(iter, var); <span class="comment">//iter为元素要插入的位置</span></span><br></pre></td></tr></table></figure>
 <p>删除容器内元素的一般方法为erase方法，参数为待删除元素在容器中的位置或范围。</p>

@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>musikcube之第三方库 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="musikcube之第三方库 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2022-05-12">2022-05-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">musikcube之第三方库</h2>
+            <div class="post-meta">
+                本文共计3612个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">ev++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">boost库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">SQLite库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">sigslot库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">WebSocket++</span></a></li></ol>
+            </div>
+        
+            <h2><span id="前言">前言</span></h2><p>在项目的实现过程中，使用了不少优秀的第三方库，这里只介绍与C++网络编程相关的第三方库。</p>
+<h2><span id="ev">ev++</span></h2><p><a href="file:///C:/Users/coming/Documents/CSAT/cppnet/libev/libev.html">libev文档</a></p>
+<h2><span id="boost库">boost库</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boost库是一个可移植、提供源代码的C++库，作为标准库的后备，是C++标准化进程的开发引擎之一，是为C++语言标准库提供扩展的一些C++程序库的总称。 Boost库由C++标准委员会库工作组成员发起，其中有些内容有望成为下一代C++标准库内容。在C++社区中影响甚大，是不折不扣的“准”标准库。Boost由于其对跨平台的强调，对标准C++的强调，与编写平台无关。大部分boost库功能的使用只需包括相应头文件即可，少数（如正则表达式库，文件系统库等）需要链接库。但Boost中也有很多是实验性质的东西，在实际的开发中使用需要谨慎。</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whiteBear/p/14017186.html">boost库简单介绍</a></p>
+<h2><span id="sqlite库">SQLite库</span></h2><p><a target="_blank" rel="noopener" href="https://www.sqlite.org/docs.html">SQLite</a>是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。基本的使用逻辑如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调用sqlite3_reset（）函数将准备好的语句对象重置回初始状态，以便重新执行。使用sqlite3_bind_*（）API将值绑定到的任何SQL语句变量都会保留其值。使用sqlite3_clear_bindings（）重置绑定。</span><br></pre></td></tr></table></figure>
+<p><strong>BEGIN IMMEDIATE TRANSACTION</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">除非在事务内，否则不会进行读取或写入。任何访问数据库的命令（基本上是任何SQL命令，除了一些PRAGMA语句）都将自动启动一个事务（如果尚未生效）。自动启动的事务在最后一条SQL语句完成时提交。可以使用BEGIN命令手动启动事务。此类事务通常持续到下一个提交或回滚命令。但是，如果数据库关闭，或者发生错误并指定了回滚冲突解决算法，事务也将回滚。有关回滚冲突解决算法的更多信息，请参阅on CONFLICT子句的文档。END TRANSACTION是提交的别名。</span><br><span class="line"></span><br><span class="line">使用BEGIN创建的事务。。。承诺不要嵌套。对于嵌套事务，请使用SAVEPOINT和RELEASE命令。上面语法图中显示的ROLLBACK命令的“TO SAVEPOINT name”子句仅适用于保存点事务。在事务中调用BEGIN命令的尝试将失败并出现错误，无论该事务是由保存点还是之前的BEGIN启动的。COMMIT命令和ROLLBACK命令（不带TO子句）对保存点事务的作用与对BEGIN启动的事务的作用相同。</span><br><span class="line"></span><br><span class="line">SQLite支持来自不同数据库连接的多个同时读取事务，可能在不同的线程或进程中，但只支持一个同时写入事务。只读事务用于只读。写事务允许读和写。读事务由SELECT语句启动，写事务由CREATE、DELETE、DROP、INSERT或UPDATE等语句启动（统称为“写语句”）。如果在读事务处于活动状态时出现write语句，则读事务将升级为写事务（如果可能）。如果其他数据库连接已经修改了数据库或正在修改数据库，则无法升级到写事务，并且在SQLITE_BUSY时，write语句将失败。</span><br><span class="line"></span><br><span class="line">当读事务处于活动状态时，启动读事务的数据库连接将看不到由单独的数据库连接实现的对数据库的任何更改。如果数据库连接X持有读取事务，则当X的事务仍处于打开状态时，其他一些数据库连接Y可能会更改数据库的内容，但是在事务结束之前，X将无法看到这些更改。当其读取事务处于活动状态时，X将继续在Y实施更改之前看到数据库的历史快照。</span><br><span class="line"></span><br><span class="line">事务可以是延迟的、即时的或独占的。默认事务行为被延迟。延迟意味着在首次访问数据库之前，事务实际上不会启动。在内部，BEGIN DEFERRED语句只在数据库连接上设置一个标志，该标志关闭自动提交，该自动提交通常在最后一条语句完成时发生。这会导致自动启动的事务持续存在，直到显式提交或回滚，或者直到错误或ON CONFLICT ROLLBACK子句引发回滚。如果BEGIN DEFERRED之后的第一条语句是SELECT，则启动读取事务。如果可能的话，后续的write语句会将事务升级为write事务，或者返回SQLITE_BUSY。如果BEGIN DEFERRED之后的第一条语句是write语句，则会启动一个write事务。</span><br><span class="line"></span><br><span class="line">立即导致数据库连接立即开始新的写操作，而无需等待write语句。如果另一个数据库连接上的另一个写事务已处于活动状态，则在SQLITE_繁忙时，立即开始可能会失败。EXCLUSIVE类似于IMMEDIATE，因为写入事务会立即启动。独占和立即在WAL模式中是相同的，但在其他日志记录模式中，独占阻止其他数据库连接在事务进行时读取数据库。</span><br></pre></td></tr></table></figure>
+<p><strong>auto_vacuum</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">auto_vacuum的默认设置为0或“无”，除非使用SQLITE_default_AUTOVACUUM编译时选项。“无”设置意味着自动真空被禁用。当禁用自动真空并从数据库中删除数据时，数据库文件的大小保持不变。未使用的数据库文件页将添加到“自由列表”中，并在后续插入时重复使用。因此不会丢失任何数据库文件空间。但是，数据库文件不会收缩。在此模式下，真空命令可用于重建整个数据库文件，从而回收未使用的磁盘空间。</span><br><span class="line"></span><br><span class="line">当auto_vacuum为1或“已满”时，自由列表页面将移动到数据库文件的末尾，数据库文件将被截断，以在每次事务提交时删除自由列表页面。但是请注意，自动抽真空只会截断文件中的自由列表页面。自动抽真空不会像vacuum命令那样对数据库进行碎片整理，也不会重新打包单个数据库页面。事实上，因为自动抽真空可以在文件中移动页面，所以它实际上会使碎片更严重。</span><br><span class="line"></span><br><span class="line">只有当数据库存储了一些额外的信息，使每个数据库页面可以追溯到其引用者时，自动清空才可能。因此，在创建任何表之前，必须启用自动吸尘。创建表格后，无法启用或禁用自动真空。</span><br><span class="line"></span><br><span class="line">当自动抽真空的值为2或“增量”时，自动抽真空所需的附加信息存储在数据库文件中，但自动抽真空不会在每次提交时自动发生，就像在auto_vacuum=full时一样。在增量模式下，必须调用单独的增量真空pragma以使自动真空发生。</span><br><span class="line"></span><br><span class="line">The database connection can be changed between full and incremental autovacuum mode at any time. However, changing from <span class="string">&quot;none&quot;</span> to <span class="string">&quot;full&quot;</span> or <span class="string">&quot;incremental&quot;</span> can only occur when the database is new (no tables have yet been created) or by running the VACUUM <span class="built_in">command</span>. To change auto-vacuum modes, first use the auto_vacuum pragma to <span class="built_in">set</span> the new desired mode, <span class="keyword">then</span> invoke the VACUUM <span class="built_in">command</span> to reorganize the entire database file. To change from <span class="string">&quot;full&quot;</span> or <span class="string">&quot;incremental&quot;</span> back to <span class="string">&quot;none&quot;</span> always requires running VACUUM even on an empty database.</span><br></pre></td></tr></table></figure>
+<h2><span id="sigslot库">sigslot库</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sigslot库 实质上是一个对象之间传递消息的库。一些复杂的工程，包含有大量的类。造成对象之间耦合度非常之大。该库实际上模拟了信号的发送对象send，以及信号的接受对象recv。然后将send对象的信号函数connect到对应的接收对象的函数实现。此时尽管调用send对象的类成员函数即可以完成recv对象的一些操作。这样在send对象中就不需要拥有recv对象的句柄，减小了耦合性。</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kanego/articles/sigslot.html">sigslot库简介</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30389662">sigslot库分析</a></p>
+<h2><span id="websocket">WebSocket++</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebSocket++ 是一个 C++ 库，可用于实现 WebSocket 功能。 该项目的目标是提供可移植、灵活、轻量级、底层和高性能的 WebSocket 实现。WebSocket++ 是一个只有标头的 C++ 库，它实现了 RFC6455 WebSocket 协议。 它允许将 WebSocket 客户端和服务器功能集成到 C++ 程序中。 它使用可互换的网络传输模块，包括一个基于原始字符缓冲区、一个基于 C++ iostreams 和一个基于 Asio（通过 Boost 或独立）。 最终用户可以根据需要编写额外的传输策略来支持其他网络或事件库。</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://docs.websocketpp.org/">WebSocket++文档</a></p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/musikcube/">音乐播放器</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

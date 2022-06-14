@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>musikcube之数据库模块 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="musikcube之数据库模块 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2022-05-12">2022-05-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">musikcube之数据库模块</h2>
+            <div class="post-meta">
+                本文共计11279个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Connection类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">Indexer类</span></a></li></ol>
+            </div>
+        
+            <h2><span id="前言">前言</span></h2><p>Connection类与Indexer类负责项目的数据库模块。Connection类相当于数据库的服务端；Indexer类相当于数据库的客户端。</p>
+<h2><span id="connection类">Connection类</span></h2><p>该类作为数据库服务端，提供管理数据库底层的接口；定义于src/musikcore/db/Connection.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        DELETE_COPY_AND_ASSIGNMENT_DEFAULTS(Connection)</span><br><span class="line"></span><br><span class="line">        Connection() <span class="keyword">noexcept</span>;</span><br><span class="line">        ~Connection();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Open</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;database, <span class="keyword">unsigned</span> <span class="keyword">int</span> options = <span class="number">0</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span> cache = <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="comment">/* 关闭数据库连接 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Close</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 编译并执行SQL语句 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Execute</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* sql)</span></span>;</span><br><span class="line">        <span class="comment">/* 返回数据库连接D上最近一次成功插入到rowid表或虚拟表中的rowid */</span></span><br><span class="line">        <span class="function"><span class="keyword">int64_t</span> <span class="title">LastInsertedId</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 这些函数返回由唯一参数指定的数据库连接上最近完成的INSERT、UPDATE或DELETE语句修改、插入或删除的行数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">LastModifiedRowCount</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 中断长时间运行的查询 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Interrupt</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 检查数据库：简而言之，sqlite3_wal_checkpoint（D，X）会将数据库连接D上的数据库X的预写日志中的内容传输到数据库文件中，并重置预写日志  */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Checkpoint</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">/* 初始化 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Initialize</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> cache)</span></span>;</span><br><span class="line">        <span class="comment">/* 更新引用计数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">UpdateReferenceCount</span><span class="params">(<span class="keyword">bool</span> init)</span></span>;</span><br><span class="line">        <span class="comment">/* 运行一条SQL语句 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">StepStatement</span><span class="params">(sqlite3_stmt *stmt)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Statement</span>;</span></span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">ScopedTransaction</span>;</span></span><br><span class="line">        <span class="comment">/* 该SQL连接上的事务数 */</span></span><br><span class="line">        <span class="keyword">int</span> transactionCounter;</span><br><span class="line">        sqlite3 *connection;</span><br><span class="line">        <span class="comment">/* 对象的互斥锁 */</span></span><br><span class="line">        <span class="built_in">std</span>::mutex mutex;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Connection类有两个友元类Statement类（src/musikcore/db/Statement.h）与ScopedTransaction类（src/musikcore/db/ScopedTransaction.h）。ScopedTransaction类是对即时事务的封装，Statement类对应SQL语句。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScopedTransaction</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        DELETE_CLASS_DEFAULTS(ScopedTransaction)</span><br><span class="line">        <span class="comment">/* 设置数据库连接并开启即时事务 */</span></span><br><span class="line">        ScopedTransaction(Connection &amp;connection);</span><br><span class="line">        <span class="comment">/* 提交事务并退出 */</span></span><br><span class="line">        ~ScopedTransaction();</span><br><span class="line">        <span class="comment">/* 取消事务的提交 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Cancel</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 提交事务并开启新的即时事务 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">CommitAndRestart</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">/* 开启即时事务 */</span></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Begin</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 提交事务（若事务取消则回滚，否则提交） */</span></span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">End</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 数据库连接 */</span></span><br><span class="line">        Connection *connection;</span><br><span class="line">        <span class="comment">/* 标志事务是否取消 */</span></span><br><span class="line">        <span class="keyword">bool</span> canceled;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Statement</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        DELETE_CLASS_DEFAULTS(Statement)</span><br><span class="line"></span><br><span class="line">        Statement(<span class="keyword">const</span> <span class="keyword">char</span>* sql, Connection &amp;connection) <span class="keyword">noexcept</span>;</span><br><span class="line">        <span class="keyword">virtual</span> ~Statement() <span class="keyword">noexcept</span>;</span><br><span class="line">        <span class="comment">/* 设置SQL语句的参数（如果有的话） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">BindInt32</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">int</span> bindInt)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">BindInt64</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">int64_t</span> bindInt)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">BindFloat</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">float</span> bindFloat)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">BindText</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; bindText)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">BindNull</span><span class="params">(<span class="keyword">int</span> position)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 获取SQL语句结果行第column列的值 */</span></span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">ColumnInt32</span><span class="params">(<span class="keyword">int</span> column)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">int64_t</span> <span class="title">ColumnInt64</span><span class="params">(<span class="keyword">int</span> column)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">float</span> <span class="title">ColumnFloat</span><span class="params">(<span class="keyword">int</span> column)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="title">ColumnText</span><span class="params">(<span class="keyword">int</span> column)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 判断SQL语句结果行第column的列值是否为空 */</span></span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="keyword">bool</span> <span class="title">IsNull</span><span class="params">(<span class="keyword">int</span> column)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 处理一行SQL语句并更新处理的行数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Step</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 调用sqlite3_reset（）函数将准备好的语句对象重置回初始状态，以便重新执行 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Reset</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 重置准备好的语句上的所有参数绑定 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Unbind</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ResetAndUnbind</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Connection</span>;</span></span><br><span class="line">        <span class="comment">/* 将SQL语句编译为字节码程序 */</span></span><br><span class="line">        Statement(Connection &amp;connection) <span class="keyword">noexcept</span>;</span><br><span class="line">        <span class="comment">/* 编译的字节码程序 */</span></span><br><span class="line">        sqlite3_stmt *stmt;</span><br><span class="line">        <span class="comment">/* 数据库连接 */</span></span><br><span class="line">        Connection *connection;</span><br><span class="line">        <span class="keyword">int</span> modifiedRows;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2><span id="indexer类">Indexer类</span></h2><p>该类作为数据库客户端，提供各种接口用于向数据库服务端发起相应的请求；定义于src/musikcore/db/Indexer.h，继承了类IIndexer、IIndexerWriter与IIndexerNotifier，IIndexerWriter类与IIndexerNotifier类仅声明了一些虚函数，Indexer类将它们实现。因此只额外解析IIndexer类</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Indexer</span> :</span></span><br><span class="line">    <span class="keyword">public</span> mymusic::core::IIndexer,</span><br><span class="line">    <span class="keyword">public</span> mymusic::core::sdk::IIndexerWriter,</span><br><span class="line">    <span class="keyword">public</span> mymusic::core::sdk::IIndexerNotifier</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="comment">/* 类构造函数（根据属性设置判断是否打开日志文件，设置tagReaders、audioDecoders与sources插件；设置dbFilename与libraryPath后连接数据库；查询paths所有的路径并按照id排序，再将结果存入paths中） */</span></span><br><span class="line">        Indexer(</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; libraryPath,</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; dbFilename);</span><br><span class="line"></span><br><span class="line">        Indexer(<span class="keyword">const</span> Indexer&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        <span class="comment">/* 若打开了日志文件logFile，则将其关闭；然后线程thread停止运行 */</span></span><br><span class="line">        <span class="keyword">virtual</span> ~Indexer();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* IIndexer */</span></span><br><span class="line">        <span class="comment">/* 规范化路径并存入AddRemoveContext对象的path成员，add成员置true代表加入路径，路径存入paths，将要加入的AddRemoveContext对象存入addRemoveQueue  */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">AddPath</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; path)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/*  规范化路径并存入AddRemoveContext对象的path成员，add成员置false代表删除路径，路径从paths中删除，将要加入的AddRemoveContext对象存入addRemoveQueue */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">RemovePath</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; path)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 将paths中存储所有的路径存入path字符串 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">GetPaths</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; paths)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Schedule</span><span class="params">(SyncType type)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 停止线程thread（清空syncQueue，状态切换为StateStopping，通知等待在stateMutex互斥锁对应的条件变量上的线程；调用join方法等待被创建线程的结束，并回收它的资源） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Stop</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function">State <span class="title">GetState</span><span class="params">()</span> <span class="keyword">noexcept</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>-&gt;state;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* IIndexerWriter */</span></span><br><span class="line">        <span class="comment">/* 生成一个ITagStore对象 */</span></span><br><span class="line">        mymusic::core::<span class="function">sdk::ITagStore* <span class="title">CreateWriter</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">RemoveByUri</span><span class="params">(mymusic::core::sdk::IIndexerSource* source, <span class="keyword">const</span> <span class="keyword">char</span>* uri)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">RemoveByExternalId</span><span class="params">(mymusic::core::sdk::IIndexerSource* source, <span class="keyword">const</span> <span class="keyword">char</span>* id)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 删除source对应的所有轨迹 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">RemoveAll</span><span class="params">(mymusic::core::sdk::IIndexerSource* source)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 事务提交程序 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">CommitProgress</span><span class="params">(mymusic::core::sdk::IIndexerSource* source, <span class="keyword">unsigned</span> updatedTracks)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 获取上一次修改的时间 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">GetLastModifiedTime</span><span class="params">(mymusic::core::sdk::IIndexerSource* source, <span class="keyword">const</span> <span class="keyword">char</span>* id)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Save</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            mymusic::core::sdk::IIndexerSource* source,</span></span></span><br><span class="line"><span class="function"><span class="params">            mymusic::core::sdk::ITagStore* store,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> <span class="keyword">char</span>* externalId = <span class="string">&quot;&quot;</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* IIndexerNotifier */</span></span><br><span class="line">        <span class="comment">/* 基于给定的新source重新Schedule */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ScheduleRescan</span><span class="params">(mymusic::core::sdk::IIndexerSource* source)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="comment">/* 要添加或删除的内容 */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">AddRemoveContext</span> &#123;</span></span><br><span class="line">            <span class="keyword">bool</span> add&#123; <span class="literal">false</span> &#125;;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">string</span> path;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">/* 要同步的内容 */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">SyncContext</span> &#123;</span></span><br><span class="line">            SyncType type;</span><br><span class="line">            <span class="keyword">int</span> sourceId;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;</span><br><span class="line">            mymusic::core::sdk::ITagReader&gt;&gt; TagReaderList;</span><br><span class="line">        <span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;</span><br><span class="line">            mymusic::core::sdk::IDecoderFactory&gt;&gt; DecoderList;</span><br><span class="line">        <span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;</span><br><span class="line">            mymusic::core::sdk::IIndexerSource&gt;&gt; IndexerSourceList;</span><br><span class="line">        <span class="comment">/* 主线程要运行的函数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ThreadLoop</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 同步（基于数据库连接创建索引，处理AddRemoveQueue，删除不再具有相应源的轨迹，若context.type为SyncType::Rebuild则重建：移除所有分配了id的source对应的轨迹，type重置为SyncType::All；刷新sources；同步本地音乐资料到数据库并重新创建索引） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Synchronize</span><span class="params">(<span class="keyword">const</span> SyncContext&amp; context, boost::asio::io_service* io)</span></span>;</span><br><span class="line">        <span class="comment">/* 同步的善后工作 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">FinalizeSync</span><span class="params">(<span class="keyword">const</span> SyncContext&amp; context)</span></span>;</span><br><span class="line">        <span class="comment">/* 删除数据库中所有不再引用有效路径条目的轨道 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SyncDelete</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 清理工作（将已经删除的音乐文件在数据库中相关的数据删除） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SyncCleanup</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 更新播放列表中轨道文件的次序 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SyncPlaylistTracksOrder</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 将source与paths指定路径下的内容同步 */</span></span><br><span class="line">        mymusic::core::<span class="function">sdk::ScanResult <span class="title">SyncSource</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            mymusic::core::sdk::IIndexerSource* source,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; paths)</span></span>;</span><br><span class="line">        <span class="comment">/* 处理AddRemoveQueue上要添加或删除的路径 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ProcessAddRemoveQueue</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 对数据库中genres、artists、albums、meta_values四个表排序 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SyncOptimize</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 对数据库中的每条轨道，调用每种解码器进行解析，只要有一个解码器可以解析，就将这条轨道解析后的数据保存下来 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">RunAnalyzers</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 获取不再具有相应源的轨迹 */</span></span><br><span class="line">        <span class="function"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; <span class="title">GetOrphanedSourceIds</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 删除sourceId对应的所有轨迹 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">RemoveAllForSourceId</span><span class="params">(<span class="keyword">int</span> sourceId)</span></span>;</span><br><span class="line">        <span class="comment">/* 调度：对stateMutex加锁，若thread为空，则生成thread对象；若成员为type与source-&gt;SourceId()的context在syncQueue中已存在，则退出；否则，将构造的该context对象加入syncQueue中；最后通知所有等待在stateMutex上的线程 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Schedule</span><span class="params">(SyncType type, mymusic::core::sdk::IIndexerSource *source)</span></span>;</span><br><span class="line">        <span class="comment">/* 被扫描轨迹的数量增delta；若累计增加的扫描轨道数超过TRANSACTION_INTERVAL，则提交事务并开启新的即时事务，通知process的订阅者，incrementalUrisScanned置0 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">IncrementTracksScanned</span><span class="params">(<span class="keyword">int</span> delta = <span class="number">1</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">/* 递归地遍历目录下的所有文件，若文件的扩展名对应的格式可解析，则调用ReadMetadataFromFile函数以流的形式从中读取数据 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SyncDirectory</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            boost::asio::io_service* io,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; syncRoot,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; currentPath,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">int64_t</span> pathId)</span></span>;</span><br><span class="line">        <span class="comment">/* 以流的形式从中读取数据 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ReadMetadataFromFile</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            boost::asio::io_service* io,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> boost::filesystem::path&amp; path,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; pathId)</span></span>;</span><br><span class="line">        <span class="comment">/* 判断线程是否已退出或将要退出 */</span></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Bail</span><span class="params">()</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">        <span class="comment">/* 数据库连接 */</span></span><br><span class="line">        db::Connection dbConnection;</span><br><span class="line">        <span class="comment">/* 资料库路径 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> libraryPath;</span><br><span class="line">        <span class="comment">/* 资料库名 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> dbFilename;</span><br><span class="line">        <span class="comment">/* 标志状态 */</span></span><br><span class="line">        <span class="built_in">std</span>::atomic&lt;State&gt; state;</span><br><span class="line">        <span class="comment">/* 状态的互斥锁 */</span></span><br><span class="line">        boost::mutex stateMutex;</span><br><span class="line">        <span class="comment">/* 状态的条件变量 */</span></span><br><span class="line">        boost::condition waitCondition;</span><br><span class="line">        <span class="comment">/* 线程对象 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="built_in">std</span>::thread&gt; thread;</span><br><span class="line">        <span class="comment">/* 数据库自上次提交事务以来，程序扫描轨道的次数；从程序开始运行起，程序扫描轨道的次数 */</span></span><br><span class="line">        <span class="built_in">std</span>::atomic&lt;<span class="keyword">int</span>&gt; incrementalUrisScanned, totalUrisScanned;</span><br><span class="line">        <span class="comment">/* 要添加或删除路径组成的队列 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">deque</span>&lt;AddRemoveContext&gt; addRemoveQueue;</span><br><span class="line">        <span class="comment">/* 要同步的内容组成的队列 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">deque</span>&lt;SyncContext&gt; syncQueue;</span><br><span class="line">        <span class="comment">/* TagReader列表 */</span></span><br><span class="line">        TagReaderList tagReaders;</span><br><span class="line">        <span class="comment">/* 解码器列表 */</span></span><br><span class="line">        DecoderList audioDecoders;</span><br><span class="line">        <span class="comment">/* IndexerSource列表 */</span></span><br><span class="line">        IndexerSourceList sources;</span><br><span class="line">        <span class="comment">/* 设置的属性 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;mymusic::core::Preferences&gt; prefs;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;mymusic::core::db::ScopedTransaction&gt; trackTransaction;</span><br><span class="line">        <span class="comment">/* 资料库所在目录 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; paths;</span><br><span class="line">        <span class="comment">/* 当前Source */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;mymusic::core::sdk::IIndexerSource&gt; currentSource;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IIndexer</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="comment">/* 使用sigslot库传递消息，减少对象之间的耦合性 */</span></span><br><span class="line">        sigslot::signal0&lt;&gt; Started;</span><br><span class="line">        sigslot::signal1&lt;<span class="keyword">int</span>&gt; Finished;</span><br><span class="line">        sigslot::signal1&lt;<span class="keyword">int</span>&gt; Progress;</span><br><span class="line">        <span class="comment">/* 枚举类型State来表示运行状态 */</span></span><br><span class="line">        <span class="class"><span class="keyword">enum</span> <span class="title">State</span> &#123;</span></span><br><span class="line">            StateIdle = <span class="number">0</span>,</span><br><span class="line">            StateIndexing = <span class="number">1</span>,</span><br><span class="line">            StateStopping = <span class="number">2</span>,</span><br><span class="line">            StateStopped = <span class="number">3</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">/* 枚举类型SyncType来表示同步类型 */</span></span><br><span class="line">        <span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">SyncType</span> &#123;</span></span><br><span class="line">            All = <span class="number">0</span>,</span><br><span class="line">            Local = <span class="number">1</span>,</span><br><span class="line">            Rebuild = <span class="number">2</span>,</span><br><span class="line">            Sources = <span class="number">3</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">virtual</span> ~IIndexer() &#123; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">AddPath</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; path)</span> </span>= <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">RemovePath</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; path)</span> </span>= <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">GetPaths</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; paths)</span> </span>= <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Schedule</span><span class="params">(SyncType type)</span> </span>= <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Stop</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> State <span class="title">GetState</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>其中，Track类提供对轨道数据的各种读操作接口，TagStore类提供轨道数据的各种写操作接口；</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/musikcube/">音乐播放器</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

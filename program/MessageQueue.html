@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>musikcube之消息队列 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="musikcube之消息队列 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2022-05-12">2022-05-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">musikcube之消息队列</h2>
+            <div class="post-meta">
+                本文共计7585个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">EvMessageQueue</span></a></li></ol>
+            </div>
+        
+            <p>该类提供订阅-发布模式的消息队列机制，供其他需要消息队列机制的类使用。定义于src/musikcore/runtime/MessageQueue.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageQueue</span> :</span> <span class="keyword">public</span> IMessageQueue &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        MessageQueue(<span class="keyword">const</span> MessageQueue&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        MessageQueue(<span class="keyword">const</span> MessageQueue&amp;&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        MessageQueue&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> MessageQueue&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        MessageQueue&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> MessageQueue&amp;&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        <span class="comment">/* nextMessageTime设置为1 */</span></span><br><span class="line">        MessageQueue() <span class="keyword">noexcept</span>;</span><br><span class="line">        <span class="comment">/* 投递消息：先判断消息的目标是否注册到本消息队列的targets中，若注册了才将此消息加入队列queue */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Post</span><span class="params">(IMessagePtr message, <span class="keyword">int64_t</span> delayMs = <span class="number">0</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 判断message是否设置了target，若设置了则报错（因为这是广播消息），否则调用Enqueue将其加入消息队列 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Broadcast</span><span class="params">(IMessagePtr message, <span class="keyword">int64_t</span> messageMs = <span class="number">0</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 将消息队列中目标为target、类型为type（若type=-1，则匹配任意类型）的消息删除（消息本身也删除），然后重新设置nextMessageTime */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Remove</span><span class="params">(IMessageTarget *target, <span class="keyword">int</span> type = <span class="number">-1</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 判断消息队列中是否存在目标为target、类型为type（若type=-1，则匹配任意类型）的消息 */</span></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">Contains</span><span class="params">(IMessageTarget *target, <span class="keyword">int</span> type = <span class="number">-1</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 删除消息队列中目标与类型与message一致的消息，然后投递消息message，延时为delayMs */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Debounce</span><span class="params">(IMessagePtr message, <span class="keyword">int64_t</span> delayMs = <span class="number">0</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* target加入到消息队列的目标targets中，如同target订阅消息 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Register</span><span class="params">(IMessageTarget* target)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* target从消息队列的目标中移除，如同target取订消息；然后调用Remove函数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Unregister</span><span class="params">(IMessageTarget* target)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* target加入到消息队列的广播目标receivers中，如同target订阅广播消息 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">RegisterForBroadcasts</span><span class="params">(IMessageTargetPtr target)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* target从消息队列的广播目标receivers中，如同target取订广播消息 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">UnregisterForBroadcasts</span><span class="params">(IMessageTarget *target)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* “等待”并执行Dispatch函数（若queue非空且消息队列中已有消息超时未投递，则调用执行Dispatch函数；若queue非空且消息队列中还未有消息到时且timeoutMillis大于等于0，则wait_for min(this-&gt;queue.front()-&gt;time-system_clock::now().time_since_epoch(), timeoutMillis)再调用Dispatch函数；若queue非空且消息队列中还未有消息到时且timeoutMillis小于0，则wait_for直到queue头部的消息设置的投递时间；若queue为空且timeoutMillis大于等于0，则wait_for timeoutMillis；若queue为空且timeoutMillis小于0，则一直wait，但是如果有消息插入到queue中，就会被唤醒） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">WaitAndDispatch</span><span class="params">(<span class="keyword">int64_t</span> timeoutMillis = <span class="number">-1</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 在类中定义了两个名为Dispatch的函数，此处的参数表为空，用于处理所有超时消息，具体实现如下：判断是否有消息到期（即nextMessageTime是否大于0且小于等于now），若无消息到期则退出；若有消息到期且其目标在targets中或其类型为广播消息，则将其存入dispatch，然后只要消息到期就将其从queue中移除，将所有到期的消息收集完成后，调用Dispatch(IMessage*)依次进行处理；这里试着分析一下为什么先收集到期且仍然有效的消息：处理消息的时间是不可控，可能很短，也可能很长，当处理完再收集下一个到期消息时，也许时间过了很久，那么这时仅根据函数开头得到的now判断消息是否到期是不准确的 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Dispatch</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="function"><span class="keyword">int64_t</span> <span class="title">GetNextMessageTime</span><span class="params">()</span> <span class="keyword">noexcept</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> nextMessageTime.load();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">typedef</span> <span class="built_in">std</span>::weak_ptr&lt;IMessageTarget&gt; IWeakMessageTarget;</span><br><span class="line">        <span class="comment">/* 根据延迟时间delayMs计算出消息的投递时间，再将其插入到以投递时间为序的队列queue中，若message在queue的开头，那么需要重新设置nextMessageTime为message的投递时间，并通知所有等待在waitForDispatch上的线程（关于此处waitForDispatch.notify_all的一点看法：所有的成员函数中，只有Enqueue成员函数会在一些条件下执行waitForDispatch.notify_all，因此它是必不可少的；在WaitAndDispatch中，只有waitForDispatch.wait(lock)必须由它唤醒，而只有在queue为空且timeoutMillis&lt;0时才会执行至这条语句，而当queue为空时插入的消息message一定会在queue的头部，从而恰好执行waitForDispatch.notify_all将等待在waitForDispatch上的线程唤醒；另一种执行至waitForDispatch.notify_all的情形是queue非空，message插入到了queue的头部，等待在条件变量waitForDispatch上的线程只会阻塞在waitForDispatch.wait_for，此时执行Dispatch不一定有消息到期，因此Dispatch函数在最开始进行了判断） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Enqueue</span><span class="params">(IMessagePtr message, <span class="keyword">int64_t</span> delayMs)</span></span>;</span><br><span class="line">        <span class="comment">/* 对于设置了target的消息，调用其target的ProcessMessage函数处理message；对于未设置target的消息，先拷贝receivers的一个副本copy，这样可以避免在receivers中的target依次处理message过程中，一直将receivers加锁；然后遍历copy，每个target要处理message时，先对自身加锁，若加锁成功，则调用其ProcessMessage函数处理message，否则，设定一个标志表示至少有一个weak_ptr对应的对象已经被销毁，则依次遍历receivers中的weak_ptr，若已失效，则将其从receivers中删除 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Dispatch</span><span class="params">(IMessage* message)</span></span>;</span><br><span class="line">        <span class="comment">/* 被插入队列的消息结构：消息主体与设置的投递时间 */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">EnqueuedMessage</span> &#123;</span></span><br><span class="line">            IMessagePtr message;</span><br><span class="line">            <span class="built_in">std</span>::chrono::milliseconds time;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">/* 自定义类（结构体）比较函数less：重载()运算符</span></span><br><span class="line"><span class="comment">         * http://www.javashuo.com/article/p-zufmcrln-eg.html</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">WeakPtrLess</span> &#123;</span> <span class="comment">/* https://stackoverflow.com/a/12875729 */</span></span><br><span class="line">            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">            <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::weak_ptr&lt;T&gt;&amp; l, <span class="keyword">const</span> <span class="built_in">std</span>::weak_ptr&lt;T&gt;&amp; r)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> l.lock().get() &lt; r.lock().get();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">/* 关于queue的互斥量 */</span></span><br><span class="line">        <span class="built_in">std</span>::mutex queueMutex;</span><br><span class="line">        <span class="comment">/* 消息队列，按照消息设置的投递时间排序 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">list</span>&lt;EnqueuedMessage*&gt; <span class="built_in">queue</span>;</span><br><span class="line">        <span class="comment">/* 保存超时要处理的消息 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">list</span>&lt;EnqueuedMessage*&gt; dispatch;</span><br><span class="line">        <span class="comment">/* set类型定义如下：</span></span><br><span class="line"><span class="comment">         * template &lt;</span></span><br><span class="line"><span class="comment">         *     class Key,   </span></span><br><span class="line"><span class="comment">         *     class Traits=less&lt;Key&gt;,   </span></span><br><span class="line"><span class="comment">         *     class Allocator=allocator&lt;Key&gt; &gt;  </span></span><br><span class="line"><span class="comment">         * class set</span></span><br><span class="line"><span class="comment">         * https://blog.csdn.net/zy2317878/article/details/78981726</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">set</span>&lt;IWeakMessageTarget, WeakPtrLess&gt; receivers;</span><br><span class="line">        <span class="comment">/* 消息订阅者 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">set</span>&lt;IMessageTarget*&gt; targets;</span><br><span class="line">        <span class="comment">/* 标志Dispatch函数所需的条件是否准备好 */</span></span><br><span class="line">        <span class="built_in">std</span>::condition_variable_any waitForDispatch;</span><br><span class="line">        <span class="comment">/* 始终存储消息队列中最先到期的消息的投递时间 */</span></span><br><span class="line">        <span class="built_in">std</span>::atomic&lt;<span class="keyword">int64_t</span>&gt; nextMessageTime;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注：在WaitAndDispatch函数对queueMutex加锁，并未看到对queueMutex进行解锁，就调用了Dispatch函数，而Dispatch函数又对queueMutex加锁，而queueMutex是非递归锁，不可被同一线程多次获取；事实上，这里的{}指明了变量的作用域，在{}内声明的局部变量其作用域自变量声明开始，到{}之后终结。因此在调用Dispatch函数之前queueMutex就已被解锁。</p>
+<p>总结一下消息队列的运行机制。</p>
+<div style="width:75%;margin:auto"><img src="/program/MessageQueue/1.JPEG" class title="pic1"></div>
+
+<h2><span id="evmessagequeue">EvMessageQueue</span></h2><p>在main.cpp中，使用的是继承自MessageQueue类的EvMessageQueue类；其定义如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EvMessageQueue</span>:</span> <span class="keyword">public</span> MessageQueue &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Post</span><span class="params">(IMessagePtr message, <span class="keyword">int64_t</span> delayMs)</span> </span>&#123;</span><br><span class="line">            MessageQueue::Post(message, delayMs);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (delayMs &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                write(pipeFd[<span class="number">1</span>], &amp;EVENT_DISPATCH, <span class="keyword">sizeof</span>(EVENT_DISPATCH));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">double</span> delayTs = (<span class="keyword">double</span>) delayMs / <span class="number">1000.0</span>;</span><br><span class="line">                loop.once&lt;</span><br><span class="line">                    EvMessageQueue,</span><br><span class="line">                    &amp;EvMessageQueue::DelayedDispatch</span><br><span class="line">                &gt;(<span class="number">-1</span>, ev::TIMER, (ev::tstamp) delayTs, <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">DelayedDispatch</span><span class="params">(<span class="keyword">int</span> revents)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;Dispatch();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SignalQuit</span><span class="params">(ev::sig&amp; signal, <span class="keyword">int</span> revents)</span> </span>&#123;</span><br><span class="line">            write(pipeFd[<span class="number">1</span>], &amp;EVENT_QUIT, <span class="keyword">sizeof</span>(EVENT_QUIT));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ReadCallback</span><span class="params">(ev::io&amp; watcher, <span class="keyword">int</span> revents)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">short</span> type;</span><br><span class="line">            <span class="keyword">if</span> (read(pipeFd[<span class="number">0</span>], &amp;type, <span class="keyword">sizeof</span>(type)) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">&quot;read() failed.\n&quot;</span>;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">                <span class="keyword">case</span> EVENT_DISPATCH: <span class="keyword">this</span>-&gt;Dispatch(); <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> EVENT_QUIT: loop.break_loop(ev::ALL); <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            io.<span class="built_in">set</span>(loop);</span><br><span class="line">            io.<span class="built_in">set</span>(pipeFd[<span class="number">0</span>], ev::READ);</span><br><span class="line">            io.<span class="built_in">set</span>&lt;EvMessageQueue, &amp;EvMessageQueue::ReadCallback&gt;(<span class="keyword">this</span>);</span><br><span class="line">            io.start();</span><br><span class="line"></span><br><span class="line">            sio.<span class="built_in">set</span>(loop);</span><br><span class="line">            sio.<span class="built_in">set</span>&lt;&amp;EvMessageQueue::SignalQuit&gt;();</span><br><span class="line">            sio.start(SIGTERM);</span><br><span class="line"></span><br><span class="line">            write(pipeFd[<span class="number">1</span>], &amp;EVENT_DISPATCH, <span class="keyword">sizeof</span>(EVENT_DISPATCH));</span><br><span class="line"></span><br><span class="line">            loop.run(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        ev::dynamic_loop loop;</span><br><span class="line">        ev::io io;</span><br><span class="line">        ev::sig sio;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可见EvMessageQueue类只是对MessageQueue类的Post与DelayedDispatch的重写，并增加了SignalQuit、ReadCallback与Run函数，以及新增三个变量loop(类型)、io(ev::io类型)与sio(ev::sig类型)。</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/musikcube/">音乐播放器</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>

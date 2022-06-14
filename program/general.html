@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>musikcube项目概述 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="musikcube项目概述 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2022-05-11">2022-05-11</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">musikcube项目概述</h2>
+            <div class="post-meta">
+                本文共计2075个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">CMAKE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">理解CMakeList</span></a></li></ol>
+            </div>
+        
+            <h2><span id="前言">前言</span></h2><p><a target="_blank" rel="noopener" href="https://github.com/clangen/musikcube">muscikcube</a>其实还不算大型的项目，但即便如此，不理清它的结构，看起来还是很头疼的！</p>
+<p>本文使用的是muscikcube目前的最新版本—<a target="_blank" rel="noopener" href="https://github.com/clangen/musikcube/releases">0.97.0</a>；下载源码解压，根目录下的文件如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CHANGELOG.txt  CMakeLists.txt  CONTRIBUTORS.txt  LICENSE.txt  musikcube.sln  musikcube.spec  README.md  script  src</span><br></pre></td></tr></table></figure>
+<p>源码在src目录下，有如下文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3rdparty  core_c_demo  musikcore  musikcube  musikcubed  musikdroid  musikwin  plugins</span><br></pre></td></tr></table></figure>
+<p>根据名字也很容易猜出来：</p>
+<ul>
+<li>3rdparty  使用的第三方库</li>
+<li>musikcore  muscikcube的核心功能</li>
+<li>musikcube  muscikcube的客户端</li>
+<li>musikcubed  musikcube的服务端</li>
+<li>musikwin  musikcube适配Windows系统额外增加的代码</li>
+<li>musikdroid  musikcube适配安卓系统额外增加的代码</li>
+<li>plugins  插件（后面会具体讲）</li>
+</ul>
+<p>当然，本项目有CMakeLists.txt，那么这才是理解此项目最有效的切入点，但是在此之前需要学习cmake的语法。</p>
+<h2><span id="cmake">CMAKE</span></h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>  将普通的、缓存的或环境变量设置为给定值</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>  可用于包含cmake的模块，便于之后调用模块中的方法；也可用于包含.cmake目录下的cmake脚本</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message</span>  输出信息</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_directories</span>  指定查找头文件的目录，可简化源文件中要包含的头文件的路径</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>  找到一个包（通常由项目外部的东西提供），并加载其包特定的细节</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_library</span>  此命令用于查找库</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_subdirectory</span>  将子目录添加到build中，将执行子目录下的CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_dependencies</span>  在顶级目标之间添加依赖关系</span><br></pre></td></tr></table></figure>
+<p>更多信息参考<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/">cmake官方文档</a></p>
+<h2><span id="理解cmakelist">理解CMakeList</span></h2><p>从CMakeList.txt中我们可以看出</p>
+<ul>
+<li>musikcube与musikcubed依赖于musikcore</li>
+<li>plugins中的文件夹各自编译出对应的动态链接库，musikcubed在初始化时将其加载</li>
+</ul>
+<p>接下来介绍一些重要的类（Preferences、PluginFactory、Connection、Indexer、ISerializableQuery、LibraryFactory（LocalLibrary与RemoteLibrary）、EvMessageQueue、PlaybackService、WebSocketClient），以及命名空间plugin中的函数，弄清楚了这些类与函数，也就基本上理解了这个项目。</p>
+<p>通常，一个C++网络编程项目的标准框架如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">____________________________________________________________</span><br><span class="line">|    _________           __________             ______________           |</span><br><span class="line">|    |网络库  |           |数据库   |             |  消息队列    |           |</span><br><span class="line">|    |________|           |_________|             |_____________|          |</span><br><span class="line">|                                                                                         |</span><br><span class="line">|    ___________           ____________              ____________       |</span><br><span class="line">|    |RPC框架  |           |配置文件   |             |  序列化    |        |</span><br><span class="line">|    |__________|           |___________|             |___________|       |</span><br><span class="line">|___________________________________________________________|</span><br></pre></td></tr></table></figure>
+<p>WebSocketClient类对应网络库</p>
+<p>Connection类与Indexer类对应数据库</p>
+<p>(Ev)MessageQueue类对应消息队列</p>
+<p>Preferences类对应配置文件</p>
+<p>ISerializableQuery对应序列化（只是对nlohmann::json类的封装）</p>
+<p>分析RPC实现的原理（callback）</p>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/musikcube/">音乐播放器</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
