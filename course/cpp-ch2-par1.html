@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第二章第一节 抽象容器类型 - GAEA</title>
+<title>第二章第一节 new与delete - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第二章第一节 抽象容器类型 - GAEA" />
+<meta property="og:title" content="第二章第一节 new与delete - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -176,9 +176,9 @@
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第二章第一节 抽象容器类型</h2>
+            <h2 class="post-title">第二章第一节 new与delete</h2>
             <div class="post-meta">
-                本文共计886个字 |
+                本文共计95个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,28 +187,12 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">定义容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">容器的操作</span></a></li></ol>
+                    
             </div>
         
-            <h2><span id="定义容器">定义容器</span></h2><p>容器分为顺序容器与关联容器，list(列表)、vector(向量)与deque(双端队列)为顺序容器，map(映射)与set(集合)为关联容器；</p>
-<p>要使用这些容器，需包含相应的头文件。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line">Container&lt;Element&gt; Object;</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br></pre></td></tr></table></figure>
-<p>容器类有如下方法：</p>
-<ul>
-<li>push_back：将元素插入到容器的尾部；</li>
-<li>push_front：将元素插入到容器的头部；</li>
-<li>size：获取容器的长度；</li>
-<li>resize：重新设置容器的长度；</li>
-<li>pop_back：删除容器尾部的元素；</li>
-</ul>
-<p>还可以用一个容器对象初始化一个新的容器对象。</p>
-<h2><span id="迭代器">迭代器</span></h2><p>第一节简要介绍了使用迭代器遍历容器中的元素，若要以只读方式遍历容器中的元素，需使用const_iterator类型的迭代器。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Container&lt;Element&gt;::const_iterator c_iter;</span><br></pre></td></tr></table></figure>
-<p>对于vector或deque容器类，其迭代器iter可使用标量运算；而对于list容器类，其元素通过一对指向首尾元素的指针双向链接起来，各元素所在内存单元并不连续，因此无法通过标量运算进行访问。</p>
-<h2><span id="容器的操作">容器的操作</span></h2><p>若要更随意地插入元素到容器中，需使用insert方法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iter=find(Object.begin(), Object.end(), var_flag); <span class="comment">//使用find方法查询var_flag在容器Object中所在位置</span></span><br><span class="line"></span><br><span class="line">Object.insert(iter, var); <span class="comment">//iter为元素要插入的位置</span></span><br></pre></td></tr></table></figure>
-<p>删除容器内元素的一般方法为erase方法，参数为待删除元素在容器中的位置或范围。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object.erase(iter);</span><br><span class="line"></span><br><span class="line">Object.erase(iter_low, iter_high);</span><br></pre></td></tr></table></figure>
+            <p>new表达式动态分配内存给对象，动态分配的内存必须通过delete释放。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * intp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> intp;</span><br></pre></td></tr></table></figure>
+<p>分配的内存在程序对应进程的堆中。</p>
 
             
                 

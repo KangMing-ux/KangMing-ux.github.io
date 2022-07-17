@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第三章第二节 set精通 - GAEA</title>
+<title>第四章第一节 域与生命期 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第三章第二节 set精通 - GAEA" />
+<meta property="og:title" content="第四章第一节 域与生命期 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2022-05-27">2022-05-27</span>
+                    <span title="最后编辑于&nbsp;2022-07-17">2022-07-17</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第三章第二节 set精通</h2>
+            <h2 class="post-title">第四章第一节 域与生命期</h2>
             <div class="post-meta">
-                本文共计35个字 |
+                本文共计219个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,14 +187,13 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">count函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">set与unordered_set</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">声明与定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">局部静态对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">左值与右值</span></a></li></ol>
             </div>
         
-            <h2><span id="count函数">count函数</span></h2><div style="width:80%;margin:auto"><img src="/course/cpp-ch3-par2/5.png" class title="pic5"></div>
-
-<p>&nbsp;</p>
-<h2><span id="set与unordered_set">set与unordered_set</span></h2><div style="width:90%;margin:auto"><img src="/course/cpp-ch3-par2/6.png" class title="pic6"></div>
-
+            <h2><span id="声明与定义">声明与定义</span></h2><p>关键字<code>extern</code>为声明但不定义一个对象提供了一种方法，它承诺该对象会在其他地方被定义，一般在公共头文件中声明一次，在源文件中被定义。其他源文件若要使用此对象，包含其声明所在的头文件即可。</p>
+<h2><span id="局部静态对象">局部静态对象</span></h2><p>由于局部对象在函数返回后会被丢弃，为了使一个局部对象在该函数多次调用中一直有效，就可以将该对象声明为<code>static</code>，且函数内局部可见。</p>
+<h2><span id="左值与右值">左值与右值</span></h2><p>左值：可寻址的变量；</p>
+<p>右值：不可寻址的常量、表达式求值过程中出现的无名临时对象；</p>
 
             
                 

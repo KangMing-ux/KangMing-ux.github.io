@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第二章第二节 栈、队列与优先级队列 - GAEA</title>
+<title>第二章第二节 显式类型转换 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第二章第二节 栈、队列与优先级队列 - GAEA" />
+<meta property="og:title" content="第二章第二节 显式类型转换 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -176,9 +176,9 @@
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第二章第二节 栈、队列与优先级队列</h2>
+            <h2 class="post-title">第二章第二节 显式类型转换</h2>
             <div class="post-meta">
-                本文共计159个字 |
+                本文共计748个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,15 +187,22 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">栈（类stack）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">队列(类queue)与优先级队列(类priority_queue)</span></a></li></ol>
+                    
             </div>
         
-            <h2><span id="栈类stack">栈（类stack）</span></h2><p>C++在头文件stack中实现了栈容器，其中支持以下操作。</p>
-<div style="width:80%;margin:auto"><img src="/course/cpp-ch2-par2/2.png" class title="pic2"></div>
-
-<h2><span id="队列类queue与优先级队列类priority_queue">队列(类queue)与优先级队列(类priority_queue)</span></h2><p>C++在头文件queue中实现了队列(即传统的队列——先进先出)与优先级队列(新元素插入到优先级低于它的元素中优先级最高的元素之前)。</p>
-<p>队列与优先级队列支持如下操作。</p>
-<div style="width:80%;margin:auto"><img src="/course/cpp-ch2-par2/3.png" class title="pic3"></div>
+            <p>显式类型转换操作符：static_cast、dynamic_cast、const_cast与reinterpret_cast。</p>
+<p>任何非const数据类型的指针都可以被赋值给<code>void *</code>类型的指针。<code>void *</code>类型的指针被用于对象的确切类型未知或特定环境下对象类型会发生变化的情况下。</p>
+<p>显式转换的形式如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt; (expression);</span><br></pre></td></tr></table></figure>
+<p><code>cast-name</code>是static_cast、dynamic_cast、const_cast与reinterpret_cast其中一个，用于转换表达式的常量性。</p>
+<p>当一个对象的值可能会在编译器的控制或监测之外被改变是，该对象应该声明为volatile。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p1 = &amp; num;<span class="comment">//const修饰int *，即p1是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> cnum;<span class="comment">//const修饰int，即cnum是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * p2 = &amp; cnum;<span class="comment">//const修饰p2指向的变量cnum，底层const</span></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">顶层<span class="keyword">const</span>：（顶层<span class="keyword">const</span>）本身是一个常量；</span><br><span class="line">底层<span class="keyword">const</span>：指针指向的对象是常量</span><br></pre></td></tr></table></figure>
+<ul>
+<li>static_cast：任何具有明确定义的非const类型转换；</li>
+<li>dynamic_cast：用于将基类的指针或引用安全地转换成派生类的指针或引用；</li>
+<li>const_cast：改变对象的底层const；<code>char *p = const_cast&lt;char*&gt;(pc); *// 正确，但是通过p写值是未定义的行为*</code>，其中<code>pc</code>是底层const。</li>
+<li>reinterpret_cast：更底层的转换，使用需非常谨慎。</li>
+</ul>
 
             
                 

@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第一章第一节 c++数据类型 - GAEA</title>
+<title>第一章第一节 高级数据类型 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第一章第一节 c++数据类型 - GAEA" />
+<meta property="og:title" content="第一章第一节 高级数据类型 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -176,9 +176,9 @@
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第一章第一节 C++数据类型</h2>
+            <h2 class="post-title">第一章第一节 高级数据类型</h2>
             <div class="post-meta">
-                本文共计1096个字 |
+                本文共计442个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,7 +187,7 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">vector容器类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">复数类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">pair类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">类</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">pair类型</span></a></li></ol>
             </div>
         
             <h2><span id="引用类型">引用类型</span></h2><p>引用的定义如下。</p>
@@ -196,20 +196,13 @@
 <p>引用主要在函数的形式参数中被用到。</p>
 <h2><span id="枚举类型">枚举类型</span></h2><p>定义如下。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">enum_name</span> &#123;</span>val_1,...,val_n&#125;;</span><br></pre></td></tr></table></figure>
-<h2><span id="vector容器类型">vector容器类型</span></h2><p>vector类是C++为内置数组引入的一种替代表示，建议使用。要使用vector类，需包含头文件vector。可以将vector当作数组使用，也有其独特的用法。vector可以定义为空，然后向其中插入元素。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;ElementType&gt; VEC;</span><br><span class="line"></span><br><span class="line">VEC.push_back(elem);</span><br></pre></td></tr></table></figure>
-<p>此外，vcetor中的元素还可以通过迭代器来访问。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">vector</span>&lt;ElementType&gt;::iterator it=VEC.begin(); it!=VEC.end(); it++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h2><span id="复数类型">复数类型</span></h2><p>要使用复数类型，需包含头文件complex；复数对象的定义如下。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">complex</span>&lt;<span class="keyword">float</span>&gt; <span class="title">purei</span><span class="params">(<span class="number">0</span>, <span class="number">7</span>)</span></span>; <span class="comment">//purei=0+7i</span></span><br></pre></td></tr></table></figure>
-<p>float处还可以设置为double、long double。</p>
+<p>C++11引入限定作用域的枚举类型<code>enum class</code>或<code>enum struct</code>，称为枚举类。</p>
 <h2><span id="pair类型">pair类型</span></h2><p>pair类型用于将两个对象关联起来。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;Element_1, Element_2&gt; RELA(var_1, var_2);</span><br></pre></td></tr></table></figure>
 <p>创建了一个pair对象RELA，它包含两个对象var_1与var_2；要访问var_1，使用RELA.first；要访问var_2，使用RELA.second。</p>
 <p>若要定义多个相同pair类型的对象，可使用typedef。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;Element_1, Element_2&gt; RELA;</span><br></pre></td></tr></table></figure>
-<h2><span id="类">类</span></h2><p>类的定义模板如下。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CLASSName</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//公开变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//公开函数</span></span><br><span class="line">    CLASSName();</span><br><span class="line">    CLASSName(para_1,..., para_m);</span><br><span class="line">    </span><br><span class="line">    ~CLASSName();</span><br><span class="line">    ~CLASSName(para_1,..., para_k);</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//私有变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//私有函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
             
                 
             
