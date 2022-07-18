@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第二章第二节 显式类型转换 - GAEA</title>
+<title>第五章第一节 类 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第二章第二节 显式类型转换 - GAEA" />
+<meta property="og:title" content="第五章第一节 类 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2022-01-02">2022-01-02</span>
+                    <span title="最后编辑于&nbsp;2022-07-18">2022-07-18</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第二章第二节 显式类型转换</h2>
+            <h2 class="post-title">第五章第一节 类</h2>
             <div class="post-meta">
-                本文共计748个字 |
+                本文共计1238个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,22 +187,40 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">protected</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">友元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">类模板</span></a></li></ol>
             </div>
         
-            <p>显式类型转换操作符：static_cast、dynamic_cast、const_cast与reinterpret_cast。</p>
-<p>任何非const数据类型的指针都可以被赋值给<code>void *</code>类型的指针。<code>void *</code>类型的指针被用于对象的确切类型未知或特定环境下对象类型会发生变化的情况下。</p>
-<p>显式转换的形式如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt; (expression);</span><br></pre></td></tr></table></figure>
-<p><code>cast-name</code>是static_cast、dynamic_cast、const_cast与reinterpret_cast其中一个，用于转换表达式的常量性。</p>
-<p>当一个对象的值可能会在编译器的控制或监测之外被改变是，该对象应该声明为volatile。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p1 = &amp; num;<span class="comment">//const修饰int *，即p1是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> cnum;<span class="comment">//const修饰int，即cnum是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * p2 = &amp; cnum;<span class="comment">//const修饰p2指向的变量cnum，底层const</span></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">顶层<span class="keyword">const</span>：（顶层<span class="keyword">const</span>）本身是一个常量；</span><br><span class="line">底层<span class="keyword">const</span>：指针指向的对象是常量</span><br></pre></td></tr></table></figure>
+            <h2><span id="protected">protected</span></h2><p>protected成员相对于private成员扩大的访问范围表现在：基类的protected成员可以在派生类的成员函数中被访问。</p>
+<h2><span id="继承">继承</span></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">proQueue</span> :</span> <span class="keyword">public</span> Queue &#123; <span class="comment">/* ... ... */</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p>类proQueue继承了类Queue；当构造一个派生类对象时，会先调用基类的构造函数；若存在成员是类，会调用成员类的构造函数，最后再调用其自身构造函数，析构函数的调用顺序与之相反。</p>
+<p>但是基类的析构函数应设置为虚函数（默认），可以保证当我们new一个子类，然后使用基类指针指向该子类对象，释放基类指针时可以释放掉子类的空间，防止内存泄漏。但是构造函数不能声明为虚函数。</p>
+<p>三种继承总结如下图</p>
+<div style="width:90%;margin:auto"><img src="/course/cpp-ch5-par1/1.png" class title="pic1"></div>
+
+<h2><span id="虚继承">虚继承</span></h2><p>虚继承是解决C++多重继承问题的一种手段，从不同途径继承来的同一基类，会在子类中存在多份拷贝。这将存在两个问题：其一，浪费存储空间；第二，存在二义性问题，通常可以将派生类对象的地址赋值给基类对象，实现的具体方式是，将基类指针指向继承类（继承类有基类的拷贝）中的基类对象的地址，但是多重继承可能存在一个基类的多份拷贝，这就出现了二义性。虚继承可以解决多种继承前面提到的两个问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span><span class="keyword">virtual</span> <span class="keyword">public</span> A&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h2><span id="友元">友元</span></h2><p>C++中私有变量对外部类是不能直接访问的，也是不能继承的。</p>
+<p>使用友元类可以访问类中的私有方法、私有变量，虽然对类的封装有一定的破坏，但是有时也是很实用的。在实际中，在修改已有代码时，为了不大改动已有代码：</p>
+<p>对于没有继承关系的类，如果有关联，使用友元类还是比较方便的。</p>
+<p>对于有继承关系的类，如果有关联，可以将变量访问由private改为protected。</p>
+<p>总结：</p>
+<p>外部类可访问public；</p>
+<p>友元类可访问public、protected与private；</p>
+<p>子类可访问public与protected；</p>
+<h2><span id="虚函数">虚函数</span></h2><p>使用<code>virtual</code>关键字修饰的函数为虚函数，子类需要对基类的虚函数进行重写。当基类指针或引用指向派生类对象时，当使用该指针或引用调用基类的虚函数时，会自动调用派生类实现的函数——动态绑定。</p>
 <ul>
-<li>static_cast：任何具有明确定义的非const类型转换；</li>
-<li>dynamic_cast：用于将基类的指针或引用安全地转换成派生类的指针或引用；</li>
-<li>const_cast：改变对象的底层const；<code>char *p = const_cast&lt;char*&gt;(pc); *// 正确，但是通过p写值是未定义的行为*</code>，其中<code>pc</code>是底层const。</li>
-<li>reinterpret_cast：更底层的转换，使用需非常谨慎。</li>
+<li>存在虚函数的类都有一个一维的虚函数表即虚表。每个存在虚函数的类对应一个虚表，该类实例化的每个对象对应一个虚表指针；</li>
+<li>纯虚函数=虚函数=0；</li>
+<li>存在至少一个纯虚函数的类即抽象类；抽象类不可实例化，必须由派生类继承重写纯虚函数后。派生类才能被实例化。</li>
 </ul>
+<h2><span id="构造函数">构造函数</span></h2><ul>
+<li>缺省构造函数；</li>
+<li>拷贝构造函数（参数为const引用）；</li>
+<li>移动构造函数（参数为右值引用）；</li>
+<li>初始化构造函数（程序员定义）；</li>
+</ul>
+<h2><span id="析构函数">析构函数</span></h2><p>销毁类对象之前调用的函数，替类对象返还相关的资源或自动释放资源。与构造函数相对应。</p>
+<h2><span id="类模板">类模板</span></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Queue</span>&#123;</span></span><br><span class="line">        <span class="comment">/* 与类定义的内容相同 */</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
             
                 

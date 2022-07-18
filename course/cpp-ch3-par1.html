@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2022-05-27">2022-05-27</span>
+                    <span title="最后编辑于&nbsp;2022-07-14">2022-07-14</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
             <h2 class="post-title">第三章第一节 函数</h2>
             <div class="post-meta">
-                本文共计844个字 |
+                本文共计853个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,21 +187,20 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">try块</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">extern “C”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">重载函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">函数模板定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">异常处理</span></a></li></ol>
             </div>
         
-            <p>链接提示符extern “C”表明该函数是用C语言编写的。链接提示符必须放在函数体外，建议放在头文件中。</p>
-<p>函数指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义了一个返回值为int，参数为(const string &amp;, int)的函数指针 */</span></span><br><span class="line"><span class="keyword">int</span> (* pf) (<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>重载函数：函数名相同，但是参数列表（参数的类型，数目）不同的函数。</p>
+            <h2><span id="extern-c">extern “C”</span></h2><p>链接提示符extern “C”表明该函数是用C语言编写的。链接提示符必须放在函数体外，建议放在头文件中。</p>
+<h2><span id="重载函数">重载函数</span></h2><p>函数名相同，但是参数列表（参数的类型，数目）不同的函数。</p>
 <p>函数重载解析的步骤如下：</p>
 <ul>
 <li>确定函数调用考虑的重载函数的集合；</li>
 <li>从重载函数集合中选择函数，该函数可以在给出实参个数与类型的情况下调用；</li>
 <li>选择与调用最匹配的函数；</li>
 </ul>
-<p>函数模板：一种用来自动生成各种函数实例的算法，将函数接口（参数与返回类型）的全部或部分类型进行参数化，而函数体保持不变。</p>
-<h2><span id="try块">try块</span></h2><p>C++中异常用类来实现，即针对每一种异常，要定义一个对应的类。如”栈空时pop异常”。</p>
+<h2><span id="函数模板定义">函数模板定义</span></h2><p>一种用来自动生成各种函数实例的算法，将函数接口（参数与返回类型）的全部或部分类型进行参数化，而函数体保持不变</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Type</span>&gt;</span></span><br><span class="line"><span class="function">Type <span class="title">min</span> <span class="params">(Type a, Type b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="异常处理">异常处理</span></h2><p>C++中异常用类来实现，即针对每一种异常，要定义一个对应的类。如”栈空时pop异常”。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">poPOnEmpty</span>&#123;</span></span><br><span class="line">    <span class="comment">/* ... ... */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>在出现异常的时候抛出此异常</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">istack</span>&#123;</span></span><br><span class="line">    <span class="comment">/* ... ... */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(! <span class="keyword">this</span>-&gt;empty())&#123;</span><br><span class="line">            <span class="comment">/* ... ... */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> poPOnEmpty();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

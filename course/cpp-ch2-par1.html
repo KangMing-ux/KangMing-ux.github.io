@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>第二章第一节 new与delete - GAEA</title>
+<title>第二章第一节 显式类型转换 - GAEA</title>
 
 <meta name="keywords" content="">
 
@@ -26,7 +26,7 @@
 
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
-<meta property="og:title" content="第二章第一节 new与delete - GAEA" />
+<meta property="og:title" content="第二章第一节 显式类型转换 - GAEA" />
 <meta property="og:description" content="" />
 <meta property="og:url" content="https://kangming-ux.github.io" />
 <meta property="og:site_name" content="GAEA" />
@@ -172,13 +172,13 @@
                 <p><span class="label">作者</span>
                     <a href="https://KangMing-ux.github.io/about/"
                        target="_blank">coming</a>
-                    <span title="最后编辑于&nbsp;2022-01-02">2022-01-02</span>
+                    <span title="最后编辑于&nbsp;2022-07-13">2022-07-13</span>
                 </p>
                 <p>一个写代码的「伪文人」</p>
             </div>
-            <h2 class="post-title">第二章第一节 new与delete</h2>
+            <h2 class="post-title">第二章第一节 显式类型转换</h2>
             <div class="post-meta">
-                本文共计95个字 |
+                本文共计1341个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
@@ -187,12 +187,28 @@
             
                 <div id="toc" class="toc-article">
                     <strong class="toc-title">文章目录</strong>
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">static_cast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">dynamic_cast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">reinterpre_cast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">const_cast</span></a></li></ol>
             </div>
         
-            <p>new表达式动态分配内存给对象，动态分配的内存必须通过delete释放。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * intp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> intp;</span><br></pre></td></tr></table></figure>
-<p>分配的内存在程序对应进程的堆中。</p>
+            <p>显式类型转换操作符：static_cast、dynamic_cast、const_cast与reinterpret_cast。</p>
+<p>显式转换的形式如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* cast-name = static_cast | dynamic_cast | const_cast | reinterpret_cast */</span></span><br><span class="line">cast-name&lt;type&gt; (expression);</span><br></pre></td></tr></table></figure>
+<h2><span id="static_cast">static_cast</span></h2><p>编译器隐式执行的任何类型转换都可以由static_cast显式完成。</p>
+<p>Q：为何要这样做</p>
+<p>A：因为从一个较大类型到一个较小类型的赋值 会导致编译器产生一个警告以提醒我们潜在的精度损失 当我们提供显式强制转换时 警告消息被关闭 强制转换告诉编译器和程序的读者 我们不关心潜在的精度损失。</p>
+<h2><span id="dynamic_cast">dynamic_cast</span></h2><p>dynamic_cast操作符可以用来将一个类对象的指针转换成同一类层次结构中的其他类类型的指针，同时也可以用它把一个类对象的左值转换成同一类层次结构中其他类类型的引用。</p>
+<p>它支持在运行时刻识别（即RTTI）由指针或引用指向的类对象。</p>
+<p>dynamic_cast 操作符被用来执行从基类指针到派生类指针的安全转换，它常常被称为安全的向下转换。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用指向基类类型的指针来操纵派生类类型的对象，这通常通过虚函数自动处理，但是在某些情形下使用虚拟函数是不可能的，dynamic_cast 为这些情形提供了替代的机制，但是这种机制比虚拟成员函数更易出错，应该小心使用</span><br></pre></td></tr></table></figure>
+<h2><span id="reinterpre_cast">reinterpre_cast</span></h2><p>reinterpre_cast通常对于操作数的位模式执行一个比较低层次的重新解释，它的正确性很大程度上依赖于程序员的主动管理。</p>
+<h2><span id="const_cast">const_cast</span></h2><p>const_cast用于转换表达式的常量性，即改变对象的底层const。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const的修饰原则：</span><br><span class="line"></span><br><span class="line">优先修饰左边，即int * const p;中const修饰int *</span><br><span class="line"></span><br><span class="line">若左边无内容，则修饰右边</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p1 = &amp; num;<span class="comment">//const修饰int *，即p1是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> cnum;<span class="comment">//const修饰int，即cnum是一个常量，顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * p2 = &amp; cnum;<span class="comment">//const修饰p2指向的变量cnum，底层const</span></span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">顶层<span class="keyword">const</span>：（顶层<span class="keyword">const</span>）本身是一个常量；</span><br><span class="line">底层<span class="keyword">const</span>：作为指针指向的对象是常量</span><br></pre></td></tr></table></figure>
+<p>所谓用于转换表达式的常量性，即</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * pc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> * p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(pc);</span><br></pre></td></tr></table></figure>
+<p>此时p与pc的值相同，但是p指向的内容仍是常量，不可修改！</p>
+<p>当一个对象的值可能会在编译器的控制或监测之外被改变时，该对象应声明为volatile。const_cast也会转换volatile对象的volatile性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatile会在多线程中被使用，当两个或多个线程都要用到同一变量且该变量的值会被改变时，就需要用volatile声明，以防止编译器为了优化代码而将该变量装入CPU寄存器中，而是每次使用该变量都需要从内存中读取</span><br></pre></td></tr></table></figure>
 
             
                 
