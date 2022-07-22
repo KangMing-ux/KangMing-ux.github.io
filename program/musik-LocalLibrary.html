@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://kangming-ux.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="author" content="coming">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://kangming-ux.github.io">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>musikcube之locallibrary类 - GAEA</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="musikcube之locallibrary类 - GAEA" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://kangming-ux.github.io" />
+<meta property="og:site_name" content="GAEA" />
+
+<link rel="dns-prefetch" href="https://kangming-ux.github.io">
+<link rel="prefetch" href="https://kangming-ux.github.io">
+<link rel="prerender" href="https://kangming-ux.github.io">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+    <script type="text/javascript">
+        (function() {
+            let jsi_config = {
+                rootUrl: 'https://kangming-ux.github.io/',
+                isPost: 'true',
+                buildingTime: '01/23/2021',
+                snsQRCode: '/images/sns-qrcode.png',
+                donateImg: '/images/donate-qr.png',
+                localSearch: { dbPath: '' },
+                readMode: 'day'
+            };
+            
+                jsi_config.localSearch = {
+                    dbPath: '/search.json',
+                    trigger: 'auto',
+                    topN: '1',
+                    unescape: 'false'
+                }
+            
+            window.jsi_config = jsi_config;
+        })()
+    </script>
+    
+<script src="/js/SimpleCore.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="C">C</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="https://KangMing-ux.github.io/images/cover-day.jpg" alt="cover-img" loading="lazy" />
+    <div class="cover-info">
+        
+        <img class="avatar" width="72" src="/images/avatar.png" alt="avatar"/>
+        
+        <h1 class="cover-siteName">coming</h1>
+        <h3 class="cover-siteTitle">天行健 君子以自强不息</h3>
+        <p class="cover-siteDesc">记录我的成长</p>
+        <div class="cover-sns">
+            
+    &nbsp;&nbsp;<div class="btn btn-github">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="github" ref="friend">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-facebook">
+        <a href="https://www.zhihu.com/people/chu-kang-ming" target="_blank" title="facebook" ref="friend">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </div>
+
+    &nbsp;&nbsp;<div class="btn btn-slack">
+        <a href="https://github.com/KangMing-ux" target="_blank" title="slack" ref="friend">
+            <i class="fa fa-slack"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/crypto" data-name="密码学">密码学</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/config" data-name="配置">配置</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/course" data-name="课程">课程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/program" data-name="编程">编程</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/job" data-name="工作">工作</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="读物检索~" />
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://KangMing-ux.github.io/"
+                   target="_blank">
+                    <img width="48" src="/images/avatar.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://KangMing-ux.github.io/about/"
+                       target="_blank">coming</a>
+                    <span title="最后编辑于&nbsp;2022-05-12">2022-05-12</span>
+                </p>
+                <p>一个写代码的「伪文人」</p>
+            </div>
+            <h2 class="post-title">musikcube之LocalLibrary类</h2>
+            <div class="post-meta">
+                本文共计4551个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+		    <!-- Table of Contents -->
+            
+                <div id="toc" class="toc-article">
+                    <strong class="toc-title">文章目录</strong>
+                    
+            </div>
+        
+            <p>该类管理本地的音乐资料库并提供编辑本地音乐资料库的接口，定义于src/musikcore/library/LocalLibrary.h，继承了ILibrary、IMessageTarget类，并通过继承模板类std::enable_shared_from_this使得this指针成为shared_ptr指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LocalLibrary</span> :</span></span><br><span class="line">    <span class="keyword">public</span> ILibrary,</span><br><span class="line">    <span class="keyword">public</span> mymusic::core::runtime::IMessageTarget,</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">std</span>::enable_shared_from_this&lt;LocalLibrary&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">using</span> LocalQuery = mymusic::core::library::query::QueryBase;</span><br><span class="line">        <span class="keyword">using</span> LocalQueryPtr = <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;LocalQuery&gt;;</span><br><span class="line">        <span class="keyword">using</span> MessageQueue = mymusic::core::runtime::IMessageQueue;</span><br><span class="line">        <span class="keyword">using</span> IIndexer = mymusic::core::IIndexer;</span><br><span class="line">        <span class="comment">/* 生成一个LocalLibrary对象，返回其智能指针 */</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> ILibraryPtr <span class="title">Create</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> name, <span class="keyword">int</span> id, MessageQueue* messageQueue)</span></span>;</span><br><span class="line">        LocalLibrary(<span class="keyword">const</span> LocalLibrary&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">        <span class="comment">/*  LocalLibrary类析构函数：关闭该类（释放indexer成员，thread成员置空，清空queryQueue，exit置为true，通知所有等待在queueCondition上的线程，等待线程thread的结束，并回收它的资源）；若messageQueue成员非空，将this从其中注销 */</span></span><br><span class="line">        <span class="keyword">virtual</span> ~LocalLibrary();</span><br><span class="line">        <span class="comment">/* ILibrary */</span></span><br><span class="line">        <span class="comment">/* 将context加入queryQueue并通知所有等待在queryQueue上的线程 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Enqueue</span><span class="params">(QueryPtr query, Callback cb = Callback())</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 若timeoutMs=-1，则直接处理，无需加入队列；若timeoutMs=0，将context加入queryQueue并通知所有等待在queryQueue上的线程即可！若timeoutMs&gt;0，则要么等待 timeoutMs退出，要么query提前被处理完（包括出错）然后退出 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">EnqueueAndWait</span><span class="params">(QueryPtr query, <span class="keyword">size_t</span> timeoutMs = kWaitIndefinite, Callback cb = Callback())</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 返回indexer成员 */</span></span><br><span class="line">        <span class="function">IIndexer *<span class="title">Indexer</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 返回id成员的值 */</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Id</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 返回name成员的值 */</span></span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="title">Name</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 设置消息队列messageQueue成员 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetMessageQueue</span><span class="params">(mymusic::core::runtime::IMessageQueue&amp; <span class="built_in">queue</span>)</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 返回messageQueue成员 */</span></span><br><span class="line">        <span class="function">MessageQueue&amp; <span class="title">GetMessageQueue</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> *messageQueue; &#125;</span><br><span class="line">        <span class="comment">/* 返回sResourceLocator */</span></span><br><span class="line">        <span class="function">IResourceLocator&amp; <span class="title">GetResourceLocator</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* 判断indexer成员是否设置了音乐资料库的路径 */</span></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">IsConfigured</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="function">ConnectionState <span class="title">GetConnectionState</span><span class="params">()</span> <span class="keyword">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> ConnectionState::Connected; &#125;</span><br><span class="line">        <span class="function">Type <span class="title">GetType</span><span class="params">()</span> <span class="keyword">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> Type::Local; &#125;</span><br><span class="line">        <span class="comment">/* 关闭该类（释放indexer成员，thread成员置空，清空queryQueue，exit置为true） */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Close</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line">        <span class="comment">/* IMessageTarget */</span></span><br><span class="line">        <span class="comment">/* 处理消息队列上的消息message */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ProcessMessage</span><span class="params">(mymusic::core::runtime::IMessage &amp;message)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* implementation specific */</span></span><br><span class="line">        <span class="function">db::Connection&amp; <span class="title">GetConnection</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;db; &#125;</span><br><span class="line">        <span class="comment">/* 获取资料库所在目录 */</span></span><br><span class="line">        <span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">GetLibraryDirectory</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 获取数据库文件名 */</span></span><br><span class="line">        <span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">GetDatabaseFilename</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 创建数据库 */</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateDatabase</span><span class="params">(db::Connection &amp;db)</span></span>;</span><br><span class="line">        <span class="comment">/* indexes */</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DropIndexes</span><span class="params">(db::Connection &amp;db)</span></span>;</span><br><span class="line">        <span class="comment">/* 创建数据库索引 */</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateIndexes</span><span class="params">(db::Connection &amp;db)</span></span>;</span><br><span class="line">        <span class="comment">/* 删除播放记录 */</span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InvalidateTrackMetadata</span><span class="params">(db::Connection &amp;db)</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">QueryCompletedMessage</span>;</span></span><br><span class="line"></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">QueryContext</span> &#123;</span></span><br><span class="line">            LocalQueryPtr query;</span><br><span class="line">            <span class="comment">/* 回调函数 */</span></span><br><span class="line">            Callback callback;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">using</span> QueryContextPtr = <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;QueryContext&gt;;</span><br><span class="line">        <span class="comment">/* 未使用... */</span></span><br><span class="line">        <span class="keyword">using</span> QueryList = <span class="built_in">std</span>::<span class="built_in">list</span>&lt;QueryContextPtr&gt;;</span><br><span class="line">        <span class="comment">/* LocalLibrary类构造函数：若messageQueue成员非空，在messageQueue上注册它本身；其identifier设置为id的字符串形式；与数据库文件*db建立连接 创建thread成员，运行的函数为ThreadProc */</span></span><br><span class="line">        LocalLibrary(<span class="built_in">std</span>::<span class="built_in">string</span> name, <span class="keyword">int</span> id, MessageQueue* messageQueue); <span class="comment">/* ctor */</span></span><br><span class="line">        <span class="comment">/* 运行查询语句，查询完成后，若messageQueue成员非空，将查询完成的消息投递到messageQueue中；否则，通过sigslot消息传递机制来传递查询完成消息 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">RunQuery</span><span class="params">(QueryContextPtr context, <span class="keyword">bool</span> notify = <span class="literal">true</span>)</span></span>;</span><br><span class="line">        <span class="comment">/* 主线程要运行的函数 */</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">ThreadProc</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 获取queryQueue的第一个context（如果非空的话） */</span></span><br><span class="line">        <span class="function">QueryContextPtr <span class="title">GetNextQuery</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">/* 查询队列 */</span></span><br><span class="line">        QueryList queryQueue;</span><br><span class="line">        <span class="comment">/* 消息队列 */</span></span><br><span class="line">        mymusic::core::runtime::IMessageQueue* messageQueue;</span><br><span class="line">        <span class="comment">/* 标识符 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> identifier;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        <span class="comment">/* 音乐资料库名 */</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> name;</span><br><span class="line">        <span class="comment">/* 线程对象 */</span></span><br><span class="line">        <span class="built_in">std</span>::thread* thread;</span><br><span class="line">        <span class="comment">/* 条件变量，与mutex的锁配合使用 */</span></span><br><span class="line">        <span class="built_in">std</span>::condition_variable_any queueCondition;</span><br><span class="line">        <span class="comment">/* 互斥量 */</span></span><br><span class="line">        <span class="built_in">std</span>::recursive_mutex mutex;</span><br><span class="line">        <span class="comment">/* 标志是否退出 */</span></span><br><span class="line">        <span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; <span class="built_in">exit</span>;</span><br><span class="line">        <span class="comment">/* 数据库的客户端 */</span></span><br><span class="line">        core::IIndexer *indexer;</span><br><span class="line">        <span class="comment">/* 数据库连接 */</span></span><br><span class="line">        core::db::Connection db;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+            
+                
+            
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/musikcube/">音乐播放器</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+    
+    
+
+
+</div>
+
+<script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    let isMathjaxConfig = false; // 防止重复调用Config，造成性能损耗
+    const initMathjaxConfig = () => {
+    if (!window.MathJax) {
+        return;
+    }
+    window.MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["?", "?"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+        },
+        "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+        }
+    });
+        isMathjaxConfig = true; // 
+    };
+    if (isMathjaxConfig === false) {
+        initMathjaxConfig();
+    }
+</script>
+
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about"  title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="帮助" >帮助</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友链">友链</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="地图">地图</a>
+        </p>
+        <p>
+            本站已建立&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbsp天，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议创作</a><br/>
+            ©2017-<span id="cpYear"></span> 基于&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，主题采用&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，作者&nbsp<a href="https://kangming-ux.github.io/" target="_blank" rel="friend">coming</a>
+            ，Hosted by <a href="https://github.com/pages/" target="_blank" rel="nofollow">Gitee Pages</a>
+        </p>
+    </div>
+</footer>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="false"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+
+    <script type="text/javascript">
+        let bp = document.createElement('script');
+        let curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        bp.setAttribute("async", "");
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    </script>
+
+
+</body>
+</html>
